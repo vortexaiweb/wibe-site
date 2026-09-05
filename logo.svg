@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+  <!-- WIBE: монограмма — волна (W) + нейро-точка -->
+  <g>
+    <path d="M8 20 L18 60 L30 26 L42 60 L52 20"
+          stroke="#c8ff2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="64" cy="20" r="6" fill="#c8ff2e"/>
+    <text x="80" y="52" font-family="Unbounded, Arial, sans-serif" font-weight="800" font-size="34"
+          letter-spacing="2" fill="#eef0f4">WIBE<tspan fill="#c8ff2e">.</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIBE — AI Digital Agency</title>
+<meta name="description" content="WIBE — агентство, которое внедряет ИИ в бизнес: чат-боты, автоматизация, генеративный контент, ML-аналитика, разработка сайтов.">
+<meta property="og:title" content="WIBE — AI Digital Agency">
+<meta property="og:description" content="Внедряем ИИ в бизнес: AI-агенты, автоматизация, генеративный контент, ML-аналитика, разработка сайтов.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='22' fill='%230d0f14'/%3E%3Cpath d='M24 30 L34 66 L48 36 L62 66 L72 30' stroke='%23c8ff2e' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='48' cy='36' r='5' fill='%23c8ff2e'/%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#08090c;
+    --bg2:#0d0f14;
+    --ink:#eef0f4;
+    --muted:#8b93a3;
+    --acid:#c8ff2e;
+    --line:rgba(255,255,255,.08);
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.wordmark{font-family:'Unbounded',sans-serif}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px clamp(20px,5vw,64px);
+    backdrop-filter:blur(14px);
+    background:rgba(8,9,12,.55);
+    border-bottom:1px solid var(--line);
+  }
+  #progress{
+    position:fixed;top:0;left:0;height:2px;width:0;background:var(--acid);z-index:60;
+  }
+  .wordmark{font-weight:800;font-size:18px;letter-spacing:.06em}
+  .wordmark span{color:var(--acid)}
+  nav{display:flex;gap:32px}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--ink)}
+  .cta{
+    display:inline-block;padding:12px 24px;border-radius:100px;
+    background:var(--acid);color:#0a0c00;font-weight:600;font-size:14px;
+    text-decoration:none;transition:transform .2s, box-shadow .2s;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,255,46,.35)}
+  @media(max-width:760px){nav{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+    padding:140px clamp(20px,5vw,64px) 80px;position:relative;
+  }
+  #grid{position:absolute;inset:0;z-index:0;opacity:.5}
+  .hero > *{position:relative;z-index:1}
+  .badge{
+    display:inline-flex;align-items:center;gap:10px;width:max-content;
+    border:1px solid var(--line);border-radius:100px;padding:8px 18px;
+    color:var(--muted);font-size:13px;margin-bottom:36px;
+  }
+  .badge i{width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.3}}
+  .hero h1{
+    font-size:clamp(40px,8vw,104px);font-weight:800;line-height:1.02;
+    letter-spacing:-.02em;max-width:14ch;
+  }
+  .hero h1 em{font-style:normal;color:var(--acid)}
+  .hero p{max-width:52ch;color:var(--muted);margin:28px 0 44px;font-size:clamp(16px,2vw,19px)}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .ghost{
+    padding:12px 24px;border-radius:100px;border:1px solid var(--line);
+    color:var(--ink);text-decoration:none;font-weight:500;font-size:14px;transition:border-color .2s;
+  }
+  .ghost:hover{border-color:var(--acid)}
+  .scroll-hint{
+    position:absolute;bottom:28px;left:clamp(20px,5vw,64px);
+    color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  }
+
+  /* ---------- marquee ---------- */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;overflow:hidden;white-space:nowrap;
+    font-family:'Unbounded';font-size:14px;letter-spacing:.1em;color:var(--muted);
+  }
+  .marquee-track{display:inline-block;animation:slide 28s linear infinite}
+  .marquee b{color:var(--acid);margin:0 24px;font-weight:400}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:110px clamp(20px,5vw,64px)}
+  .kicker{color:var(--acid);font-size:13px;letter-spacing:.25em;text-transform:uppercase;font-weight:600}
+  h2{font-size:clamp(28px,4.5vw,52px);font-weight:600;letter-spacing:-.01em;margin:16px 0 56px;max-width:22ch}
+
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .service{
+    background:var(--bg2);padding:40px 32px;transition:background .25s;
+    opacity:0;transform:translateY(24px);
+  }
+  .service.in{opacity:1;transform:none;transition:opacity .6s,transform .6s,background .25s}
+  .service:hover{background:#12151c}
+  .service .num{color:var(--acid);font-family:'Unbounded';font-size:13px}
+  .service h3{font-size:20px;margin:18px 0 12px;font-weight:600}
+  .service p{color:var(--muted);font-size:15px}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;margin-top:72px}
+  .stat b{display:block;font-family:'Unbounded';font-size:clamp(34px,4vw,54px);font-weight:800;color:var(--acid)}
+  .stat span{color:var(--muted);font-size:14px}
+
+  /* ---------- cases ---------- */
+  .cases{display:grid;gap:20px}
+  .case{
+    position:relative;
+    display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;
+    border:1px solid var(--line);border-radius:var(--radius);padding:32px 36px;
+    text-decoration:none;color:var(--ink);transition:border-color .25s,background .25s,transform .25s;
+    cursor:pointer;
+  }
+  .case:hover{border-color:rgba(200,255,46,.5);background:var(--bg2);transform:translateX(10px)}
+  .case::after{
+    content:'Смотреть кейс →';position:absolute;top:14px;right:20px;
+    color:var(--acid);font-size:12px;font-weight:600;letter-spacing:.08em;
+    opacity:0;transition:opacity .25s;
+  }
+  .case:hover::after{opacity:1}
+  .case h3{font-size:clamp(18px,2.4vw,26px);font-weight:600}
+  .case p{color:var(--muted);font-size:14px;margin-top:6px}
+  .case .metric{font-family:'Unbounded';color:var(--acid);font-size:clamp(20px,3vw,32px);font-weight:800;text-align:right;white-space:nowrap}
+  .case .metric small{display:block;font-family:'Inter';color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.05em}
+  @media(max-width:560px){.case{
+    position:relative;grid-template-columns:1fr}.case .metric{text-align:left}}
+
+  /* ---------- cta ---------- */
+  .cta-block{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:radial-gradient(120% 200% at 80% 0%,rgba(200,255,46,.12),transparent 60%),var(--bg2);
+    padding:clamp(48px,7vw,96px);text-align:center;
+  }
+  .cta-block h2{margin:0 auto 20px;max-width:26ch}
+  .cta-block p{color:var(--muted);max-width:48ch;margin:0 auto 40px}
+
+  footer{
+    padding:40px clamp(20px,5vw,64px);border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+    color:var(--muted);font-size:13px;
+  }
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--acid)}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header>
+  <div class="wordmark">WIBE<span>.</span></div>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#process">Процесс</a>
+    <a href="#cases">Кейсы</a>
+    <a href="portfolio.html">Портфолио</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+  <a class="cta" href="#contact">Обсудить проект</a>
+</header>
+
+<section class="hero">
+  <canvas id="grid"></canvas>
+  <h1>Сайты и ИИ, которые <em>работают</em> на ваш бизнес</h1>
+  <p>Мы разрабатываем сайты и внедряем ИИ-решения: от лендингов и веб-приложений до чат-ботов и сквозной автоматизации процессов. Без хайпа — с измеримым результатом.</p>
+  <div class="hero-actions">
+    <a class="cta" href="#contact">Начать проект</a>
+    <a class="ghost" href="#cases">Смотреть кейсы</a>
+  </div>
+  <div class="scroll-hint">Scroll ↓</div>
+</section>
+
+<section id="process">
+  <div class="kicker">Процесс</div>
+  <h2>От идеи до работающего ИИ — за 4 шага</h2>
+  <div class="services">
+    <div class="service"><div class="num">01</div><h3>Аудит</h3><p>Разбираем процессы, ищем точки, где ИИ даст быструю окупаемость. Бесплатно, за 3–5 дней.</p></div>
+    <div class="service"><div class="num">02</div><h3>Прототип</h3><p>Собираем MVP решения на реальных данных и показываем, как это работает в вашем контуре.</p></div>
+    <div class="service"><div class="num">03</div><h3>Внедрение</h3><p>Доводим до боевого режима: интеграции, тесты, обучение команды, документация.</p></div>
+    <div class="service"><div class="num">04</div><h3>Поддержка</h3><p>Мониторим качество, дообучаем модели и развиваем решение вместе с ростом бизнеса.</p></div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    Сайты под ключ<b>◆</b>GPT-агенты<b>◆</b>RAG-системы<b>◆</b>Генеративный дизайн<b>◆</b>Автоматизация продаж<b>◆</b>ML-аналитика<b>◆</b>Голосовые боты<b>◆</b>
+    Сайты под ключ<b>◆</b>GPT-агенты<b>◆</b>RAG-системы<b>◆</b>Генеративный дизайн<b>◆</b>Автоматизация продаж<b>◆</b>ML-аналитика<b>◆</b>Голосовые боты<b>◆</b>
+  </div>
+</div>
+
+<section id="services">
+  <div class="kicker">Услуги</div>
+  <h2>Что мы собираем под ключ</h2>
+  <div class="services">
+    <div class="service"><div class="num">01</div><h3>AI-агенты и чат-боты</h3><p>Ассистенты на базе LLM, которые отвечают клиентам, квалифицируют лиды и работают 24/7 в мессенджерах и на сайте.</p></div>
+    <div class="service"><div class="num">02</div><h3>Автоматизация процессов</h3><p>Связываем CRM, таблицы и почту в самоходные пайплайны. Рутина уходит машине — команда занимается важным.</p></div>
+    <div class="service"><div class="num">03</div><h3>Генеративный контент</h3><p>Тексты, изображения, видео и голос по бренд-буку. Контент-конвейер вместо контент-затора.</p></div>
+    <div class="service"><div class="num">04</div><h3>Данные и ML-аналитика</h3><p>Прогноз спроса, сегментация клиентов, антифрод. Модели, встроенные в ваши дашборды и решения.</p></div>
+    <div class="service"><div class="num">05</div><h3>Внедрение и интеграции</h3><p>Подключаем ИИ к вашему стеку: CRM, ERP, мессенджеры, сайты и внутренние системы. Запуск без остановки бизнеса.</p></div>
+    <div class="service"><div class="num">06</div><h3>RAG и базы знаний</h3><p>ИИ, который отвечает по вашим документам и базам знаний. Точные ответы со ссылками на источник.</p></div>
+    <div class="service"><div class="num">07</div><h3>Голосовые ИИ-решения</h3><p>Голосовые боты для обзвона, приёма звонков и записи клиентов. Живая речь, понятная людям.</p></div>
+    <div class="service"><div class="num">08</div><h3>AI-консалтинг и аудит</h3><p>Проводим аудит процессов, находим точки окупаемости ИИ и формируем дорожную карту внедрения.</p></div>
+    <div class="service"><div class="num">09</div><h3>Разработка сайтов</h3><p>Лендинги, корпоративные сайты и веб-приложения под ключ: дизайн, код, интеграции с CRM и ИИ-функции на борту.</p></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>70%</b><span>средний рост скорости обработки заявок</span></div>
+    <div class="stat"><b>24/7</b><span>работа ИИ-ассистентов без выходных</span></div>
+    <div class="stat"><b>30+</b><span>внедрённых проектов за 2 года</span></div>
+    <div class="stat"><b>6 нед.</b><span>средний срок от аудита до запуска</span></div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="kicker">Кейсы</div>
+  <h2>Цифры вместо обещаний</h2>
+  <p style="color:var(--muted);margin:-36px 0 32px;font-size:15px">Нажмите на кейс, чтобы посмотреть детали →</p>
+  <div class="cases">
+    <a class="case" href="case-ecom.html">
+      <div><h3>E-commerce: AI-ассистент продаж</h3><p>Консультирует, подбирает товары, доводит до корзины в Telegram и на сайте.</p></div>
+      <div class="metric">+34%<small>конверсия в заказ</small></div>
+    </a>
+    <a class="case" href="case-logistics.html">
+      <div><h3>Логистика: автоматизация документооборота</h3><p>LLM читает накладные, сверяет и заводит данные в ERP без операторов.</p></div>
+      <div class="metric">−85%<small>ручной обработки</small></div>
+    </a>
+    <a class="case" href="case-media.html">
+      <div><h3>Медиа: генеративный контент-конвейер</h3><p>Десятки брендированных креативов в день из одного сценария.</p></div>
+    <div class="metric">×12<small>скорость производства</small></div>
+    </a>
+  </div>
+  <div class="hero-actions" style="margin-top:40px">
+    <a class="ghost" href="portfolio.html">Смотреть портфолио сайтов →</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta-block">
+    <div class="kicker">Контакты</div>
+    <h2>Расскажите о задаче — вернёмся с планом за 48 часов</h2>
+    <p>Бесплатный аудит процессов и честная оценка: где ИИ окупится, а где — нет.</p>
+    <div class="hero-actions" style="justify-content:center">
+      <a class="cta" href="mailto:concept@wibe.site">concept@wibe.site</a>
+      <a class="ghost" href="https://t.me/wibesitebot" target="_blank" rel="noopener">TG-бот @wibesitebot</a>
+      <a class="ghost" href="https://t.me/wibesite" target="_blank" rel="noopener">Канал @wibesite</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 WIBE — AI digital agency</div>
+  <div>Этот сайт сделан с <a href="https://t.me/wibesite" target="_blank" rel="noopener">WIBE AI</a> ⚡</div>
+  <div><a href="mailto:concept@wibe.site">concept@wibe.site</a> · <a href="https://t.me/wibesitebot" target="_blank" rel="noopener">@wibesitebot</a> · <a href="https://t.me/wibesite" target="_blank" rel="noopener">@wibesite</a></div>
+</footer>
+
+<script>
+  // фоновая сетка с "сигнальными" узлами в hero
+  const cv = document.getElementById('grid'), ctx = cv.getContext('2d');
+  let nodes = [];
+  function resize(){
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    nodes = Array.from({length: Math.min(40, cv.width/30)}, () => ({
+      x: Math.random()*cv.width, y: Math.random()*cv.height,
+      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4
+    }));
+  }
+  resize(); addEventListener('resize', resize);
+  (function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(const n of nodes){
+      n.x += n.vx; n.y += n.vy;
+      if(n.x<0||n.x>cv.width) n.vx*=-1;
+      if(n.y<0||n.y>cv.height) n.vy*=-1;
+    }
+    ctx.strokeStyle = 'rgba(200,255,46,.07)';
+    for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){
+      const a=nodes[i],b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<160){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+    }
+    ctx.fillStyle = 'rgba(200,255,46,.5)';
+    for(const n of nodes){ctx.beginPath();ctx.arc(n.x,n.y,1.4,0,7);ctx.fill();}
+    requestAnimationFrame(draw);
+  })();
+
+  // появление карточек услуг при скролле
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+  }),{threshold:.2});
+  document.querySelectorAll('.service').forEach((el,i)=>{
+    el.style.transitionDelay = (i*80)+'ms';
+    io.observe(el);
+  });
+
+  // прогресс-бар чтения
+  const bar = document.getElementById('progress');
+  addEventListener('scroll', () => {
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  }, {passive:true});
+</script>
+</body>
+</html>
