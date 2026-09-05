@@ -4,22 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WIBE — AI Digital Agency</title>
-<meta name="description" content="WIBE — агентство, которое внедряет ИИ в бизнес: чат-боты, автоматизация, генеративный контент, ML-аналитика, разработка сайтов.">
+<meta name="description" content="WIBE — агентство, которое разрабатывает сайты и внедряет ИИ: AI-агенты, автоматизация, генеративный контент, ML-аналитика.">
 <meta property="og:title" content="WIBE — AI Digital Agency">
-<meta property="og:description" content="Внедряем ИИ в бизнес: AI-агенты, автоматизация, генеративный контент, ML-аналитика, разработка сайтов.">
+<meta property="og:description" content="Сайты и ИИ-решения для бизнеса: AI-агенты, автоматизация, генеративный контент, ML-аналитика.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='22' fill='%230d0f14'/%3E%3Cpath d='M24 30 L34 66 L48 36 L62 66 L72 30' stroke='%23c8ff2e' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='48' cy='36' r='5' fill='%23c8ff2e'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='22' fill='%23171310'/%3E%3Cpath d='M24 30 L34 66 L48 36 L62 66 L72 30' stroke='%23ff6b2c' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='48' cy='36' r='5' fill='%23ff6b2c'/%3E%3C/svg%3E">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&display=swap');
 
   :root{
-    --bg:#08090c;
-    --bg2:#0d0f14;
-    --ink:#eef0f4;
-    --muted:#8b93a3;
-    --acid:#c8ff2e;
-    --line:rgba(255,255,255,.08);
-    --radius:20px;
+    --bg:#0e0c0a;
+    --panel:#171310;
+    --line:rgba(255,240,220,.1);
+    --ink:#f5efe6;
+    --muted:#a89e92;
+    --accent:#ff6b2c;
+    --accent-soft:rgba(255,107,44,.15);
+    --radius:24px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -30,57 +31,68 @@
   }
   h1,h2,h3,.wordmark{font-family:'Unbounded',sans-serif}
 
+  /* ---------- фоновая анимация ---------- */
+  #flow{
+    position:fixed;inset:0;z-index:0;pointer-events:auto;
+    transition:opacity .1s linear;
+  }
+
   /* ---------- header ---------- */
   header{
     position:fixed;inset:0 0 auto 0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
     padding:18px clamp(20px,5vw,64px);
     backdrop-filter:blur(14px);
-    background:rgba(8,9,12,.55);
+    background:rgba(14,12,10,.6);
     border-bottom:1px solid var(--line);
   }
-  #progress{
-    position:fixed;top:0;left:0;height:2px;width:0;background:var(--acid);z-index:60;
-  }
-  .wordmark{font-weight:800;font-size:18px;letter-spacing:.06em}
-  .wordmark span{color:var(--acid)}
+  .wordmark{font-weight:800;font-size:18px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+  .wordmark span{color:var(--accent)}
   nav{display:flex;gap:32px}
   nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
   nav a:hover{color:var(--ink)}
   .cta{
-    display:inline-block;padding:12px 24px;border-radius:100px;
-    background:var(--acid);color:#0a0c00;font-weight:600;font-size:14px;
+    display:inline-block;padding:13px 26px;border-radius:100px;
+    background:var(--accent);color:#1a0d04;font-weight:600;font-size:14px;
     text-decoration:none;transition:transform .2s, box-shadow .2s;
   }
-  .cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,255,46,.35)}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,44,.4)}
   @media(max-width:760px){nav{display:none}}
+
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:60}
 
   /* ---------- hero ---------- */
   .hero{
     min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-    padding:140px clamp(20px,5vw,64px) 80px;position:relative;
+    padding:140px clamp(20px,5vw,64px) 80px;position:relative;z-index:1;
   }
-  #grid{position:absolute;inset:0;z-index:0;opacity:.5}
-  .hero > *{position:relative;z-index:1}
   .badge{
     display:inline-flex;align-items:center;gap:10px;width:max-content;
     border:1px solid var(--line);border-radius:100px;padding:8px 18px;
     color:var(--muted);font-size:13px;margin-bottom:36px;
+    background:rgba(23,19,16,.5);backdrop-filter:blur(4px);
   }
-  .badge i{width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 2s infinite}
+  .badge i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
   @keyframes pulse{50%{opacity:.3}}
   .hero h1{
-    font-size:clamp(40px,8vw,104px);font-weight:800;line-height:1.02;
-    letter-spacing:-.02em;max-width:14ch;
+    font-size:clamp(38px,7vw,92px);font-weight:800;line-height:1.06;
+    letter-spacing:-.01em;max-width:16ch;
+    text-shadow:0 2px 30px rgba(14,12,10,.8);
   }
-  .hero h1 em{font-style:normal;color:var(--acid)}
-  .hero p{max-width:52ch;color:var(--muted);margin:28px 0 44px;font-size:clamp(16px,2vw,19px)}
+  .hero h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+  .hero h1 em::after{
+    content:'';position:absolute;left:0;right:0;bottom:6px;height:4px;border-radius:4px;
+    background:var(--accent);opacity:.45;
+  }
+  .hero p{max-width:54ch;color:var(--muted);margin:28px 0 44px;font-size:clamp(16px,2vw,19px)}
   .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
   .ghost{
-    padding:12px 24px;border-radius:100px;border:1px solid var(--line);
-    color:var(--ink);text-decoration:none;font-weight:500;font-size:14px;transition:border-color .2s;
+    padding:13px 26px;border-radius:100px;border:1px solid var(--line);
+    color:var(--ink);text-decoration:none;font-weight:500;font-size:14px;
+    background:rgba(23,19,16,.5);backdrop-filter:blur(4px);
+    transition:border-color .2s,transform .2s;
   }
-  .ghost:hover{border-color:var(--acid)}
+  .ghost:hover{border-color:var(--accent);transform:translateY(-2px)}
   .scroll-hint{
     position:absolute;bottom:28px;left:clamp(20px,5vw,64px);
     color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
@@ -88,82 +100,85 @@
 
   /* ---------- marquee ---------- */
   .marquee{
+    position:relative;z-index:1;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     padding:18px 0;overflow:hidden;white-space:nowrap;
     font-family:'Unbounded';font-size:14px;letter-spacing:.1em;color:var(--muted);
+    background:rgba(14,12,10,.85);backdrop-filter:blur(6px);
   }
   .marquee-track{display:inline-block;animation:slide 28s linear infinite}
-  .marquee b{color:var(--acid);margin:0 24px;font-weight:400}
+  .marquee b{color:var(--accent);margin:0 24px;font-weight:400}
   @keyframes slide{to{transform:translateX(-50%)}}
 
   /* ---------- sections ---------- */
+  .solid{position:relative;z-index:1;background:var(--bg)}
   section{padding:110px clamp(20px,5vw,64px)}
-  .kicker{color:var(--acid);font-size:13px;letter-spacing:.25em;text-transform:uppercase;font-weight:600}
-  h2{font-size:clamp(28px,4.5vw,52px);font-weight:600;letter-spacing:-.01em;margin:16px 0 56px;max-width:22ch}
+  .kicker{color:var(--accent);font-size:13px;letter-spacing:.25em;text-transform:uppercase;font-weight:600}
+  h2{font-size:clamp(28px,4.5vw,52px);font-weight:600;letter-spacing:-.01em;margin:16px 0 56px;max-width:24ch}
 
-  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
   .service{
-    background:var(--bg2);padding:40px 32px;transition:background .25s;
-    opacity:0;transform:translateY(24px);
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:36px;transition:border-color .25s,transform .25s,box-shadow .25s;
+    opacity:0;transform:translateY(24px);cursor:default;
   }
-  .service.in{opacity:1;transform:none;transition:opacity .6s,transform .6s,background .25s}
-  .service:hover{background:#12151c}
-  .service .num{color:var(--acid);font-family:'Unbounded';font-size:13px}
-  .service h3{font-size:20px;margin:18px 0 12px;font-weight:600}
+  .service.in{opacity:1;transform:none;transition:opacity .6s,transform .6s,border-color .25s,box-shadow .25s}
+  .service:hover{border-color:rgba(255,107,44,.6);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .service .num{color:var(--accent);font-family:'Unbounded';font-size:12px}
+  .service h3{font-size:19px;margin:16px 0 10px;font-weight:600}
   .service p{color:var(--muted);font-size:15px}
 
-  /* ---------- stats ---------- */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;margin-top:72px}
-  .stat b{display:block;font-family:'Unbounded';font-size:clamp(34px,4vw,54px);font-weight:800;color:var(--acid)}
+  .stat{border-left:2px solid var(--accent);padding-left:20px}
+  .stat b{display:block;font-family:'Unbounded';font-size:clamp(32px,4vw,50px);font-weight:800}
   .stat span{color:var(--muted);font-size:14px}
 
-  /* ---------- cases ---------- */
   .cases{display:grid;gap:20px}
   .case{
-    position:relative;
     display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;
-    border:1px solid var(--line);border-radius:var(--radius);padding:32px 36px;
-    text-decoration:none;color:var(--ink);transition:border-color .25s,background .25s,transform .25s;
-    cursor:pointer;
+    border:1px solid var(--line);border-radius:var(--radius);padding:34px 38px;
+    text-decoration:none;color:var(--ink);background:var(--panel);
+    transition:border-color .25s,transform .25s,box-shadow .25s;
+    cursor:pointer;position:relative;
   }
-  .case:hover{border-color:rgba(200,255,46,.5);background:var(--bg2);transform:translateX(10px)}
+  .case:hover{border-color:rgba(255,107,44,.6);transform:translateX(10px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
   .case::after{
     content:'Смотреть кейс →';position:absolute;top:14px;right:20px;
-    color:var(--acid);font-size:12px;font-weight:600;letter-spacing:.08em;
+    color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.08em;
     opacity:0;transition:opacity .25s;
   }
   .case:hover::after{opacity:1}
   .case h3{font-size:clamp(18px,2.4vw,26px);font-weight:600}
   .case p{color:var(--muted);font-size:14px;margin-top:6px}
-  .case .metric{font-family:'Unbounded';color:var(--acid);font-size:clamp(20px,3vw,32px);font-weight:800;text-align:right;white-space:nowrap}
+  .case .metric{font-family:'Unbounded';color:var(--accent);font-size:clamp(20px,3vw,32px);font-weight:800;text-align:right;white-space:nowrap}
   .case .metric small{display:block;font-family:'Inter';color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.05em}
-  @media(max-width:560px){.case{
-    position:relative;grid-template-columns:1fr}.case .metric{text-align:left}}
+  @media(max-width:560px){.case{grid-template-columns:1fr}.case .metric{text-align:left}}
 
-  /* ---------- cta ---------- */
   .cta-block{
     border:1px solid var(--line);border-radius:var(--radius);
-    background:radial-gradient(120% 200% at 80% 0%,rgba(200,255,46,.12),transparent 60%),var(--bg2);
-    padding:clamp(48px,7vw,96px);text-align:center;
+    background:radial-gradient(120% 200% at 80% 0%,var(--accent-soft),transparent 60%),var(--panel);
+    padding:clamp(48px,7vw,96px);text-align:center;position:relative;overflow:hidden;
   }
   .cta-block h2{margin:0 auto 20px;max-width:26ch}
   .cta-block p{color:var(--muted);max-width:48ch;margin:0 auto 40px}
 
   footer{
+    position:relative;z-index:1;
     padding:40px clamp(20px,5vw,64px);border-top:1px solid var(--line);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
-    color:var(--muted);font-size:13px;
+    color:var(--muted);font-size:13px;background:var(--bg);
   }
   footer a{color:var(--muted);text-decoration:none}
-  footer a:hover{color:var(--acid)}
+  footer a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
+<canvas id="flow"></canvas>
 
 <header>
-  <div class="wordmark">WIBE<span>.</span></div>
+  <a class="wordmark" href="#">WIBE<span>.</span></a>
   <nav>
     <a href="#services">Услуги</a>
     <a href="#process">Процесс</a>
@@ -175,25 +190,14 @@
 </header>
 
 <section class="hero">
-  <canvas id="grid"></canvas>
-  <h1>Сайты и ИИ, которые <em>работают</em> на ваш бизнес</h1>
-  <p>Мы разрабатываем сайты и внедряем ИИ-решения: от лендингов и веб-приложений до чат-ботов и сквозной автоматизации процессов. Без хайпа — с измеримым результатом.</p>
+  <div class="badge"><i></i>Бесплатный аудит — ответим за 48 часов</div>
+  <h1>Ваш бизнес заслуживает команду, которая не спит. <em>Мы её собрали</em></h1>
+  <p>Мы делаем сайты, которые нравятся людям, и ИИ, который берёт рутину на себя: отвечает клиентам, обрабатывает документы, подсказывает решения. Честно скажем, где технология окупится, а где нет.</p>
   <div class="hero-actions">
     <a class="cta" href="#contact">Начать проект</a>
     <a class="ghost" href="#cases">Смотреть кейсы</a>
   </div>
   <div class="scroll-hint">Scroll ↓</div>
-</section>
-
-<section id="process">
-  <div class="kicker">Процесс</div>
-  <h2>От идеи до работающего ИИ — за 4 шага</h2>
-  <div class="services">
-    <div class="service"><div class="num">01</div><h3>Аудит</h3><p>Разбираем процессы, ищем точки, где ИИ даст быструю окупаемость. Бесплатно, за 3–5 дней.</p></div>
-    <div class="service"><div class="num">02</div><h3>Прототип</h3><p>Собираем MVP решения на реальных данных и показываем, как это работает в вашем контуре.</p></div>
-    <div class="service"><div class="num">03</div><h3>Внедрение</h3><p>Доводим до боевого режима: интеграции, тесты, обучение команды, документация.</p></div>
-    <div class="service"><div class="num">04</div><h3>Поддержка</h3><p>Мониторим качество, дообучаем модели и развиваем решение вместе с ростом бизнеса.</p></div>
-  </div>
 </section>
 
 <div class="marquee">
@@ -203,6 +207,7 @@
   </div>
 </div>
 
+<div class="solid">
 <section id="services">
   <div class="kicker">Услуги</div>
   <h2>Что мы собираем под ключ</h2>
@@ -225,6 +230,17 @@
   </div>
 </section>
 
+<section id="process">
+  <div class="kicker">Процесс</div>
+  <h2>От идеи до работающего ИИ — за 4 шага</h2>
+  <div class="services">
+    <div class="service"><div class="num">01</div><h3>Аудит</h3><p>Разбираем процессы, ищем точки, где ИИ даст быструю окупаемость. Бесплатно, за 3–5 дней.</p></div>
+    <div class="service"><div class="num">02</div><h3>Прототип</h3><p>Собираем MVP решения на реальных данных и показываем, как это работает в вашем контуре.</p></div>
+    <div class="service"><div class="num">03</div><h3>Внедрение</h3><p>Доводим до боевого режима: интеграции, тесты, обучение команды, документация.</p></div>
+    <div class="service"><div class="num">04</div><h3>Поддержка</h3><p>Мониторим качество, дообучаем модели и развиваем решение вместе с ростом бизнеса.</p></div>
+  </div>
+</section>
+
 <section id="cases">
   <div class="kicker">Кейсы</div>
   <h2>Цифры вместо обещаний</h2>
@@ -240,7 +256,7 @@
     </a>
     <a class="case" href="case-media.html">
       <div><h3>Медиа: генеративный контент-конвейер</h3><p>Десятки брендированных креативов в день из одного сценария.</p></div>
-    <div class="metric">×12<small>скорость производства</small></div>
+      <div class="metric">×12<small>скорость производства</small></div>
     </a>
   </div>
   <div class="hero-actions" style="margin-top:40px">
@@ -260,43 +276,103 @@
     </div>
   </div>
 </section>
+</div>
 
 <footer>
   <div>© 2026 WIBE — AI digital agency</div>
-  <div>Этот сайт сделан с <a href="https://t.me/wibesite" target="_blank" rel="noopener">WIBE AI</a> ⚡</div>
   <div><a href="mailto:concept@wibe.site">concept@wibe.site</a> · <a href="https://t.me/wibesitebot" target="_blank" rel="noopener">@wibesitebot</a> · <a href="https://t.me/wibesite" target="_blank" rel="noopener">@wibesite</a></div>
+  <div>Сделано с <a href="https://t.me/wibesite" target="_blank" rel="noopener">WIBE AI</a> ⚡</div>
 </footer>
 
 <script>
-  // фоновая сетка с "сигнальными" узлами в hero
-  const cv = document.getElementById('grid'), ctx = cv.getContext('2d');
-  let nodes = [];
+  // Gateway Flow: потоки частиц к центру как фиксированный фон,
+  // плавно тает при скролле и гасится после первого экрана
+  const cv = document.getElementById('flow'), ctx = cv.getContext('2d');
+  let width, height, paths = [], explosions = [];
   function resize(){
-    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
-    nodes = Array.from({length: Math.min(40, cv.width/30)}, () => ({
-      x: Math.random()*cv.width, y: Math.random()*cv.height,
-      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4
-    }));
+    cv.width = innerWidth; cv.height = innerHeight;
+    width = cv.width; height = cv.height;
+    paths = [];
+    const count = Math.min(90, Math.round(width/14));
+    for(let i=0;i<count;i++){
+      paths.push({
+        isLeft: i%2===0,
+        startY: (i/count)*height*1.4 - height*0.2,
+        particles: [{t:Math.random(), speed:0.0015+Math.random()*0.002}]
+      });
+    }
   }
+
+  function bezier(t,p0,p1,p2,p3){
+    const u=1-t;
+    return {
+      x: u**3*p0.x + 3*u**2*t*p1.x + 3*u*t**2*p2.x + t**3*p3.x,
+      y: u**3*p0.y + 3*u**2*t*p1.y + 3*u*t**2*p2.y + t**3*p3.y
+    };
+  }
+
   resize(); addEventListener('resize', resize);
+  // клики по фону работают только пока анимация видна
+  addEventListener('click', e => {
+    if(cv.style.opacity <= 0.05 || e.target.closest('a,button')) return;
+    explosions.push({x:e.clientX, y:e.clientY, radius:0, life:1});
+  });
+
   (function draw(){
-    ctx.clearRect(0,0,cv.width,cv.height);
-    for(const n of nodes){
-      n.x += n.vx; n.y += n.vy;
-      if(n.x<0||n.x>cv.width) n.vx*=-1;
-      if(n.y<0||n.y>cv.height) n.vy*=-1;
+    ctx.clearRect(0,0,width,height);
+    const cx = width/2, cy = height/2;
+
+    explosions.forEach(e=>{e.radius+=15; e.life-=0.015;});
+    explosions = explosions.filter(e=>e.life>0);
+
+    for(const path of paths){
+      const p0 = {x: path.isLeft?0:width, y:path.startY};
+      const p1 = {x: path.isLeft?cx*0.5:width-cx*0.5, y:path.startY};
+      const p2 = {x: path.isLeft?cx*0.8:width-cx*0.8, y:cy};
+      const p3 = {x:cx, y:cy};
+
+      ctx.beginPath();
+      ctx.moveTo(p0.x,p0.y);
+      ctx.bezierCurveTo(p1.x,p1.y,p2.x,p2.y,p3.x,p3.y);
+      ctx.strokeStyle = 'rgba(255,107,44,.14)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([1,5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      for(const p of path.particles){
+        p.t += p.speed;
+        if(p.t>1){ p.t=0; path.startY += (Math.random()-.5)*10; }
+        const pos = bezier(p.t,p0,p1,p2,p3);
+
+        let dxT=0, dyT=0;
+        for(const e of explosions){
+          const dx=pos.x-e.x, dy=pos.y-e.y, dist=Math.hypot(dx,dy)||1;
+          if(dist<e.radius+120 && dist>e.radius-120){
+            const force=(1-Math.abs(dist-e.radius)/120)*e.life;
+            dxT += dx/dist*force*80;
+            dyT += dy/dist*force*80;
+          }
+        }
+
+        ctx.fillStyle = 'rgba(255,140,80,.8)';
+        ctx.fillRect(pos.x+dxT-1.5, pos.y+dyT-1.5, 3, 3);
+      }
     }
-    ctx.strokeStyle = 'rgba(200,255,46,.07)';
-    for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){
-      const a=nodes[i],b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);
-      if(d<160){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
-    }
-    ctx.fillStyle = 'rgba(200,255,46,.5)';
-    for(const n of nodes){ctx.beginPath();ctx.arc(n.x,n.y,1.4,0,7);ctx.fill();}
     requestAnimationFrame(draw);
   })();
 
-  // появление карточек услуг при скролле
+  // плавное исчезновение фона при скролле (полностью гаснет к концу hero)
+  const flow = document.getElementById('flow');
+  function updateFlow(){
+    const fade = Math.max(0, 1 - scrollY / (innerHeight * 0.85));
+    flow.style.opacity = fade.toFixed(3);
+    flow.style.pointerEvents = fade > 0.05 ? 'auto' : 'none';
+  }
+  addEventListener('scroll', updateFlow, {passive:true});
+  updateFlow();
+
+  // появление карточек при скролле
   const io = new IntersectionObserver(es => es.forEach(e => {
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
   }),{threshold:.2});

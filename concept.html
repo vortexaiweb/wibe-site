@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIBE — дизайн-концепт</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --black:#0e0c0a;      /* тёплый чёрный — фон */
+    --panel:#171310;      /* тёплые карточки */
+    --line:rgba(255,240,220,.1);
+    --ink:#f5efe6;
+    --muted:#a89e92;
+    --orange:#ff6b2c;     /* живой оранжевый */
+    --orange-soft:rgba(255,107,44,.15);
+    --radius:24px;
+    --gutter:clamp(16px,4vw,64px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--black);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  h1,h2,h3,.wordmark,.h-display{font-family:'Unbounded',sans-serif}
+
+  /* ===== шапка концепта ===== */
+  .spec-head{padding:100px var(--gutter) 40px;border-bottom:1px solid var(--line)}
+  .kicker{color:var(--orange);font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600}
+  .spec-head h1{font-size:clamp(34px,6vw,72px);font-weight:800;line-height:1.08;margin:18px 0 14px;max-width:20ch}
+  .spec-head p{color:var(--muted);max-width:60ch}
+
+  section{padding:70px var(--gutter);border-bottom:1px solid var(--line)}
+  section > .kicker{display:block;margin-bottom:10px}
+  section h2{font-size:clamp(22px,3.4vw,36px);font-weight:600;margin-bottom:34px}
+
+  /* ===== палитра ===== */
+  .palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+  .swatch{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .swatch .fill{height:110px}
+  .swatch .meta{padding:14px 16px;font-size:13px}
+  .swatch .meta b{display:block;font-size:14px}
+  .swatch .meta span{color:var(--muted);font-family:monospace}
+
+  /* ===== типографика ===== */
+  .type-row{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+  .type-row:first-of-type{border-top:0}
+  .type-row .label{color:var(--muted);font-size:13px}
+  .t-display{font-family:'Unbounded';font-size:clamp(36px,6vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+  .t-h2{font-family:'Unbounded';font-size:clamp(24px,3.6vw,40px);font-weight:600}
+  .t-body{color:var(--muted);font-size:17px;max-width:56ch}
+  .t-micro{color:var(--muted);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+
+  /* ===== кнопки ===== */
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:100px;font-weight:600;font-size:15px;text-decoration:none;transition:transform .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 8px 32px rgba(255,92,26,.35)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--orange)}
+  .btn-link{color:var(--orange);font-weight:600;font-size:14px}
+
+  /* ===== карточки услуг ===== */
+  .grid12{
+    display:grid;grid-template-columns:repeat(12,1fr);gap:20px;
+  }
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:36px;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;cursor:pointer;
+  }
+  .card:hover{border-color:rgba(255,107,44,.6);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .card .num{font-family:'Unbounded';font-size:12px;color:var(--orange)}
+  .card h3{font-size:19px;font-weight:600;margin:14px 0 10px}
+  .card p{color:var(--muted);font-size:14px}
+  .card .go{position:absolute;top:18px;right:22px;color:var(--orange);opacity:0;transition:opacity .25s;font-size:18px}
+  .card:hover .go{opacity:1}
+  .span4{grid-column:span 4}
+  .span6{grid-column:span 6}
+  .span8{grid-column:span 8}
+  .span12{grid-column:span 12}
+  @media(max-width:960px){.span4,.span6,.span8{grid-column:span 12}}
+
+  /* ===== hero-макет ===== */
+  .hero-mock{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(32px,5vw,72px);position:relative;overflow:hidden;
+  }
+  .hero-mock::before{
+    content:'';position:absolute;top:-120px;right:-120px;width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,107,44,.22),transparent 70%);
+  }
+  .hero-mock .h-display{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:1.06;max-width:16ch;position:relative}
+  .hero-mock .h-display em{font-style:normal;color:var(--orange)}
+  .hero-mock p{color:var(--muted);max-width:52ch;margin:22px 0 34px;position:relative}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;position:relative}
+  .badge{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:100px;padding:8px 16px;font-size:13px;color:var(--muted);margin-bottom:30px;position:relative}
+  .badge i{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.3}}
+
+  /* ===== карточки кейсов ===== */
+  .case-mock{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px}
+  .case-mock .metric{font-family:'Unbounded';font-weight:800;color:var(--orange);font-size:clamp(24px,3vw,36px);text-align:right}
+  .case-mock .metric small{display:block;font-family:'Inter';color:var(--muted);font-size:12px;font-weight:500}
+
+  /* ===== статистика ===== */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px}
+  .stat{border-left:2px solid var(--orange);padding-left:20px}
+  .stat b{display:block;font-family:'Unbounded';font-size:clamp(28px,3.4vw,44px);font-weight:800}
+  .stat span{color:var(--muted);font-size:13px}
+
+  /* ===== сетка-схема ===== */
+  .wireframe{
+    border:1px dashed var(--line);border-radius:var(--radius);padding:24px;
+    display:grid;gap:10px;font-family:'Inter';font-size:12px;color:var(--muted);
+  }
+  .wf-row{display:grid;gap:10px}
+  .wf-box{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+  .wf-box b{color:var(--ink);font-weight:600;font-size:13px}
+  .wf-box.accent{border-color:var(--orange);background:var(--orange-soft)}
+  .wf-cols{grid-template-columns:repeat(3,1fr)}
+  .wf-cols-2{grid-template-columns:2fr 1fr}
+  @media(max-width:760px){.wf-cols,.wf-cols-2{grid-template-columns:1fr}}
+  .wf-note{color:var(--orange);font-size:12px;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="spec-head">
+  <span class="kicker">WIBE · Design Concept v2</span>
+  <h1>Тёплый минимализм. Живой бренд, а не корпоративная маска.</h1>
+  <p>Тёплый чёрный, кремовый текст, живой оранжевый, мягкие радиусы и воздух. Дизайн разговаривает с людьми, а не проводит презентацию. Ниже — палитра, типографика, компоненты и сетка.</p>
+</div>
+
+<section>
+  <span class="kicker">01 · Палитра</span>
+  <h2>Цветовая система</h2>
+  <div class="palette">
+    <div class="swatch"><div class="fill" style="background:#0e0c0a;border-bottom:1px solid var(--line)"></div><div class="meta"><b>Warm Black</b><span>#0E0C0A — фон</span></div></div>
+    <div class="swatch"><div class="fill" style="background:#171310;border-bottom:1px solid var(--line)"></div><div class="meta"><b>Warm Panel</b><span>#171310 — карточки</span></div></div>
+    <div class="swatch"><div class="fill" style="background:#ff5c1a"></div><div class="meta"><b>Living Orange</b><span>#FF6B2C — акцент/CTA</span></div></div>
+    <div class="swatch"><div class="fill" style="background:#f2f2f2"></div><div class="meta"><b>Cream</b><span>#F5EFE6 — текст</span></div></div>
+    <div class="swatch"><div class="fill" style="background:#9a9aa3"></div><div class="meta"><b>Warm Grey</b><span>#A89E92 — вторичный текст</span></div></div>
+  </div>
+  <p style="color:var(--muted);margin-top:20px;font-size:14px">Синие и стерильно-серые тона исключены полностью. Оранжевый занимает не более 10% экрана и встречается только на точках действия. Тёплые оттенки создают ощущение: за брендом стоят живые люди.</p>
+</section>
+
+<section>
+  <span class="kicker">02 · Типографика</span>
+  <h2>Крупные современные гротески</h2>
+  <div class="type-row"><div class="label">H1 · Unbounded 800</div><div class="t-display">ИИ, который продаёт</div></div>
+  <div class="type-row"><div class="label">H2 · Unbounded 600</div><div class="t-h2">Что мы делаем для бизнеса</div></div>
+  <div class="type-row"><div class="label">Body · Inter 400</div><div class="t-body">Inter для текста, Unbounded для заголовков. Кремовый вместо чисто белого — текст не «режет» глаза на тёмном. Основной размер 16–17px, межстрочный 1.6.</div></div>
+  <div class="type-row"><div class="label">Micro · Inter 500</div><div class="t-micro">Подписи · метки · навигация</div></div>
+</section>
+
+<section>
+  <span class="kicker">03 · Компоненты</span>
+  <h2>Кнопки</h2>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="#">Обсудить проект</a>
+    <a class="btn btn-ghost" href="#">Смотреть кейсы</a>
+    <a class="btn-link" href="#">Все услуги →</a>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">04 · Hero-макет</span>
+  <h2>Первый экран</h2>
+  <div class="hero-mock">
+    <div class="badge"><i></i>Бесплатный аудит за 48 часов</div>
+    <div class="h-display">Ваш бизнес заслуживает команду, которая не спит. <em>Мы её собрали</em></div>
+    <p>Мы делаем сайты, которые нравятся людям, и ИИ, который берёт рутину на себя. Честно скажем, где технология окупится, а где нет. Первые результаты — уже через 2 недели.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#">Получить аудит</a>
+      <a class="btn btn-ghost" href="#">Смотреть кейсы</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">05 · Сетка карточек услуг</span>
+  <h2>Сетка 12 колонок</h2>
+  <div class="grid12">
+    <div class="card span4"><span class="go">→</span><div class="num">01</div><h3>Разработка сайтов</h3><p>Лендинги, e-commerce, корпоративные платформы под ключ.</p></div>
+    <div class="card span4"><span class="go">→</span><div class="num">02</div><h3>AI-агенты и боты</h3><p>Ассистенты на LLM, обученные на данных вашего бизнеса.</p></div>
+    <div class="card span4"><span class="go">→</span><div class="num">03</div><h3>Автоматизация</h3><p>Пайплайны между CRM, почтой и таблицами без ручной рутины.</p></div>
+    <div class="card span8"><span class="go">→</span><div class="num">04</div><h3>Гарантии (широкая карточка доверия)</h3><p>Фиксированная смета · NDA · оплата этапами · поддержка после запуска. Коммерческие и доверительные блоки выделяются шириной — они двигают решение о покупке.</p></div>
+    <div class="card span4"><span class="go">→</span><div class="num">05</div><h3>ML-аналитика</h3><p>Прогнозы и сегментация прямо в ваших дашбордах.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">06 · Кейсы и статистика</span>
+  <h2>Доказательства</h2>
+  <div class="grid12">
+    <a class="card span6 case-mock" href="#">
+      <div><div class="num">E-COMMERCE</div><h3>AI-ассистент продаж</h3><p style="color:var(--muted);font-size:14px">Консультирует и доводит до корзины 24/7.</p></div>
+      <div class="metric">+34%<small>конверсия</small></div>
+    </a>
+    <a class="card span6 case-mock" href="#">
+      <div><div class="num">ЛОГИСТИКА</div><h3>Документооборот на LLM</h3><p style="color:var(--muted);font-size:14px">Накладные обрабатываются без операторов.</p></div>
+      <div class="metric">−85%<small>рутины</small></div>
+    </a>
+  </div>
+  <div class="stats" style="margin-top:40px">
+    <div class="stat"><b>70%</b><span>рост скорости обработки заявок</span></div>
+    <div class="stat"><b>24/7</b><span>ИИ работает без выходных</span></div>
+    <div class="stat"><b>30+</b><span>проектов внедрено</span></div>
+    <div class="stat"><b>6 нед.</b><span>от аудита до запуска</span></div>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">07 · Сетка интерфейса</span>
+  <h2>Схема главной (wireframe)</h2>
+  <div class="wireframe">
+    <div class="wf-row"><div class="wf-box accent"><b>HEADER — sticky</b><span>лого · меню · [CTA оранжевая]</span></div></div>
+    <div class="wf-row wf-cols-2"><div class="wf-box"><b>HERO — 8 кол.</b><span>H1 + подзаголовок + 2 CTA</span></div><div class="wf-box accent"><b>CTA-фокус</b><span>оранжевая кнопка справа</span></div></div>
+    <div class="wf-row"><div class="wf-box"><b>Бегущая строка компетенций — 12 кол.</b></div></div>
+    <div class="wf-row wf-cols"><div class="wf-box"><b>Услуга 01</b></div><div class="wf-box"><b>Услуга 02</b></div><div class="wf-box"><b>Услуга 03</b></div></div>
+    <div class="wf-row wf-cols-2"><div class="wf-box"><b>Гарантии + цены — 8 кол.</b><span class="wf-note">коммерческий блок</span></div><div class="wf-box"><b>Статистика — 4 кол.</b></div></div>
+    <div class="wf-row wf-cols"><div class="wf-box"><b>Кейс 1 + метрика</b></div><div class="wf-box"><b>Кейс 2 + метрика</b></div><div class="wf-box"><b>Кейс 3 + метрика</b></div></div>
+    <div class="wf-row"><div class="wf-box accent"><b>CTA-БЛОК — форма заявки</b><span class="wf-note">главная точка конверсии</span></div></div>
+    <div class="wf-row"><div class="wf-box"><b>FOOTER</b><span>контакты · TG · «Сделано с WIBE AI»</span></div></div>
+  </div>
+  <p style="color:var(--muted);margin-top:20px;font-size:14px">Оранжевым на схеме отмечены конверсионные зоны: хедер-CTA, первый экран и финальная форма. Путь пользователя: боль (hero) → доказательства (услуги, кейсы) → доверие (гарантии, цены) → действие (форма).</p>
+</section>
+
+</body>
+</html>

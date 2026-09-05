@@ -2,9 +2,9 @@
   <!-- WIBE: монограмма — волна (W) + нейро-точка -->
   <g>
     <path d="M8 20 L18 60 L30 26 L42 60 L52 20"
-          stroke="#c8ff2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <circle cx="64" cy="20" r="6" fill="#c8ff2e"/>
+          stroke="#ff6b2c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="64" cy="20" r="6" fill="#ff6b2c"/>
     <text x="80" y="52" font-family="Unbounded, Arial, sans-serif" font-weight="800" font-size="34"
-          letter-spacing="2" fill="#eef0f4">WIBE<tspan fill="#c8ff2e">.</tspan></text>
+          letter-spacing="2" fill="#f5efe6">WIBE<tspan fill="#ff6b2c">.</tspan></text>
   </g>
 </svg>
