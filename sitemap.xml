@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://wibe.site/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wibe.site/portfolio.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wibe.site/case-ecom.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wibe.site/case-logistics.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wibe.site/case-media.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wibe.site/concept.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://wibe.site/site-law.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wibe.site/site-logistics.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wibe.site/site-media.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wibe.site/site-coffee.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wibe.site/site-fit.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wibe.site/site-finlab.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>
