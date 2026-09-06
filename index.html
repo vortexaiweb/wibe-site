@@ -236,22 +236,70 @@
   .form-card .btn-primary{width:100%;text-align:center}
   .form-note{color:var(--muted);font-size:13px;margin-top:12px;text-align:center}
 
-  .calc{border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
-  .calc-title{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;font-weight:600}
-  .calc-lbl{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
-  .calc-input{
-    width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
-    padding:11px 12px;color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;
+  .calc{border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;background:rgba(23,19,16,.4)}
+  .calc-title{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+  .tile{
+    position:relative;display:flex;flex-direction:column;gap:2px;padding:13px 12px;
+    border:1px solid var(--line);border-radius:14px;background:var(--bg);cursor:pointer;
+    transition:border-color .2s,transform .2s,background .2s,box-shadow .2s;
   }
-  .calc-input:focus{outline:none;border-color:var(--accent)}
+  .tile:hover{transform:translateY(-2px);border-color:rgba(255,107,44,.45)}
+  .tile input{position:absolute;opacity:0;pointer-events:none}
+  .tile .tile-ic{font-size:20px;line-height:1;margin-bottom:6px}
+  .tile .tile-name{font-weight:600;font-size:12.5px;color:var(--ink);line-height:1.3}
+  .tile .tile-d{font-size:11px;color:var(--muted);line-height:1.4}
+  .tile .tile-p{font-size:12px;color:var(--accent);font-weight:700;margin-top:8px;letter-spacing:.02em}
+  .tile:has(input:checked){
+    border-color:var(--accent);background:rgba(255,107,44,.08);
+    box-shadow:0 0 0 1px rgba(255,107,44,.35), 0 10px 24px rgba(255,107,44,.12);
+    animation:tilepop .3s;
+  }
+  .tile:has(input:checked)::after{
+    content:'✓';position:absolute;top:8px;right:9px;width:17px;height:17px;border-radius:50%;
+    color:#1a0d04;background:var(--gold);display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:800;animation:checkin .3s cubic-bezier(.2,.7,.2,1);
+  }
+  @keyframes tilepop{50%{transform:scale(1.03)}}
+  @keyframes checkin{from{transform:scale(.2);opacity:0}}
   .calc-opts{display:grid;gap:8px;margin:14px 0}
-  .opt{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:14px;cursor:pointer}
-  .opt input{accent-color:var(--accent);width:17px;height:17px;cursor:pointer}
-  .calc-total{border-top:1px solid var(--line);padding-top:12px}
-  .calc-total span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .calc-total b{display:block;font-family:'Unbounded','Inter';font-size:24px;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .opt{
+    display:flex;align-items:center;gap:10px;color:var(--ink);font-size:13px;cursor:pointer;
+    border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);
+    transition:border-color .2s,background .2s,transform .2s;
+  }
+  .opt:hover{border-color:rgba(255,107,44,.45);transform:translateY(-1px)}
+  .opt input{accent-color:var(--accent);width:16px;height:16px;cursor:pointer;flex:none}
+  .opt .opt-p{
+    margin-left:auto;font-size:12px;font-weight:700;color:var(--accent);
+    background:rgba(255,107,44,.1);border:1px solid rgba(255,107,44,.25);
+    padding:3px 10px;border-radius:100px;white-space:nowrap;
+  }
+  .opt:has(input:checked){border-color:rgba(255,107,44,.55);background:rgba(255,107,44,.07)}
+  .calc-total{
+    margin-top:14px;border-top:1px solid var(--line);padding-top:14px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    position:relative;
+  }
+  .calc-total::after{
+    content:'';position:absolute;inset:-6px 0 auto auto;width:90px;height:90px;
+    background:radial-gradient(circle,rgba(255,107,44,.18),transparent 70%);pointer-events:none;
+  }
+  .calc-total .est-col{position:relative;z-index:1}
+  .calc-total span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .calc-total b{
+    display:block;font-family:'Unbounded','Inter';font-size:26px;margin:2px 0;
+    background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
   .calc-total small{color:var(--muted);font-size:13px}
-  .calc-note{color:var(--muted);font-size:12px;margin-top:10px}
+  .calc-total.pulse b{animation:numjump .5s}
+  @keyframes numjump{30%{transform:scale(1.14)}60%{transform:scale(.97)}}
+  .calc-badge{
+    animation:checkin .4s cubic-bezier(.2,.7,.2,1);
+    background:var(--gold);color:#1a0d04;font-size:12px;font-weight:800;
+    padding:6px 14px;border-radius:100px;position:relative;z-index:1;white-space:nowrap;
+  }
+  .calc-note{color:var(--muted);font-size:12px;margin-top:12px}
 
   footer{
     position:relative;z-index:1;padding:40px clamp(20px,5vw,64px);
@@ -511,23 +559,55 @@
       <div class="field"><label for="f-task" data-i18n="ftask"></label><textarea id="f-task" name="task" data-i18n-ph="ftask_p"></textarea></div>
       <div class="calc">
         <div class="calc-title" data-i18n="calc_t"></div>
-        <label class="calc-lbl" for="calc-type" data-i18n="calc_type"></label>
-        <select class="calc-input" id="calc-type">
-          <option value="200" data-i18n="calc_t1"></option>
-          <option value="1000" data-i18n="calc_t2"></option>
-          <option value="450" data-i18n="calc_t3"></option>
-          <option value="350" data-i18n="calc_t4"></option>
-          <option value="0" data-i18n="calc_t5"></option>
-        </select>
-        <div class="calc-opts" id="calc-opts">
-          <label class="opt"><input type="checkbox" data-add="150"><span data-i18n="calc_o1"></span></label>
-          <label class="opt"><input type="checkbox" data-add="300"><span data-i18n="calc_o2"></span></label>
-          <label class="opt"><input type="checkbox" data-add-percent="20"><span data-i18n="calc_o3"></span></label>
+        <div class="tiles" id="calc-type" role="radiogroup">
+          <label class="tile">
+            <input type="radio" name="calc-type" value="200" checked>
+            <span class="tile-ic">🌐</span>
+            <span class="tile-name" data-i18n="calc_t1"></span>
+            <span class="tile-d" data-i18n="calc_d1"></span>
+            <span class="tile-p">$200</span>
+          </label>
+          <label class="tile">
+            <input type="radio" name="calc-type" value="1000">
+            <span class="tile-ic">⚙️</span>
+            <span class="tile-name" data-i18n="calc_t2"></span>
+            <span class="tile-d" data-i18n="calc_d2"></span>
+            <span class="tile-p">$1000</span>
+          </label>
+          <label class="tile">
+            <input type="radio" name="calc-type" value="450">
+            <span class="tile-ic">📚</span>
+            <span class="tile-name" data-i18n="calc_t3"></span>
+            <span class="tile-d" data-i18n="calc_d3"></span>
+            <span class="tile-p">$450</span>
+          </label>
+          <label class="tile">
+            <input type="radio" name="calc-type" value="350">
+            <span class="tile-ic">🎧</span>
+            <span class="tile-name" data-i18n="calc_t4"></span>
+            <span class="tile-d" data-i18n="calc_d4"></span>
+            <span class="tile-p">$350</span>
+          </label>
+          <label class="tile">
+            <input type="radio" name="calc-type" value="0">
+            <span class="tile-ic">💎</span>
+            <span class="tile-name" data-i18n="calc_t5"></span>
+            <span class="tile-d" data-i18n="calc_d5"></span>
+            <span class="tile-p" data-i18n="calc_custom_short"></span>
+          </label>
         </div>
-        <div class="calc-total">
-          <span data-i18n="calc_est"></span>
-          <b id="calc-total">—</b>
-          <small id="calc-usd"></small>
+        <div class="calc-opts" id="calc-opts">
+          <label class="opt"><input type="checkbox" data-add="150"><span data-i18n="calc_o1"></span><b class="opt-p" data-usd="150"></b></label>
+          <label class="opt"><input type="checkbox" data-add="300"><span data-i18n="calc_o2"></span><b class="opt-p" data-usd="300"></b></label>
+          <label class="opt"><input type="checkbox" data-add-percent="20"><span data-i18n="calc_o3"></span><b class="opt-p" data-usd-percent="20"></b></label>
+        </div>
+        <div class="calc-total" id="calcBox">
+          <div class="est-col">
+            <span data-i18n="calc_est"></span>
+            <b id="calc-total">—</b>
+            <small id="calc-usd"></small>
+          </div>
+          <span class="calc-badge">≈</span>
         </div>
         <p class="calc-note" data-i18n="calc_note"></p>
       </div>
@@ -622,6 +702,7 @@
     vc1:'Аудит бесплатно', vc2:'Цифры до старта', vc3:'План и смета',
     calc_t:'Калькулятор цены', calc_type:'Что нужно сделать',
     calc_t1:'Сайт или ИИ-ассистент', calc_t2:'Сайт + автоматизация', calc_t3:'RAG / база знаний', calc_t4:'Голосовой бот', calc_t5:'Индивидуальный проект',
+    calc_d1:'лендинг, чат-бот или приложение', calc_d2:'сайт плюс автоматизация процессов', calc_d3:'ИИ отвечает по вашим документам', calc_d4:'приём звонков без оператора', calc_d5:'ML, RAG, сложные интеграции', calc_custom_short:'по смете',
     calc_o1:'Подключение CRM и интеграции', calc_o2:'Поддержка на 3 месяца', calc_o3:'Срочный запуск за 2 недели',
     calc_est:'Предварительная оценка', calc_custom:'смета по задаче', calc_note:'Точную смету назовём после бесплатного аудита.',
     fname:'Имя', fname_p:'Как к вам обращаться', fcontact:'Как с вами связаться', fcontact_p:'Telegram, email или телефон', ftask:'Задача', ftask_p:'Пара слов о том, что нужно',
@@ -679,6 +760,7 @@
     vc1:'Free audit', vc2:'Numbers before you start', vc3:'Plan and quote',
     calc_t:'Price calculator', calc_type:'What do you need',
     calc_t1:'Website or AI assistant', calc_t2:'Website + automation', calc_t3:'RAG / knowledge base', calc_t4:'Voice bot', calc_t5:'Custom project',
+    calc_d1:'landing, chatbot or app', calc_d2:'site plus process automation', calc_d3:'AI answers from your docs', calc_d4:'calls handled without an operator', calc_d5:'ML, RAG, complex integrations', calc_custom_short:'on quote',
     calc_o1:'CRM and integrations', calc_o2:'3 months of support', calc_o3:'Fast launch in 2 weeks',
     calc_est:'Estimated price', calc_custom:'quote after audit', calc_note:'The exact quote comes after a free audit.',
     fname:'Name', fname_p:'What should we call you', fcontact:'Contact', fcontact_p:'Telegram, email or phone', ftask:'Task', ftask_p:'A few words about what you need',
@@ -735,6 +817,7 @@
     vc1:'Bezpłatny audyt', vc2:'Liczby przed startem', vc3:'Plan i wycena',
     calc_t:'Kalkulator ceny', calc_type:'Czego potrzebujesz',
     calc_t1:'Strona lub asystent AI', calc_t2:'Strona + automatyzacja', calc_t3:'RAG / baza wiedzy', calc_t4:'Bot głosowy', calc_t5:'Projekt indywidualny',
+    calc_d1:'landing, chatbot lub aplikacja', calc_d2:'strona plus automatyzacja procesów', calc_d3:'AI odpowiada z Twoich dokumentów', calc_d4:'telefony bez operatora', calc_d5:'ML, RAG, złożone integracje', calc_custom_short:'po wycenie',
     calc_o1:'Podłączenie CRM i integracje', calc_o2:'Wsparcie przez 3 miesiące', calc_o3:'Szybki start w 2 tygodnie',
     calc_est:'Szacunkowa cena', calc_custom:'wycena po analizie', calc_note:'Dokładną wycenę podamy po bezpłatnym audycie.',
     fname:'Imię', fname_p:'Jak mamy się zwracać', fcontact:'Kontakt', fcontact_p:'Telegram, e-mail lub telefon', ftask:'Zadanie', ftask_p:'Kilka słów o tym, czego potrzebujesz',
@@ -791,6 +874,7 @@
     vc1:'Kostenloses Audit', vc2:'Zahlen vor dem Start', vc3:'Plan und Angebot',
     calc_t:'Preisrechner', calc_type:'Was brauchen Sie',
     calc_t1:'Website oder KI-Assistent', calc_t2:'Website + Automatisierung', calc_t3:'RAG / Wissensbasis', calc_t4:'Sprachbot', calc_t5:'Individuelles Projekt',
+    calc_d1:'Landingpage, Chatbot oder App', calc_d2:'Website plus Prozessautomatisierung', calc_d3:'KI antwortet aus Ihren Dokumenten', calc_d4:'Anrufe ohne Operator', calc_d5:'ML, RAG, komplexe Integrationen', calc_custom_short:'nach Analyse',
     calc_o1:'CRM-Anbindung und Integrationen', calc_o2:'Support für 3 Monate', calc_o3:'Schnellstart in 2 Wochen',
     calc_est:'Voraussichtlicher Preis', calc_custom:'Angebot nach Analyse', calc_note:'Den genauen Preis nennen wir nach dem kostenlosen Audit.',
     fname:'Name', fname_p:'Wie dürfen wir Sie nennen', fcontact:'Kontakt', fcontact_p:'Telegram, E-Mail oder Telefon', ftask:'Aufgabe', ftask_p:'Ein paar Worte, was Sie brauchen',
@@ -847,6 +931,7 @@
     vc1:'免费诊断', vc2:'动工前先给数字', vc3:'方案与报价',
     calc_t:'价格计算器', calc_type:'你需要什么',
     calc_t1:'网站或AI助手', calc_t2:'网站+自动化', calc_t3:'RAG知识库', calc_t4:'语音机器人', calc_t5:'定制项目',
+    calc_d1:'落地页、聊天机器人或应用', calc_d2:'网站+流程自动化', calc_d3:'AI基于文档回答', calc_d4:'无需人工接听电话', calc_d5:'ML、RAG、复杂集成', calc_custom_short:'按需报价',
     calc_o1:'对接CRM与集成', calc_o2:'3个月支持', calc_o3:'两周快速上线',
     calc_est:'预估价格', calc_custom:'按需求报价', calc_note:'免费诊断后给出准确报价。',
     fname:'称呼', fname_p:'怎么称呼你', fcontact:'联系方式', fcontact_p:'微信、邮箱或电话', ftask:'需求', ftask_p:'简单说说你需要什么',
@@ -903,6 +988,7 @@
     vc1:'無料診断', vc2:'開始前に数字を', vc3:'プランとお見積もり',
     calc_t:'料金シミュレーター', calc_type:'必要なもの',
     calc_t1:'サイトまたはAIアシスタント', calc_t2:'サイト＋自動化', calc_t3:'RAG・ナレッジベース', calc_t4:'音声ボット', calc_t5:'カスタムプロジェクト',
+    calc_d1:'ランディング・チャットボット・アプリ', calc_d2:'サイト＋業務自動化', calc_d3:'文書から回答するAI', calc_d4:'オペレーターなしで電話対応', calc_d5:'ML・RAG・複雑な連携', calc_custom_short:'応相談',
     calc_o1:'CRM連携・統合', calc_o2:'3か月のサポート', calc_o3:'2週間での早期スタート',
     calc_est:'概算見積もり', calc_custom:'内容に応じて対応', calc_note:'正確なお見積もりは無料診断後にお伝えします。',
     fname:'お名前', fname_p:'お呼びしてよいお名前', fcontact:'ご連絡先', fcontact_p:'X、メール、電話など', ftask:'ご要望', ftask_p:'必要なことを一言で',
@@ -1006,14 +1092,23 @@
     renderCalc();
   }
 
+  let lastCalc = 0, calcAnim = null;
   function renderCalc(){
     const L = STR[lang] || STR['ru-RU'];
-    const base = +document.getElementById('calc-type').value;
+    const base = +document.querySelector('#calc-type input:checked').value;
     const totalEl = document.getElementById('calc-total');
     const usdEl = document.getElementById('calc-usd');
+    const box = document.getElementById('calcBox');
+    document.querySelectorAll('[data-usd]').forEach(el =>
+      el.textContent = '+' + money(+el.dataset.usd, 'USD'));
+    document.querySelectorAll('[data-usd-percent]').forEach(el =>
+      el.textContent = '+' + el.dataset.usdPercent + '%');
+    cancelAnimationFrame(calcAnim);
     if(base === 0){
       totalEl.textContent = L.calc_custom;
       usdEl.textContent = '';
+      lastCalc = 0;
+      if(box) box.classList.remove('pulse');
       return;
     }
     let total = base;
@@ -1021,10 +1116,22 @@
       if(cb.dataset.add) total += +cb.dataset.add;
       if(cb.dataset.addPercent) total = Math.round(total*(1 + (+cb.dataset.addPercent)/100));
     });
-    totalEl.textContent = L.price_from + ' ' + money(total, CURRENCY[lang]);
+    if(box) box.classList.remove('pulse');
     usdEl.textContent = '≈ ' + money(total, 'USD');
+    const t0 = performance.now();
+    const step = now => {
+      const p = Math.min(1,(now-t0)/450);
+      const val = Math.round(lastCalc + (total-lastCalc)*(1-Math.pow(1-p,3)));
+      totalEl.textContent = L.price_from + ' ' + money(val, CURRENCY[lang]);
+      if(p<1) calcAnim = requestAnimationFrame(step);
+      else {
+        lastCalc = total;
+        if(box){ box.classList.add('pulse'); setTimeout(()=>box.classList.remove('pulse'), 550); }
+      }
+    };
+    calcAnim = requestAnimationFrame(step);
   }
-  document.querySelectorAll('#calc-type, #calc-opts input').forEach(el =>
+  document.querySelectorAll('#calc-type input, #calc-opts input').forEach(el =>
     el.addEventListener('change', renderCalc));
 
   /* ---------- форма → Telegram ---------- */
