@@ -236,6 +236,23 @@
   .form-card .btn-primary{width:100%;text-align:center}
   .form-note{color:var(--muted);font-size:13px;margin-top:12px;text-align:center}
 
+  .calc{border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
+  .calc-title{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+  .calc-lbl{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+  .calc-input{
+    width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
+    padding:11px 12px;color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;
+  }
+  .calc-input:focus{outline:none;border-color:var(--accent)}
+  .calc-opts{display:grid;gap:8px;margin:14px 0}
+  .opt{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:14px;cursor:pointer}
+  .opt input{accent-color:var(--accent);width:17px;height:17px;cursor:pointer}
+  .calc-total{border-top:1px solid var(--line);padding-top:12px}
+  .calc-total span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .calc-total b{display:block;font-family:'Unbounded','Inter';font-size:24px;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .calc-total small{color:var(--muted);font-size:13px}
+  .calc-note{color:var(--muted);font-size:12px;margin-top:10px}
+
   footer{
     position:relative;z-index:1;padding:40px clamp(20px,5vw,64px);
     border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
@@ -492,6 +509,28 @@
       <div class="field"><label for="f-name" data-i18n="fname"></label><input id="f-name" name="name" required data-i18n-ph="fname_p"></div>
       <div class="field"><label for="f-contact" data-i18n="fcontact"></label><input id="f-contact" name="contact" required data-i18n-ph="fcontact_p"></div>
       <div class="field"><label for="f-task" data-i18n="ftask"></label><textarea id="f-task" name="task" data-i18n-ph="ftask_p"></textarea></div>
+      <div class="calc">
+        <div class="calc-title" data-i18n="calc_t"></div>
+        <label class="calc-lbl" for="calc-type" data-i18n="calc_type"></label>
+        <select class="calc-input" id="calc-type">
+          <option value="200" data-i18n="calc_t1"></option>
+          <option value="1000" data-i18n="calc_t2"></option>
+          <option value="450" data-i18n="calc_t3"></option>
+          <option value="350" data-i18n="calc_t4"></option>
+          <option value="0" data-i18n="calc_t5"></option>
+        </select>
+        <div class="calc-opts" id="calc-opts">
+          <label class="opt"><input type="checkbox" data-add="150"><span data-i18n="calc_o1"></span></label>
+          <label class="opt"><input type="checkbox" data-add="300"><span data-i18n="calc_o2"></span></label>
+          <label class="opt"><input type="checkbox" data-add-percent="20"><span data-i18n="calc_o3"></span></label>
+        </div>
+        <div class="calc-total">
+          <span data-i18n="calc_est"></span>
+          <b id="calc-total">—</b>
+          <small id="calc-usd"></small>
+        </div>
+        <p class="calc-note" data-i18n="calc_note"></p>
+      </div>
       <button class="btn btn-primary" type="submit" data-i18n="fbtn"></button>
       <p class="form-note" data-i18n="fnote"></p>
     </form>
@@ -581,6 +620,10 @@
     contact_k:'Поехали', contact_h:'Расскажите, что нужно',
     contact_p:'Напишите пару строк — разберёмся и предложим план. Бесплатно и без обязательств.',
     vc1:'Аудит бесплатно', vc2:'Цифры до старта', vc3:'План и смета',
+    calc_t:'Калькулятор цены', calc_type:'Что нужно сделать',
+    calc_t1:'Сайт или ИИ-ассистент', calc_t2:'Сайт + автоматизация', calc_t3:'RAG / база знаний', calc_t4:'Голосовой бот', calc_t5:'Индивидуальный проект',
+    calc_o1:'Подключение CRM и интеграции', calc_o2:'Поддержка на 3 месяца', calc_o3:'Срочный запуск за 2 недели',
+    calc_est:'Предварительная оценка', calc_custom:'смета по задаче', calc_note:'Точную смету назовём после бесплатного аудита.',
     fname:'Имя', fname_p:'Как к вам обращаться', fcontact:'Как с вами связаться', fcontact_p:'Telegram, email или телефон', ftask:'Задача', ftask_p:'Пара слов о том, что нужно',
     fbtn:'Отправить', fnote:'Откроется Telegram — просто отправьте готовое сообщение. Или напишите на concept@wibe.site.',
     foot_line:'© 2026 WIBE — сайты и ИИ для бизнеса', foot_made:'Сделано с помощью WIBE AI ⚡',
@@ -634,6 +677,10 @@
     contact_k:'Let us talk', contact_h:'Tell us what you need',
     contact_p:'Write a couple of lines — we will figure it out and suggest a plan. Free and without obligation.',
     vc1:'Free audit', vc2:'Numbers before you start', vc3:'Plan and quote',
+    calc_t:'Price calculator', calc_type:'What do you need',
+    calc_t1:'Website or AI assistant', calc_t2:'Website + automation', calc_t3:'RAG / knowledge base', calc_t4:'Voice bot', calc_t5:'Custom project',
+    calc_o1:'CRM and integrations', calc_o2:'3 months of support', calc_o3:'Fast launch in 2 weeks',
+    calc_est:'Estimated price', calc_custom:'quote after audit', calc_note:'The exact quote comes after a free audit.',
     fname:'Name', fname_p:'What should we call you', fcontact:'Contact', fcontact_p:'Telegram, email or phone', ftask:'Task', ftask_p:'A few words about what you need',
     fbtn:'Send', fnote:'Telegram will open — just send the ready message. Or email concept@wibe.site.',
     foot_line:'© 2026 WIBE — websites and AI for business', foot_made:'Made with WIBE AI ⚡',
@@ -686,6 +733,10 @@
     contact_k:'Do dzieła', contact_h:'Opowiedz nam, czego potrzebujesz',
     contact_p:'Napisz kilka zdań — zrozumiemy sprawę i zaproponujemy plan. Za darmo i bez zobowiązań.',
     vc1:'Bezpłatny audyt', vc2:'Liczby przed startem', vc3:'Plan i wycena',
+    calc_t:'Kalkulator ceny', calc_type:'Czego potrzebujesz',
+    calc_t1:'Strona lub asystent AI', calc_t2:'Strona + automatyzacja', calc_t3:'RAG / baza wiedzy', calc_t4:'Bot głosowy', calc_t5:'Projekt indywidualny',
+    calc_o1:'Podłączenie CRM i integracje', calc_o2:'Wsparcie przez 3 miesiące', calc_o3:'Szybki start w 2 tygodnie',
+    calc_est:'Szacunkowa cena', calc_custom:'wycena po analizie', calc_note:'Dokładną wycenę podamy po bezpłatnym audycie.',
     fname:'Imię', fname_p:'Jak mamy się zwracać', fcontact:'Kontakt', fcontact_p:'Telegram, e-mail lub telefon', ftask:'Zadanie', ftask_p:'Kilka słów o tym, czego potrzebujesz',
     fbtn:'Wyślij', fnote:'Otworzy się Telegram — wyślij gotową wiadomość. Albo napisz na concept@wibe.site.',
     foot_line:'© 2026 WIBE — strony i AI dla biznesu', foot_made:'Zrobione z WIBE AI ⚡',
@@ -738,6 +789,10 @@
     contact_k:'Los geht es', contact_h:'Erzählen Sie uns, was Sie brauchen',
     contact_p:'Schreiben Sie ein paar Zeilen — wir prüfen das und schlagen einen Plan vor. Gratis und unverbindlich.',
     vc1:'Kostenloses Audit', vc2:'Zahlen vor dem Start', vc3:'Plan und Angebot',
+    calc_t:'Preisrechner', calc_type:'Was brauchen Sie',
+    calc_t1:'Website oder KI-Assistent', calc_t2:'Website + Automatisierung', calc_t3:'RAG / Wissensbasis', calc_t4:'Sprachbot', calc_t5:'Individuelles Projekt',
+    calc_o1:'CRM-Anbindung und Integrationen', calc_o2:'Support für 3 Monate', calc_o3:'Schnellstart in 2 Wochen',
+    calc_est:'Voraussichtlicher Preis', calc_custom:'Angebot nach Analyse', calc_note:'Den genauen Preis nennen wir nach dem kostenlosen Audit.',
     fname:'Name', fname_p:'Wie dürfen wir Sie nennen', fcontact:'Kontakt', fcontact_p:'Telegram, E-Mail oder Telefon', ftask:'Aufgabe', ftask_p:'Ein paar Worte, was Sie brauchen',
     fbtn:'Senden', fnote:'Telegram öffnet sich — senden Sie einfach die fertige Nachricht. Oder schreiben Sie an concept@wibe.site.',
     foot_line:'© 2026 WIBE — Websites und KI für Unternehmen', foot_made:'Gemacht mit WIBE AI ⚡',
@@ -790,6 +845,10 @@
     contact_k:'开始吧', contact_h:'告诉我们你的需求',
     contact_p:'写几句话——我们理清思路并给出方案。免费，无任何压力。',
     vc1:'免费诊断', vc2:'动工前先给数字', vc3:'方案与报价',
+    calc_t:'价格计算器', calc_type:'你需要什么',
+    calc_t1:'网站或AI助手', calc_t2:'网站+自动化', calc_t3:'RAG知识库', calc_t4:'语音机器人', calc_t5:'定制项目',
+    calc_o1:'对接CRM与集成', calc_o2:'3个月支持', calc_o3:'两周快速上线',
+    calc_est:'预估价格', calc_custom:'按需求报价', calc_note:'免费诊断后给出准确报价。',
     fname:'称呼', fname_p:'怎么称呼你', fcontact:'联系方式', fcontact_p:'微信、邮箱或电话', ftask:'需求', ftask_p:'简单说说你需要什么',
     fbtn:'发送', fnote:'会打开Telegram——直接发送即可。或写信到 concept@wibe.site。',
     foot_line:'© 2026 WIBE — 为企业做网站与AI', foot_made:'由 WIBE AI 制作 ⚡',
@@ -842,6 +901,10 @@
     contact_k:'始めましょう', contact_h:'ご要望をお聞かせください',
     contact_p:'数行お書きください。整理してプランを提案します。無料・義務なし。',
     vc1:'無料診断', vc2:'開始前に数字を', vc3:'プランとお見積もり',
+    calc_t:'料金シミュレーター', calc_type:'必要なもの',
+    calc_t1:'サイトまたはAIアシスタント', calc_t2:'サイト＋自動化', calc_t3:'RAG・ナレッジベース', calc_t4:'音声ボット', calc_t5:'カスタムプロジェクト',
+    calc_o1:'CRM連携・統合', calc_o2:'3か月のサポート', calc_o3:'2週間での早期スタート',
+    calc_est:'概算見積もり', calc_custom:'内容に応じて対応', calc_note:'正確なお見積もりは無料診断後にお伝えします。',
     fname:'お名前', fname_p:'お呼びしてよいお名前', fcontact:'ご連絡先', fcontact_p:'X、メール、電話など', ftask:'ご要望', ftask_p:'必要なことを一言で',
     fbtn:'送信', fnote:'Telegramが開きますので、そのまま送信してください。メール: concept@wibe.site',
     foot_line:'© 2026 WIBE — 企業のWebとAI制作', foot_made:'WIBE AI 制作 ⚡',
@@ -897,6 +960,7 @@
     renderPrices();
     const note = document.getElementById('curNote');
     if(note) note.classList.toggle('off', !live);
+    renderCalc();
   }
   function nice(v){
     let step;
@@ -939,7 +1003,29 @@
     track.innerHTML = '<span>' + L.m_items + '</span><span>' + L.m_items + '</span>';
     select.value = lang;
     renderPrices();
+    renderCalc();
   }
+
+  function renderCalc(){
+    const L = STR[lang] || STR['ru-RU'];
+    const base = +document.getElementById('calc-type').value;
+    const totalEl = document.getElementById('calc-total');
+    const usdEl = document.getElementById('calc-usd');
+    if(base === 0){
+      totalEl.textContent = L.calc_custom;
+      usdEl.textContent = '';
+      return;
+    }
+    let total = base;
+    document.querySelectorAll('#calc-opts input:checked').forEach(cb => {
+      if(cb.dataset.add) total += +cb.dataset.add;
+      if(cb.dataset.addPercent) total = Math.round(total*(1 + (+cb.dataset.addPercent)/100));
+    });
+    totalEl.textContent = L.price_from + ' ' + money(total, CURRENCY[lang]);
+    usdEl.textContent = '≈ ' + money(total, 'USD');
+  }
+  document.querySelectorAll('#calc-type, #calc-opts input').forEach(el =>
+    el.addEventListener('change', renderCalc));
 
   /* ---------- форма → Telegram ---------- */
   const form = document.getElementById('lead-form');
@@ -948,8 +1034,12 @@
     const name = document.getElementById('f-name').value.trim();
     const contact = document.getElementById('f-contact').value.trim();
     const task = document.getElementById('f-task').value.trim();
+    const est = document.getElementById('calc-total').textContent.trim() +
+      (document.getElementById('calc-usd').textContent.trim() ? ' (' + document.getElementById('calc-usd').textContent.trim() + ')' : '');
     const msg = 'Заявка с сайта WIBE%0A%0AИмя: ' + encodeURIComponent(name) +
-      '%0AContact: ' + encodeURIComponent(contact) + '%0AЗадача: ' + encodeURIComponent(task || '—');
+      '%0AContact: ' + encodeURIComponent(contact) +
+      '%0AЗадача: ' + encodeURIComponent(task || '—') +
+      '%0AОценка: ' + encodeURIComponent(est);
     window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
   });
 

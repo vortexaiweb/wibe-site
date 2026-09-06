@@ -1,0 +1,14 @@
+{
+  "name": "wibe",
+  "version": "1.0.0",
+  "description": "WIBE — AI digital agency site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

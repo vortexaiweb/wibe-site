@@ -1,0 +1,11 @@
+import { cp, mkdir, readdir } from 'node:fs/promises';
+
+const files = (await readdir('.', { withFileTypes: true }))
+  .filter(d => d.isFile())
+  .map(d => d.name)
+  .filter(n => /\.(?:html|css|svg)$/i.test(n));
+
+await mkdir('public', { recursive: true });
+for (const f of files) await cp(f, 'public/' + f);
+
+console.log('Copied ' + files.length + ' files to public/');
