@@ -17,6 +17,43 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="WIBE">
 <meta property="og:locale" content="ru_RU">
+<!-- hrl:start -->
+<link rel="alternate" hreflang="en-US" href="https://wibe.site/case-media.html">
+<link rel="alternate" hreflang="ru-RU" href="https://wibe.site/ru/case-media.html">
+<link rel="alternate" hreflang="en-GB" href="https://wibe.site/en-gb/case-media.html">
+<link rel="alternate" hreflang="pl-PL" href="https://wibe.site/pl/case-media.html">
+<link rel="alternate" hreflang="de-DE" href="https://wibe.site/de/case-media.html">
+<link rel="alternate" hreflang="zh-CN" href="https://wibe.site/zh/case-media.html">
+<link rel="alternate" hreflang="ja-JP" href="https://wibe.site/ja/case-media.html">
+<link rel="alternate" hreflang="kk-KZ" href="https://wibe.site/kk/case-media.html">
+<link rel="alternate" hreflang="uz-UZ" href="https://wibe.site/uz/case-media.html">
+<link rel="alternate" hreflang="ka-GE" href="https://wibe.site/ka/case-media.html">
+<link rel="alternate" hreflang="he-IL" href="https://wibe.site/he/case-media.html">
+<link rel="alternate" hreflang="hy-AM" href="https://wibe.site/hy/case-media.html">
+<link rel="alternate" hreflang="az-AZ" href="https://wibe.site/az/case-media.html">
+<link rel="alternate" hreflang="ky-KG" href="https://wibe.site/ky/case-media.html">
+<link rel="alternate" hreflang="tg-TJ" href="https://wibe.site/tg/case-media.html">
+<link rel="alternate" hreflang="tk-TM" href="https://wibe.site/tk/case-media.html">
+<link rel="alternate" hreflang="ro-MD" href="https://wibe.site/ro/case-media.html">
+<link rel="alternate" hreflang="x-default" href="https://wibe.site/case-media.html">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="kk_KZ">
+<meta property="og:locale:alternate" content="uz_UZ">
+<meta property="og:locale:alternate" content="ka_GE">
+<meta property="og:locale:alternate" content="he_IL">
+<meta property="og:locale:alternate" content="hy_AM">
+<meta property="og:locale:alternate" content="az_AZ">
+<meta property="og:locale:alternate" content="ky_KG">
+<meta property="og:locale:alternate" content="tg_TJ">
+<meta property="og:locale:alternate" content="tk_TM">
+<meta property="og:locale:alternate" content="ro_MD">
+<!-- hrl:end -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Кейс: контент-конвейер — ×12 к скорости | WIBE">
 <meta name="twitter:description" content="Генеративный конвейер для медиа: десятки креативов в день вместо трёх, −60% затрат на производство контента.">
@@ -339,7 +376,7 @@ const STR = {
 }
 };
 
-let lang = localStorage.getItem('wibe-region') || 'ru-RU';
+let lang = window.__forcedLang || localStorage.getItem('wibe-region') || 'ru-RU';
 
 function applyLang(){
   const L = STR[lang] || STR['en-US'] || STR['ru-RU'];

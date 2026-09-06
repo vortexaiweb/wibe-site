@@ -17,6 +17,43 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="WIBE">
 <meta property="og:locale" content="en_US">
+<!-- hrl:start -->
+<link rel="alternate" hreflang="en-US" href="https://wibe.site/">
+<link rel="alternate" hreflang="ru-RU" href="https://wibe.site/ru/">
+<link rel="alternate" hreflang="en-GB" href="https://wibe.site/en-gb/">
+<link rel="alternate" hreflang="pl-PL" href="https://wibe.site/pl/">
+<link rel="alternate" hreflang="de-DE" href="https://wibe.site/de/">
+<link rel="alternate" hreflang="zh-CN" href="https://wibe.site/zh/">
+<link rel="alternate" hreflang="ja-JP" href="https://wibe.site/ja/">
+<link rel="alternate" hreflang="kk-KZ" href="https://wibe.site/kk/">
+<link rel="alternate" hreflang="uz-UZ" href="https://wibe.site/uz/">
+<link rel="alternate" hreflang="ka-GE" href="https://wibe.site/ka/">
+<link rel="alternate" hreflang="he-IL" href="https://wibe.site/he/">
+<link rel="alternate" hreflang="hy-AM" href="https://wibe.site/hy/">
+<link rel="alternate" hreflang="az-AZ" href="https://wibe.site/az/">
+<link rel="alternate" hreflang="ky-KG" href="https://wibe.site/ky/">
+<link rel="alternate" hreflang="tg-TJ" href="https://wibe.site/tg/">
+<link rel="alternate" hreflang="tk-TM" href="https://wibe.site/tk/">
+<link rel="alternate" hreflang="ro-MD" href="https://wibe.site/ro/">
+<link rel="alternate" hreflang="x-default" href="https://wibe.site/">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="kk_KZ">
+<meta property="og:locale:alternate" content="uz_UZ">
+<meta property="og:locale:alternate" content="ka_GE">
+<meta property="og:locale:alternate" content="he_IL">
+<meta property="og:locale:alternate" content="hy_AM">
+<meta property="og:locale:alternate" content="az_AZ">
+<meta property="og:locale:alternate" content="ky_KG">
+<meta property="og:locale:alternate" content="tg_TJ">
+<meta property="og:locale:alternate" content="tk_TM">
+<meta property="og:locale:alternate" content="ro_MD">
+<!-- hrl:end -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="WIBE — AI Websites, Bots & Apps → More Sales">
 <meta name="twitter:description" content="AI-powered websites, chatbots, voice assistants and mini-apps for businesses. Transparent pricing from $100, honest timelines, and post-launch support.">
@@ -2006,8 +2043,30 @@
   STR['ru-BY'] = Object.assign({}, STR['ru-RU']);
   STR['en-GB'] = Object.assign({}, STR['en-US']);
 
+  /* ---------- SEO-мета на каждый язык ---------- */
+  const META = {
+    'ru-RU': { title:'WIBE — сайты и ИИ-решения для бизнеса', desc:'Сайты, чат-боты, голосовые помощники и мини-приложения на ИИ. Прозрачные цены от $100, честные сроки, поддержка после запуска.' },
+    'ru-BY': { title:'WIBE — сайты и ИИ-решения для бизнеса', desc:'Сайты, чат-боты, голосовые помощники и мини-приложения на ИИ. Прозрачные цены от $100, честные сроки, поддержка после запуска.' },
+    'en-US': { title:'WIBE — AI Websites, Bots & Mini-Apps', desc:'AI websites, chatbots, voice assistants and mini-apps for business. Transparent pricing from $100, honest timelines, post-launch support.' },
+    'en-GB': { title:'WIBE — AI Websites, Bots & Mini-Apps', desc:'AI websites, chatbots, voice assistants and mini-apps for business. Clear pricing from $100, honest timelines and post-launch support.' },
+    'pl-PL': { title:'WIBE — strony i AI dla firm', desc:'Strony, chatboty, asystenci głosowi i miniaplikacje AI. Przejrzyste ceny od $100, uczciwe terminy, wsparcie po starcie.' },
+    'de-DE': { title:'WIBE — Websites & KI fürs Unternehmen', desc:'KI-Websites, Chatbots, Sprachassistenten und Mini-Apps. Transparente Preise ab 100 $, ehrliche Fristen, Support nach dem Start.' },
+    'zh-CN': { title:'WIBE — 网站与人工智能解决方案', desc:'AI 网站、聊天机器人、语音助手和小程序。价格透明，从 100 美元起，诚实的工期和上线后支持。' },
+    'ja-JP': { title:'WIBE — ウェブサイトとAIソリューション', desc:'AIサイト、チャットボット、音声アシスタント、ミニアプリ。100ドルからの明朗会計、誠実な納期、リリース後のサポート。' },
+    'kk-KZ': { title:'WIBE — сайттар және AI-шешімдер', desc:'AI сайттар, чат-боттар, дауыс көмекшілер және мини-қосымшалар. Мөлдір бағалар $100-ден, адал мерзімдер, іске қосқан соң қолдау.' },
+    'uz-UZ': { title:'WIBE — saytlar va AI yechimlar', desc:'AI saytlar, chatbotlar, ovozli yordamchilar va mini-ilovalar. Shaffof narxlar $100 dan, halol muddatlar, ishga tushgach qo‘llab-quvvatlash.' },
+    'ka-GE': { title:'WIBE — ვებსაიტები და AI გადაწყვეტილებები', desc:'AI ვებსაიტები, ჩეთბოტები, ხმოვანი ასისტენტები და მინი-აპები. გამჭვირვალე ფასები, პატიოსანი ვადები, მხარდაჭერა.' },
+    'he-IL': { title:'WIBE — אתרים ופתרונות AI', desc:'אתרי AI, צ׳אטבוטים, עוזרים קוליים ויישומונים. מחירים שקופים, לוחות זמנים כן, תמיכה לאחר ההשקה.' },
+    'hy-AM': { title:'WIBE — կայքեր և AI լուծումներ', desc:'AI կայքեր, չաթ-բոտեր, ձայնային օգնականներ և մինի-հավելվածներ։ Թափանցիկ գներ, ազնիվ ժամկետներ, օժանդակություն։' },
+    'az-AZ': { title:'WIBE — vebsaytlar və AI həlləri', desc:'AI vebsaytlar, çatbotlar, səs köməkçiləri və mini-tətbiqlər. Şəffaf qiymətlər, dürüst müddətlər, dəstək.' },
+    'ky-KG': { title:'WIBE — сайттар жана AI чечимдер', desc:'AI сайттар, чат-боттор, үн жардамчылары жана мини-тиркемелер. Ачык баалар, ак ниет мөөнөттөр, колдоо.' },
+    'tg-TJ': { title:'WIBE — вебсайтҳо ва ҳалли AI', desc:'Вебсайтҳои AI, чатботҳо, ёварони савтӣ ва мини-барномаҳо. Нархҳои шаффоф, муҳлатҳои бовиҷдон, дастгирӣ.' },
+    'tk-TM': { title:'WIBE — web-sahypalar we AI çözgütler', desc:'AI web-sahypalar, çatbotlar, sesli kömekçiler we mini-goşundylar. Açyk bahalar, dogry möhletler, goldaw.' },
+    'ro-MD': { title:'WIBE — site-uri și soluții AI', desc:'Site-uri AI, chatbot-uri, asistenți vocali și mini-aplicații. Prețuri transparente, termene oneste, suport.' }
+  };
+
   /* ---------- состояние ---------- */
-  let lang = localStorage.getItem('wibe-region') || 'en-US';
+  let lang = window.__forcedLang || localStorage.getItem('wibe-region') || 'en-US';
   const CURRENCIES = ['USD','EUR','RUB','BYN','PLN','CNY','JPY','KZT','UZS','GEL','ILS','AMD','AZN','KGS','TJS','TMT','MDL'];
   const SYM = {USD:'$',EUR:'€',RUB:'₽',BYN:'Br',PLN:'zł',CNY:'¥',JPY:'¥',KZT:'₸',UZS:"soʻm",GEL:'₾',ILS:'₪',AMD:'֏',AZN:'₼',KGS:'som',TJS:'смн',TMT:'m',MDL:'L'};
   const FALLBACK = {USD:1,EUR:.92,RUB:90,BYN:3.3,PLN:3.9,CNY:7.2,JPY:150,KZT:460,UZS:12600,GEL:2.65,ILS:3.6,AMD:388,AZN:1.7,KGS:86,TJS:10.9,TMT:3.5,MDL:17.6};
@@ -2081,6 +2140,17 @@
     const L = STR[lang] || STR['en-US'];
     document.documentElement.lang = lang;
     document.documentElement.dir = (lang === 'he-IL') ? 'rtl' : 'ltr';
+    const m = META[lang] || META['en-US'];
+    if(m){
+      if(m.title) document.title = m.title;
+      const set = (sel, attr, val) => { const el = document.querySelector(sel); if(el && val != null) el.setAttribute(attr, val); };
+      set('meta[name="description"]', 'content', m.desc);
+      set('meta[property="og:title"]', 'content', m.title);
+      set('meta[property="og:description"]', 'content', m.desc);
+      set('meta[property="og:locale"]', 'content', lang.replace('-', '_'));
+      set('meta[name="twitter:title"]', 'content', m.title);
+      set('meta[name="twitter:description"]', 'content', m.desc);
+    }
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const v = L[el.dataset.i18n];
       if(v != null) el.textContent = v;
