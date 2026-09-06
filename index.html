@@ -59,12 +59,12 @@
   nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
   nav a:hover{color:var(--ink)}
   .header-right{display:flex;align-items:center;gap:14px}
-  .lang-select{
-    background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:100px;
-    padding:9px 14px;font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;outline:none;
-    transition:border-color .2s;
+  .lang-btn{
+    width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;
+    background:var(--panel);color:var(--muted);border:1px solid var(--line);cursor:pointer;
+    transition:border-color .25s,color .25s,transform .25s;
   }
-  .lang-select:hover,.lang-select:focus{border-color:rgba(255,107,44,.55)}
+  .lang-btn:hover{border-color:rgba(255,107,44,.6);color:var(--accent);transform:translateY(-2px) rotate(8deg)}
   .btn{
     display:inline-block;padding:13px 26px;border-radius:100px;font-weight:600;font-size:15px;text-decoration:none;
     position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;border:0;
@@ -126,10 +126,11 @@
     font-family:'Unbounded','Inter',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--muted);
     background:rgba(14,12,10,.85);
   }
-  .marquee-track{display:inline-flex;animation:slide 26s linear infinite}
-  .marquee-track span{white-space:nowrap}
-  .marquee-track b{color:var(--accent);margin:0 26px;font-weight:400}
+  .marquee-track{display:flex;width:max-content;will-change:transform;animation:slide 24s linear infinite}
+  .marquee-track>span{display:inline-flex;align-items:center;white-space:nowrap;flex:none}
+  .marquee-track .sep{color:var(--accent);margin:0 26px;flex:none}
   @keyframes slide{to{transform:translateX(-50%)}}
+  .marquee:hover .marquee-track{animation-play-state:paused}
 
   .solid{position:relative;z-index:1;background:var(--bg)}
   section{padding:96px clamp(20px,5vw,64px)}
@@ -223,8 +224,60 @@
   .vchip b{color:var(--accent)}
   .form-card{
     border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
-    padding:clamp(30px,5vw,46px);max-width:600px;margin:0 auto;text-align:left;
+    padding:clamp(30px,5vw,46px);width:100%;text-align:left;
   }
+  .stage{display:grid;gap:16px;max-width:1200px;margin:0 auto}
+  @media(min-width:940px){.stage{grid-template-columns:1.05fr .95fr;align-items:start}}
+  .chat-card{
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+    padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:14px;text-align:left;
+  }
+  .chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .chat-id{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px}
+  .chat-dot{width:9px;height:9px;border-radius:50%;background:#67c23a;animation:pulse2 2s infinite}
+  @keyframes pulse2{70%{box-shadow:0 0 0 9px rgba(103,194,58,0)}}
+  .chat-on{font-size:12px;color:var(--muted)}
+  .chat-body{
+    height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;
+    background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px;scrollbar-width:thin;
+  }
+  .chat-body::-webkit-scrollbar{width:6px}
+  .chat-body::-webkit-scrollbar-thumb{background:#2a2420;border-radius:4px}
+  .msg{max-width:84%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;animation:msgIn .3s ease}
+  .msg.bot{background:var(--panel);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:5px}
+  .msg.user{background:linear-gradient(135deg,#ff7a1f,#ffb454);color:#1a0d04;align-self:flex-end;border-bottom-right-radius:5px}
+  @keyframes msgIn{from{opacity:0;transform:translateY(7px)}}
+  .msg.typing{display:flex;gap:4px;align-items:center}
+  .msg.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:tdot 1s infinite}
+  .msg.typing i:nth-child(2){animation-delay:.15s}
+  .msg.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes tdot{50%{opacity:.2;transform:translateY(-3px)}}
+  .chat-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chat-chip{
+    border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:100px;
+    padding:7px 14px;font-size:12.5px;cursor:pointer;font-family:'Inter',sans-serif;
+    transition:border-color .2s,transform .2s;
+  }
+  .chat-chip:hover{border-color:rgba(255,107,44,.5);transform:translateY(-2px)}
+  .chat-row{display:flex;gap:9px}
+  .chat-row input{
+    flex:1;background:var(--bg);border:1px solid var(--line);border-radius:14px;
+    padding:13px 16px;color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;min-width:0;
+  }
+  .chat-row input:focus{outline:none;border-color:var(--accent)}
+  .chat-send{
+    width:48px;height:48px;flex:none;border-radius:14px;background:var(--gold);color:#1a0d04;
+    border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .chat-send:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,107,44,.4)}
+  .chat-tg{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    border:1px solid rgba(255,107,44,.4);background:rgba(255,107,44,.08);color:var(--ink);
+    border-radius:100px;padding:11px 16px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;
+    transition:border-color .2s,background .2s;
+  }
+  .chat-tg:hover{border-color:var(--accent);background:rgba(255,107,44,.15)}
   .form-card .field{margin-bottom:14px}
   .form-card label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase}
   .form-card input,.form-card textarea{
@@ -246,7 +299,9 @@
   }
   .tile:hover{transform:translateY(-2px);border-color:rgba(255,107,44,.45)}
   .tile input{position:absolute;opacity:0;pointer-events:none}
-  .tile .tile-ic{font-size:20px;line-height:1;margin-bottom:6px}
+  .tile .tile-ic{color:var(--accent);margin-bottom:7px;line-height:0}
+  .tile .tile-ic svg{stroke:var(--accent);transition:transform .3s ease}
+  .tile:hover .tile-ic svg{transform:translateY(-2px) scale(1.1)}
   .tile .tile-name{font-weight:600;font-size:12.5px;color:var(--ink);line-height:1.3}
   .tile .tile-d{font-size:11px;color:var(--muted);line-height:1.4}
   .tile .tile-p{font-size:12px;color:var(--accent);font-weight:700;margin-top:8px;letter-spacing:.02em}
@@ -294,11 +349,6 @@
   .calc-total small{color:var(--muted);font-size:13px}
   .calc-total.pulse b{animation:numjump .5s}
   @keyframes numjump{30%{transform:scale(1.14)}60%{transform:scale(.97)}}
-  .calc-badge{
-    animation:checkin .4s cubic-bezier(.2,.7,.2,1);
-    background:var(--gold);color:#1a0d04;font-size:12px;font-weight:800;
-    padding:6px 14px;border-radius:100px;position:relative;z-index:1;white-space:nowrap;
-  }
   .calc-note{color:var(--muted);font-size:12px;margin-top:12px}
 
   footer{
@@ -355,7 +405,7 @@
   @media(max-width:760px){
     header{padding:14px 16px}
     .header-right{gap:8px}
-    .lang-select{max-width:122px;padding:8px 10px;font-size:12px;white-space:nowrap;text-overflow:ellipsis}
+    .lang-btn{width:36px;height:36px}
     .hero{padding:110px 16px 62px}
     .hero-sml{font-size:12px}
     .scroll-hint{display:none}
@@ -366,6 +416,8 @@
     .cta-block{padding:40px 20px}
     .region-btn{padding:12px 14px;font-size:13px}
     .form-card{padding:26px 20px}
+    .chat-card{padding:20px 16px}
+    .chat-body{height:260px}
     .faq summary{padding:16px 18px;font-size:14px}
     .faq p{padding:0 18px 16px;font-size:13px}
     footer{gap:10px;padding:28px 16px}
@@ -377,9 +429,33 @@
     .plan .tag{font-size:11px;padding:4px 12px}
   }
   @media(max-width:380px){
-    .lang-select{max-width:96px}
+    .lang-btn{width:34px;height:34px}
     .header-right .btn{padding:10px 12px;font-size:13px}
   }
+
+  /* ---------- полировка отступов и анимации ---------- */
+  .grad{background-size:220% auto;animation:gradmove 6s ease-in-out infinite}
+  @keyframes gradmove{50%{background-position:100% 50%}}
+  section{padding:104px clamp(20px,5vw,64px)}
+  h2{margin:14px 0 34px}
+  h2::before{
+    content:'';position:absolute;left:0;bottom:0;width:64px;height:3px;border-radius:3px;
+    background:var(--gold);transform:scaleX(0);transform-origin:left;
+    transition:transform .6s .15s cubic-bezier(.2,.7,.2,1);
+  }
+  h2.rv.in::before{transform:scaleX(1)}
+  .hero p{margin:20px 0 4px}
+  .hero-sml{margin-top:16px}
+  .strip{padding:36px clamp(20px,5vw,64px)}
+  .cta-block p{margin:0 auto 24px}
+  .vchips{margin-bottom:28px}
+  .tiles{gap:9px}
+  .calc-opts{gap:9px}
+  .case-row + .hero-actions{margin-top:32px}
+  .service:hover .num{color:var(--gold);letter-spacing:.04em}
+  .tile:active{transform:scale(.97)}
+  .opt:active{transform:scale(.99)}
+  .chat-chip:active{transform:scale(.96)}
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -404,7 +480,9 @@
     <a href="portfolio.html" data-i18n="nav_portfolio"></a>
   </nav>
   <div class="header-right">
-    <select class="lang-select" id="langSelect" aria-label="Language"></select>
+    <button class="lang-btn" id="langBtn" aria-label="Language / region">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 2.5 15 0 18"/><path d="M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+    </button>
     <a class="btn btn-primary" href="#contact" data-i18n="header_btn"></a>
   </div>
 </header>
@@ -426,12 +504,12 @@
 <div class="strip">
   <div class="cap" data-i18n="strip_cap"></div>
   <div class="chips">
-    <span class="chip">Nordic Coffee</span>
-    <span class="chip">Fitline</span>
-    <span class="chip">Prav</span>
-    <span class="chip">Logistics+</span>
-    <span class="chip">MediaHub</span>
-    <span class="chip">FinLab</span>
+    <span class="chip rv">Nordic Coffee</span>
+    <span class="chip rv">Fitline</span>
+    <span class="chip rv">Prav</span>
+    <span class="chip rv">Logistics+</span>
+    <span class="chip rv">MediaHub</span>
+    <span class="chip rv">FinLab</span>
   </div>
 </div>
 
@@ -439,8 +517,8 @@
 
 <div class="solid">
 <section id="services">
-  <div class="kicker" data-i18n="services_k"></div>
-  <h2 data-i18n="services_h"></h2>
+  <div class="kicker rv" data-i18n="services_k"></div>
+  <h2 class="rv" data-i18n="services_h"></h2>
   <div class="services">
     <div class="service rv"><div class="num">01</div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
     <div class="service rv"><div class="num">02</div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
@@ -452,8 +530,8 @@
 </section>
 
 <section id="cases">
-  <div class="kicker" data-i18n="cases_k"></div>
-  <h2 data-i18n="cases_h"></h2>
+  <div class="kicker rv" data-i18n="cases_k"></div>
+  <h2 class="rv" data-i18n="cases_h"></h2>
   <div class="cases">
     <a class="case rv" href="case-ecom.html">
       <div><h3 data-i18n="c1t"></h3><p data-i18n="c1d"></p></div>
@@ -474,8 +552,8 @@
 </section>
 
 <section id="process">
-  <div class="kicker" data-i18n="process_k"></div>
-  <h2 data-i18n="process_h"></h2>
+  <div class="kicker rv" data-i18n="process_k"></div>
+  <h2 class="rv" data-i18n="process_h"></h2>
   <div class="process">
     <div class="step rv"><div class="num">01</div><h3 data-i18n="p1t"></h3><p data-i18n="p1d"></p><span class="time" data-i18n="p1t2"></span></div>
     <div class="step rv"><div class="num">02</div><h3 data-i18n="p2t"></h3><p data-i18n="p2d"></p><span class="time" data-i18n="p2t2"></span></div>
@@ -485,8 +563,8 @@
 </section>
 
 <section id="pricing">
-  <div class="kicker" data-i18n="pricing_k"></div>
-  <h2 data-i18n="pricing_h"></h2>
+  <div class="kicker rv" data-i18n="pricing_k"></div>
+  <h2 class="rv" data-i18n="pricing_h"></h2>
   <div class="pricing">
     <div class="plan rv">
       <h3 data-i18n="pl1t"></h3>
@@ -532,8 +610,8 @@
 </section>
 
 <section id="faq">
-  <div class="kicker" data-i18n="faq_k"></div>
-  <h2 data-i18n="faq_h"></h2>
+  <div class="kicker rv" data-i18n="faq_k"></div>
+  <h2 class="rv" data-i18n="faq_h"></h2>
   <div class="faq-list">
     <details class="faq rv"><summary data-i18n="q1"></summary><p data-i18n="q1a"></p></details>
     <details class="faq rv"><summary data-i18n="q2"></summary><p data-i18n="q2a"></p></details>
@@ -545,14 +623,15 @@
 
 <section id="contact">
   <div class="cta-block">
-    <div class="kicker" data-i18n="contact_k"></div>
-    <h2 data-i18n="contact_h"></h2>
+    <div class="kicker rv" data-i18n="contact_k"></div>
+    <h2 class="rv" data-i18n="contact_h"></h2>
     <p data-i18n="contact_p"></p>
     <div class="vchips">
       <span class="vchip"><b>✓</b> <span data-i18n="vc1"></span></span>
       <span class="vchip"><b>✓</b> <span data-i18n="vc2"></span></span>
       <span class="vchip"><b>✓</b> <span data-i18n="vc3"></span></span>
     </div>
+    <div class="stage">
     <form class="form-card" id="lead-form">
       <div class="field"><label for="f-name" data-i18n="fname"></label><input id="f-name" name="name" required data-i18n-ph="fname_p"></div>
       <div class="field"><label for="f-contact" data-i18n="fcontact"></label><input id="f-contact" name="contact" required data-i18n-ph="fcontact_p"></div>
@@ -562,35 +641,35 @@
         <div class="tiles" id="calc-type" role="radiogroup">
           <label class="tile">
             <input type="radio" name="calc-type" value="200" checked>
-            <span class="tile-ic">🌐</span>
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.8-.8L3 20l1.1-5.4a8 8 0 0 1-.6-3.1A8.5 8.5 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg></span>
             <span class="tile-name" data-i18n="calc_t1"></span>
             <span class="tile-d" data-i18n="calc_d1"></span>
             <span class="tile-p">$200</span>
           </label>
           <label class="tile">
             <input type="radio" name="calc-type" value="1000">
-            <span class="tile-ic">⚙️</span>
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
             <span class="tile-name" data-i18n="calc_t2"></span>
             <span class="tile-d" data-i18n="calc_d2"></span>
             <span class="tile-p">$1000</span>
           </label>
           <label class="tile">
             <input type="radio" name="calc-type" value="450">
-            <span class="tile-ic">📚</span>
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
             <span class="tile-name" data-i18n="calc_t3"></span>
             <span class="tile-d" data-i18n="calc_d3"></span>
             <span class="tile-p">$450</span>
           </label>
           <label class="tile">
             <input type="radio" name="calc-type" value="350">
-            <span class="tile-ic">🎧</span>
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg></span>
             <span class="tile-name" data-i18n="calc_t4"></span>
             <span class="tile-d" data-i18n="calc_d4"></span>
             <span class="tile-p">$350</span>
           </label>
           <label class="tile">
             <input type="radio" name="calc-type" value="0">
-            <span class="tile-ic">💎</span>
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M9 3l3 6 3-6"/></svg></span>
             <span class="tile-name" data-i18n="calc_t5"></span>
             <span class="tile-d" data-i18n="calc_d5"></span>
             <span class="tile-p" data-i18n="calc_custom_short"></span>
@@ -607,13 +686,37 @@
             <b id="calc-total">—</b>
             <small id="calc-usd"></small>
           </div>
-          <span class="calc-badge">≈</span>
         </div>
         <p class="calc-note" data-i18n="calc_note"></p>
       </div>
       <button class="btn btn-primary" type="submit" data-i18n="fbtn"></button>
       <p class="form-note" data-i18n="fnote"></p>
     </form>
+    <div class="chat-card">
+      <div class="chat-head">
+        <span class="chat-id"><i class="chat-dot"></i><b data-i18n="chat_title"></b></span>
+        <span class="chat-on" data-i18n="chat_on"></span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="msg bot"><span data-i18n="chat_greet"></span></div>
+      </div>
+      <div class="chat-chips">
+        <button class="chat-chip" data-q="chat_q1" data-i18n="chat_q1"></button>
+        <button class="chat-chip" data-q="chat_q2" data-i18n="chat_q2"></button>
+        <button class="chat-chip" data-q="chat_q3" data-i18n="chat_q3"></button>
+      </div>
+      <div class="chat-row">
+        <input id="chatInput" data-i18n-ph="chat_ph" autocomplete="off">
+        <button class="chat-send" id="chatSend" aria-label="Send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <button class="chat-tg" id="chatTg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21.4 3.4c.4-.9-.5-1.8-1.4-1.4L2 9.6c-.9.3-1 1.6-.1 2l5.2 2.4 2 6.2c.3.9 1.5 1.1 2.1.4l2.8-3.2 4.6 3.4c.8.6 2 .1 2.2-.8L21.4 3.4z"/></svg>
+        <span data-i18n="chat_tg"></span>
+      </button>
+    </div>
+  </div>
   </div>
 </section>
 </div>
@@ -705,6 +808,10 @@
     calc_d1:'лендинг, чат-бот или приложение', calc_d2:'сайт плюс автоматизация процессов', calc_d3:'ИИ отвечает по вашим документам', calc_d4:'приём звонков без оператора', calc_d5:'ML, RAG, сложные интеграции', calc_custom_short:'по смете',
     calc_o1:'Подключение CRM и интеграции', calc_o2:'Поддержка на 3 месяца', calc_o3:'Срочный запуск за 2 недели',
     calc_est:'Предварительная оценка', calc_custom:'смета по задаче', calc_note:'Точную смету назовём после бесплатного аудита.',
+    chat_title:'ИИ-консультант', chat_on:'онлайн', chat_greet:'Здравствуйте! Подскажу по услугам, ценам и срокам. Спросите что угодно или выберите тему ниже.',
+    chat_ph:'Ваш вопрос…', chat_tg:'Продолжить в Telegram', chat_err:'Упс, связь с сетью потеряна. Напишите нам в Telegram — ответим вручную.',
+    chat_q1:'Сколько стоит сайт?', chat_q2:'Какие сроки?', chat_q3:'Что умеет ИИ?',
+    chat_sys:'Ты — консультант агентства WIBE (сайты + ИИ). Отвечай кратко, до 3 предложений, на языке пользователя. Факты: сайт или ИИ-ассистент от $200, сайт с автоматизацией от $1000, индивидуально по смете; прототип за 14 дней, запуск за 4–6 недель. В конце мягко предложи написать в Telegram @wibesitebot.',
     fname:'Имя', fname_p:'Как к вам обращаться', fcontact:'Как с вами связаться', fcontact_p:'Telegram, email или телефон', ftask:'Задача', ftask_p:'Пара слов о том, что нужно',
     fbtn:'Отправить', fnote:'Откроется Telegram — просто отправьте готовое сообщение. Или напишите на concept@wibe.site.',
     foot_line:'© 2026 WIBE — сайты и ИИ для бизнеса', foot_made:'Сделано с помощью WIBE AI ⚡',
@@ -763,6 +870,10 @@
     calc_d1:'landing, chatbot or app', calc_d2:'site plus process automation', calc_d3:'AI answers from your docs', calc_d4:'calls handled without an operator', calc_d5:'ML, RAG, complex integrations', calc_custom_short:'on quote',
     calc_o1:'CRM and integrations', calc_o2:'3 months of support', calc_o3:'Fast launch in 2 weeks',
     calc_est:'Estimated price', calc_custom:'quote after audit', calc_note:'The exact quote comes after a free audit.',
+    chat_title:'AI advisor', chat_on:'online', chat_greet:'Hello! I can help with services, pricing and deadlines. Ask anything or pick a topic below.',
+    chat_ph:'Your question…', chat_tg:'Continue in Telegram', chat_err:'Oops, the network is gone. Write to us on Telegram and we will reply manually.',
+    chat_q1:'How much does a website cost?', chat_q2:'What are the deadlines?', chat_q3:'What can AI do?',
+    chat_sys:'You are the advisor of WIBE agency (websites + AI). Answer briefly, up to 3 sentences, in the user\'s language. Facts: website or AI assistant from $200, website with automation from $1000, custom on quote; prototype in 14 days, launch in 4–6 weeks. At the end, gently suggest writing to Telegram @wibesitebot.',
     fname:'Name', fname_p:'What should we call you', fcontact:'Contact', fcontact_p:'Telegram, email or phone', ftask:'Task', ftask_p:'A few words about what you need',
     fbtn:'Send', fnote:'Telegram will open — just send the ready message. Or email concept@wibe.site.',
     foot_line:'© 2026 WIBE — websites and AI for business', foot_made:'Made with WIBE AI ⚡',
@@ -820,6 +931,10 @@
     calc_d1:'landing, chatbot lub aplikacja', calc_d2:'strona plus automatyzacja procesów', calc_d3:'AI odpowiada z Twoich dokumentów', calc_d4:'telefony bez operatora', calc_d5:'ML, RAG, złożone integracje', calc_custom_short:'po wycenie',
     calc_o1:'Podłączenie CRM i integracje', calc_o2:'Wsparcie przez 3 miesiące', calc_o3:'Szybki start w 2 tygodnie',
     calc_est:'Szacunkowa cena', calc_custom:'wycena po analizie', calc_note:'Dokładną wycenę podamy po bezpłatnym audycie.',
+    chat_title:'Doradca AI', chat_on:'online', chat_greet:'Dzień dobry! Pomogę z usługami, cenami i terminami. Zapytaj o cokolwiek albo wybierz temat poniżej.',
+    chat_ph:'Twoje pytanie…', chat_tg:'Kontynuuj w Telegramie', chat_err:'Ups, brak połączenia. Napisz do nas na Telegramie — odpowiemy ręcznie.',
+    chat_q1:'Ile kosztuje strona?', chat_q2:'Jakie terminy?', chat_q3:'Co potrafi AI?',
+    chat_sys:'Jesteś doradcą agencji WIBE (strony + AI). Odpowiadaj krótko, do 3 zdań, w języku użytkownika. Fakty: strona lub asystent AI od $200, strona z automatyzacją od $1000, indywidualnie po wycenie; prototyp w 14 dni, start w 4–6 tygodni. Na końcu delikatnie zaproponuj napisanie na Telegram @wibesitebot.',
     fname:'Imię', fname_p:'Jak mamy się zwracać', fcontact:'Kontakt', fcontact_p:'Telegram, e-mail lub telefon', ftask:'Zadanie', ftask_p:'Kilka słów o tym, czego potrzebujesz',
     fbtn:'Wyślij', fnote:'Otworzy się Telegram — wyślij gotową wiadomość. Albo napisz na concept@wibe.site.',
     foot_line:'© 2026 WIBE — strony i AI dla biznesu', foot_made:'Zrobione z WIBE AI ⚡',
@@ -877,6 +992,10 @@
     calc_d1:'Landingpage, Chatbot oder App', calc_d2:'Website plus Prozessautomatisierung', calc_d3:'KI antwortet aus Ihren Dokumenten', calc_d4:'Anrufe ohne Operator', calc_d5:'ML, RAG, komplexe Integrationen', calc_custom_short:'nach Analyse',
     calc_o1:'CRM-Anbindung und Integrationen', calc_o2:'Support für 3 Monate', calc_o3:'Schnellstart in 2 Wochen',
     calc_est:'Voraussichtlicher Preis', calc_custom:'Angebot nach Analyse', calc_note:'Den genauen Preis nennen wir nach dem kostenlosen Audit.',
+    chat_title:'KI-Berater', chat_on:'online', chat_greet:'Hallo! Ich helfe bei Leistungen, Preisen und Fristen. Fragen Sie einfach — oder wählen Sie unten ein Thema.',
+    chat_ph:'Ihre Frage…', chat_tg:'Im Telegram fortsetzen', chat_err:'Ups, keine Verbindung. Schreiben Sie uns auf Telegram — wir antworten manuell.',
+    chat_q1:'Was kostet eine Website?', chat_q2:'Welche Fristen?', chat_q3:'Was kann KI?',
+    chat_sys:'Du bist der Berater der Agentur WIBE (Websites + KI). Antworte kurz, bis zu 3 Sätzen, in der Sprache des Nutzers. Fakten: Website oder KI-Assistent ab $200, Website mit Automatisierung ab $1000, individuell nach Analyse; Prototyp in 14 Tagen, Start in 4–6 Wochen. Schlagen Sie am Ende sanft vor, auf Telegram @wibesitebot zu schreiben.',
     fname:'Name', fname_p:'Wie dürfen wir Sie nennen', fcontact:'Kontakt', fcontact_p:'Telegram, E-Mail oder Telefon', ftask:'Aufgabe', ftask_p:'Ein paar Worte, was Sie brauchen',
     fbtn:'Senden', fnote:'Telegram öffnet sich — senden Sie einfach die fertige Nachricht. Oder schreiben Sie an concept@wibe.site.',
     foot_line:'© 2026 WIBE — Websites und KI für Unternehmen', foot_made:'Gemacht mit WIBE AI ⚡',
@@ -934,6 +1053,10 @@
     calc_d1:'落地页、聊天机器人或应用', calc_d2:'网站+流程自动化', calc_d3:'AI基于文档回答', calc_d4:'无需人工接听电话', calc_d5:'ML、RAG、复杂集成', calc_custom_short:'按需报价',
     calc_o1:'对接CRM与集成', calc_o2:'3个月支持', calc_o3:'两周快速上线',
     calc_est:'预估价格', calc_custom:'按需求报价', calc_note:'免费诊断后给出准确报价。',
+    chat_title:'AI顾问', chat_on:'在线', chat_greet:'您好！我可以介绍服务、价格和工期。随便问，或选下面的话题。',
+    chat_ph:'你的问题…', chat_tg:'在Telegram继续', chat_err:'网络暂时不可用。请到Telegram给我们留言，人工回复。',
+    chat_q1:'网站要多少钱？', chat_q2:'工期多久？', chat_q3:'AI能做什么？',
+    chat_sys:'你是WIBE公司（网站+AI）的顾问。用用户的语言简短回答，不超过3句。事实：网站或AI助手约$200，网站+自动化约$1000，定制按需求报价；原型14天，上线4–6周。结尾温和建议在Telegram留言 @wibesitebot。',
     fname:'称呼', fname_p:'怎么称呼你', fcontact:'联系方式', fcontact_p:'微信、邮箱或电话', ftask:'需求', ftask_p:'简单说说你需要什么',
     fbtn:'发送', fnote:'会打开Telegram——直接发送即可。或写信到 concept@wibe.site。',
     foot_line:'© 2026 WIBE — 为企业做网站与AI', foot_made:'由 WIBE AI 制作 ⚡',
@@ -991,6 +1114,10 @@
     calc_d1:'ランディング・チャットボット・アプリ', calc_d2:'サイト＋業務自動化', calc_d3:'文書から回答するAI', calc_d4:'オペレーターなしで電話対応', calc_d5:'ML・RAG・複雑な連携', calc_custom_short:'応相談',
     calc_o1:'CRM連携・統合', calc_o2:'3か月のサポート', calc_o3:'2週間での早期スタート',
     calc_est:'概算見積もり', calc_custom:'内容に応じて対応', calc_note:'正確なお見積もりは無料診断後にお伝えします。',
+    chat_title:'AIアドバイザー', chat_on:'オンライン', chat_greet:'こんにちは！サービス・料金・納期についてお伝えします。何でも質問するか、下のテーマを選んでください。',
+    chat_ph:'質問をどうぞ…', chat_tg:'Telegramで続ける', chat_err:'接続できません。Telegramでご連絡ください。手動でお返事します。',
+    chat_q1:'サイトはいくら？', chat_q2:'納期は？', chat_q3:'AIは何ができる？',
+    chat_sys:'あなたはWIBE（サイト＋AI）のアドバイザーです。ユーザーの言語で3文以内に簡潔に答えてください。事実: サイトまたはAIアシスタントは$200から、自動化込みサイトは$1000から、カスタムは要見積; プロトタイプ14日、本番4〜6週間。最後にTelegram @wibesitebot への連絡をやんわり提案してください。',
     fname:'お名前', fname_p:'お呼びしてよいお名前', fcontact:'ご連絡先', fcontact_p:'X、メール、電話など', ftask:'ご要望', ftask_p:'必要なことを一言で',
     fbtn:'送信', fnote:'Telegramが開きますので、そのまま送信してください。メール: concept@wibe.site',
     foot_line:'© 2026 WIBE — 企業のWebとAI制作', foot_made:'WIBE AI 制作 ⚡',
@@ -1007,14 +1134,7 @@
   const FALLBACK = {USD:1,EUR:.92,RUB:90,BYN:3.3,PLN:3.9,CNY:7.2,JPY:150};
   let rates = Object.assign({}, FALLBACK), live = false;
 
-  /* ---------- селектор языка ---------- */
-  const select = document.getElementById('langSelect');
-  LOCALES.forEach(l => {
-    const o = document.createElement('option');
-    o.value = l.code; o.textContent = l.flag + ' ' + l.label;
-    select.appendChild(o);
-  });
-  select.addEventListener('change', () => choose(select.value));
+  /* ---------- выбор языка и региона ---------- */
   function choose(code){ lang = code; localStorage.setItem('wibe-region', code); applyLang(); }
 
   /* ---------- модал выбора региона ---------- */
@@ -1030,6 +1150,7 @@
   document.getElementById('regSkip').addEventListener('click', e => {
     e.preventDefault(); modal.classList.remove('show');
   });
+  document.getElementById('langBtn').addEventListener('click', () => modal.classList.add('show'));
 
   /* ---------- курсы валют ---------- */
   async function loadRates(){
@@ -1086,8 +1207,9 @@
       if(v != null) el.placeholder = v;
     });
     const track = document.getElementById('marquee');
-    track.innerHTML = '<span>' + L.m_items + '</span><span>' + L.m_items + '</span>';
-    select.value = lang;
+    const sep = '<svg class="sep" viewBox="0 0 16 16" width="7" height="7"><path d="M8 2l2.8 3.6L8 14 5.2 5.6z" fill="currentColor"/></svg>';
+    const one = L.m_items.split('◆').map(s=>s.trim()).filter(Boolean).map(t=>'<span>' + t + sep + '</span>').join('');
+    track.innerHTML = one + one;
     renderPrices();
     renderCalc();
   }
@@ -1141,12 +1263,77 @@
     const name = document.getElementById('f-name').value.trim();
     const contact = document.getElementById('f-contact').value.trim();
     const task = document.getElementById('f-task').value.trim();
+    const sel = document.querySelector('#calc-type input:checked');
+    const typeLabel = sel ? sel.closest('.tile').querySelector('.tile-name').textContent.trim() : '';
+    const opts = [];
+    document.querySelectorAll('#calc-opts input:checked').forEach(cb => {
+      const row = cb.closest('.opt');
+      const t = row.querySelector('span').textContent.trim();
+      const p = row.querySelector('.opt-p').textContent.trim();
+      opts.push(t + ' (' + p + ')');
+    });
     const est = document.getElementById('calc-total').textContent.trim() +
       (document.getElementById('calc-usd').textContent.trim() ? ' (' + document.getElementById('calc-usd').textContent.trim() + ')' : '');
     const msg = 'Заявка с сайта WIBE%0A%0AИмя: ' + encodeURIComponent(name) +
       '%0AContact: ' + encodeURIComponent(contact) +
       '%0AЗадача: ' + encodeURIComponent(task || '—') +
+      '%0AВариант: ' + encodeURIComponent(typeLabel) +
+      (opts.length ? '%0AОпции: ' + encodeURIComponent(opts.join(', ')) : '') +
       '%0AОценка: ' + encodeURIComponent(est);
+    window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
+  });
+
+  /* ---------- ИИ-чат (бесплатная модель Pollinations) ---------- */
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  let chatHist = [], chatBusy = false;
+  function chatMsg(role, text){
+    const d = document.createElement('div');
+    d.className = 'msg ' + role;
+    const t = document.createElement('span'); t.textContent = text;
+    d.appendChild(t);
+    chatBody.appendChild(d);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  function chatTyping(){
+    const d = document.createElement('div');
+    d.className = 'msg bot typing'; d.id = 'chatTyping';
+    d.innerHTML = '<i></i><i></i><i></i>';
+    chatBody.appendChild(d);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  async function chatSend(){
+    const text = chatInput.value.trim();
+    if(!text || chatBusy) return;
+    const L = STR[lang] || STR['ru-RU'];
+    chatBusy = true;
+    chatInput.value = '';
+    chatMsg('user', text);
+    chatHist = [...chatHist.slice(-5), {role:'user', content:text}];
+    chatTyping();
+    let out = '';
+    try{
+      const res = await fetch('https://text.pollinations.ai/', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({messages:[{role:'system', content:L.chat_sys}, ...chatHist], model:'openai'})
+      });
+      out = (await res.text()).trim() || L.chat_err;
+    }catch(_){ out = L.chat_err; }
+    const tEl = document.getElementById('chatTyping');
+    if(tEl) tEl.remove();
+    chatHist = [...chatHist, {role:'assistant', content:out}];
+    chatMsg('bot', out);
+    chatBusy = false;
+  }
+  document.querySelectorAll('.chat-chip').forEach(b =>
+    b.addEventListener('click', () => { chatInput.value = b.textContent; chatSend(); }));
+  document.getElementById('chatSend').addEventListener('click', chatSend);
+  chatInput.addEventListener('keydown', e => { if(e.key === 'Enter') chatSend(); });
+  document.getElementById('chatTg').addEventListener('click', () => {
+    const lastQ = chatHist.length ? chatHist[chatHist.length-1].content : '';
+    const msg = 'Консультация с сайта WIBE%0AЯзык: ' + encodeURIComponent(lang) +
+      '%0AПоследний вопрос: ' + encodeURIComponent(lastQ);
     window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
   });
 
