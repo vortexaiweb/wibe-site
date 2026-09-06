@@ -320,7 +320,7 @@
   @keyframes checkin{from{transform:scale(.2);opacity:0}}
   .calc-opts{display:grid;gap:8px;margin:14px 0}
   .opt{
-    display:flex;align-items:center;gap:10px;color:var(--ink);font-size:13px;cursor:pointer;
+    display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;color:var(--ink);font-size:13px;cursor:pointer;
     border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);position:relative;
     transition:border-color .2s,background .2s,transform .2s;
   }
@@ -485,7 +485,15 @@
     footer{padding:28px 16px 108px}
     .cta-block{padding:38px 18px}
     .tiles{grid-template-columns:repeat(2,1fr)}
+    .tile{padding:11px 10px}
     .calc-opts{gap:8px}
+  }
+  @media(max-width:460px){
+    header{gap:8px;padding:12px 14px}
+    .wordmark{font-size:16px}
+    .header-right .btn{padding:9px 13px;font-size:12.5px}
+    .tiles{grid-template-columns:1fr 1fr}
+    .tile .tile-d{display:none}
   }
 
   /* ---------- RTL (иврит) ---------- */
@@ -1877,7 +1885,7 @@
   const CURRENCIES = ['USD','EUR','RUB','BYN','PLN','CNY','JPY','KZT','UZS','GEL','ILS','AMD','AZN','KGS','TJS','TMT','MDL'];
   const SYM = {USD:'$',EUR:'€',RUB:'₽',BYN:'Br',PLN:'zł',CNY:'¥',JPY:'¥',KZT:'₸',UZS:"soʻm",GEL:'₾',ILS:'₪',AMD:'֏',AZN:'₼',KGS:'som',TJS:'смн',TMT:'m',MDL:'L'};
   const FALLBACK = {USD:1,EUR:.92,RUB:90,BYN:3.3,PLN:3.9,CNY:7.2,JPY:150,KZT:460,UZS:12600,GEL:2.65,ILS:3.6,AMD:388,AZN:1.7,KGS:86,TJS:10.9,TMT:3.5,MDL:17.6};
-  const PRICE = {start:200, business:1000, rag:450, voice:350, bot:100, app:800, crm:150, support:300, urgent:20};
+  const PRICE = {start:200, business:1000, rag:450, voice:350, bot:100, app:100, crm:150, support:300, urgent:20};
   let rates = Object.assign({}, FALLBACK), live = false;
 
   /* ---------- выбор языка и региона ---------- */
