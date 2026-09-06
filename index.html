@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="en-US">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -194,7 +194,7 @@
   .rate b{color:var(--accent);font-weight:600}
   .plan ul{color:var(--muted);padding-left:0;list-style:none;display:grid;gap:9px;font-size:14px;margin-bottom:24px}
   .plan ul li{padding-left:26px;position:relative}
-  .plan ul li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .plan ul li::before{content:'';position:absolute;left:0;top:2px;width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff7a1f' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat}
   .plan .btn{margin-top:auto;text-align:center}
   .plan .btn-ghost{display:block}
   .cur-note{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:13px;margin-top:22px}
@@ -220,14 +220,13 @@
   .cta-block h2{margin:0 auto 14px;max-width:24ch}
   .cta-block p{color:var(--muted);max-width:48ch;margin:0 auto 26px}
   .vchips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
-  .vchip{font-size:13px;color:var(--ink);border:1px solid var(--line);border-radius:100px;padding:8px 16px;background:rgba(255,255,255,.02)}
-  .vchip b{color:var(--accent)}
+  .vchip{font-size:13px;color:var(--ink);border:1px solid var(--line);border-radius:100px;padding:8px 16px;background:rgba(255,255,255,.02);display:inline-flex;align-items:center;gap:8px}
+  .vchip b{width:16px;height:16px;flex:none;border-radius:50%;background:var(--gold);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(255,107,44,.3)}
+  .vchip b svg{color:#1a0d04;width:9px;height:9px}
   .form-card{
     border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
-    padding:clamp(30px,5vw,46px);width:100%;text-align:left;
+    padding:clamp(30px,5vw,46px);width:100%;max-width:600px;margin:0 auto;text-align:left;
   }
-  .stage{display:grid;gap:16px;max-width:1200px;margin:0 auto}
-  @media(min-width:940px){.stage{grid-template-columns:1.05fr .95fr;align-items:start}}
   .chat-card{
     border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
     padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:14px;text-align:left;
@@ -311,9 +310,9 @@
     animation:tilepop .3s;
   }
   .tile:has(input:checked)::after{
-    content:'✓';position:absolute;top:8px;right:9px;width:17px;height:17px;border-radius:50%;
-    color:#1a0d04;background:var(--gold);display:flex;align-items:center;justify-content:center;
-    font-size:10px;font-weight:800;animation:checkin .3s cubic-bezier(.2,.7,.2,1);
+    content:'';position:absolute;top:9px;right:9px;width:18px;height:18px;border-radius:50%;
+    background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a0d04' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/11px 11px no-repeat;
+    animation:checkin .3s cubic-bezier(.2,.7,.2,1);box-shadow:0 2px 8px rgba(255,107,44,.35);
   }
   @keyframes tilepop{50%{transform:scale(1.03)}}
   @keyframes checkin{from{transform:scale(.2);opacity:0}}
@@ -526,6 +525,8 @@
     <div class="service rv"><div class="num">04</div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
     <div class="service rv"><div class="num">05</div><h3 data-i18n="s5t"></h3><p data-i18n="s5d"></p></div>
     <div class="service rv"><div class="num">06</div><h3 data-i18n="s6t"></h3><p data-i18n="s6d"></p></div>
+    <div class="service rv"><div class="num">07</div><h3 data-i18n="s7t"></h3><p data-i18n="s7d"></p></div>
+    <div class="service rv"><div class="num">08</div><h3 data-i18n="s8t"></h3><p data-i18n="s8d"></p></div>
   </div>
 </section>
 
@@ -604,6 +605,18 @@
       </ul>
       <a class="btn btn-ghost" href="#contact" data-i18n="header_btn"></a>
     </div>
+    <div class="plan rv">
+      <h3 data-i18n="pl4t"></h3>
+      <div class="price"><span data-price="600"></span></div>
+      <p class="note" data-i18n="pl4sub"></p>
+      <div class="rate" data-rate="600"></div>
+      <ul>
+        <li data-i18n="pl4f1"></li>
+        <li data-i18n="pl4f2"></li>
+        <li data-i18n="pl4f3"></li>
+      </ul>
+      <a class="btn btn-ghost" href="#contact" data-i18n="header_btn"></a>
+    </div>
   </div>
   <div class="cur-note rv" id="curNote"><i></i><span data-i18n="cur_note"></span></div>
   <div class="guarantee rv"><b data-i18n="guarantee_h"></b><span data-i18n="guarantee"></span></div>
@@ -627,11 +640,10 @@
     <h2 class="rv" data-i18n="contact_h"></h2>
     <p data-i18n="contact_p"></p>
     <div class="vchips">
-      <span class="vchip"><b>✓</b> <span data-i18n="vc1"></span></span>
-      <span class="vchip"><b>✓</b> <span data-i18n="vc2"></span></span>
-      <span class="vchip"><b>✓</b> <span data-i18n="vc3"></span></span>
+      <span class="vchip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></b> <span data-i18n="vc1"></span></span>
+      <span class="vchip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></b> <span data-i18n="vc2"></span></span>
+      <span class="vchip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></b> <span data-i18n="vc3"></span></span>
     </div>
-    <div class="stage">
     <form class="form-card" id="lead-form">
       <div class="field"><label for="f-name" data-i18n="fname"></label><input id="f-name" name="name" required data-i18n-ph="fname_p"></div>
       <div class="field"><label for="f-contact" data-i18n="fcontact"></label><input id="f-contact" name="contact" required data-i18n-ph="fcontact_p"></div>
@@ -674,6 +686,20 @@
             <span class="tile-d" data-i18n="calc_d5"></span>
             <span class="tile-p" data-i18n="calc_custom_short"></span>
           </label>
+          <label class="tile">
+            <input type="radio" name="calc-type" value="600">
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="4"/><path d="M12 7V3"/><path d="M8 3h8"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg></span>
+            <span class="tile-name" data-i18n="calc_t6"></span>
+            <span class="tile-d" data-i18n="calc_d6"></span>
+            <span class="tile-p">$600</span>
+          </label>
+          <label class="tile">
+            <input type="radio" name="calc-type" value="800">
+            <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span>
+            <span class="tile-name" data-i18n="calc_t7"></span>
+            <span class="tile-d" data-i18n="calc_d7"></span>
+            <span class="tile-p">$800</span>
+          </label>
         </div>
         <div class="calc-opts" id="calc-opts">
           <label class="opt"><input type="checkbox" data-add="150"><span data-i18n="calc_o1"></span><b class="opt-p" data-usd="150"></b></label>
@@ -692,31 +718,6 @@
       <button class="btn btn-primary" type="submit" data-i18n="fbtn"></button>
       <p class="form-note" data-i18n="fnote"></p>
     </form>
-    <div class="chat-card">
-      <div class="chat-head">
-        <span class="chat-id"><i class="chat-dot"></i><b data-i18n="chat_title"></b></span>
-        <span class="chat-on" data-i18n="chat_on"></span>
-      </div>
-      <div class="chat-body" id="chatBody">
-        <div class="msg bot"><span data-i18n="chat_greet"></span></div>
-      </div>
-      <div class="chat-chips">
-        <button class="chat-chip" data-q="chat_q1" data-i18n="chat_q1"></button>
-        <button class="chat-chip" data-q="chat_q2" data-i18n="chat_q2"></button>
-        <button class="chat-chip" data-q="chat_q3" data-i18n="chat_q3"></button>
-      </div>
-      <div class="chat-row">
-        <input id="chatInput" data-i18n-ph="chat_ph" autocomplete="off">
-        <button class="chat-send" id="chatSend" aria-label="Send">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
-        </button>
-      </div>
-      <button class="chat-tg" id="chatTg">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21.4 3.4c.4-.9-.5-1.8-1.4-1.4L2 9.6c-.9.3-1 1.6-.1 2l5.2 2.4 2 6.2c.3.9 1.5 1.1 2.1.4l2.8-3.2 4.6 3.4c.8.6 2 .1 2.2-.8L21.4 3.4z"/></svg>
-        <span data-i18n="chat_tg"></span>
-      </button>
-    </div>
-  </div>
   </div>
 </section>
 </div>
@@ -765,7 +766,7 @@
     price_from:'от',
     hero_helper:'Отвечаем в течение 15 минут в рабочее время. Без спама и навязчивых звонков.',
     strip_cap:'С кем мы работаем',
-    m_items:'Сайты под ключ ◆ ИИ для продаж ◆ Автоматизация ◆ Чат-боты ◆ Голосовые боты ◆ ML-аналитика ◆ ',
+    m_items:'Сайты под ключ ◆ ИИ для продаж ◆ Автоматизация ◆ Чат-боты ◆ Голосовые боты ◆ ML-аналитика ◆ Telegram-боты ◆ Мини-аппы ◆ ',
     services_k:'Услуги', services_h:'Что пригодится вашему бизнесу',
     s1t:'Сайты под ключ', s1d:'Лендинги и веб-приложения, которые понятны посетителю и приводят заявки.',
     s2t:'ИИ для продаж', s2d:'Ассистенты в чатах и на сайте: отвечают быстро, по-человечески, ничего не теряя.',
@@ -773,6 +774,8 @@
     s4t:'RAG и базы знаний', s4d:'ИИ отвечает по вашим документам и всегда ссылается на источник.',
     s5t:'Голосовые боты', s5d:'Принимают звонки и записывают клиентов — даже ночью.',
     s6t:'ML-аналитика', s6d:'Прогнозы и отчёты на ваших данных — без гаданий.',
+    s7t:'Telegram-боты', s7d:'Продажи и поддержка прямо в мессенджере: заявки, напоминания, приём оплат.',
+    s8t:'Мини-аппы', s8d:'Мини-приложения в Telegram и веб-аппы под вашу задачу — работают прямо в чате.',
     st1:'быстрее обрабатываем заявки', st2:'ИИ работает, когда команда спит', st3:'запущенных проектов', st4v:'6 недель', st4:'от первого сообщения до результата',
     cases_k:'Кейсы', cases_h:'Что у нас получается',
     c1t:'Интернет-магазин', c1d:'AI-консультант отвечает и помогает оформить заказ.', c1m:'+34% к конверсии',
@@ -792,6 +795,8 @@
     pl3t:'Индивидуально', pl3sub:'ML, RAG, нестандартные задачи',
     pl3f1:'Считаем эффект до старта', pl3f2:'Свои модели и системы', pl3f3:'Развёртывание у вас',
     pl3price:'смета по задаче',
+    pl4t:'Боты и мини-аппы', pl4sub:'Telegram-бот или мини-апп',
+    pl4f1:'Telegram-бот или мини-апп под задачу', pl4f2:'Продажи и поддержка прямо в чате', pl4f3:'Интеграция с платежами и системами',
     guarantee_h:'Гарантия', guarantee:'Вернём предоплату, если на этапе прототипа не увидите пользы.',
     cur_note:'Курсы валют обновляются автоматически',
     faq_k:'Вопросы и ответы', faq_h:'Коротко о главном',
@@ -804,8 +809,8 @@
     contact_p:'Напишите пару строк — разберёмся и предложим план. Бесплатно и без обязательств.',
     vc1:'Аудит бесплатно', vc2:'Цифры до старта', vc3:'План и смета',
     calc_t:'Калькулятор цены', calc_type:'Что нужно сделать',
-    calc_t1:'Сайт или ИИ-ассистент', calc_t2:'Сайт + автоматизация', calc_t3:'RAG / база знаний', calc_t4:'Голосовой бот', calc_t5:'Индивидуальный проект',
-    calc_d1:'лендинг, чат-бот или приложение', calc_d2:'сайт плюс автоматизация процессов', calc_d3:'ИИ отвечает по вашим документам', calc_d4:'приём звонков без оператора', calc_d5:'ML, RAG, сложные интеграции', calc_custom_short:'по смете',
+    calc_t1:'Сайт или ИИ-ассистент', calc_t2:'Сайт + автоматизация', calc_t3:'RAG / база знаний', calc_t4:'Голосовой бот', calc_t5:'Индивидуальный проект', calc_t6:'Telegram-бот', calc_t7:'Мини-апп',
+    calc_d1:'лендинг, чат-бот или приложение', calc_d2:'сайт плюс автоматизация процессов', calc_d3:'ИИ отвечает по вашим документам', calc_d4:'приём звонков без оператора', calc_d5:'ML, RAG, сложные интеграции', calc_d6:'заявки, напоминания, приём оплат', calc_d7:'приложение внутри Telegram', calc_custom_short:'по смете',
     calc_o1:'Подключение CRM и интеграции', calc_o2:'Поддержка на 3 месяца', calc_o3:'Срочный запуск за 2 недели',
     calc_est:'Предварительная оценка', calc_custom:'смета по задаче', calc_note:'Точную смету назовём после бесплатного аудита.',
     chat_title:'ИИ-консультант', chat_on:'онлайн', chat_greet:'Здравствуйте! Подскажу по услугам, ценам и срокам. Спросите что угодно или выберите тему ниже.',
@@ -827,7 +832,7 @@
     price_from:'from',
     hero_helper:'We reply within 15 minutes during business hours. No spam, no pushy calls.',
     strip_cap:'Who we work with',
-    m_items:'Websites ◆ Sales AI ◆ Automation ◆ Chatbots ◆ Voice bots ◆ ML analytics ◆ ',
+    m_items:'Websites ◆ Sales AI ◆ Automation ◆ Chatbots ◆ Voice bots ◆ ML analytics ◆ Telegram bots ◆ Mini apps ◆ ',
     services_k:'Services', services_h:'What could work for your business',
     s1t:'Websites', s1d:'Landing pages and web apps that are clear to visitors and bring in requests.',
     s2t:'AI for sales', s2d:'Assistants in chat and on your website: fast, human answers, nothing lost.',
@@ -835,6 +840,8 @@
     s4t:'RAG & knowledge bases', s4d:'AI answers from your documents — always citing the source.',
     s5t:'Voice bots', s5d:'They answer calls and book customers, even at night.',
     s6t:'ML analytics', s6d:'Forecasts and reports from your data — no crystal balls.',
+    s7t:'Telegram bots', s7d:'Sales and support right in the messenger: requests, reminders, payments.',
+    s8t:'Mini apps', s8d:'Mini apps inside Telegram and web apps for your task — they work right in the chat.',
     st1:'faster lead handling', st2:'AI is on when your team sleeps', st3:'projects launched', st4v:'6 weeks', st4:'from first message to results',
     cases_k:'Case studies', cases_h:'What we deliver',
     c1t:'E-commerce', c1d:'An AI advisor answers questions and helps customers order.', c1m:'+34% conversion',
@@ -854,6 +861,8 @@
     pl3t:'Custom', pl3sub:'ML, RAG, unusual tasks',
     pl3f1:'We estimate the effect before starting', pl3f2:'Your own models and systems', pl3f3:'Deployed in your environment',
     pl3price:'quote based on scope',
+    pl4t:'Bots & mini apps', pl4sub:'Telegram bot or mini app',
+    pl4f1:'Telegram bot or mini app for your task', pl4f2:'Sales and support right in the chat', pl4f3:'Payment and system integration',
     guarantee_h:'Our promise', guarantee:'If the prototype shows you no value, we refund your deposit.',
     cur_note:'Exchange rates update automatically',
     faq_k:'FAQ', faq_h:'The short version',
@@ -866,8 +875,8 @@
     contact_p:'Write a couple of lines — we will figure it out and suggest a plan. Free and without obligation.',
     vc1:'Free audit', vc2:'Numbers before you start', vc3:'Plan and quote',
     calc_t:'Price calculator', calc_type:'What do you need',
-    calc_t1:'Website or AI assistant', calc_t2:'Website + automation', calc_t3:'RAG / knowledge base', calc_t4:'Voice bot', calc_t5:'Custom project',
-    calc_d1:'landing, chatbot or app', calc_d2:'site plus process automation', calc_d3:'AI answers from your docs', calc_d4:'calls handled without an operator', calc_d5:'ML, RAG, complex integrations', calc_custom_short:'on quote',
+    calc_t1:'Website or AI assistant', calc_t2:'Website + automation', calc_t3:'RAG / knowledge base', calc_t4:'Voice bot', calc_t5:'Custom project', calc_t6:'Telegram bot', calc_t7:'Mini app',
+    calc_d1:'landing, chatbot or app', calc_d2:'site plus process automation', calc_d3:'AI answers from your docs', calc_d4:'calls handled without an operator', calc_d5:'ML, RAG, complex integrations', calc_d6:'requests, reminders, payments', calc_d7:'an app inside Telegram', calc_custom_short:'on quote',
     calc_o1:'CRM and integrations', calc_o2:'3 months of support', calc_o3:'Fast launch in 2 weeks',
     calc_est:'Estimated price', calc_custom:'quote after audit', calc_note:'The exact quote comes after a free audit.',
     chat_title:'AI advisor', chat_on:'online', chat_greet:'Hello! I can help with services, pricing and deadlines. Ask anything or pick a topic below.',
@@ -888,7 +897,7 @@
     price_from:'od',
     hero_helper:'Odpowiadamy w 15 minut w godzinach pracy. Bez spamu i nachalnych telefonów.',
     strip_cap:'Z kim pracujemy',
-    m_items:'Strony ◆ AI w sprzedaży ◆ Automatyzacja ◆ Chatboty ◆ Boty głosowe ◆ Analityka ML ◆ ',
+    m_items:'Strony ◆ AI w sprzedaży ◆ Automatyzacja ◆ Chatboty ◆ Boty głosowe ◆ Analityka ML ◆ Boty Telegram ◆ Mini-apki ◆ ',
     services_k:'Usługi', services_h:'Co może pomóc Twojej firmie',
     s1t:'Strony', s1d:'Landing page i aplikacje, które są jasne dla odwiedzających i przynoszą zapytania.',
     s2t:'AI w sprzedaży', s2d:'Asystenci w czacie i na stronie: szybkie, ludzkie odpowiedzi, nic nie ginie.',
@@ -896,6 +905,8 @@
     s4t:'RAG i bazy wiedzy', s4d:'AI odpowiada na podstawie dokumentów i zawsze podaje źródło.',
     s5t:'Boty głosowe', s5d:'Odbierają telefony i umawiają klientów — nawet w nocy.',
     s6t:'Analityka ML', s6d:'Prognozy i raporty z Twoich danych — bez wróżenia.',
+    s7t:'Boty Telegram', s7d:'Sprzedaż i wsparcie prosto w komunikatorze: zapytania, przypomnienia, płatności.',
+    s8t:'Mini aplikacje', s8d:'Mini-apki w Telegramie i aplikacje webowe pod Twoje zadanie — działają w czacie.',
     st1:'szybciej obsługujemy zapytania', st2:'AI działa, gdy zespół śpi', st3:'zrealizowanych projektów', st4v:'6 tygodni', st4:'od pierwszej wiadomości do efektu',
     cases_k:'Case studies', cases_h:'Co wychodzi nam dobrze',
     c1t:'E-commerce', c1d:'Doradca AI odpowiada i pomaga złożyć zamówienie.', c1m:'+34% konwersji',
@@ -915,6 +926,8 @@
     pl3t:'Na zamówienie', pl3sub:'ML, RAG, nietypowe zadania',
     pl3f1:'Efekt liczymy przed startem', pl3f2:'Własne modele i systemy', pl3f3:'Wdrożenie u Ciebie',
     pl3price:'wycena po analizie',
+    pl4t:'Boty i mini-apki', pl4sub:'bot Telegram lub mini-apka',
+    pl4f1:'Bot Telegram lub mini-apka pod Twoje zadanie', pl4f2:'Sprzedaż i wsparcie prosto w czacie', pl4f3:'Integracja z płatnościami i systemami',
     guarantee_h:'Gwarancja', guarantee:'Zwracamy zaliczkę, jeśli prototyp nie pokaże wartości.',
     cur_note:'Kursy walut aktualizowane automatycznie',
     faq_k:'Pytania', faq_h:'Najważniejsze w skrócie',
@@ -927,8 +940,8 @@
     contact_p:'Napisz kilka zdań — zrozumiemy sprawę i zaproponujemy plan. Za darmo i bez zobowiązań.',
     vc1:'Bezpłatny audyt', vc2:'Liczby przed startem', vc3:'Plan i wycena',
     calc_t:'Kalkulator ceny', calc_type:'Czego potrzebujesz',
-    calc_t1:'Strona lub asystent AI', calc_t2:'Strona + automatyzacja', calc_t3:'RAG / baza wiedzy', calc_t4:'Bot głosowy', calc_t5:'Projekt indywidualny',
-    calc_d1:'landing, chatbot lub aplikacja', calc_d2:'strona plus automatyzacja procesów', calc_d3:'AI odpowiada z Twoich dokumentów', calc_d4:'telefony bez operatora', calc_d5:'ML, RAG, złożone integracje', calc_custom_short:'po wycenie',
+    calc_t1:'Strona lub asystent AI', calc_t2:'Strona + automatyzacja', calc_t3:'RAG / baza wiedzy', calc_t4:'Bot głosowy', calc_t5:'Indywidualny projekt', calc_t6:'Bot Telegram', calc_t7:'Mini-apka',
+    calc_d1:'landing, chatbot lub aplikacja', calc_d2:'strona plus automatyzacja procesów', calc_d3:'AI odpowiada z Twoich dokumentów', calc_d4:'telefony bez operatora', calc_d5:'ML, RAG, złożone integracje', calc_d6:'zapytania, przypomnienia, płatności', calc_d7:'aplikacja w Telegramie', calc_custom_short:'po wycenie',
     calc_o1:'Podłączenie CRM i integracje', calc_o2:'Wsparcie przez 3 miesiące', calc_o3:'Szybki start w 2 tygodnie',
     calc_est:'Szacunkowa cena', calc_custom:'wycena po analizie', calc_note:'Dokładną wycenę podamy po bezpłatnym audycie.',
     chat_title:'Doradca AI', chat_on:'online', chat_greet:'Dzień dobry! Pomogę z usługami, cenami i terminami. Zapytaj o cokolwiek albo wybierz temat poniżej.',
@@ -949,7 +962,7 @@
     price_from:'ab',
     hero_helper:'Wir antworten innerhalb von 15 Minuten zu Geschäftszeiten. Kein Spam, keine aufdringlichen Anrufe.',
     strip_cap:'Mit wem wir arbeiten',
-    m_items:'Websites ◆ Verkaufs-KI ◆ Automatisierung ◆ Chatbots ◆ Sprachbots ◆ ML-Analytics ◆ ',
+    m_items:'Websites ◆ Verkaufs-KI ◆ Automatisierung ◆ Chatbots ◆ Sprachbots ◆ ML-Analytics ◆ Telegram-Bots ◆ Mini-Apps ◆ ',
     services_k:'Leistungen', services_h:'Was für Ihr Unternehmen infrage kommt',
     s1t:'Websites', s1d:'Landingpages und Web-Apps, die Besuchern klar sind und Anfragen bringen.',
     s2t:'KI für den Verkauf', s2d:'Assistenten im Chat und auf der Website: schnelle, menschliche Antworten, nichts geht verloren.',
@@ -957,6 +970,8 @@
     s4t:'RAG & Wissensbasen', s4d:'KI antwortet aus Ihren Dokumenten und nennt immer die Quelle.',
     s5t:'Sprachbots', s5d:'Nehmen Anrufe und Kunden an — sogar nachts.',
     s6t:'ML-Analytics', s6d:'Prognosen und Reports aus Ihren Daten — ohne Kaffeesatz.',
+    s7t:'Telegram-Bots', s7d:'Vertrieb und Support direkt im Messenger: Anfragen, Erinnerungen, Zahlungen.',
+    s8t:'Mini-Apps', s8d:'Mini-Apps in Telegram und Web-Apps für Ihre Aufgabe — funktionieren direkt im Chat.',
     st1:'schnellere Bearbeitung der Anfragen', st2:'KI arbeitet, wenn das Team schläft', st3:'umgesetzte Projekte', st4v:'6 Wochen', st4:'von der ersten Nachricht zum Ergebnis',
     cases_k:'Referenzen', cases_h:'Was dabei herauskommt',
     c1t:'E-Commerce', c1d:'Ein KI-Berater beantwortet Fragen und begleitet zur Bestellung.', c1m:'+34 % Konversion',
@@ -976,6 +991,8 @@
     pl3t:'Individuell', pl3sub:'ML, RAG, Sonderaufgaben',
     pl3f1:'Wirkung vor dem Start berechnet', pl3f2:'Eigene Modelle und Systeme', pl3f3:'Bereitstellung bei Ihnen',
     pl3price:'Angebot nach Umfang',
+    pl4t:'Bots & Mini-Apps', pl4sub:'Telegram-Bot oder Mini-App',
+    pl4f1:'Telegram-Bot oder Mini-App für Ihre Aufgabe', pl4f2:'Vertrieb und Support direkt im Chat', pl4f3:'Zahlungen und Systemintegration',
     guarantee_h:'Unser Versprechen', guarantee:'Bringt der Prototyp keinen Nutzen, erstatten wir die Anzahlung.',
     cur_note:'Wechselkurse werden automatisch aktualisiert',
     faq_k:'FAQ', faq_h:'Kurz gefasst',
@@ -988,8 +1005,8 @@
     contact_p:'Schreiben Sie ein paar Zeilen — wir prüfen das und schlagen einen Plan vor. Gratis und unverbindlich.',
     vc1:'Kostenloses Audit', vc2:'Zahlen vor dem Start', vc3:'Plan und Angebot',
     calc_t:'Preisrechner', calc_type:'Was brauchen Sie',
-    calc_t1:'Website oder KI-Assistent', calc_t2:'Website + Automatisierung', calc_t3:'RAG / Wissensbasis', calc_t4:'Sprachbot', calc_t5:'Individuelles Projekt',
-    calc_d1:'Landingpage, Chatbot oder App', calc_d2:'Website plus Prozessautomatisierung', calc_d3:'KI antwortet aus Ihren Dokumenten', calc_d4:'Anrufe ohne Operator', calc_d5:'ML, RAG, komplexe Integrationen', calc_custom_short:'nach Analyse',
+    calc_t1:'Website oder KI-Assistent', calc_t2:'Website + Automatisierung', calc_t3:'RAG / Wissensbasis', calc_t4:'Sprachbot', calc_t5:'Individuelles Projekt', calc_t6:'Telegram-Bot', calc_t7:'Mini-App',
+    calc_d1:'Landingpage, Chatbot oder App', calc_d2:'Website plus Prozessautomatisierung', calc_d3:'KI antwortet aus Ihren Dokumenten', calc_d4:'Anrufe ohne Operator', calc_d5:'ML, RAG, komplexe Integrationen', calc_d6:'Anfragen, Erinnerungen, Zahlungen', calc_d7:'eine App in Telegram', calc_custom_short:'nach Analyse',
     calc_o1:'CRM-Anbindung und Integrationen', calc_o2:'Support für 3 Monate', calc_o3:'Schnellstart in 2 Wochen',
     calc_est:'Voraussichtlicher Preis', calc_custom:'Angebot nach Analyse', calc_note:'Den genauen Preis nennen wir nach dem kostenlosen Audit.',
     chat_title:'KI-Berater', chat_on:'online', chat_greet:'Hallo! Ich helfe bei Leistungen, Preisen und Fristen. Fragen Sie einfach — oder wählen Sie unten ein Thema.',
@@ -1010,7 +1027,7 @@
     price_from:'约从',
     hero_helper:'工作时间内15分钟内回复。不群发垃圾，不打扰推销。',
     strip_cap:'我们服务过的客户',
-    m_items:'网站定制 ◆ 销售AI ◆ 流程自动化 ◆ 聊天机器人 ◆ 语音机器人 ◆ 数据AI ◆ ',
+    m_items:'网站定制 ◆ 销售AI ◆ 流程自动化 ◆ 聊天机器人 ◆ 语音机器人 ◆ 数据AI ◆ Telegram机器人 ◆ 小程序 ◆ ',
     services_k:'服务', services_h:'也许正适合你的公司',
     s1t:'网站定制', s1d:'落地页与Web应用，访客一看就懂，持续带来询盘。',
     s2t:'销售AI', s2d:'聊天与网站智能助手：回答快、有温度，什么都不丢。',
@@ -1018,6 +1035,8 @@
     s4t:'RAG知识库', s4d:'AI基于你的文档作答，永远附上出处。',
     s5t:'语音机器人', s5d:'自动接听电话并登记客户，深夜也不休息。',
     s6t:'数据AI', s6d:'基于你的数据做预测与报告，不靠猜。',
+    s7t:'Telegram机器人', s7d:'在聊天里直接做销售与客服：询盘、提醒、收款。',
+    s8t:'小程序', s8d:'Telegram小程序与Web应用，按你的需求定制，直接在聊天里运行。',
     st1:'询盘处理更快', st2:'AI不休息，随时接单', st3:'已交付项目', st4v:'6周', st4:'从首次沟通到见结果',
     cases_k:'客户案例', cases_h:'我们交付什么',
     c1t:'电商', c1d:'AI顾问回答问题，引导客户下单。', c1m:'转化+34%',
@@ -1037,6 +1056,8 @@
     pl3t:'定制', pl3sub:'数据AI、知识库、特殊需求',
     pl3f1:'动工前先算清效果', pl3f2:'专属模型与系统', pl3f3:'在你自己的环境部署',
     pl3price:'按需求报价',
+    pl4t:'机器人和小程序', pl4sub:'Telegram机器人或小程序',
+    pl4f1:'按你的需求定制的机器人或小程序', pl4f2:'在聊天里直接销售与服务', pl4f3:'对接支付与业务系统',
     guarantee_h:'我们的承诺', guarantee:'原型阶段看不到价值，全额退还定金。',
     cur_note:'汇率自动更新',
     faq_k:'常见问题', faq_h:'简要回答',
@@ -1049,8 +1070,8 @@
     contact_p:'写几句话——我们理清思路并给出方案。免费，无任何压力。',
     vc1:'免费诊断', vc2:'动工前先给数字', vc3:'方案与报价',
     calc_t:'价格计算器', calc_type:'你需要什么',
-    calc_t1:'网站或AI助手', calc_t2:'网站+自动化', calc_t3:'RAG知识库', calc_t4:'语音机器人', calc_t5:'定制项目',
-    calc_d1:'落地页、聊天机器人或应用', calc_d2:'网站+流程自动化', calc_d3:'AI基于文档回答', calc_d4:'无需人工接听电话', calc_d5:'ML、RAG、复杂集成', calc_custom_short:'按需报价',
+    calc_t1:'网站或AI助手', calc_t2:'网站+自动化', calc_t3:'RAG知识库', calc_t4:'语音机器人', calc_t5:'定制项目', calc_t6:'Telegram机器人', calc_t7:'小程序',
+    calc_d1:'落地页、聊天机器人或应用', calc_d2:'网站+流程自动化', calc_d3:'AI基于文档回答', calc_d4:'无需人工接听电话', calc_d5:'ML、RAG、复杂集成', calc_d6:'询盘、提醒、收款', calc_d7:'Telegram内的应用', calc_custom_short:'按需报价',
     calc_o1:'对接CRM与集成', calc_o2:'3个月支持', calc_o3:'两周快速上线',
     calc_est:'预估价格', calc_custom:'按需求报价', calc_note:'免费诊断后给出准确报价。',
     chat_title:'AI顾问', chat_on:'在线', chat_greet:'您好！我可以介绍服务、价格和工期。随便问，或选下面的话题。',
@@ -1071,7 +1092,7 @@
     price_from:'〜',
     hero_helper:'営業時間内は15分以内にご返信。営業メールやしつこい電話はしません。',
     strip_cap:'お取引先',
-    m_items:'Web制作 ◆ 営業AI ◆ 業務自動化 ◆ チャットボット ◆ 音声ボット ◆ データAI ◆ ',
+    m_items:'Web制作 ◆ 営業AI ◆ 業務自動化 ◆ チャットボット ◆ 音声ボット ◆ データAI ◆ Telegramボット ◆ ミニアプリ ◆ ',
     services_k:'サービス', services_h:'御社に役立つかもしれません',
     s1t:'Webサイト制作', s1d:'訪問者に分かりやすく、問い合わせを生むランディング・アプリ。',
     s2t:'営業AI', s2d:'チャットやサイト上のアシスタント。迅速で人間らしく、何も取りこぼしません。',
@@ -1079,6 +1100,8 @@
     s4t:'RAG・ナレッジベース', s4d:'AIが御社の文書を基に回答し、必ず出典を示します。',
     s5t:'音声ボット', s5d:'電話を自動応答し顧客を登録。夜でも働きます。',
     s6t:'データAI', s6d:'データに基づく予測とレポート。勘に頼りません。',
+    s7t:'Telegramボット', s7d:'メッセージ内で売上とサポートを: 問い合わせ、リマインド、決済。',
+    s8t:'ミニアプリ', s8d:'TelegramミニアプリやWebアプリをチャット内で動作。あなたの課題に合わせます。',
     st1:'問い合わせ処理が速くなります', st2:'AIは休まず稼働', st3:'納品実績プロジェクト', st4v:'6週間', st4:'最初の一言から成果まで',
     cases_k:'導入事例', cases_h:'何ができるか、簡単に',
     c1t:'EC', c1d:'AIアドバイザーが質問に答え、注文まで案内。', c1m:'コンバージョン+34%',
@@ -1098,6 +1121,8 @@
     pl3t:'カスタム', pl3sub:'ML・RAG・特殊要件',
     pl3f1:'開始前に効果を算出', pl3f2:'専用モデルとシステム', pl3f3:'御社環境への導入',
     pl3price:'内容に応じてお見積もり',
+    pl4t:'ボット＆ミニアプリ', pl4sub:'Telegramボットまたはミニアプリ',
+    pl4f1:'課題に合わせたボットやミニアプリ', pl4f2:'チャット内で売上とサポート', pl4f3:'決済・システム連携',
     guarantee_h:'お約束', guarantee:'プロトタイプで効果が見えなければ前金を返金します。',
     cur_note:'為替レートは自動更新',
     faq_k:'よくある質問', faq_h:'手短に',
@@ -1110,8 +1135,8 @@
     contact_p:'数行お書きください。整理してプランを提案します。無料・義務なし。',
     vc1:'無料診断', vc2:'開始前に数字を', vc3:'プランとお見積もり',
     calc_t:'料金シミュレーター', calc_type:'必要なもの',
-    calc_t1:'サイトまたはAIアシスタント', calc_t2:'サイト＋自動化', calc_t3:'RAG・ナレッジベース', calc_t4:'音声ボット', calc_t5:'カスタムプロジェクト',
-    calc_d1:'ランディング・チャットボット・アプリ', calc_d2:'サイト＋業務自動化', calc_d3:'文書から回答するAI', calc_d4:'オペレーターなしで電話対応', calc_d5:'ML・RAG・複雑な連携', calc_custom_short:'応相談',
+    calc_t1:'サイトまたはAIアシスタント', calc_t2:'サイト＋自動化', calc_t3:'RAG・ナレッジベース', calc_t4:'音声ボット', calc_t5:'カスタムプロジェクト', calc_t6:'Telegramボット', calc_t7:'ミニアプリ',
+    calc_d1:'ランディング・チャットボット・アプリ', calc_d2:'サイト＋業務自動化', calc_d3:'文書から回答するAI', calc_d4:'オペレーターなしで電話対応', calc_d5:'ML・RAG・複雑な連携', calc_d6:'問い合わせ、リマインド、決済', calc_d7:'Telegram内のアプリ', calc_custom_short:'応相談',
     calc_o1:'CRM連携・統合', calc_o2:'3か月のサポート', calc_o3:'2週間での早期スタート',
     calc_est:'概算見積もり', calc_custom:'内容に応じて対応', calc_note:'正確なお見積もりは無料診断後にお伝えします。',
     chat_title:'AIアドバイザー', chat_on:'オンライン', chat_greet:'こんにちは！サービス・料金・納期についてお伝えします。何でも質問するか、下のテーマを選んでください。',
@@ -1128,7 +1153,7 @@
   STR['en-GB'] = Object.assign({}, STR['en-US']);
 
   /* ---------- состояние ---------- */
-  let lang = localStorage.getItem('wibe-region') || 'ru-RU';
+  let lang = localStorage.getItem('wibe-region') || 'en-US';
   const CURRENCIES = ['USD','EUR','RUB','BYN','PLN','CNY','JPY'];
   const SYM = {USD:'$',EUR:'€',RUB:'₽',BYN:'Br',PLN:'zł',CNY:'¥',JPY:'¥'};
   const FALLBACK = {USD:1,EUR:.92,RUB:90,BYN:3.3,PLN:3.9,CNY:7.2,JPY:150};
@@ -1179,11 +1204,11 @@
     return Math.ceil(v/step)*step;
   }
   function money(baseUsd, cur){
-    return nice(baseUsd*rates[cur]).toLocaleString('ru-RU') + ' ' + SYM[cur];
+    return nice(baseUsd*rates[cur]).toLocaleString(lang) + ' ' + SYM[cur];
   }
   function renderPrices(){
     const primary = CURRENCY[lang];
-    const L = STR[lang] || STR['ru-RU'];
+    const L = STR[lang] || STR['en-US'];
     document.querySelectorAll('[data-price]').forEach(el => {
       const base = +el.dataset.price;
       el.textContent = L.price_from + ' ' + money(base, primary);
@@ -1196,7 +1221,7 @@
 
   /* ---------- применение языка ---------- */
   function applyLang(){
-    const L = STR[lang] || STR['ru-RU'];
+    const L = STR[lang] || STR['en-US'];
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const v = L[el.dataset.i18n];
@@ -1216,7 +1241,7 @@
 
   let lastCalc = 0, calcAnim = null;
   function renderCalc(){
-    const L = STR[lang] || STR['ru-RU'];
+    const L = STR[lang] || STR['en-US'];
     const base = +document.querySelector('#calc-type input:checked').value;
     const totalEl = document.getElementById('calc-total');
     const usdEl = document.getElementById('calc-usd');
@@ -1280,61 +1305,7 @@
       '%0AВариант: ' + encodeURIComponent(typeLabel) +
       (opts.length ? '%0AОпции: ' + encodeURIComponent(opts.join(', ')) : '') +
       '%0AОценка: ' + encodeURIComponent(est);
-    window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
-  });
-
-  /* ---------- ИИ-чат (бесплатная модель Pollinations) ---------- */
-  const chatBody = document.getElementById('chatBody');
-  const chatInput = document.getElementById('chatInput');
-  let chatHist = [], chatBusy = false;
-  function chatMsg(role, text){
-    const d = document.createElement('div');
-    d.className = 'msg ' + role;
-    const t = document.createElement('span'); t.textContent = text;
-    d.appendChild(t);
-    chatBody.appendChild(d);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
-  function chatTyping(){
-    const d = document.createElement('div');
-    d.className = 'msg bot typing'; d.id = 'chatTyping';
-    d.innerHTML = '<i></i><i></i><i></i>';
-    chatBody.appendChild(d);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
-  async function chatSend(){
-    const text = chatInput.value.trim();
-    if(!text || chatBusy) return;
-    const L = STR[lang] || STR['ru-RU'];
-    chatBusy = true;
-    chatInput.value = '';
-    chatMsg('user', text);
-    chatHist = [...chatHist.slice(-5), {role:'user', content:text}];
-    chatTyping();
-    let out = '';
-    try{
-      const res = await fetch('https://text.pollinations.ai/', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({messages:[{role:'system', content:L.chat_sys}, ...chatHist], model:'openai'})
-      });
-      out = (await res.text()).trim() || L.chat_err;
-    }catch(_){ out = L.chat_err; }
-    const tEl = document.getElementById('chatTyping');
-    if(tEl) tEl.remove();
-    chatHist = [...chatHist, {role:'assistant', content:out}];
-    chatMsg('bot', out);
-    chatBusy = false;
-  }
-  document.querySelectorAll('.chat-chip').forEach(b =>
-    b.addEventListener('click', () => { chatInput.value = b.textContent; chatSend(); }));
-  document.getElementById('chatSend').addEventListener('click', chatSend);
-  chatInput.addEventListener('keydown', e => { if(e.key === 'Enter') chatSend(); });
-  document.getElementById('chatTg').addEventListener('click', () => {
-    const lastQ = chatHist.length ? chatHist[chatHist.length-1].content : '';
-    const msg = 'Консультация с сайта WIBE%0AЯзык: ' + encodeURIComponent(lang) +
-      '%0AПоследний вопрос: ' + encodeURIComponent(lastQ);
-    window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
+window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
   });
 
   /* ---------- gateway flow ---------- */
