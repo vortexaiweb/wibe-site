@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logistics+ — грузоперевозки и логистика</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+  :root{--bg:#0c1412;--bg2:#11201a;--ink:#f0f6f2;--muted:#93a89c;--amber:#ffb648;--accent:#5fe0a2;--line:rgba(130,220,170,.14);--card:#12231b}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  header{position:sticky;top:0;background:rgba(12,20,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0;gap:20px}
+  .logo{font-weight:700;font-size:20px;letter-spacing:.02em}
+  .logo b{color:var(--amber)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--amber)}
+  .btn{display:inline-block;background:var(--amber);border:0;border-radius:12px;padding:13px 26px;color:#1a1206;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,182,72,.35)}
+  .btn.ghost{background:transparent;color:var(--amber);border:1px solid var(--amber)}
+  .track-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;background:linear-gradient(135deg,#163127,#0d1c15);border:1px solid var(--line);border-radius:22px;padding:24px 26px;margin:70px 0 10px}
+  .track-bar h2{font-size:clamp(20px,3vw,30px);margin:0}
+  .track-bar form{display:flex;gap:10px;flex-wrap:wrap;flex:1;max-width:520px;justify-content:flex-end}
+  .track-bar input{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 16px;color:var(--ink);font-family:'Inter';font-size:14px}
+  .track-bar input:focus{outline:none;border-color:var(--amber)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;padding:40px 0 26px}
+  .kicker{color:var(--amber);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.08;margin:14px 0 18px}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero p{color:var(--muted);max-width:47ch;margin-bottom:24px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-img{position:relative;border-radius:26px;overflow:hidden;background:radial-gradient(120% 120% at 70% 20%,#1d3a2e,#0c1713)}
+  .hero-img img{width:100%;height:340px;object-fit:cover;opacity:.5}
+  .hero-img .badge{position:absolute;left:20px;bottom:20px;background:rgba(10,18,14,.8);border:1px solid var(--line);padding:14px 18px;border-radius:14px;backdrop-filter:blur(8px)}
+  .hero-img .badge b{color:var(--accent);font-family:'Space Grotesk';font-size:24px}
+  .hero-img .badge span{color:var(--muted);font-size:12.5px}
+  section{padding:56px 0}
+  h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative}
+  .step .n{font-family:'Space Grotesk';color:var(--amber);font-size:13px;letter-spacing:.2em}
+  .step h3{font-size:17px;margin:8px 0}
+  .step p{color:var(--muted);font-size:13.5px}
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .feat{border:1px solid var(--line);background:var(--bg2);border-radius:20px;padding:22px}
+  .feat h3{font-size:16px;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:13.5px}
+  .feat .ic{font-size:22px}
+  .ai-note{display:flex;gap:14px;align-items:flex-start;background:rgba(95,224,162,.08);border:1px dashed var(--accent);border-radius:16px;padding:18px;font-size:14px;margin-bottom:24px}
+  .ai-note b{color:var(--accent)}
+  .status{display:none;margin-top:14px;border:1px solid var(--line);border-radius:18px;padding:20px 22px;background:var(--bg2)}
+  .status .line{font-weight:600;color:var(--ink)}
+  .status ol{list-style:none;margin-top:12px;display:grid;gap:10px}
+  .status li{color:var(--muted);font-size:14px;display:flex;gap:12px;align-items:center}
+  .status li.done{color:var(--ink)}
+  .status li .dot{width:20px;height:20px;flex:none;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px}
+  .status li.done .dot{background:var(--accent);border-color:var(--accent);color:#0c1412}
+  .status li.now .dot{background:transparent;border-color:var(--amber);color:var(--amber);animation:blink 1.4s infinite}
+  @keyframes blink{50%{opacity:.35}}
+  .status .eta{margin-top:12px;color:var(--amber);font-weight:600;font-size:14px}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--amber)}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}nav{display:none}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}.track-bar form{max-width:100%;justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Logistics<b>+</b></div>
+    <nav><a href="#steps">Как везём</a><a href="#feats">Возможности</a><a href="#contact">Заказать</a></nav>
+    <a class="btn" href="#contact">Рассчитать перевозку</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="track-bar">
+    <h2>Трекинг груза</h2>
+    <form id="trackForm"><input id="trackInput" placeholder="Номер накладной, например L-20481" autocomplete="off"><button class="btn" type="submit">Отследить</button></form>
+  </div>
+  <div style="max-width:1140px;margin:0 auto;padding:0 22px">
+    <div class="status" id="trackResult"></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker">Грузоперевозки · РФ и СНГ</div>
+      <h1>Видно, где ваш груз, <em>по минутам</em></h1>
+      <p>Авто, авиа и сборные перевозки с цифровым трекингом. AI читает накладные и сам заводит их в систему — вы не перепечатываете документы.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Заказать перевозку</a>
+        <button class="btn ghost" onclick="location.hash='#trackInput';document.getElementById('trackInput').focus()">Проверить груз</button>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&q=70" alt="грузовик">
+      <div class="badge"><b>99,4%</b><span>грузов доставлено в срок</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="steps" class="wrap">
+  <div class="kicker">Как это работает</div>
+  <h2>Шаг за шагом</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>Заявка</h3><p>Оставляете заявку, мы называем цену и срок за 1 час.</p></div>
+    <div class="step"><div class="n">02</div><h3>Забор груза</h3><p>Машина приезжает по адресу, вы подписываете в приложении.</p></div>
+    <div class="step"><div class="n">03</div><h3>В пути</h3><p>Трекинг по минутам, фото на каждом этапе.</p></div>
+    <div class="step"><div class="n">04</div><h3>Выдача</h3><p>Уведомляем получателя, закрывающие документы онлайн.</p></div>
+  </div>
+</section>
+
+<section id="feats" class="wrap">
+  <div class="kicker">Возможности</div>
+  <h2>Логистика без бумаги</h2>
+  <div class="features">
+    <div class="feat"><div class="ic">📄</div><h3>AI-приём накладных</h3><p>Фото или PDF накладной — данные сами попадают в систему, без ручного ввода.</p></div>
+    <div class="feat"><div class="ic">📍</div><h3>Статусы в Telegram</h3><p>Бот присылает изменения статуса, фото и сканы груза прямо в чат.</p></div>
+    <div class="feat"><div class="ic">🚚</div><h3>Сборные грузы</h3><p>Скидка до 40% на попутные машины по 600+ направлениям.</p></div>
+    <div class="feat"><div class="ic">🔒</div><h3>Страхование</h3><p>Груз застрахован с момента забора до выдачи.</p></div>
+  </div>
+</section>
+
+<section class="wrap" id="contact">
+  <div style="background:linear-gradient(135deg,#163127,#0d1c15);border:1px solid var(--line);border-radius:26px;padding:clamp(28px,5vw,44px)">
+    <div class="ai-note"><div>📦</div><p><b>AI-диспетчер</b> обработает заявку быстрее живого диспетчера: назовёт цену и ближайшую свободную машину за минуту.</p></div>
+    <div class="kicker">Заказ</div>
+    <h2>Рассчитать перевозку</h2>
+    <form class="status" id="calcForm" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px;border:0;background:none;padding:0">
+      <input id="from" placeholder="Откуда" style="background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font-family:'Inter';font-size:14px">
+      <input id="to" placeholder="Куда" style="background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font-family:'Inter';font-size:14px">
+      <button class="btn" type="submit">Получить цену</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Logistics+ — грузоперевозки и логистика</div>
+  <div>Трекинг, бот и AI-диспетчера сделала <a href="index.html">WIBE</a> ⚡</div>
+</footer>
+
+<script>
+  document.getElementById('trackForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const n = document.getElementById('trackInput').value.trim();
+    if(!n) return;
+    const box = document.getElementById('trackResult');
+    const valid = /^L-\d{4,6}$/.test(n);
+    if(!valid){ box.style.display='block'; box.innerHTML='<div class="line">Накладная не найдена</div><p style="color:var(--muted)">Проверьте номер: он должен выглядеть как L-20481.</p>'; return; }
+    box.style.display='block';
+    const eta = n.slice(2) % 4 === 0;
+    box.innerHTML='<div class="line">Груз по накладной ' + n + '</div>' +
+      '<ol>' +
+      '<li class="done"><span class="dot">✓</span>Забор в Москве — 8:12, 15 марта</li>' +
+      '<li class="done"><span class="dot">✓</span>Склад-сортировка — 21:40</li>' +
+      '<li class="now"><span class="dot">◉</span>В пути. Текущая точка: М-4 «Дон», 612 км</li>' +
+      '<li class=""><span class="dot"></span>Доставка в Ростов-на-Дону</li>' +
+      '</ol><div class="eta">Ожидаемая выдача: ' + (eta ? 'завтра до 14:00' : '16 марта до 18:00') + '</div>';
+  });
+  document.getElementById('calcForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = document.getElementById('from').value.trim(), t = document.getElementById('to').value.trim();
+    if(!f || !t) return alert('Укажите маршрут');
+    window.open('https://t.me/wibesitebot?text=' + encodeURIComponent('Logistics+: расчёт перевозки ' + f + ' → ' + t), '_blank');
+  });
+</script>
+</body>
+</html>

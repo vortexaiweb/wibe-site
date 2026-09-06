@@ -3,46 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prav — WIBE</title>
-<link rel="stylesheet" href="case.css">
+<title>Prav — юридическая фирма</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+  :root{--bg:#100f16;--bg2:#1b1a25;--ink:#f2f0f8;--muted:#9d99ad;--gold:#d7c277;--line:rgba(215,194,119,.16);--card:#1d1c29}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  h1,h2,h3,.logo{font-family:'Manrope',sans-serif}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  header{position:sticky;top:0;background:rgba(16,15,22,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0;gap:20px}
+  .logo{font-weight:700;font-size:21px;letter-spacing:.02em}
+  .logo i{font-style:normal;color:var(--gold)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--gold)}
+  .btn{display:inline-block;background:linear-gradient(135deg,#e8d494,#b8973f);border:0;border-radius:12px;padding:13px 26px;color:#151019;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(215,194,119,.3)}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center;padding:74px 0 36px}
+  .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .hero h1{font-size:clamp(32px,5vw,52px);line-height:1.07;margin:16px 0 18px}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{color:var(--muted);max-width:48ch;margin-bottom:26px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-note{color:var(--muted);font-size:13.5px;margin-top:18px}
+  .hero-note b{color:var(--gold)}
+  .form-col{background:var(--bg2);border:1px solid var(--line);border-radius:26px;padding:26px}
+  .form-col h3{font-size:18px;margin-bottom:4px}
+  .form-col > p{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px}
+  .field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font-family:'Inter';font-size:14px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+  .field textarea{resize:vertical;min-height:74px}
+  .form-col .btn{width:100%;margin-top:4px}
+  .client{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+  .ai{display:flex;gap:12px;align-items:center;background:rgba(215,194,119,.08);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--ink);margin-bottom:16px}
+  .ai i{width:10px;height:10px;flex:none;border-radius:50%;background:#37e0a3;animation:blink 2s infinite}
+  .ai b{color:var(--gold)}
+  @keyframes blink{50%{opacity:.25}}
+  section{padding:64px 0}
+  h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .sv{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:22px;transition:transform .25s,border-color .25s}
+  .sv:hover{transform:translateY(-4px);border-color:rgba(215,194,119,.4)}
+  .sv h3{font-size:17px;margin-bottom:8px}
+  .sv p{color:var(--muted);font-size:13.5px}
+  .sv .n{color:var(--gold);font-family:'Manrope';font-size:12px;letter-spacing:.2em;margin-bottom:14px}
+  .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px}
+  .wh{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .wh b{display:block;font-family:'Manrope';font-size:26px;color:var(--gold);margin-bottom:6px}
+  .wh span{color:var(--muted);font-size:13.5px}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--gold)}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}nav{display:none}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}}
+</style>
 </head>
 <body>
+
 <header>
-  <a class="wordmark" href="index.html">WIBE<span>.</span></a>
-  <a class="cta" href="index.html#contact">Обсудить проект</a>
+  <div class="wrap nav">
+    <div class="logo">Prav<i>.</i></div>
+    <nav>
+      <a href="#services">Практики</a>
+      <a href="#why">Почему Prav</a>
+      <a href="#cta">Контакты</a>
+    </nav>
+    <a class="btn" href="#ai">Задать вопрос</a>
+  </div>
 </header>
 
-<section class="case-hero">
-  <div class="kicker">Портфолио · Корпоративный сайт</div>
-  <h1>Prav: сайт юрфирмы с AI-ассистентом на входе</h1>
-  <p>Юристы тратили часы на первичные консультации с теми, кто им не подходит. Нужен фильтр до разговора с человеком.</p>
+<section class="wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker">Юридическая фирма · с 2009</div>
+      <h1>Юристы, которые <em>не берут за разговор</em></h1>
+      <p>Договоры у нас начинаются с конкретной задачи и сметы: суды, саттам, сопровождение сделок приходят с escalage — без почасовой стенки.</p>
+      <p>AI-ассистент фирмы принимает обращение, определяет, какая практика нужна, и передаёт живому юристу уже собранную карточку дела.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#ai">Получить консультацию</a>
+        <a class="btn ghost" href="#services">Посмотреть практики</a>
+      </div>
+      <div class="hero-note"><b>17 лет</b>&nbsp;практики · <b>1 240+</b>&nbsp;дел в судах · ответ на заявку за <b>4 часа</b></div>
+    </div>
+    <div class="form-col" id="ai">
+      <div class="ai"><i></i><p><b>AI-ассистент Prav</b> онлайн. Опишите ситуацию — сразу получите план и стоимость, без ожидания на линии.</p></div>
+      <h3>Кратко опишите задачу</h3>
+      <p>Пример: «Не отдают долг по договору поставки, 480 000 ₽»</p>
+      <div class="field"><label>Категория</label><select id="cat"><option>Споры и суды</option><option>Договоры</option><option>Банкротство</option><option>Другое</option></select></div>
+      <div class="field"><label>Суть дела</label><textarea id="prob" placeholder="Пара предложений…"></textarea></div>
+      <div class="field"><label>Контакты</label><input id="who" placeholder="Телефон или @telegram"></div>
+      <button class="btn" id="send">Передать юристу</button>
+      <div class="client">30 секунд — поможем вам</div>
+    </div>
+  </div>
 </section>
 
-<section class="case-body">
-  <div class="col">
-    <h2>Что сделали</h2>
-    <p>Корпоративный сайт с практиками, кейсами и командой, плюс форма обращения, которая работает как полноценный диалог.</p>
-    <h2>AI-фишка</h2>
-    <p>AI-ассистент квалифицирует обращение: уточняет суть вопроса, оценивает перспективы по внутренним правилам фирмы и передаёт юристу готовую карточку дела.</p>
-    <h2>Результат</h2>
-    <ul>
-      <li>Время юриста на первичный отбор −70%</li>
-      <li>Подходит клиентам только релевантные обращения</li>
-      <li>Заявок с сайта +55% при том же трафике</li>
-    </ul>
-    <a class="cta" href="index.html#contact">Хочу такой сайт</a>
+<section id="services" class="wrap">
+  <div class="kicker">Практики</div>
+  <h2>С чем мы работаем</h2>
+  <div class="services">
+    <div class="sv"><div class="n">01</div><h3>Споры и суды</h3><p>Представительство в арбитраже и судах общей юрисдикции: от претензии до исполнения решения.</p></div>
+    <div class="sv"><div class="n">02</div><h3>Договоры и сделки</h3><p>Согласование контрактов за 48 часов, юридическая архитектура сделки.</p></div>
+    <div class="sv"><div class="n">03</div><h3>Банкротство</h3><p>Сопровождение бизнеса и физических лиц, оспаривание задолженности.</p></div>
+    <div class="sv"><div class="n">04</div><h3>HR и корпоративы</h3><p>Трудовые споры, реорганизация, защита руководителей.</p></div>
+    <div class="sv"><div class="n">05</div><h3>Недвижимость</h3><p>Проверка собственности, сопровождение сделок, военные и оборонные нюансы.</p></div>
+    <div class="sv"><div class="n">06</div><h3>Проверка контрагентов</h3><p>Комплексная проверка за 1 день: долги, суды, аффилированность.</p></div>
   </div>
-  <aside class="metric-card">
-    <div class="big">−70%</div><div class="label">времени на отбор</div>
-    <div class="big">+55%</div><div class="label">заявок с сайта</div>
-    <div class="big">100%</div><div class="label">обращений с карточкой дела</div>
-    <div class="big">6 нед.</div><div class="label">срок разработки</div>
-  </aside>
+</section>
+
+<section id="why" class="wrap">
+  <div class="kicker">Почему Prav</div>
+  <h2>Цифры, по которым стоит судиться у нас</h2>
+  <div class="why">
+    <div class="wh"><b>1 240+</b><span>дел в судах за 17 лет</span></div>
+    <div class="wh"><b>87%</b><span>выигранных споров</span></div>
+    <div class="wh"><b>4 часа</b><span>ответ на обращение</span></div>
+    <div class="wh"><b>0 ₽</b><span>оплата за первый звонок</span></div>
+  </div>
+</section>
+
+<section class="wrap" id="cta">
+  <div style="background:linear-gradient(135deg,#23222f,#16151e);border:1px solid var(--line);border-radius:26px;padding:clamp(28px,5vw,46px);text-align:center">
+    <div class="kicker">Контакт</div>
+    <h2>Опишите кейс — получите смету в этот день</h2>
+    <p style="color:var(--muted);margin-bottom:22px">Прием заявок круглосуточный: тг-бот и ассистент на сайте работают, даже когда офис закрыт.</p>
+    <div class="hero-actions" style="justify-content:center">
+      <a class="btn" href="https://t.me/wibesitebot" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn ghost" href="mailto:concept@wibe.site">Отправить на почту</a>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <div>© 2026 WIBE — AI digital agency</div>
-  <div>Сделано с <a href="index.html">WIBE AI</a> ⚡</div>
+  <div>© 2026 Prav — юридическая фирма</div>
+  <div>AI-приём обращений сделала <a href="index.html">WIBE</a> ⚡</div>
 </footer>
+
+<script>
+  document.getElementById('send').addEventListener('click', () => {
+    const cat = document.getElementById('cat').value, prob = document.getElementById('prob').value.trim(), who = document.getElementById('who').value.trim();
+    if(!prob || !who) return alert('Опишите суть дела и оставьте контакты');
+    window.open('https://t.me/wibesitebot?text=' + encodeURIComponent('Prav: ' + cat + ' — ' + prob + '; контакт: ' + who), '_blank');
+  });
+</script>
 </body>
 </html>

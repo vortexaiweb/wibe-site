@@ -3,46 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fitline — WIBE</title>
-<link rel="stylesheet" href="case.css">
+<title>Fitline — сеть фитнес-клубов</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+  :root{--bg:#0b141f;--bg2:#0f1d2c;--ink:#eef6ff;--muted:#8fa4b8;--acid:#2fd4ff;--accent:#37e0a3;--line:rgba(120,190,255,.14);--card:#11202f}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  h1,h2,h3,.logo{font-family:'Sora',sans-serif}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  header{position:sticky;top:0;background:rgba(11,20,31,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0;gap:20px}
+  .logo{font-weight:700;font-size:20px;letter-spacing:.03em}
+  .logo b{color:var(--acid)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--acid)}
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--acid),var(--accent));border:0;border-radius:12px;padding:13px 26px;color:#06121e;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(47,212,255,.35)}
+  .btn.ghost{background:transparent;color:var(--acid);border:1px solid var(--acid)}
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:74px 0 34px}
+  .kicker{color:var(--acid);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .hero h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:16px 0 18px}
+  .hero h1 em{font-style:normal;color:var(--acid)}
+  .hero p{color:var(--muted);max-width:47ch;margin-bottom:26px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-badges{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+  .hero-badges span{font-size:13px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:8px 14px;color:var(--ink)}
+  .hero-badges b{color:var(--accent)}
+  .side{position:relative;border-radius:26px;background:radial-gradient(120% 130% at 70% 20%,#123a52,#0a1724);padding:30px;display:grid;gap:14px}
+  .side .tile{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center}
+  .side .tile b{font-family:'Sora';font-size:18px}
+  .side .tile span{color:var(--muted);font-size:12.5px}
+  .live{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:12.5px}
+  .live i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.6s infinite}
+  @keyframes blink{50%{opacity:.2}}
+  .girl{width:100%;border-radius:18px;object-fit:cover;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .stat b{font-family:'Sora';font-size:30px;color:var(--acid)}
+  .stat span{color:var(--muted);font-size:13px}
+  section{padding:64px 0}
+  h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column}
+  .plan.hot{border-color:var(--acid);box-shadow:0 0 0 1px var(--acid),0 16px 40px rgba(47,212,255,.15)}
+  .plan h3{font-size:19px}
+  .plan .price{font-family:'Sora';font-size:34px;margin:12px 0 2px}
+  .plan .price small{font-size:13px;color:var(--muted)}
+  .plan ul{list-style:none;margin:14px 0 22px;color:var(--muted);font-size:13.5px;display:grid;gap:8px;flex:1}
+  .plan li::before{content:'✓';color:var(--accent);margin-right:8px}
+  .toggle{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:4px;width:max-content;margin-bottom:26px}
+  .toggle button{border:0;background:none;color:var(--muted);border-radius:100px;padding:9px 18px;font-weight:600;cursor:pointer;font-size:14px;font-family:'Inter'}
+  .toggle button.on{background:var(--acid);color:#06121e}
+  .book{background:linear-gradient(135deg,#0e2940,#0a1724);border:1px solid var(--line);border-radius:26px;padding:clamp(28px,5vw,46px)}
+  .book h2{margin-bottom:8px}
+  .book p{color:var(--muted);margin-bottom:24px}
+  .voice{display:flex;gap:14px;align-items:flex-start;background:rgba(47,212,255,.08);border:1px dashed var(--acid);border-radius:16px;padding:18px;margin-bottom:24px;font-size:14px;color:var(--ink)}
+  .voice b{color:var(--acid)}
+  .form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px}
+  .form input,.form select{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:13px 16px;color:var(--ink);font-family:'Inter';font-size:14px}
+  .form input:focus,.form select:focus{outline:none;border-color:var(--acid)}
+  .form input::placeholder{color:var(--muted)}
+  .ok{display:none;margin-top:16px;color:var(--accent);font-weight:600}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--acid)}
+  @media(max-width:840px){.hero{grid-template-columns:1fr}.side{order:-1}nav{display:none}.form{grid-template-columns:1fr}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}}
+</style>
 </head>
 <body>
+
 <header>
-  <a class="wordmark" href="index.html">WIBE<span>.</span></a>
-  <a class="cta" href="index.html#contact">Обсудить проект</a>
+  <div class="wrap nav">
+    <div class="logo">Fit<b>line</b></div>
+    <nav>
+      <a href="#stats">Клубы</a>
+      <a href="#plans">Абонементы</a>
+      <a href="#book">Пробная тренировка</a>
+    </nav>
+    <a class="btn" href="#book">Записаться</a>
+  </div>
 </header>
 
-<section class="case-hero">
-  <div class="kicker">Портфолио · Лендинг</div>
-  <h1>Fitline: лендинг, который сам продаёт тренировки</h1>
-  <p>Сеть фитнес-клубов теряла заявки: человек смотрел сайт ночью, а дозванивался менеджеру только утром — за это время остывал.</p>
+<section class="wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker">4 клуба · 2 города</div>
+      <h1>Форма, которая <em>держится всю неделю</em></h1>
+      <p>Современные залы, групповые программы и тренеры, которые не отвлекаются на телефон. Первая тренировка — бесплатно.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#book">Пробная тренировка бесплатно</a>
+        <a class="btn ghost" href="#plans">Смотреть абонементы</a>
+      </div>
+      <div class="hero-badges">
+        <span><b>27</b> залов</span>
+        <span><b>43 000</b> участников</span>
+        <span><b>24/7</b> доступ по подписке</span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="live"><i></i> Сейчас зал заполнен на 62% — свободно</div>
+      <img class="girl" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&q=70" alt="тренировка">
+      <div class="tile"><div><b>Ближайшая тренировка</b><br><span>Body & Balance · 19:00</span></div><button class="btn ghost" onclick="location.hash='#plans'" style="padding:9px 16px;font-size:12.5px">Забронировать</button></div>
+    </div>
+  </div>
 </section>
 
-<section class="case-body">
-  <div class="col">
-    <h2>Что сделали</h2>
-    <p>Лендинг с онлайн-записью на пробную тренировку, калькулятором абонемента и автоматическими напоминаниями в мессенджер.</p>
-    <h2>AI-фишка</h2>
-    <p>Голосовой бот принимает звонки вне рабочих часов: бронирует пробные тренировки и отвечает на вопросы о клубах и ценах.</p>
-    <h2>Результат</h2>
-    <ul>
-      <li>Заявки ночью больше не теряются: +41% записей</li>
-      <li>Конверсия записи в покупку абонемента — 62%</li>
-      <li>Нагрузка на администраторов −30%</li>
-    </ul>
-    <a class="cta" href="index.html#contact">Хочу такой сайт</a>
+<section id="stats" class="wrap">
+  <div class="kicker">Клубы</div>
+  <h2>Что внутри</h2>
+  <div class="cards">
+    <div class="stat"><b>300+</b><span>единиц оборудования</span></div>
+    <div class="stat"><b>50+</b><span>групповых занятий в неделю</span></div>
+    <div class="stat"><b>14</b><span>залов с бассейном</span></div>
+    <div class="stat"><b>92%</b><span>продлевают абонемент</span></div>
   </div>
-  <aside class="metric-card">
-    <div class="big">+41%</div><div class="label">записей на тренировки</div>
-    <div class="big">62%</div><div class="label">конверсия в абонемент</div>
-    <div class="big">−30%</div><div class="label">нагрузка на персонал</div>
-    <div class="big">4 нед.</div><div class="label">срок разработки</div>
-  </aside>
+</section>
+
+<section id="plans" class="wrap">
+  <div class="kicker">Абонементы</div>
+  <h2>Тарифы на выбор</h2>
+  <div class="toggle">
+    <button class="on" data-days="12" onclick="setDays(12,this)">Дневной</button>
+    <button data-days="0" onclick="setDays(0,this)">Без ограничений</button>
+  </div>
+  <div class="plans">
+    <div class="plan"><h3>Входной</h3><div class="price"><span data-m12="1 190">2 190</span> ₽<small>/мес</small></div><ul><li>Тренажёрный зал</li><li>2 групповые в месяц</li><li>Гардероб и полотенце</li></ul><button class="btn ghost" data-order="Входной">Выбрать</button></div>
+    <div class="plan hot"><h3>Стандарт</h3><div class="price"><span data-m12="1 790">2 890</span> ₽<small>/мес</small></div><ul><li>Зал + все групповые</li><li>Спа-зона</li><li>Гостевая тренировка в месяц</li></ul><button class="btn" data-order="Стандарт">Выбрать</button></div>
+    <div class="plan"><h3>Премиум</h3><div class="price"><span data-m12="2 490">3 690</span> ₽<small>/мес</small></div><ul><li>Все клубы сети</li><li>Персональный план от тренера</li><li>Бассейн и парилка</li></ul><button class="btn ghost" data-order="Премиум">Выбрать</button></div>
+  </div>
+</section>
+
+<section id="book" class="wrap">
+  <div class="book">
+    <div class="kicker">Запись</div>
+    <h2>Пробная тренировка — бесплатно</h2>
+    <p>Оставьте контакты, выберем клуб и время. Если удобнее по телефону — голосовой бот сам найдёт слот, ответит на вопросы и забронирует за вас.</p>
+    <div class="voice"><div>🎙️</div><p><b>Голосовой бот Fitline</b> работает 24/7: «Запишите меня на завтра в 19:00» — и слот в кармане. Подключён к онлайн-записи.</p></div>
+    <div class="form">
+      <input id="bk-name" placeholder="Имя">
+      <input id="bk-phone" placeholder="Телефон">
+      <select id="bk-time"><option>Выберите время</option><option>Утро 7:00–11:00</option><option>День 12:00–17:00</option><option>Вечер 18:00–22:00</option></select>
+      <button class="btn" id="bkGo">Забронировать</button>
+    </div>
+    <div class="ok" id="bkOk">Заявка принята! Мы позвоним в течение 15 минут в рабочие часы.</div>
+  </div>
 </section>
 
 <footer>
-  <div>© 2026 WIBE — AI digital agency</div>
-  <div>Сделано с <a href="index.html">WIBE AI</a> ⚡</div>
+  <div>© 2026 Fitline — сеть фитнес-клубов</div>
+  <div>Сайт и голосового бота сделала <a href="index.html">WIBE</a> ⚡</div>
 </footer>
+
+<script>
+  function setDays(extra, btn){
+    document.querySelectorAll('.toggle button').forEach(b => b.classList.toggle('on', b === btn));
+    const m = extra === 0;
+    document.querySelectorAll('.plan .price span').forEach(s => s.textContent = s.dataset[m ? 'm12' : 'd12']);
+  }
+  document.querySelectorAll('[data-order]').forEach(b => b.addEventListener('click', () => {
+    const t = b.parentElement.querySelector('h3').textContent + ' (' + b.parentElement.querySelector('.price').innerText.replace(/\s+/g,' ') + ')';
+    window.open('https://t.me/wibesitebot?text=' + encodeURIComponent('Fitline: хочу абонемент — ' + t), '_blank');
+  }));
+  document.getElementById('bkGo').addEventListener('click', () => {
+    const n = document.getElementById('bk-name').value.trim(), p = document.getElementById('bk-phone').value.trim();
+    if(!n || !p) return alert('Заполните имя и телефон');
+    window.open('https://t.me/wibesitebot?text=' + encodeURIComponent('Fitline: пробная тренировка — ' + n + ', ' + p + ', ' + document.getElementById('bk-time').value), '_blank');
+    document.getElementById('bkOk').style.display = 'block';
+  });
+</script>
 </body>
 </html>

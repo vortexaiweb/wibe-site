@@ -3,46 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nordic Coffee — WIBE</title>
-<link rel="stylesheet" href="case.css">
+<title>Nordic Coffee — кофе с доставкой</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+  :root{--bg:#f6efe4;--ink:#241a10;--muted:#7a6a56;--accent:#c0662b;--accent2:#8a4520;--card:#fffaf1;--line:#e5d7c3}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  h1,h2,h3,.logo{font-family:'Fraunces',serif}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  header{position:sticky;top:0;background:rgba(246,239,228,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .logo{font-size:22px;font-weight:700;letter-spacing:.02em}
+  .logo i{font-style:normal;color:var(--accent)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .cart{position:relative;background:none;border:0;cursor:pointer;font-size:20px;color:var(--ink)}
+  .cart span{position:absolute;top:-6px;right:-8px;background:var(--accent);color:#fff;border-radius:50%;font-size:10px;width:17px;height:17px;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .btn{display:inline-block;background:var(--accent);border:0;border-radius:100px;padding:12px 24px;color:#fff;font-weight:600;font-size:14px;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s}
+  .btn:hover{transform:translateY(-2px);background:var(--accent2)}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 0 30px}
+  .hero h1{font-size:clamp(34px,5vw,54px);line-height:1.08;margin:18px 0 18px}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero p{color:var(--muted);max-width:46ch;margin-bottom:28px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+  .hero-tags span{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:5px 12px;border-radius:100px;background:var(--card)}
+  .beans{position:relative;min-height:340px;border-radius:26px;overflow:hidden;background:radial-gradient(120% 120% at 30% 20%,#3a2413,#1e110a)}
+  .beans img{position:absolute;border-radius:18px;object-fit:cover;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  .beans .b1{width:78%;top:9%;left:8%}
+  .beans .b2{width:46%;bottom:8%;right:6%}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;font-size:13px;color:var(--muted)}
+  .card b{display:block;font-family:'Fraunces',serif;font-size:26px;color:var(--ink);margin-bottom:4px}
+  section{padding:64px 0}
+  .kicker{color:var(--accent);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
+  .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+  .prod:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(36,26,16,.12)}
+  .prod .ph{height:150px;display:flex;align-items:flex-end;padding:14px;font-family:'Fraunces',serif;font-size:15px;color:rgba(255,255,255,.95);background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.35)) ,var(--c)}
+  .prod .pb{padding:16px 18px}
+  .prod h3{font-size:18px}
+  .prod p{color:var(--muted);font-size:13px;margin:6px 0 12px}
+  .prod .row{display:flex;align-items:center;justify-content:space-between}
+  .price{font-family:'Fraunces',serif;font-weight:700;font-size:18px}
+  .add{background:var(--accent);border:0;color:#fff;border-radius:100px;padding:8px 16px;font-weight:600;cursor:pointer;font-size:13px;transition:transform .15s}
+  .add:hover{transform:scale(1.05)}
+  .quiz{background:linear-gradient(135deg,#2b1a0f,#4a2a14);color:#f3e9da;border-radius:26px;padding:clamp(30px,5vw,50px)}
+  .quiz h2{color:#f3e9da}
+  .quiz p{color:#d8c5ac;max-width:60ch}
+  .q{margin:22px 0}
+  .q label{display:inline-block;margin:6px 8px 0 0;padding:10px 18px;border:1px solid rgba(255,255,255,.25);border-radius:100px;cursor:pointer;font-size:14px;transition:background .2s,border-color .2s}
+  .q label:has(input:checked){background:var(--accent);border-color:var(--accent)}
+  .q input{display:none}
+  .quiz-out{margin-top:22px;padding:18px 22px;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(255,255,255,.06);display:none}
+  .quiz-out b{font-family:'Fraunces',serif;font-size:20px}
+  .subscription{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:8px}
+  .sub{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--card)}
+  .sub.hot{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .sub .price{font-size:30px}
+  .sub .price small{font-size:13px;color:var(--muted)}
+  .sub ul{list-style:none;margin:14px 0 20px;color:var(--muted);font-size:13.5px;display:grid;gap:8px}
+  .sub li::before{content:'✦';color:var(--accent);margin-right:8px}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--accent)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:100px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s}
+  .toast.show{opacity:1;transform:translateX(-50%)}
+  @media(max-width:820px){.hero{grid-template-columns:1fr}.beans{min-height:260px}nav{display:none}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}}
+</style>
 </head>
 <body>
+
 <header>
-  <a class="wordmark" href="index.html">WIBE<span>.</span></a>
-  <a class="cta" href="index.html#contact">Обсудить проект</a>
+  <div class="wrap nav">
+    <div class="logo">Nordic<i> Coffee</i></div>
+    <nav>
+      <a href="#catalog">Каталог</a>
+      <a href="#quiz">AI-сомелье</a>
+      <a href="#sub">Подписка</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="cart" aria-label="Корзина">🛒<span id="cartN">0</span></button>
+      <a class="btn" href="#sub">Оформить подписку</a>
+    </div>
+  </div>
 </header>
 
-<section class="case-hero">
-  <div class="kicker">Портфолио · E-commerce</div>
-  <h1>Nordic Coffee: интернет-магазин с AI-сомелье</h1>
-  <p>Обжарщик кофе из Петербурга хотел продавать напрямую, а не только через маркетплейсы, и выделяться сервисом.</p>
+<section class="wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker">Обжарка в Петербурге</div>
+      <h1>Кофе, который <em>подходит именно вам</em></h1>
+      <p>Свежая обжарка, каталог по вкусовым профилям и AI-сомелье: ответьте на 3 вопроса — соберём набор под ваш вкус и доставим по подписке.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#catalog">Выбрать кофе</a>
+        <button class="btn ghost" data-quiz>Подобрать по вкусу</button>
+      </div>
+      <div class="hero-tags"><span>Свежая обжарка</span><span>Доставка</span><span>AI-подбор</span></div>
+    </div>
+    <div class="beans">
+      <img class="b1" src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=800&q=70" alt="кофе">
+      <img class="b2" src="https://images.unsplash.com/photo-1518057111178-44a106bad636?w=500&q=70" alt="чашка кофе">
+    </div>
+  </div>
 </section>
 
-<section class="case-body">
-  <div class="col">
-    <h2>Что сделали</h2>
-    <p>Интернет-магазин под ключ: каталог с фильтрами по вкусовым профилям, подписка на доставку, интеграция со складом и оплатой.</p>
-    <h2>AI-фишка</h2>
-    <p>AI-сомелье: клиент отвечает на 3 вопроса о вкусах — ассистент подбирает сорта и собирает набор. Работает как консультант и как допродажи.</p>
-    <h2>Результат</h2>
-    <ul>
-      <li>Прямые продажи — 40% выручки за полгода</li>
-      <li>Конверсия из гостя в покупателя — 3,8%</li>
-      <li>25% заказов идут через подписку</li>
-    </ul>
-    <a class="cta" href="index.html#contact">Хочу такой сайт</a>
+<section id="catalog" class="wrap">
+  <div class="kicker">Каталог</div>
+  <h2>Любимые сорта</h2>
+  <div class="products">
+    <div class="prod">
+      <div class="ph" style="--c:#7a4a21"><span>Кения · светлая</span></div>
+      <div class="pb"><h3>Ayara Peaberry</h3><p>Ягоды, чёрный чай, цитрус. Яркий и чистый.</p>
+        <div class="row"><span class="price">1 290 ₽</span><button class="add" data-t="Ayara Peaberry">В корзину</button></div>
+      </div>
+    </div>
+    <div class="prod">
+      <div class="ph" style="--c:#5c3a1c"><span>Эфиопия · светлая</span></div>
+      <div class="pb"><h3>Yirgacheffe</h3><p>Бергамот, жасмин, лимонная цедра.</p>
+        <div class="row"><span class="price">1 190 ₽</span><button class="add" data-t="Yirgacheffe">В корзину</button></div>
+      </div>
+    </div>
+    <div class="prod">
+      <div class="ph" style="--c:#8a5a2e"><span>Колумбия · средняя</span></div>
+      <div class="pb"><h3>Huila</h3><p>Карамель, орех, шоколад. Баланс для всех.</p>
+        <div class="row"><span class="price">1 090 ₽</span><button class="add" data-t="Huila">В корзину</button></div>
+      </div>
+    </div>
+    <div class="prod">
+      <div class="ph" style="--c:#2e6e64"><span>Мексика · тёмная</span></div>
+      <div class="pb"><h3>Oaxaca</h3><p>Горький шоколад, дымка, плотное тело.</p>
+        <div class="row"><span class="price">1 150 ₽</span><button class="add" data-t="Oaxaca">В корзину</button></div>
+      </div>
+    </div>
+    <div class="prod">
+      <div class="ph" style="--c:#93422b"><span>Бразилия · средняя</span></div>
+      <div class="pb"><h3>Cerrado</h3><p>Орех, мёд, какао. Классика эспрессо.</p>
+        <div class="row"><span class="price">990 ₽</span><button class="add" data-t="Cerrado">В корзину</button></div>
+      </div>
+    </div>
+    <div class="prod">
+      <div class="ph" style="--c:#4c2a52"><span>Ферментация · средняя</span></div>
+      <div class="pb"><h3>Aurora</h3><p>Виноград, сухофрукты, специи. Анаэробная ферментация.</p>
+        <div class="row"><span class="price">1 490 ₽</span><button class="add" data-t="Aurora">В корзину</button></div>
+      </div>
+    </div>
   </div>
-  <aside class="metric-card">
-    <div class="big">40%</div><div class="label">выручки напрямую</div>
-    <div class="big">3,8%</div><div class="label">конверсия</div>
-    <div class="big">25%</div><div class="label">заказов по подписке</div>
-    <div class="big">8 нед.</div><div class="label">срок разработки</div>
-  </aside>
+</section>
+
+<section id="quiz" class="wrap">
+  <div class="quiz">
+    <div class="kicker" style="color:#f0b35c">AI-сомелье</div>
+    <h2>Подберите кофе за 30 секунд</h2>
+    <p>Ответьте на три вопроса — ИИ соберёт персональный сет из наших сортов. Работает как консультант в чате и как допродажи в каталоге.</p>
+    <div class="q"><b>1. Что вы обычно пьёте?</b>
+      <label><input type="radio" name="q1" value="light">Чёрный кофе <span class="row"></span></label>
+      <label><input type="radio" name="q1" value="milk">С молоком</label>
+      <label><input type="radio" name="q1" value="espresso">Эспрессо</label>
+    </div>
+    <div class="q"><b>2. Какой вкус нравится?</b>
+      <label><input type="radio" name="q2" value="fruity">Ягоды и цитрус</label>
+      <label><input type="radio" name="q2" value="choco">Шоколад и орех</label>
+      <label><input type="radio" name="q2" value="fresh">Лёгкий и чистый</label>
+    </div>
+    <div class="q"><b>3. Как завариваете?</b>
+      <label><input type="radio" name="q3" value="v60">Воронка / V60</label>
+      <label><input type="radio" name="q3" value="espresso_m">Кофемашина</label>
+      <label><input type="radio" name="q3" value="french">Френч-пресс</label>
+    </div>
+    <button class="btn" id="quizGo">Подобрать мой сет</button>
+    <div class="quiz-out" id="quizOut"></div>
+  </div>
+</section>
+
+<section id="sub" class="wrap">
+  <div class="kicker">Подписка</div>
+  <h2>Кофе по расписанию</h2>
+  <div class="subscription">
+    <div class="sub"><span class="price">1 190 ₽<small>/мес</small></span><h3>На одного</h3><ul><li>1 пачка 250 г в месяц</li><li>Помол под ваш способ</li><li>Пауза в один клик</li></ul><button class="btn ghost" data-order="Подписка «На одного»">Выбрать</button></div>
+    <div class="sub hot"><span class="price">2 990 ₽<small>/мес</small></span><h3>Сет-подписка</h3><ul><li>3 разных сорта каждый месяц</li><li>Персональная подборка AI</li><li>Приоритет новинок</li></ul><button class="btn" data-order="Подписка «Сет-подписка»">Выбрать</button></div>
+    <div class="sub"><span class="price">5 900 ₽<small>/мес</small></span><h3>Для офиса</h3><ul><li>До 15 кг в месяц</li><li>Обучение бариста</li><li>Своя рецептура под бренд</li></ul><button class="btn ghost" data-order="Подписка «Для офиса»">Выбрать</button></div>
+  </div>
 </section>
 
 <footer>
-  <div>© 2026 WIBE — AI digital agency</div>
-  <div>Сделано с <a href="index.html">WIBE AI</a> ⚡</div>
+  <div>© 2026 Nordic Coffee — продаём напрямую, без маркетплейсов</div>
+  <div>Магазин с AI-сомелье сделала <a href="index.html">WIBE</a> ⚡</div>
 </footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const cart = document.getElementById('cartN'); let n = 0;
+  document.querySelectorAll('.add, [data-order]').forEach(b => b.addEventListener('click', () => {
+    n++; cart.textContent = n; toast(b.dataset.t || 'Добавлено в корзину');
+  }));
+  function toast(t){ const el = document.getElementById('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 1800); }
+  document.querySelector('[data-quiz]').addEventListener('click', () => document.getElementById('quiz').scrollIntoView({behavior:'smooth'}));
+  document.getElementById('quizGo').addEventListener('click', () => {
+    const f = name => (document.querySelector('input[name=' + name + ']:checked') || {}).value;
+    const map = {
+      'light_fruity_v60':'Ayara Peaberry + Yirgacheffe — два ярких светлых сорта с ягодными нотами.',
+      'milk_choco': 'Huila + Cerrado — карамель, орех и шоколад, отлично с молоком.',
+      'espresso_choco_espresso_m':'Cerrado + Oaxaca — плотное тело и шоколад для чёрного эспрессо.',
+      'fresh_fruity_v60':'Yirgacheffe + Aurora — деликатные ноты и интересная ферментация.'
+    };
+    const key = [f('q1'), f('q2'), f('q3')].join('_');
+    const out = document.getElementById('quizOut');
+    if(!f('q1')){ out.style.display='block'; out.innerHTML='<b>Ответьте на вопросы</b><p>Это поможет подобрать точнее.</p>'; return; }
+    out.style.display='block';
+    out.innerHTML='<b>Ваш сет готов</b><p>' + (map[key] || 'Huila + Cerrado — сбалансированный базовый набор для ваших привычек.') + '</p>';
+  });
+</script>
 </body>
 </html>

@@ -51,6 +51,14 @@ header{
 .shot.t-fit .pill{background:#39d0ff}
 .shot.t-law{background:linear-gradient(140deg,#15151d,#242433)}
 .shot.t-law .pill{background:#b8a86a}
+.shot.t-logistics{background:linear-gradient(140deg,#0c1a14,#1a3427)}
+.shot.t-logistics .pill{background:#ffb648}
+.shot.t-media{background:linear-gradient(140deg,#170f26,#2b1a4d)}
+.shot.t-media .pill{background:#ec4899}
+.shot.t-finlab{background:linear-gradient(140deg,#e9f2ea,#d3e4d6)}
+.shot.t-finlab .pill{background:#1d8a4e}
+.shot.t-finlab .hero-line{background:rgba(21,33,26,.22)}
+.shot.t-finlab .row i{background:rgba(29,138,78,.16)}
 
 .work-body{padding:24px 26px 28px}
 .work-body h3{font-size:19px;font-weight:600}

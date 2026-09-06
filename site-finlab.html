@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinLab — финансовые сервисы</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+  :root{--bg:#f4f7f2;--ink:#15211a;--muted:#67796b;--green:#1d8a4e;--green2:#0e5c33;--line:#dce6da;--card:#ffffff;--yellow:#ffc944}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  h1,h2,h3,.logo{font-family:'Plus Jakarta Sans',sans-serif}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  header{position:sticky;top:0;background:rgba(244,247,242,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0;gap:20px}
+  .logo{font-weight:700;font-size:21px}
+  .logo b{color:var(--green)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--green)}
+  .btn{display:inline-block;background:var(--green);border:0;border-radius:12px;padding:13px 26px;color:#fff;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(29,138,78,.35)}
+  .btn.ghost{background:transparent;color:var(--green);border:1px solid var(--green)}
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center;padding:72px 0 34px}
+  .kicker{color:var(--green);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .hero h1{font-size:clamp(32px,5vw,50px);line-height:1.06;margin:16px 0 18px}
+  .hero h1 em{font-style:normal;color:var(--green)}
+  .hero p{color:var(--muted);max-width:48ch;margin-bottom:26px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .trust{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap}
+  .trust span{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .trust b{color:var(--ink)}
+  .calc{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 20px 50px rgba(21,33,26,.08)}
+  .calc h3{font-size:18px;margin-bottom:16px}
+  .calc .rows{display:grid;gap:14px}
+  .calc label{font-size:12.5px;color:var(--muted);display:block;margin-bottom:6px}
+  .calc input[type=range]{width:100%;accent-color:var(--green)}
+  .calc .vals{display:flex;justify-content:space-between;font-size:15px;font-weight:600}
+  .calc .out{border-radius:16px;background:linear-gradient(135deg,#e8f5ec,#f2fbf4);padding:18px;margin-top:16px;display:flex;justify-content:space-between;align-items:center}
+  .calc .out .big{font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;color:var(--green)}
+  section{padding:62px 0}
+  h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:transform .25s,border-color .25s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(29,138,78,.4)}
+  .card .ic{font-size:24px}
+  .card h3{font-size:17px;margin:10px 0 8px}
+  .card p{color:var(--muted);font-size:14px}
+  .card .go{color:var(--green);font-size:13px;font-weight:600;display:block;margin-top:14px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .stat b{font-family:'Plus Jakarta Sans';font-size:28px;color:var(--green)}
+  .stat span{color:var(--muted);font-size:13px}
+  .safety{display:grid;grid-template-columns:1fr 1fr;gap:20px;background:linear-gradient(135deg,#0e5c33,#1d8a4e);color:#fff;border-radius:26px;padding:clamp(28px,5vw,44px)}
+  .safety h3{font-size:22px;margin-bottom:10px}
+  .safety p{opacity:.85;font-size:14px}
+  .safety ul{list-style:none;font-size:14px;display:grid;gap:10px;align-content:center;opacity:.95}
+  .safety li::before{content:'✓';background:var(--yellow);color:#15211a;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;margin-right:10px;font-size:11px;font-weight:700}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--green)}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}.safety{grid-template-columns:1fr}nav{display:none}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Fin<b>Lab</b></div>
+    <nav><a href="#products">Продукты</a><a href="#calc">Калькулятор</a><a href="#safety">Безопасность</a></nav>
+    <a class="btn" href="https://t.me/wibesitebot" target="_blank" rel="noopener">Открыть счёт</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker">Цифровой банк · API</div>
+      <h1>Деньги, которые <em>работают по API</em></h1>
+      <p>Расчётные счета, эквайринг и кредиты для бизнеса. Всё открывается из кабинета, интегрируется через API и выглядит как ваш собственный сервис.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://t.me/wibesitebot" target="_blank" rel="noopener">Открыть счёт за 10 минут</a>
+        <a class="btn ghost" href="#calc">Кредитный калькулятор</a>
+      </div>
+      <div class="trust">
+        <span><b>12 000+</b>&nbsp;предпринимателей</span>
+        <span><b>0 ₽</b>&nbsp;за обслуживание</span>
+        <span><b>24/7</b>&nbsp;поддержка</span>
+      </div>
+    </div>
+    <div class="calc" id="calc">
+      <h3>Кредит для бизнеса</h3>
+      <div class="rows">
+        <div><label>Сумма</label><div class="vals"><span id="sumV">500 000 ₽</span><span>1 500 000 ₽</span></div><input type="range" id="sum" min="100000" max="1500000" step="50000" value="500000"></div>
+        <div><label>Срок</label><div class="vals"><span id="termV">6 мес</span><span>36 мес</span></div><input type="range" id="term" min="6" max="36" step="6" value="12"></div>
+      </div>
+      <div class="out"><div><label style="margin:0">Платёж в месяц</label><div class="big" id="pay">—</div></div><div style="text-align:right"><label style="margin:0">Ставка</label><div class="big" id="rateLabel">от 15%</div></div></div>
+      <button class="btn" style="width:100%;margin-top:16px" id="loanGo">Подать заявку</button>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="wrap">
+  <div class="kicker">Продукты</div>
+  <h2>Всё для денег бизнеса</h2>
+  <div class="cards">
+    <div class="card"><div class="ic">🏦</div><h3>Расчётный счёт</h3><p>Открытие за день, 0 ₽ за обслуживание, операции через API.</p><span class="go">Подробнее →</span></div>
+    <div class="card"><div class="ic">💳</div><h3>Эквайринг</h3><p>Платёж в один клик, от 1,2% за операцию, выдача средств каждый день.</p><span class="go">Подробнее →</span></div>
+    <div class="card"><div class="ic">📈</div><h3>Кредитование</h3><p>Оборотные кредиты от 100 000 ₽ без залога, решение за 15 минут.</p><span class="go">Подробнее →</span></div>
+    <div class="card"><div class="ic">🧠</div><h3>ИИ-финансовый помощник</h3><p>Предсказывает кассовые разрывы и подсказывает, когда платить налоги.</p><span class="go">Подробнее →</span></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="kicker">Почему FinLab</div>
+  <h2>Цифры, которые любят контролировать</h2>
+  <div class="stats">
+    <div class="stat"><b>99,99%</b><span>аптайм платёжных систем</span></div>
+    <div class="stat"><b>2,1 сек</b><span>средняя обработка платежа</span></div>
+    <div class="stat"><b>3 400+</b><span>компаний на API</span></div>
+    <div class="stat"><b>87%</b><span>клиентов приходят по рекомендации</span></div>
+  </div>
+</section>
+
+<section class="wrap" id="safety">
+  <div class="safety">
+    <div><h3>Безопасность по умолчанию</h3><p>Биометрия, 3-D Secure, отдельные ключи для сотрудников и аудит каждой операции. Данные шифруются и не покидают систему.</p></div>
+    <ul>
+      <li>Собственный контур хранения данных</li>
+      <li>Уведомление о каждой операции</li>
+      <li>Отдельные счета и лимиты для команды</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 FinLab — финансовые сервисы для бизнеса</div>
+  <div>Сайт и ИИ-помощника сделала <a href="index.html">WIBE</a> ⚡</div>
+</footer>
+
+<script>
+  const sum = document.getElementById('sum'), term = document.getElementById('term');
+  const sumV = document.getElementById('sumV'), termV = document.getElementById('termV'), pay = document.getElementById('pay');
+  const fmt = n => n.toLocaleString('ru-RU').replace(/,/g, ' ') + ' ₽';
+  function calc(){
+    const s = +sum.value, m = +term.value;
+    const rate = s < 300000 ? 17 : 15;
+    const r = rate / 100 / 12;
+    const p = s * r / (1 - Math.pow(1 + r, -m));
+    sumV.textContent = fmt(s); termV.textContent = m + ' мес';
+    pay.textContent = Math.round(p).toLocaleString('ru-RU').replace(/,/g, ' ') + ' ₽';
+    document.getElementById('rateLabel').textContent = 'от ' + rate + '%';
+  }
+  sum.addEventListener('input', calc); term.addEventListener('input', calc); calc();
+  document.getElementById('loanGo').addEventListener('click', () =>
+    window.open('https://t.me/wibesitebot?text=' + encodeURIComponent('FinLab: кредит ' + sumV.textContent + ' на ' + termV.textContent + ', платёж ' + pay.textContent), '_blank'));
+</script>
+</body>
+</html>
