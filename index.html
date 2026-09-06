@@ -562,6 +562,25 @@
     .calc-total b{font-size:22px}
     .calc-total small{font-size:12px}
   }
+  @media(max-width:620px){
+    .calc{padding:16px 14px}
+    .calc-title{margin-bottom:12px}
+    .tiles{
+      display:flex;flex-direction:row;gap:10px;
+      overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-left:4px;
+      margin:0;padding:2px 4px 12px;
+      -webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain;scrollbar-width:none;
+    }
+    .tiles::-webkit-scrollbar{display:none}
+    .tile{flex:0 0 148px;scroll-snap-align:start;min-height:84px;justify-content:space-between;padding:12px}
+    .tile .tile-ic{display:none}
+    .tile .tile-d{display:none}
+    .tile .tile-name{font-size:12px}
+    .tile .tile-p{font-size:11px;margin-top:8px}
+    .opt{flex-wrap:nowrap;padding:10px 12px}
+    .opt > span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .calc-note{margin-top:10px}
+  }
 
   /* ---------- RTL (иврит) ---------- */
   [dir="rtl"] h2::before{left:auto;right:0;transform-origin:right}

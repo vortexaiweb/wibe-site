@@ -17,6 +17,43 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="WIBE">
 <meta property="og:locale" content="ru_RU">
+<!-- hrl:start -->
+<link rel="alternate" hreflang="en-US" href="https://wibe.site/portfolio.html">
+<link rel="alternate" hreflang="ru-RU" href="https://wibe.site/ru/portfolio.html">
+<link rel="alternate" hreflang="en-GB" href="https://wibe.site/en-gb/portfolio.html">
+<link rel="alternate" hreflang="pl-PL" href="https://wibe.site/pl/portfolio.html">
+<link rel="alternate" hreflang="de-DE" href="https://wibe.site/de/portfolio.html">
+<link rel="alternate" hreflang="zh-CN" href="https://wibe.site/zh/portfolio.html">
+<link rel="alternate" hreflang="ja-JP" href="https://wibe.site/ja/portfolio.html">
+<link rel="alternate" hreflang="kk-KZ" href="https://wibe.site/kk/portfolio.html">
+<link rel="alternate" hreflang="uz-UZ" href="https://wibe.site/uz/portfolio.html">
+<link rel="alternate" hreflang="ka-GE" href="https://wibe.site/ka/portfolio.html">
+<link rel="alternate" hreflang="he-IL" href="https://wibe.site/he/portfolio.html">
+<link rel="alternate" hreflang="hy-AM" href="https://wibe.site/hy/portfolio.html">
+<link rel="alternate" hreflang="az-AZ" href="https://wibe.site/az/portfolio.html">
+<link rel="alternate" hreflang="ky-KG" href="https://wibe.site/ky/portfolio.html">
+<link rel="alternate" hreflang="tg-TJ" href="https://wibe.site/tg/portfolio.html">
+<link rel="alternate" hreflang="tk-TM" href="https://wibe.site/tk/portfolio.html">
+<link rel="alternate" hreflang="ro-MD" href="https://wibe.site/ro/portfolio.html">
+<link rel="alternate" hreflang="x-default" href="https://wibe.site/portfolio.html">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="kk_KZ">
+<meta property="og:locale:alternate" content="uz_UZ">
+<meta property="og:locale:alternate" content="ka_GE">
+<meta property="og:locale:alternate" content="he_IL">
+<meta property="og:locale:alternate" content="hy_AM">
+<meta property="og:locale:alternate" content="az_AZ">
+<meta property="og:locale:alternate" content="ky_KG">
+<meta property="og:locale:alternate" content="tg_TJ">
+<meta property="og:locale:alternate" content="tk_TM">
+<meta property="og:locale:alternate" content="ro_MD">
+<!-- hrl:end -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Портфолио — WIBE">
 <meta name="twitter:description" content="Кейсы и демо-проекты WIBE: интернет-магазины, логистика, медиа, юриспруденция, финтех, фитнес, кофе.">
@@ -30,6 +67,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- seo:end -->
 <link rel="stylesheet" href="portfolio.css">
+<style>
+  .header-right{display:flex;align-items:center;gap:10px}
+  .lang-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:18px;cursor:pointer;line-height:0;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);transition:border-color .2s}
+  .lang-btn:hover{border-color:rgba(255,107,44,.6)}
+  .region-modal{position:fixed;inset:0;z-index:200;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(10,9,8,.88);backdrop-filter:blur(12px);padding:20px}
+  .region-modal.show{display:flex;align-items:flex-start}
+  .region-card{background:var(--bg2);border:1px solid var(--line);border-radius:24px;padding:clamp(28px,5vw,48px);max-width:640px;width:100%;text-align:center;margin:auto;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+  .region-card h3{font-size:clamp(20px,3vw,28px);font-weight:600;margin-bottom:10px}
+  .region-card>p{color:var(--muted);font-size:14px;margin-bottom:28px}
+  .region-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+  .region-btn{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:13px 15px;color:var(--ink);font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;transition:border-color .2s}
+  .region-btn:hover{border-color:rgba(255,107,44,.6)}
+  .region-btn .fl{font-size:22px}
+  .region-skip{display:inline-block;margin-top:20px;color:var(--muted);font-size:13px;text-decoration:none;border-bottom:1px dotted var(--muted)}
+  .region-skip:hover{color:var(--acid)}
+  [dir="rtl"] .back{display:inline-block}
+  [dir="rtl"] .work-body,[dir="rtl"] .page-head{text-align:right}
+  [dir="rtl"] .work-body p{text-align:right}
+  @media(max-width:480px){header{padding:14px 16px}.header-right{gap:8px}}
+</style>
 <!-- jsonld:start -->
 <script type="application/ld+json">
 {
@@ -65,14 +122,17 @@
 <body>
 <header>
   <a class="wordmark" href="index.html">WIBE<span>.</span></a>
-  <a class="cta" href="index.html#contact">Обсудить проект</a>
+  <div class="header-right">
+    <button class="lang-btn" id="langBtn" aria-label="Language">🌐</button>
+    <a class="cta" href="index.html#contact" data-i18n="cta">Обсудить проект</a>
+  </div>
 </header>
 
 <section class="page-head">
-  <a class="back" href="index.html">← На главную</a>
-  <div class="kicker">Портфолио</div>
-  <h1>Сайты, которые мы сделали</h1>
-  <p>Шесть живых проектов: продукт, дизайн и логика. Нажмите на карточку — откроется настоящий сайт.</p>
+  <a class="back" href="index.html"><span data-i18n="back">← На главную</span></a>
+  <div class="kicker" data-i18n="kick">Портфолио</div>
+  <h1 data-i18n="ph1">Сайты, которые мы сделали</h1>
+  <p data-i18n="pled">Шесть живых проектов: продукт, дизайн и логика. Нажмите на карточку — откроется настоящий сайт.</p>
 </section>
 
 <div class="works">
@@ -84,10 +144,10 @@
       <div class="row"><i></i><i></i><i></i></div>
     </div>
     <div class="work-body">
-      <h3>Nordic Coffee — интернет-магазин</h3>
-      <p>Магазин обжарщика кофе: каталог, подписка на доставку и AI-сомелье, подбирающий сорта.</p>
-      <span class="tag">E-commerce</span><span class="tag">AI-рекомендации</span>
-      <span class="go">Смотреть кейс →</span>
+      <h3 data-i18n="w1h">Nordic Coffee — интернет-магазин</h3>
+      <p data-i18n="w1p">Магазин обжарщика кофе: каталог, подписка на доставку и AI-сомелье, подбирающий сорта.</p>
+      <span class="tag" data-i18n="w1t1">E-commerce</span><span class="tag" data-i18n="w1t2">AI-рекомендации</span>
+      <span class="go" data-i18n="go">Смотреть кейс →</span>
     </div>
   </a>
   <a class="work" href="site-fit.html">
@@ -98,10 +158,10 @@
       <div class="row"><i></i><i></i><i></i></div>
     </div>
     <div class="work-body">
-      <h3>Fitline — сеть фитнес-клубов</h3>
-      <p>Лендинг с онлайн-записью, расчётом абонемента и голосовым ботом для бронирования пробных тренировок.</p>
-      <span class="tag">Лендинг</span><span class="tag">Online-запись</span>
-      <span class="go">Смотреть кейс →</span>
+      <h3 data-i18n="w2h">Fitline — сеть фитнес-клубов</h3>
+      <p data-i18n="w2p">Лендинг с онлайн-записью, расчётом абонемента и голосовым ботом для бронирования пробных тренировок.</p>
+      <span class="tag" data-i18n="w2t1">Лендинг</span><span class="tag" data-i18n="w2t2">Online-запись</span>
+      <span class="go" data-i18n="go">Смотреть кейс →</span>
     </div>
   </a>
   <a class="work" href="site-law.html">
@@ -112,10 +172,10 @@
       <div class="row"><i></i><i></i><i></i></div>
     </div>
     <div class="work-body">
-      <h3>Prav — юридическая фирма</h3>
-      <p>Корпоративный сайт с AI-ассистентом, который квалифицирует обращения до передачи юристу.</p>
-      <span class="tag">Корпоративный</span><span class="tag">AI-ассистент</span>
-      <span class="go">Смотреть кейс →</span>
+      <h3 data-i18n="w3h">Prav — юридическая фирма</h3>
+      <p data-i18n="w3p">Корпоративный сайт с AI-ассистентом, который квалифицирует обращения до передачи юристу.</p>
+      <span class="tag" data-i18n="w3t1">Корпоративный</span><span class="tag" data-i18n="w3t2">AI-ассистент</span>
+      <span class="go" data-i18n="go">Смотреть кейс →</span>
     </div>
   </a>
   <a class="work" href="site-logistics.html">
@@ -126,10 +186,10 @@
       <div class="row"><i></i><i></i><i></i></div>
     </div>
     <div class="work-body">
-      <h3>Logistics+ — грузоперевозки</h3>
-      <p>Логистика с трекингом по минутам, AI-приёмом накладных и статусами в Telegram.</p>
-      <span class="tag">Трекинг</span><span class="tag">AI-диспетчер</span>
-      <span class="go">Смотреть кейс →</span>
+      <h3 data-i18n="w4h">Logistics+ — грузоперевозки</h3>
+      <p data-i18n="w4p">Логистика с трекингом по минутам, AI-приёмом накладных и статусами в Telegram.</p>
+      <span class="tag" data-i18n="w4t1">Трекинг</span><span class="tag" data-i18n="w4t2">AI-диспетчер</span>
+      <span class="go" data-i18n="go">Смотреть кейс →</span>
     </div>
   </a>
   <a class="work" href="site-media.html">
@@ -140,10 +200,10 @@
       <div class="row"><i></i><i></i><i></i></div>
     </div>
     <div class="work-body">
-      <h3>MediaHub — контент-студия</h3>
-      <p>Студия креативов с ИИ-генератором: один сценарий превращается в ролики для всех площадок.</p>
-      <span class="tag">Генератор</span><span class="tag">Видео</span>
-      <span class="go">Смотреть кейс →</span>
+      <h3 data-i18n="w5h">MediaHub — контент-студия</h3>
+      <p data-i18n="w5p">Студия креативов с ИИ-генератором: один сценарий превращается в ролики для всех площадок.</p>
+      <span class="tag" data-i18n="w5t1">Генератор</span><span class="tag" data-i18n="w5t2">Видео</span>
+      <span class="go" data-i18n="go">Смотреть кейс →</span>
     </div>
   </a>
   <a class="work" href="site-finlab.html">
@@ -154,17 +214,300 @@
       <div class="row"><i></i><i></i><i></i></div>
     </div>
     <div class="work-body">
-      <h3>FinLab — финтех</h3>
-      <p>Финансовые сервисы с кредитным калькулятором и ИИ-помощником против кассовых разрывов.</p>
-      <span class="tag">Финтех</span><span class="tag">API</span>
-      <span class="go">Смотреть кейс →</span>
+      <h3 data-i18n="w6h">FinLab — финтех</h3>
+      <p data-i18n="w6p">Финансовые сервисы с кредитным калькулятором и ИИ-помощником против кассовых разрывов.</p>
+      <span class="tag" data-i18n="w6t1">Финтех</span><span class="tag" data-i18n="w6t2">API</span>
+      <span class="go" data-i18n="go">Смотреть кейс →</span>
     </div>
   </a>
 </div>
 
 <footer>
   <div>© 2026 WIBE — AI digital agency</div>
-  <div>Сделано с <a href="index.html">WIBE AI</a> ⚡</div>
+  <div><span data-i18n="made">Сделано с</span> <a href="index.html">WIBE AI</a> ⚡</div>
 </footer>
+
+<div class="region-modal" id="regionModal">
+  <div class="region-card">
+    <h3 data-i18n="reg_title">Выберите язык</h3>
+    <p data-i18n="reg_sub">Страница отобразится на выбранном языке.</p>
+    <div class="region-grid" id="regionGrid"></div>
+    <a class="region-skip" href="#" id="regSkip" data-i18n="reg_skip">Пропустить</a>
+  </div>
+</div>
+
+<script>
+const LOCALES = [
+  {code:'ru-RU', flag:'🇷🇺', label:'Русский · Россия', dir:'ltr'},
+  {code:'ru-BY', flag:'🇧🇾', label:'Русский · Беларусь', dir:'ltr'},
+  {code:'en-US', flag:'🇺🇸', label:'English · USA', dir:'ltr'},
+  {code:'en-GB', flag:'🇪🇺', label:'English · Europe', dir:'ltr'},
+  {code:'pl-PL', flag:'🇵🇱', label:'Polski', dir:'ltr'},
+  {code:'de-DE', flag:'🇩🇪', label:'Deutsch', dir:'ltr'},
+  {code:'zh-CN', flag:'🇨🇳', label:'中文 · 中国', dir:'ltr'},
+  {code:'ja-JP', flag:'🇯🇵', label:'日本語', dir:'ltr'},
+  {code:'kk-KZ', flag:'🇰🇿', label:'Қазақша · Қазақстан', dir:'ltr'},
+  {code:'uz-UZ', flag:'🇺🇿', label:'Oʻzbekcha · Oʻzbekiston', dir:'ltr'},
+  {code:'ka-GE', flag:'🇬🇪', label:'ქართული · საქართველო', dir:'ltr'},
+  {code:'he-IL', flag:'🇮🇱', label:'עברית · ישראל', dir:'rtl'},
+  {code:'hy-AM', flag:'🇦🇲', label:'Հայերեն · Հայաստան', dir:'ltr'},
+  {code:'az-AZ', flag:'🇦🇿', label:'Azərbaycanca · Azərbaycan', dir:'ltr'},
+  {code:'ky-KG', flag:'🇰🇬', label:'Кыргызча · Кыргызстан', dir:'ltr'},
+  {code:'tg-TJ', flag:'🇹🇯', label:'Тоҷикӣ · Тоҷикистон', dir:'ltr'},
+  {code:'tk-TM', flag:'🇹🇲', label:'Türkmençe · Türkmenistan', dir:'ltr'},
+  {code:'ro-MD', flag:'🇲🇩', label:'Română · Moldova', dir:'ltr'}
+];
+
+const STR = {
+'ru-RU':{
+  cta:'Обсудить проект', back:'← На главную', kick:'Портфолио', ph1:'Сайты, которые мы сделали',
+  pled:'Шесть живых проектов: продукт, дизайн и логика. Нажмите на карточку — откроется настоящий сайт.',
+  w1h:'Nordic Coffee — интернет-магазин', w1p:'Магазин обжарщика кофе: каталог, подписка на доставку и AI-сомелье, подбирающий сорта.', w1t1:'E-commerce', w1t2:'AI-рекомендации',
+  w2h:'Fitline — сеть фитнес-клубов', w2p:'Лендинг с онлайн-записью, расчётом абонемента и голосовым ботом для бронирования пробных тренировок.', w2t1:'Лендинг', w2t2:'Online-запись',
+  w3h:'Prav — юридическая фирма', w3p:'Корпоративный сайт с AI-ассистентом, который квалифицирует обращения до передачи юристу.', w3t1:'Корпоративный', w3t2:'AI-ассистент',
+  w4h:'Logistics+ — грузоперевозки', w4p:'Логистика с трекингом по минутам, AI-приёмом накладных и статусами в Telegram.', w4t1:'Трекинг', w4t2:'AI-диспетчер',
+  w5h:'MediaHub — контент-студия', w5p:'Студия креативов с ИИ-генератором: один сценарий превращается в ролики для всех площадок.', w5t1:'Генератор', w5t2:'Видео',
+  w6h:'FinLab — финтех', w6p:'Финансовые сервисы с кредитным калькулятором и ИИ-помощником против кассовых разрывов.', w6t1:'Финтех', w6t2:'API',
+  go:'Смотреть кейс →', made:'Сделано с',
+  reg_title:'Выберите язык', reg_sub:'Страница отобразится на выбранном языке.', reg_skip:'Пропустить'
+},
+'ru-BY':{
+  cta:'Обсудить проект', back:'← На главную', kick:'Портфолио', ph1:'Сайты, которые мы сделали',
+  pled:'Шесть живых проектов: продукт, дизайн и логика. Нажмите на карточку — откроется настоящий сайт.',
+  w1h:'Nordic Coffee — интернет-магазин', w1p:'Магазин обжарщика кофе: каталог, подписка на доставку и AI-сомелье, подбирающий сорта.', w1t1:'E-commerce', w1t2:'AI-рекомендации',
+  w2h:'Fitline — сеть фитнес-клубов', w2p:'Лендинг с онлайн-записью, расчётом абонемента и голосовым ботом для бронирования пробных тренировок.', w2t1:'Лендинг', w2t2:'Online-запись',
+  w3h:'Prav — юридическая фирма', w3p:'Корпоративный сайт с AI-ассистентом, который квалифицирует обращения до передачи юристу.', w3t1:'Корпоративный', w3t2:'AI-ассистент',
+  w4h:'Logistics+ — грузоперевозки', w4p:'Логистика с трекингом по минутам, AI-приёмом накладных и статусами в Telegram.', w4t1:'Трекинг', w4t2:'AI-диспетчер',
+  w5h:'MediaHub — контент-студия', w5p:'Студия креативов с ИИ-генератором: один сценарий превращается в ролики для всех площадок.', w5t1:'Генератор', w5t2:'Видео',
+  w6h:'FinLab — финтех', w6p:'Финансовые сервисы с кредитным калькулятором и ИИ-помощником против кассовых разрывов.', w6t1:'Финтех', w6t2:'API',
+  go:'Смотреть кейс →', made:'Сделано с',
+  reg_title:'Выберите язык', reg_sub:'Страница отобразится на выбранном языке.', reg_skip:'Пропустить'
+},
+'en-US':{
+  cta:'Discuss a project', back:'← Back to home', kick:'Portfolio', ph1:'Websites we have built',
+  pled:'Six live projects: product, design and logic. Click a card — a real site opens.',
+  w1h:'Nordic Coffee — online store', w1p:'Coffee roaster shop: catalogue, delivery subscription and an AI sommelier that picks blends.', w1t1:'E-commerce', w1t2:'AI recommendations',
+  w2h:'Fitline — fitness club chain', w2p:'Landing page with online booking, membership calculator and a voice bot that books trial workouts.', w2t1:'Landing', w2t2:'Online booking',
+  w3h:'Prav — law firm', w3p:'Corporate website with an AI assistant that qualifies enquiries before they reach a lawyer.', w3t1:'Corporate', w3t2:'AI assistant',
+  w4h:'Logistics+ — freight shipping', w4p:'Logistics with minute-by-minute tracking, AI intake of waybills and statuses in Telegram.', w4t1:'Tracking', w4t2:'AI dispatcher',
+  w5h:'MediaHub — content studio', w5p:'Creative studio with an AI generator: one script turns into videos for every platform.', w5t1:'Generator', w5t2:'Video',
+  w6h:'FinLab — fintech', w6p:'Financial services with a credit calculator and an AI assistant against cash-flow gaps.', w6t1:'Fintech', w6t2:'API',
+  go:'View case →', made:'Made with',
+  reg_title:'Choose language', reg_sub:'The page will be shown in the selected language.', reg_skip:'Skip'
+},
+'en-GB':{
+  cta:'Discuss a project', back:'← Back to home', kick:'Portfolio', ph1:'Websites we have built',
+  pled:'Six live projects: product, design and logic. Click a card — a real site opens.',
+  w1h:'Nordic Coffee — online store', w1p:'Coffee roaster shop: catalogue, delivery subscription and an AI sommelier that picks blends.', w1t1:'E-commerce', w1t2:'AI recommendations',
+  w2h:'Fitline — fitness club chain', w2p:'Landing page with online booking, membership calculator and a voice bot that books trial workouts.', w2t1:'Landing', w2t2:'Online booking',
+  w3h:'Prav — law firm', w3p:'Corporate website with an AI assistant that qualifies enquiries before they reach a lawyer.', w3t1:'Corporate', w3t2:'AI assistant',
+  w4h:'Logistics+ — freight shipping', w4p:'Logistics with minute-by-minute tracking, AI intake of waybills and statuses in Telegram.', w4t1:'Tracking', w4t2:'AI dispatcher',
+  w5h:'MediaHub — content studio', w5p:'Creative studio with an AI generator: one script turns into videos for every platform.', w5t1:'Generator', w5t2:'Video',
+  w6h:'FinLab — fintech', w6p:'Financial services with a credit calculator and an AI assistant against cash-flow gaps.', w6t1:'Fintech', w6t2:'API',
+  go:'View case →', made:'Made with',
+  reg_title:'Choose language', reg_sub:'The page will be shown in the selected language.', reg_skip:'Skip'
+},
+'pl-PL':{
+  cta:'Omów projekt', back:'← Wróć na stronę główną', kick:'Portfolio', ph1:'Strony, które zrobiliśmy',
+  pled:'Sześć działających projektów: produkt, design i logika. Kliknij kartę — otworzy się prawdziwa strona.',
+  w1h:'Nordic Coffee — sklep internetowy', w1p:'Sklep palarni kawy: katalog, subskrypcja dostawy i AI-sommelier dobierający mieszanki.', w1t1:'E-commerce', w1t2:'AI-rekomendacje',
+  w2h:'Fitline — sieć klubów fitness', w2p:'Landing z rezerwacją online, kalkulatorem karnetu i botem głosowym do umawiania treningów próbnych.', w2t1:'Landing', w2t2:'Rezerwacja online',
+  w3h:'Prav — kancelaria prawna', w3p:'Strona korporacyjna z asystentem AI, który kwalifikuje zgłoszenia przed przekazaniem prawnikowi.', w3t1:'Korporacyjna', w3t2:'Asystent AI',
+  w4h:'Logistics+ — transport towarów', w4p:'Logistyka ze śledzeniem co do minuty, AI odczytem listów przewozowych i statusami w Telegramie.', w4t1:'Śledzenie', w4t2:'AI-dyspozytor',
+  w5h:'MediaHub — studio treści', w5p:'Studio kreatywne z generatorem AI: jeden scenariusz zamienia się w filmy na wszystkie platformy.', w5t1:'Generator', w5t2:'Wideo',
+  w6h:'FinLab — fintech', w6p:'Usługi finansowe z kalkulatorem kredytowym i asystentem AI chroniącym przed lukami w gotówce.', w6t1:'Fintech', w6t2:'API',
+  go:'Zobacz case →', made:'Zrobione z',
+  reg_title:'Wybierz język', reg_sub:'Strona wyświetli się w wybranym języku.', reg_skip:'Pomiń'
+},
+'de-DE':{
+  cta:'Projekt besprechen', back:'← Zur Startseite', kick:'Portfolio', ph1:'Websites, die wir gemacht haben',
+  pled:'Sechs Live-Projekte: Produkt, Design und Logik. Klick auf eine Karte – eine echte Website öffnet sich.',
+  w1h:'Nordic Coffee – Onlineshop', w1p:'Shop einer Kaffeerösterei: Katalog, Lieferservice-Abo und ein KI-Sommelier, der Sorten auswählt.', w1t1:'E-Commerce', w1t2:'KI-Empfehlungen',
+  w2h:'Fitline – Fitnessclub-Kette', w2p:'Landingpage mit Online-Buchung, Mitgliedschaftsrechner und Sprachbot für Probetricks.', w2t1:'Landingpage', w2t2:'Online-Buchung',
+  w3h:'Prav – Anwaltskanzlei', w3p:'Firmenwebsite mit KI-Assistent, der Anfragen vor der Übergabe an den Anwalt qualifiziert.', w3t1:'Corporate', w3t2:'KI-Assistent',
+  w4h:'Logistics+ – Güterverkehr', w4p:'Logistik mit minutenweitem Tracking, KI-Erfassung der Frachtbriefe und Status in Telegram.', w4t1:'Tracking', w4t2:'KI-Dispatcher',
+  w5h:'MediaHub – Content-Studio', w5p:'Creative-Studio mit KI-Generator: ein Skript wird zu Videos für alle Plattformen.', w5t1:'Generator', w5t2:'Video',
+  w6h:'FinLab – Fintech', w6p:'Finanzdienstleistungen mit Kreditrechner und KI-Assistent gegen Liquiditätslücken.', w6t1:'Fintech', w6t2:'API',
+  go:'Case ansehen →', made:'Erstellt mit',
+  reg_title:'Sprache wählen', reg_sub:'Die Seite wird in der gewählten Sprache angezeigt.', reg_skip:'Überspringen'
+},
+'zh-CN':{
+  cta:'洽谈项目', back:'← 返回首页', kick:'作品集', ph1:'我们做过的网站',
+  pled:'六个真实项目：产品、设计与逻辑。点击卡片，打开真实网站。',
+  w1h:'Nordic Coffee — 线上咖啡店', w1p:'咖啡烘焙商商店：商品目录、配送订阅和AI侍酒师帮你挑选豆种。', w1t1:'电商', w1t2:'AI推荐',
+  w2h:'Fitline — 连锁健身房', w2p:'落地页：在线预约、会员卡计算器和语音机器人预订体验课。', w2t1:'落地页', w2t2:'在线预约',
+  w3h:'Prav — 律师事务所', w3p:'企业官网，AI助手在提交律师前先对咨询进行筛选分类。', w3t1:'企业官网', w3t2:'AI助手',
+  w4h:'Logistics+ — 货运', w4p:'物流：分钟级追踪、AI运单录入、Telegram推送状态。', w4t1:'追踪', w4t2:'AI调度',
+  w5h:'MediaHub — 内容工作室', w5p:'创意工作室+AI生成器：一个脚本转化为所有平台的视频。', w5t1:'生成器', w5t2:'视频',
+  w6h:'FinLab — 金融科技', w6p:'金融服务：信贷计算器和防止现金流缺口的AI助手。', w6t1:'金融科技', w6t2:'API',
+  go:'查看案例 →', made:'由…制作',
+  reg_title:'选择语言', reg_sub:'页面将以所选语言显示。', reg_skip:'跳过'
+},
+'ja-JP':{
+  cta:'プロジェクトを相談', back:'← ホームへ戻る', kick:'ポートフォリオ', ph1:'私たちが作ったウェブサイト',
+  pled:'6つの実稼働プロジェクト：プロダクト・デザイン・ロジック。カードをクリックすると本物のサイトが開きます。',
+  w1h:'Nordic Coffee — ECサイト', w1p:'コーヒーロースターの公式ストア：カタログ、定期配送、産地を提案するAIソムリエ。', w1t1:'Eコマース', w1t2:'AI提案',
+  w2h:'Fitline — フィットネスクラブチェーン', w2p:'オンライン予約、会員費シミュレーター、体験レッスン予約の音声ボット付きランディング。', w2t1:'ランディング', w2t2:'オンライン予約',
+  w3h:'Prav — 法律事務所', w3p:'弁護士に渡す前にお問い合わせを仕分けするAIアシスタントを備えた法人サイト。', w3t1:'コーポレート', w3t2:'AIアシスタント',
+  w4h:'Logistics+ — 貨物輸送', w4p:'分単位の追跡、AIによる運送状処理、Telegramのステータス通知を備えた物流。', w4t1:'追跡', w4t2:'AIディスパッチャー',
+  w5h:'MediaHub — コンテンツスタジオ', w5p:'AIジェネレーターで1つの脚本から全プラットフォームの動画を生むクリエイティブスタジオ。', w5t1:'ジェネレーター', w5t2:'動画',
+  w6h:'FinLab — フィンテック', w6p:'キャッシュフローの穴を防ぐ信用計算機とAIアシスタントを備えた金融サービス。', w6t1:'フィンテック', w6t2:'API',
+  go:'ケースを見る →', made:'制作：',
+  reg_title:'言語を選択', reg_sub:'選択した言語で表示されます。', reg_skip:'スキップ'
+},
+'kk-KZ':{
+  cta:'Жобаны талқылау', back:'← Басты бетке', kick:'Портфолио', ph1:'Біз жасаған сайттар',
+  pled:'Алты тірі жоба: өнім, дизайн және логика. Карточканы басыңыз — нағыз сайт ашылады.',
+  w1h:'Nordic Coffee — интернет-дүкен', w1p:'Кофе қуырушы дүкені: каталог, жеткізу жазылымы және сортты таңдайтын AI-сомелье.', w1t1:'E-commerce', w1t2:'AI-ұсыныстар',
+  w2h:'Fitline — фитнес-клубтар желісі', w2p:'Онлайн жазылу, абонемент есептегіш және сынақ жаттығуларын жазатын дауыстық бот бар лендинг.', w2t1:'Лендинг', w2t2:'Онлайн жазылу',
+  w3h:'Prav — заң фирмасы', w3p:'Заңгерге жеткізгенге дейін өтінімдерді саралайтын AI-көмекшісі бар корпоративтік сайт.', w3t1:'Корпоративтік', w3t2:'AI-көмекші',
+  w4h:'Logistics+ — жүк тасымалдау', w4p:'Минутына трекинг, AI арқылы жүкқұжат қабылдау және Telegram-дағы статустар.', w4t1:'Трекинг', w4t2:'AI-диспетчер',
+  w5h:'MediaHub — контент-студия', w5p:'AI-генераторы бар студия: бір сценарий барлық алаңдарға роликке айналады.', w5t1:'Генератор', w5t2:'Видео',
+  w6h:'FinLab — финтех', w6p:'Несие калькуляторы және кассалық үзілістерге қарсы AI-көмекшісі бар қаржы сервистері.', w6t1:'Финтех', w6t2:'API',
+  go:'Кейсті көру →', made:'Жасалған:',
+  reg_title:'Тілді таңдаңыз', reg_sub:'Бет таңдалған тілде көрсетіледі.', reg_skip:'Өткізіп жіберу'
+},
+'uz-UZ':{
+  cta:'Loyihani muhokama qilish', back:'← Bosh sahifaga', kick:'Portfolio', ph1:'Biz qilgan saytlar',
+  pled:'Oltita jonli loyiha: mahsulot, dizayn va mantiq. Kartani bosing — haqiqiy sayt ochiladi.',
+  w1h:'Nordic Coffee — internet-doʻkon', w1p:'Qahva qovuruvchining doʻkoni: katalog, yetkazib berish obunasi va navlarni tanlaydigan AI-somelye.', w1t1:'E-commerce', w1t2:'AI-tavsiyalar',
+  w2h:'Fitline — fitnes-klublar tarmogʻi', w2p:'Onlayn yozilish, abonement hisoblagichi va sinov mashgʻulotlarini yozadigan ovozli botli lending.', w2t1:'Lending', w2t2:'Onlayn yozilish',
+  w3h:'Prav — yuridik firma', w3p:'Yuristga uzatishdan oldin murojaatlarni saralaydigan AI-yordamchili korporativ sayt.', w3t1:'Korporativ', w3t2:'AI-yordamchi',
+  w4h:'Logistics+ — yuk tashish', w4p:'Daqiqasiga treking, AI orqali yoʻl varaqlarini qabul qilish va Telegram-dagi statuslar.', w4t1:'Treking', w4t2:'AI-dispetcher',
+  w5h:'MediaHub — kontent-studiya', w5p:'AI-generatorli studiya: bitta ssenariy barcha platformalarga rolikka aylanadi.', w5t1:'Generator', w5t2:'Video',
+  w6h:'FinLab — fintex', w6p:'Kredit kalkulyatori va kassa uzilishlariga qarshi AI-yordamchili moliyaviy xizmatlar.', w6t1:'Fintex', w6t2:'API',
+  go:'Keysni koʻrish →', made:'Yaratildi:',
+  reg_title:'Tilni tanlang', reg_sub:'Sahifa tanlangan tilda koʻrsatiladi.', reg_skip:"O'tkazib yuborish"
+},
+'ka-GE':{
+  cta:'პროექტის განხილვა', back:'← მთავარ გვერდზე', kick:'პორტფოლიო', ph1:'საიტები, რომლებიც შევქმენით',
+  pled:'ექვსი ცოცხალი პროექტი: პროდუქტი, დიზაინი და ლოგიკა. დააჭირეთ ბარათს — გაიხსნება ნამდვილი საიტი.',
+  w1h:'Nordic Coffee — ონლაინ მაღაზია', w1p:'ყავის შემწვარის მაღაზია: კატალოგი, მიწოდების გამოწერა და ჯიშებს შესარჩევი AI-სომელიე.', w1t1:'E-commerce', w1t2:'AI-რეკომენდაციები',
+  w2h:'Fitline — ფიტნეს კლუბების ქსელი', w2p:'ლენდინგი ონლაინ ჩაწერით, აბონემენტის გამოთვლით და საცდელი ვარჯიშების დამჯავშნებელი ხმოვანი ბოტით.', w2t1:'ლენდინგი', w2t2:'ონლაინ ჩაწერა',
+  w3h:'Prav — იურიდიული ფირმა', w3p:'კორპორატიული საიტი AI-ასისტენტით, რომელიც განაცხადებს იურისტამდე ახარისხებს.', w3t1:'კორპორატიული', w3t2:'AI-ასისტენტი',
+  w4h:'Logistics+ — ტვირთის გადაზიდვა', w4p:'ლოგისტიკა წუთიანი თრექინგით, საბუთების AI-მიღებით და Telegram-ის სტატუსებით.', w4t1:'თრექინგი', w4t2:'AI-დისპეჩერი',
+  w5h:'MediaHub — კონტენტ სტუდია', w5p:'კრეატივების სტუდია AI-გენერატორით: ერთი სცენარი ყველა პლატფორმის ვიდეოდ იქცევა.', w5t1:'გენერატორი', w5t2:'ვიდეო',
+  w6h:'FinLab — ფინტექ', w6p:'ფინანსური სერვისები საკრედიტო კალკულატორით და სალაროს ხარვეზებთან ბრძოლის AI-ასისტენტით.', w6t1:'ფინტექ', w6t2:'API',
+  go:'ქეისის ნახვა →', made:'შექმნილია:',
+  reg_title:'აირჩიეთ ენა', reg_sub:'გვერდი ჩაიტვირთება არჩეულ ენაზე.', reg_skip:'გამოტოვება'
+},
+'he-IL':{
+  cta:'דיון על הפרויקט', back:'← חזרה לדף הבית', kick:'תיק עבודות', ph1:'אתרים שבנינו',
+  pled:'שישה פרויקטים חיים: מוצר, עיצוב ולוגיקה. לחצו על הכרטיס — ייפתח אתר אמיתי.',
+  w1h:'Nordic Coffee — חנות מקוונת', w1p:'חנות של בית קלייה: קטלוג, מנוי משלוחים וסומלייה AI שבוחר זנים.', w1t1:'מסחר אלקטרוני', w1t2:'המלצות AI',
+  w2h:'Fitline — רשת מועדוני כושר', w2p:'נחיתה עם הזמנה מקוונת, מחשבון מנוי ובוט קולי שמזמין אימוני ניסיון.', w2t1:'דף נחיתה', w2t2:'הזמנה מקוונת',
+  w3h:'Prav — משרד עורכי דין', w3p:'אתר תאגידי עם עוזר AI שמסווג פניות לפני העברה לעורך דין.', w3t1:'תאגידי', w3t2:'עוזר AI',
+  w4h:'Logistics+ — הובלות', w4p:'לוגיסטיקה עם מעקב דקה-אחר-דקה, קליטת שטרי מטען ב-AI וסטטוסים בטלגרם.', w4t1:'מעקב', w4t2:'AI-דיספצ׳ר',
+  w5h:'MediaHub — סטודיו תוכן', w5p:'סטודיו קריאייטיב עם מחולל AI: תסריט אחד הופך לסרטונים לכל הפלטפורמות.', w5t1:'מחולל', w5t2:'וידאו',
+  w6h:'FinLab — פינטק', w6p:'שירותים פיננסיים עם מחשבון אשראי ועוזר AI נגד פערי תזרים מזומנים.', w6t1:'פינטק', w6t2:'API',
+  go:'לצפייה בפרויקט →', made:'נעשה עם',
+  reg_title:'בחרו שפה', reg_sub:'הדף יוצג בשפה שנבחרה.', reg_skip:'דלג'
+},
+'hy-AM':{
+  cta:'Քննարկել նախագիծը', back:'← Վերադառնալ գլխավոր էջ', kick:'Պորտֆոլիո', ph1:'Մեր ստեղծած կայքերը',
+  pled:'Վեց կենդանի նախագիծ՝ ապրանք, դիզայն և տրամաբանություն։ Սեղմեք քարտին՝ կբացվի իրական կայք։',
+  w1h:'Nordic Coffee — ինտերնետ խանութ', w1p:'Սուրճ բովողի խանութ՝ կատալոգ, առաքման բաժանորդագրություն և տեսակներ ընտրող AI-սոմելյե։', w1t1:'E-commerce', w1t2:'AI-առաջարկներ',
+  w2h:'Fitline — ֆիթնես ակումբների ցանց', w2p:'Լենդինգ՝ առցանց գրանցմամբ, աբոնեմենտի հաշվիչով և փորձնական պարապմունքներ ամրագրող ձայնային բոտով։', w2t1:'Լենդինգ', w2t2:'առցանց գրանցում',
+  w3h:'Prav — իրավաբանական ընկերություն', w3p:'Կորպորատիվ կայք AI-օգնականով, որը դիմումները դասակարգում է իրավաբանին փոխանցելուց առաջ։', w3t1:'Կորպորատիվ', w3t2:'AI-օգնական',
+  w4h:'Logistics+ — բեռնափոխադրում', w4p:'Լոգիստիկա րոպե առ րոպե հետևմամբ, փաստաթղթերի AI-ընդունմամբ և Telegram-ի ստատուսներով։', w4t1:'Հետևում', w4t2:'AI-դիսպետչեր',
+  w5h:'MediaHub — բովանդակության ստուդիա', w5p:'Կրեատիվ ստուդիա AI-գեներատորով. մեկ սցենարը վերածվում է բոլոր հարթակների տեսահոլովակների։', w5t1:'Գեներատոր', w5t2:'Վիդեո',
+  w6h:'FinLab — ֆինտեխ', w6p:'Ֆինանսական ծառայություններ վարկային հաշվիչով և դրամական ճեղքերի դեմ AI-օգնականով։', w6t1:'Ֆինտեխ', w6t2:'API',
+  go:'Դիտել դեպքը →', made:'Ստեղծված է',
+  reg_title:'Ընտրել լեզուն', reg_sub:'Էջը կցուցադրվի ընտրված լեզվով։', reg_skip:'Բաց թողնել'
+},
+'az-AZ':{
+  cta:'Layihəni müzakirə et', back:'← Ana səhifəyə', kick:'Portfolio', ph1:'Bizim hazırladığımız saytlar',
+  pled:'Altı canlı layihə: məhsul, dizayn və məntiq. Karta klikləyin — real sayt açılır.',
+  w1h:'Nordic Coffee — onlayn mağaza', w1p:'Qəhvə qovuranın mağazası: kataloq, çatdırılma abunəsi və sortları seçən AI-somelye.', w1t1:'E-ticarət', w1t2:'AI-tövsiyələr',
+  w2h:'Fitline — fitnes klubları şəbəkəsi', w2p:'Onlayn qeydiyyat, abunə kalkulyatoru və sınaq məşqlərini bron edən səsli botlu lendinq.', w2t1:'Lendinq', w2t2:'Onlayn qeydiyyat',
+  w3h:'Prav — hüquq şirkəti', w3p:'Müraciətləri vəkilə ötürmədən əvvəl təsnifləyən AI-köməkçisi olan korporativ sayt.', w3t1:'Korporativ', w3t2:'AI-köməkçi',
+  w4h:'Logistics+ — yük daşımaları', w4p:'Dəqiqələrlə izləmə, yük sənədlərinin AI ilə qəbulu və Telegram-da statuslar.', w4t1:'İzləmə', w4t2:'AI-dispetçer',
+  w5h:'MediaHub — kontent studiyası', w5p:'AI-generatorlu yaradıcılıq studiyası: bir ssenari bütün platformalar üçün videolara çevrilir.', w5t1:'Generator', w5t2:'Video',
+  w6h:'FinLab — fintex', w6p:'Kredit kalkulyatoru və kassa boşluqlarına qarşı AI-köməkçisi olan maliyyə xidmətləri.', w6t1:'Fintex', w6t2:'API',
+  go:'Case-ə bax →', made:'Hazırlandı:',
+  reg_title:'Dil seçin', reg_sub:'Səhifə seçilmiş dildə göstəriləcək.', reg_skip:'Keçid et'
+},
+'ky-KG':{
+  cta:'Долбоорду талкуулоо', back:'← Башкы бетке', kick:'Портфолио', ph1:'Биз жасаган сайттар',
+  pled:'Алты тирүү долбоор: продукт, дизайн жана логика. Карточканы басыңыз — чыныгы сайт ачылат.',
+  w1h:'Nordic Coffee — интернет-дүкөн', w1p:'Кофе кууруучунун дүкөнү: каталог, жеткирүү жазылуусу жана сортторду тандаган AI-сомелье.', w1t1:'E-commerce', w1t2:'AI-сунуштар',
+  w2h:'Fitline — фитнес-клубдар тармагы', w2p:'Онлайн жазылуу, абонемент эсептегич жана сыноо машыгууларды жаза турган үн боту бар лендинг.', w2t1:'Лендинг', w2t2:'Онлайн жазылуу',
+  w3h:'Prav — юридикалык фирма', w3p:'Адвокатка өткөрүүдөн мурун кайрылууларды ирээттөөчү AI-жардамчысы бар корпоративдик сайт.', w3t1:'Корпоративдик', w3t2:'AI-жардамчы',
+  w4h:'Logistics+ — жүк ташуу', w4p:'Мүнөт сайын трекинг, AI менен жүк кагаздарын кабыл алуу жана Telegramдагы статустар.', w4t1:'Трекинг', w4t2:'AI-диспетчер',
+  w5h:'MediaHub — контент-студия', w5p:'AI-генератору бар студия: бир сценарий бардык аянтчалар үчүн видеого айланат.', w5t1:'Генератор', w5t2:'Видео',
+  w6h:'FinLab — финтех', w6p:'Кредит калькулятору жана касса боштуктарына каршы AI-жардамчысы бар финансылык кызматтар.', w6t1:'Финтех', w6t2:'API',
+  go:'Кейсти көрүү →', made:'Жасалды:',
+  reg_title:'Тил тандоо', reg_sub:'Баракча тандалган тилде көрсөтүлөт.', reg_skip:'Өткөрүп жиберүү'
+},
+'tg-TJ':{
+  cta:'Лоиҳаро муҳокима кардан', back:'← Ба саҳифаи асосӣ', kick:'Портфолио', ph1:'Сайтҳое, ки мо сохтаем',
+  pled:'Шаш лоиҳаи воқеӣ: маҳсулот, тарроҳӣ ва мантиқ. Ба корт зер кунед — сайтаи воқеӣ кушода мешавад.',
+  w1h:'Nordic Coffee — мағозаи онлайн', w1p:'Мағозаи қаҳвабирёр: каталог, обунаи расондан ва AI-сомелйе интихобкунандаи навъҳо.', w1t1:'E-commerce', w1t2:'AI-тавсияҳо',
+  w2h:'Fitline — шабакаи клубҳои фитнес', w2p:'Лендинг бо сабти ном, ҳисобкунаки обуна ва боти овозии сабткунандаи тамрини санҷишӣ.', w2t1:'Лендинг', w2t2:'Сабти ном',
+  w3h:'Prav — фирмаи ҳуқуқӣ', w3p:'Сайти корпоративӣ бо ёрирасони AI, ки дархостҳоро пеш аз супурдан ба ҳуқуқшинос тасниф мекунад.', w3t1:'Корпоративӣ', w3t2:'Ёрирасони AI',
+  w4h:'Logistics+ — ҳамлу нақли бор', w4p:'Логистика бо пайгирии дақиқа, қабули ҳуҷҷатҳои бор бо AI ва статусҳо дар Telegram.', w4t1:'Пайгирӣ', w4t2:'Диспетчери AI',
+  w5h:'MediaHub — студияи контент', w5p:'Студияи эҷодӣ бо генератори AI: як сенарий ба видео барои ҳамаи платформаҳо табдил меёбад.', w5t1:'Генератор', w5t2:'Видео',
+  w6h:'FinLab — финтех', w6p:'Хизматҳои молиявӣ бо ҳисобкунаки қарз ва ёрирасони AI алайҳи нуқсонҳои касса.', w6t1:'Финтех', w6t2:'API',
+  go:'Ҳолатро дидан →', made:'Сохт:',
+  reg_title:'Забонро интихоб кунед', reg_sub:'Саҳифа бо забони интихобшуда нишон дода мешавад.', reg_skip:'Гузаштан'
+},
+'tk-TM':{
+  cta:'Taslamany maslahatlaşmak', back:'← Baş sahypa', kick:'Portfolio', ph1:'Biziň ýasan saýtlarymyz',
+  pled:'Alty janly taslama: önüm, dizaýn we logika. Karta basyň — hakyky saýt açylýar.',
+  w1h:'Nordic Coffee — onlaýn dükan', w1p:'Gofe gowurujynyň dükany: katalog, eltip berme abunasy we görnüşleri saýlaýan AI-somelýe.', w1t1:'E-täjir', w1t2:'AI-teklip',
+  w2h:'Fitline — fitnes klublary ulgamy', w2p:'Onlaýn ýazylmak, abunalyk kalkulýatory we synag türgenleşiklerini ýazdyrýan ses botly lendiň.', w2t1:'Lendiň', w2t2:'Onlaýn ýazylmak',
+  w3h:'Prav — hukuk firmasy', w3p:'Haýyşlary aklawça bermezden öň sortlaýan AI-kömekçili korporatiw saýt.', w3t1:'Korporatiw', w3t2:'AI-kömekçi',
+  w4h:'Logistics+ — ýük daşamak', w4p:'Minutlaýyn yzarlama, AI bilen ýük hatlaryny kabul etmek we Telegram-da statuslar.', w4t1:'Yzarlama', w4t2:'AI-dispetçer',
+  w5h:'MediaHub — mazmun studiýasy', w5p:'AI-generatorly döredijilik studiýasy: bir ssenari ähli platformalar üçin wideolara öwrülýär.', w5t1:'Generator', w5t2:'Wideo',
+  w6h:'FinLab — finteh', w6p:'Kredit kalkulýatory we kassa boşluklaryna garşy AI-kömekçili maliýe hyzmatlary.', w6t1:'Finteh', w6t2:'API',
+  go:'Cheysi görmek →', made:'Daraldy:',
+  reg_title:'Dili saýlaň', reg_sub:'Sahypa saýlanan dilde görkeziler.', reg_skip:'Geçmek'
+},
+'ro-MD':{
+  cta:'Discută proiectul', back:'← Înapoi la prima pagină', kick:'Portofoliu', ph1:'Site-urile pe care le-am făcut',
+  pled:'Șase proiecte vii: produs, design și logică. Apasă pe card — se deschide site-ul real.',
+  w1h:'Nordic Coffee — magazin online', w1p:'Magazinul unei prăjitorii de cafea: catalog, abonament de livrare și un AI-somelier care alege sortimentele.', w1t1:'E-commerce', w1t2:'Recomandări AI',
+  w2h:'Fitline — rețea de cluburi fitness', w2p:'Landing cu programare online, calculator de abonament și bot vocal pentru rezervarea antrenamentelor de probă.', w2t1:'Landing', w2t2:'Programare online',
+  w3h:'Prav — firmă de avocatură', w3p:'Site corporativ cu un asistent AI care clasifică cererile înainte de transmiterea către avocat.', w3t1:'Corporate', w3t2:'Asistent AI',
+  w4h:'Logistics+ — transport de marfă', w4p:'Logistică cu tracking minut cu minut, recepție AI a facturilor și statusuri în Telegram.', w4t1:'Tracking', w4t2:'Dispecer AI',
+  w5h:'MediaHub — studio de conținut', w5p:'Studio de creație cu generator AI: un scenariu devine videoclipuri pentru toate platformele.', w5t1:'Generator', w5t2:'Video',
+  w6h:'FinLab — fintech', w6p:'Servicii financiare cu calculator de credit și asistent AI împotriva golurilor de cash-flow.', w6t1:'Fintech', w6t2:'API',
+  go:'Vezi proiectul →', made:'Realizat cu',
+  reg_title:'Alege limba', reg_sub:'Pagina va fi afișată în limba selectată.', reg_skip:'Sari peste'
+}
+};
+
+let lang = window.__forcedLang || localStorage.getItem('wibe-region') || 'ru-RU';
+
+function applyLang(){
+  const loc = LOCALES.find(l => l.code === lang) || LOCALES[0];
+  document.documentElement.lang = loc.code;
+  document.documentElement.dir = loc.dir;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = STR[loc.code] && STR[loc.code][el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  const btn = document.getElementById('langBtn');
+  if (btn) btn.textContent = loc.flag;
+}
+
+function choose(code){ lang = code; localStorage.setItem('wibe-region', code); applyLang(); document.getElementById('regionModal').classList.remove('show'); }
+
+const modal = document.getElementById('regionModal');
+document.getElementById('langBtn').addEventListener('click', () => modal.classList.add('show'));
+document.getElementById('regionGrid').innerHTML = LOCALES.map(l =>
+  `<button class="region-btn" data-code="${l.code}"><span class="fl">${l.flag}</span>${l.label}</button>`
+).join('');
+document.getElementById('regionGrid').addEventListener('click', e => {
+  const b = e.target.closest('.region-btn');
+  if (b) choose(b.dataset.code);
+});
+document.getElementById('regSkip').addEventListener('click', e => { e.preventDefault(); modal.classList.remove('show'); });
+document.addEventListener('click', e => {
+  if (e.target === modal) modal.classList.remove('show');
+});
+
+applyLang();
+</script>
 </body>
 </html>

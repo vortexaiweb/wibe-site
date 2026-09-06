@@ -140,9 +140,34 @@ for (const page of Object.keys(CASE_META_RAW)) {
   }
 }
 
+export const PORTFOLIO_META = {
+  'ru-RU': ['Портфолио сайтов — WIBE', 'Кейсы и демо-проекты WIBE: интернет-магазины, логистика, медиа, юриспруденция, финтех, фитнес, кофе.', 'Портфолио WIBE', 'Проекты и кейсы AI digital agency WIBE.', 'Главная', 'Портфолио'],
+  'ru-BY': ['Портфолио сайтов — WIBE', 'Кейсы и демо-проекты WIBE: интернет-магазины, логистика, медиа, юриспруденция, финтех, фитнес, кофе.', 'Портфолио WIBE', 'Проекты и кейсы AI digital agency WIBE.', 'Главная', 'Портфолио'],
+  'en-US': ['Portfolio of websites — WIBE', 'WIBE cases and demo projects: e-commerce, logistics, media, law, fintech, fitness, coffee.', 'WIBE portfolio', 'Projects and case studies of WIBE AI digital agency.', 'Home', 'Portfolio'],
+  'en-GB': ['Portfolio of websites — WIBE', 'WIBE cases and demo projects: e-commerce, logistics, media, law, fintech, fitness, coffee.', 'WIBE portfolio', 'Projects and case studies of WIBE AI digital agency.', 'Home', 'Portfolio'],
+  'pl-PL': ['Portfolio stron — WIBE', 'Przykłady i demo-projekty WIBE: e-commerce, logistyka, media, prawo, fintech, fitness, kawa.', 'Portfolio WIBE', 'Projekty i case studies AI digital agency WIBE.', 'Strona główna', 'Portfolio'],
+  'de-DE': ['Portfolio — WIBE', 'WIBE-Projekte und Demos: E-Commerce, Logistik, Medien, Recht, Fintech, Fitness, Kaffee.', 'WIBE-Portfolio', 'Projekte und Case Studies von WIBE AI digital agency.', 'Startseite', 'Portfolio'],
+  'zh-CN': ['作品集 — WIBE', 'WIBE案例和演示项目：电商、物流、媒体、法律、金融科技、健身、咖啡。', 'WIBE 作品集', 'WIBE AI 数字机构的项目与案例。', '首页', '作品集'],
+  'ja-JP': ['ポートフォリオ — WIBE', 'WIBEの実績・デモサイト集：EC・物流・メディア・法律・フィンテック・フィットネス・コーヒー。', 'WIBEポートフォリオ', 'WIBE AIデジタルエージェンシーのプロジェクトと事例。', 'ホーム', 'ポートフォリオ'],
+  'kk-KZ': ['Портфолио сайттар — WIBE', 'WIBE кейстері мен демо-жобалары: интернет-дүкендер, логистика, медиа, заң, финтех, фитнес, кофе.', 'WIBE портфолиосы', 'WIBE AI digital agency жобалары мен кейстері.', 'Басты бет', 'Портфолио'],
+  'uz-UZ': ['Portfolio saytlar — WIBE', 'WIBE keyslari va demo-loyihalari: internet-doʻkonlar, logistika, media, huquq, fintex, fitnes, qahva.', 'WIBE portfoliyosi', 'WIBE AI digital agency loyihalari va keyslari.', 'Bosh sahifa', 'Portfolio'],
+  'ka-GE': ['პორტფოლიო — WIBE', 'WIBE-ს ქეისები და დემო პროექტები: ელ-კომერცია, ლოგისტიკა, მედია, იურისპრუდენცია, ფინტექი, ფიტნესი, ყავა.', 'WIBE პორტფოლიო', 'WIBE AI digital agency პროექტები და ქეისები.', 'მთავარი გვერდი', 'პორტფოლიო'],
+  'he-IL': ['פורטפוליו — WIBE', 'הפרויקטים והדמואים של WIBE: איקומרס, לוגיסטיקה, מדיה, משפטים, פינטק, כושר, קפה.', 'הפורטפוליו של WIBE', 'הפרויקטים ומקרי הבוחן של WIBE AI digital agency.', 'דף הבית', 'פורטפוליו'],
+  'hy-AM': ['Պորտֆոլիո — WIBE', 'WIBE-ի դեպքերն ու դեմո նախագծերը. ինտերնետ խանութներ, լոգիստիկա, մեդիա, իրավունք, ֆինտեխ, ֆիթնես, սուրճ։', 'WIBE պորտֆոլիո', 'WIBE AI digital agency նախագծերն ու դեպքերը։', 'Գլխավոր էջ', 'Պորտֆոլիո'],
+  'az-AZ': ['Portfolio — WIBE', 'WIBE keysləri və demo-layihələri: e-ticarət, logistika, media, hüquq, fintex, fitnes, qəhvə.', 'WIBE portfoliyosu', 'WIBE AI digital agency layihələri və keysləri.', 'Ana səhifə', 'Portfolio'],
+  'ky-KG': ['Портфолио сайттар — WIBE', 'WIBE кейстери жана демо-долбоорлору: интернет-дүкөндөр, логистика, медиа, укук, финтех, фитнес, кофе.', 'WIBE портфолиосу', 'WIBE AI digital agency долбоорлору жана кейстери.', 'Башкы бет', 'Портфолио'],
+  'tg-TJ': ['Портфолио — WIBE', 'Кейсҳо ва лоиҳаҳои демои WIBE: мағозаҳои онлайн, логистика, ВАО, ҳуқуқ, финтех, фитнес, қаҳва.', 'Портфолиои WIBE', 'Лоиҳаҳо ва кейсҳои WIBE AI digital agency.', 'Саҳифаи асосӣ', 'Портфолио'],
+  'tk-TM': ['Portfolio — WIBE', 'WIBE keyesleri we demo-taslamalary: e-täjir, logistika, metbugat, hukuk, finteh, fitnes, gofe.', 'WIBE portfoliosy', 'WIBE AI digital agency taslamalary we keyesleri.', 'Baş sahypa', 'Portfolio'],
+  'ro-MD': ['Portofoliu — WIBE', 'Proiectele și demo-urile WIBE: e-commerce, logistică, media, drept, fintech, fitness, cafea.', 'Portofoliul WIBE', 'Proiectele și cazurile de studiu WIBE AI digital agency.', 'Pagina principală', 'Portofoliu']
+};
+
 export function metaFor(page, code) {
   if (page === '') {
     const m = INDEX_META[code] || INDEX_META['en-US'];
+    return { title: m[0], desc: m[1] };
+  }
+  if (page === 'portfolio.html') {
+    const m = PORTFOLIO_META[code] || PORTFOLIO_META['en-US'];
     return { title: m[0], desc: m[1] };
   }
   const m = CASE_META[page][code];
@@ -153,7 +178,8 @@ export const PAGES = [
   { file: 'index.html',            page: '' },
   { file: 'case-ecom.html',        page: 'case-ecom.html' },
   { file: 'case-logistics.html',   page: 'case-logistics.html' },
-  { file: 'case-media.html',       page: 'case-media.html' }
+  { file: 'case-media.html',       page: 'case-media.html' },
+  { file: 'portfolio.html',        page: 'portfolio.html' }
 ];
 
 const SEOTMPL = (title, desc, type, url, ogLocale, hrl) => `<title>${title}</title>
@@ -195,14 +221,26 @@ export function buildVariant(source, page, filename, code, dir) {
   html = html.replace(/<html lang="[^"]*"/, '<html lang="' + code + '"');
   html = html.replace('</head>', "<script>window.__forcedLang='" + code + "';</script>\n</head>");
 
+  if (page === 'portfolio.html') {
+    const m = PORTFOLIO_META[code] || PORTFOLIO_META['en-US'];
+    html = html.replace('"name": "Портфолио WIBE"', '"name": "' + m[2] + '"');
+    html = html.replace('"description": "Проекты и кейсы AI digital agency WIBE."', '"description": "' + m[3] + '"');
+    html = html.replace('"name": "Главная"', '"name": "' + m[4] + '"');
+    html = html.replace('"name": "Портфолио"', '"name": "' + m[5] + '"');
+  }
+
   /* ссылки переводятся на абсолютные/локальные версии */
   html = html.replaceAll('href="case-ecom.html"', `href="/${dir}/case-ecom.html"`);
   html = html.replaceAll('href="case-logistics.html"', `href="/${dir}/case-logistics.html"`);
   html = html.replaceAll('href="case-media.html"', `href="/${dir}/case-media.html"`);
-  html = html.replaceAll('href="portfolio.html"', 'href="/portfolio.html"');
+  html = html.replaceAll('href="portfolio.html"', `href="/${dir}/portfolio.html"`);
   html = html.replaceAll('href="index.html#contact"', `href="/${dir}/#contact"`);
   html = html.replaceAll('href="index.html"', `href="/${dir}/"`);
   html = html.replaceAll('href="case.css"', 'href="/case.css"');
+  html = html.replaceAll('href="portfolio.css"', 'href="/portfolio.css"');
+  for (const site of ['coffee', 'fit', 'law', 'logistics', 'media', 'finlab']) {
+    html = html.replaceAll(`href="site-${site}.html"`, `href="/site-${site}.html"`);
+  }
   return html;
 }
 
