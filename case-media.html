@@ -9,40 +9,291 @@
 <body>
 <header>
   <a class="wordmark" href="index.html">WIBE<span>.</span></a>
-  <a class="cta" href="index.html#contact">Обсудить проект</a>
+  <div class="header-right">
+    <button class="lang-btn" id="langBtn" aria-label="Language">🌐</button>
+    <a class="cta" href="index.html#contact" data-i18n="cta">Обсудить проект</a>
+  </div>
 </header>
 
 <section class="case-hero">
-  <div class="kicker">Кейс · Медиа</div>
-  <h1>Контент-конвейер: <em>×12</em> к скорости производства</h1>
-  <p>Медиа-команда тонула в рутине: на брендированные креативы под каждую площадку уходило больше времени, чем на сам контент.</p>
+  <div class="kicker" data-i18n="kicker">Кейс · Медиа</div>
+  <h1><span data-i18n="h1a">Контент-конвейер:</span> <em>×12</em> <span data-i18n="h1b">к скорости производства</span></h1>
+  <p data-i18n="hero_p">Медиа-команда тонула в рутине: на брендированные креативы под каждую площадку уходило больше времени, чем на сам контент.</p>
 </section>
 
 <section class="case-body">
   <div class="col">
-    <h2>Задача</h2>
-    <p>Из одного сценария выпускать десятки адаптаций под разные площадки, форматы и сегменты аудитории — без раздувания команды.</p>
-    <h2>Решение</h2>
-    <p>Построили конвейер: сценарий и бренд-бук на входе, на выходе — тексты, изображения и видео-адаптации. Дизайнер только финально утверждает материал.</p>
-    <h2>Результат</h2>
+    <h2 data-i18n="t_task">Задача</h2>
+    <p data-i18n="task_p">Из одного сценария выпускать десятки адаптаций под разные площадки, форматы и сегменты аудитории — без раздувания команды.</p>
+    <h2 data-i18n="t_sol">Решение</h2>
+    <p data-i18n="sol_p">Построили конвейер: сценарий и бренд-бук на входе, на выходе — тексты, изображения и видео-адаптации. Дизайнер только финально утверждает материал.</p>
+    <h2 data-i18n="t_res">Результат</h2>
     <ul>
-      <li>Скорость производства выросла в 12 раз</li>
-      <li>Десятки креативов в день вместо трёх</li>
-      <li>Затраты на производство контента −60%</li>
+      <li data-i18n="ul1">Скорость производства выросла в 12 раз</li>
+      <li data-i18n="ul2">Десятки креативов в день вместо трёх</li>
+      <li data-i18n="ul3">Затраты на производство контента −60%</li>
     </ul>
-    <a class="cta" href="index.html#contact">Хочу так же</a>
+    <a class="cta" href="index.html#contact" data-i18n="want">Хочу так же</a>
   </div>
   <aside class="metric-card">
-    <div class="big">×12</div><div class="label">скорость производства</div>
-    <div class="big">30+</div><div class="label">креативов в день</div>
-    <div class="big">−60%</div><div class="label">затраты на контент</div>
-    <div class="big">4 нед.</div><div class="label">от аудита до запуска</div>
+    <div class="big">×12</div><div class="label" data-i18n="m1">скорость производства</div>
+    <div class="big">30+</div><div class="label" data-i18n="m2">креативов в день</div>
+    <div class="big">−60%</div><div class="label" data-i18n="m3">затраты на контент</div>
+    <div class="big">4 нед.</div><div class="label" data-i18n="m4">от аудита до запуска</div>
   </aside>
 </section>
 
 <footer>
-  <div>© 2026 WIBE — AI digital agency</div>
-  <div>Сделано с <a href="index.html">WIBE AI</a> ⚡</div>
+  <div data-i18n="foot">© 2026 WIBE — AI digital agency</div>
+  <div><span data-i18n="made">Сделано с</span> <a href="index.html">WIBE AI</a> ⚡</div>
 </footer>
+
+<div class="region-modal" id="regionModal">
+  <div class="region-card">
+    <h3 data-i18n="reg_title">Выберите язык</h3>
+    <p data-i18n="reg_sub">Страница отобразится на выбранном языке.</p>
+    <div class="region-grid" id="regionGrid"></div>
+    <a class="region-skip" href="#" id="regSkip" data-i18n="reg_skip">Пропустить</a>
+  </div>
+</div>
+
+<script>
+const LOCALES = [
+  {code:'ru-RU', flag:'🇷🇺', label:'Русский · Россия'},
+  {code:'ru-BY', flag:'🇧🇾', label:'Русский · Беларусь'},
+  {code:'en-US', flag:'🇺🇸', label:'English · USA'},
+  {code:'en-GB', flag:'🇪🇺', label:'English · Europe'},
+  {code:'pl-PL', flag:'🇵🇱', label:'Polski'},
+  {code:'de-DE', flag:'🇩🇪', label:'Deutsch'},
+  {code:'zh-CN', flag:'🇨🇳', label:'中文 · 中国'},
+  {code:'ja-JP', flag:'🇯🇵', label:'日本語'},
+  {code:'kk-KZ', flag:'🇰🇿', label:'Қазақша · Қазақстан'},
+  {code:'uz-UZ', flag:'🇺🇿', label:'Oʻzbekcha · Oʻzbekiston'},
+  {code:'ka-GE', flag:'🇬🇪', label:'ქართული · საქართველო'},
+  {code:'he-IL', flag:'🇮🇱', label:'עברית · ישראל'},
+  {code:'hy-AM', flag:'🇦🇲', label:'Հայերեն · Հայաստան'},
+  {code:'az-AZ', flag:'🇦🇿', label:'Azərbaycanca · Azərbaycan'},
+  {code:'ky-KG', flag:'🇰🇬', label:'Кыргызча · Кыргызстан'},
+  {code:'tg-TJ', flag:'🇹🇯', label:'Тоҷикӣ · Тоҷикистон'},
+  {code:'tk-TM', flag:'🇹🇲', label:'Türkmençe · Türkmenistan'},
+  {code:'ro-MD', flag:'🇲🇩', label:'Română · Moldova'}
+];
+
+const STR = {
+'ru-RU':{
+  cta:'Обсудить проект', kicker:'Кейс · Медиа', h1a:'Контент-конвейер:', h1b:'к скорости производства',
+  hero_p:'Медиа-команда тонула в рутине: на брендированные креативы под каждую площадку уходило больше времени, чем на сам контент.',
+  t_task:'Задача', task_p:'Из одного сценария выпускать десятки адаптаций под разные площадки, форматы и сегменты аудитории — без раздувания команды.',
+  t_sol:'Решение', sol_p:'Построили конвейер: сценарий и бренд-бук на входе, на выходе — тексты, изображения и видео-адаптации. Дизайнер только финально утверждает материал.',
+  t_res:'Результат', ul1:'Скорость производства выросла в 12 раз', ul2:'Десятки креативов в день вместо трёх', ul3:'Затраты на производство контента −60%',
+  want:'Хочу так же', m1:'скорость производства', m2:'креативов в день', m3:'затраты на контент', m4:'от аудита до запуска',
+  foot:'© 2026 WIBE — AI digital agency', made:'Сделано с',
+  reg_title:'Выберите язык', reg_sub:'Страница отобразится на выбранном языке.', reg_skip:'Пропустить'
+},
+'en-US':{
+  cta:'Discuss a project', kicker:'Case · Media', h1a:'Content pipeline:', h1b:'production speed',
+  hero_p:'A media team was drowning in routine: branded creatives for every platform took longer than the content itself.',
+  t_task:'Challenge', task_p:'Turn one script into dozens of adaptations for different platforms, formats and audience segments — without growing the team.',
+  t_sol:'Solution', sol_p:'We built a pipeline: script and brand book in, texts, images and video adaptations out. The designer only gives final approval.',
+  t_res:'Results', ul1:'Production speed grew 12 times', ul2:'Dozens of creatives a day instead of three', ul3:'Content production costs −60%',
+  want:'I want the same', m1:'production speed', m2:'creatives a day', m3:'content costs', m4:'from audit to launch',
+  foot:'© 2026 WIBE — AI digital agency', made:'Made with',
+  reg_title:'Choose language', reg_sub:'The page will be shown in the selected language.', reg_skip:'Skip'
+},
+'en-GB':{
+  cta:'Discuss a project', kicker:'Case study · Media', h1a:'Content pipeline:', h1b:'production speed',
+  hero_p:'A media team was drowning in routine: branded creatives for every platform took longer than producing the content itself.',
+  t_task:'Challenge', task_p:'Release dozens of adaptations from a single script across platforms, formats and audience segments — without growing the team.',
+  t_sol:'Solution', sol_p:'We built a pipeline: script and brand book in, texts, images and video adaptations out. The designer only approves the final material.',
+  t_res:'Results', ul1:'Production speed rose 12-fold', ul2:'Dozens of creatives a day instead of three', ul3:'Content production costs −60%',
+  want:'I want the same', m1:'production speed', m2:'creatives a day', m3:'content costs', m4:'from audit to launch',
+  foot:'© 2026 WIBE — AI digital agency', made:'Made with',
+  reg_title:'Choose language', reg_sub:'The page will be shown in the selected language.', reg_skip:'Skip'
+},
+'pl-PL':{
+  cta:'Omów projekt', kicker:'Przypadek · Media', h1a:'Kontent-pipeline:', h1b:'do szybkości produkcji',
+  hero_p:'Zespół mediowy tonął w rutynie: na markowe kreacje pod każdą platformę schodziło więcej czasu niż na sam kontent.',
+  t_task:'Zadanie', task_p:'Z jednego scenariusza wydawać dziesiątki adaptacji pod różne platformy, formaty i segmenty odbiorców — bez rozrostu zespołu.',
+  t_sol:'Rozwiązanie', sol_p:'Zbudowaliśmy pipeline: scenariusz i brand book na wejściu, na wyjściu — teksty, obrazy i adaptacje wideo. Projektant tylko finalnie zatwierdza materiał.',
+  t_res:'Wyniki', ul1:'Szybkość produkcji wzrosła 12-krotnie', ul2:'Dziesiątki kreacji dziennie zamiast trzech', ul3:'Koszty produkcji kontentu −60%',
+  want:'Chcę tak samo', m1:'szybkość produkcji', m2:'kreacji dziennie', m3:'koszty kontentu', m4:'od audytu do startu',
+  foot:'© 2026 WIBE — AI digital agency', made:'Wykonano z',
+  reg_title:'Wybierz język', reg_sub:'Strona wyświetli się w wybranym języku.', reg_skip:'Pomiń'
+},
+'de-DE':{
+  cta:'Projekt besprechen', kicker:'Case · Medien', h1a:'Content-Pipeline:', h1b:'Produktionsgeschwindigkeit',
+  hero_p:'Ein Media-Team versank in Routine: Marken-Creatives für jede Plattform dauerten länger als der Content selbst.',
+  t_task:'Aufgabe', task_p:'Aus einem Drehbuch Dutzende Adaptionen für verschiedene Plattformen, Formate und Zielgruppen produzieren — ohne das Team zu vergrößern.',
+  t_sol:'Lösung', sol_p:'Wir bauten eine Pipeline: Drehbuch und Brand Book hinein, Texte, Bilder und Video-Adaptionen heraus. Der Designer gibt nur die finale Freigabe.',
+  t_res:'Ergebnis', ul1:'Produktionsgeschwindigkeit 12-fach gestiegen', ul2:'Dutzende Creatives täglich statt drei', ul3:'Content-Produktionskosten −60%',
+  want:'Das will ich auch', m1:'Produktionsgeschwindigkeit', m2:'Creatives täglich', m3:'Content-Kosten', m4:'vom Audit bis zum Start',
+  foot:'© 2026 WIBE — AI digital agency', made:'Erstellt mit',
+  reg_title:'Sprache wählen', reg_sub:'Die Seite wird in der gewählten Sprache angezeigt.', reg_skip:'Überspringen'
+},
+'zh-CN':{
+  cta:'讨论项目', kicker:'案例 · 媒体', h1a:'内容生产线：', h1b:'生成速度',
+  hero_p:'媒体团队深陷于日常事务：为每个平台制作品牌创意图所花的时间甚至超过了内容本身。',
+  t_task:'挑战', task_p:'用同一脚本为不同平台、格式和受众群体生成数十种适配版本，而不扩大团队。',
+  t_sol:'方案', sol_p:'我们构建了生产线：输入脚本和品牌手册，输出文本、图像和视频适配版本。设计师仅做最终审批。',
+  t_res:'成果', ul1:'生成速度提升 12 倍', ul2:'每天数十个创意，而非三个', ul3:'内容制作成本 −60%',
+  want:'我也想要', m1:'生成速度', m2:'每日创意数量', m3:'内容成本', m4:'从审计到上线',
+  foot:'© 2026 WIBE — AI digital agency', made:'由 WIBE 打造',
+  reg_title:'选择语言', reg_sub:'页面将以所选语言显示。', reg_skip:'跳过'
+},
+'ja-JP':{
+  cta:'プロジェクトを相談', kicker:'事例 · メディア', h1a:'コンテンツパイプライン：', h1b:'制作スピード',
+  hero_p:'メディアチームはルーティン業務に忙殺されていました。各プラットフォーム向けのブランドクリエイティブに、コンテンツ自体よりも時間がかかっていました。',
+  t_task:'課題', task_p:'1 つのシナリオから、さまざまなプラットフォーム・フォーマット・セグメント向けの数十の適応版を、チームを増やさずに制作すること。',
+  t_sol:'解決策', sol_p:'パイプラインを構築：シナリオとブランドブックを入力し、テキスト・画像・動画の適応版を出力。デザイナーは最終承認のみ行います。',
+  t_res:'結果', ul1:'制作スピードが 12 倍に向上', ul2:'クリエイティブ 3 個の代わりに毎日数十個', ul3:'コンテンツ制作コスト −60%',
+  want:'同じものを希望', m1:'制作スピード', m2:'1 日あたりのクリエイティブ数', m3:'コンテンツコスト', m4:'監査からローンチまで',
+  foot:'© 2026 WIBE — AI digital agency', made:'WIBE で制作',
+  reg_title:'言語を選択', reg_sub:'ページは選択した言語で表示されます。', reg_skip:'スキップ'
+},
+'kk-KZ':{
+  cta:'Жобаны талқылау', kicker:'Кейс · Медиа', h1a:'Контент конвейері:', h1b:'өндіріс жылдамдығына',
+  hero_p:'Медиа-топ күнделікті тірлікте батқан еді: әр платформаға арналған брендтік креативтерге контенттің өзінен де көп уақыт кететін.',
+  t_task:'Міндет', task_p:'Бір сценарийден әртүрлі платформалар, форматтар мен аудитория сегменттеріне ондаған бейімдеу шығару — топты көбейтпей.',
+  t_sol:'Шешім', sol_p:'Конвейер құрдық: кірісте сценарий мен бренд-бук, шығыста — мәтіндер, суреттер және видео-бейімдеулер. Дизайнер тек қана финалдық бекітуді жасайды.',
+  t_res:'Нәтиже', ul1:'Өндіріс жылдамдығы 12 есе өсті', ul2:'Күніне ондаған креатив, үшеудің орнына', ul3:'Контент өндіру шығындары −60%',
+  want:'Дәл осыны қалаймын', m1:'өндіріс жылдамдығы', m2:'күніне креативтер', m3:'контент шығындары', m4:'аудиттен іске қосуға дейін',
+  foot:'© 2026 WIBE — AI digital agency', made:'Жасалды:',
+  reg_title:'Тілді таңдаңыз', reg_sub:'Бет таңдалған тілде көрсетіледі.', reg_skip:'Өткізіп жіберу'
+},
+'uz-UZ':{
+  cta:'Loyihani muhokama qilish', kicker:'Keys · Media', h1a:'Kontent konveyeri:', h1b:'ishlab chiqarish tezligiga',
+  hero_p:'Media-jamoa muntazam ishlarga botgandi: har bir platforma uchun brend kreativlariga kontentning o‘zidan ham ko‘proq vaqt ketardi.',
+  t_task:'Vazifa', task_p:'Bitta skriptdan turli platformalar, formatlar va auditoriya segmentlari uchun o‘nlab moslashuvlar chiqarish — jamoani kengaytirmasdan.',
+  t_sol:'Yechim', sol_p:'Konveyer qurdik: kirishda skript va brend-buk, chiqishda — matnlar, tasvirlar va video-moslashuvlar. Dizayner faqat yakuniy tasdiqlashni beradi.',
+  t_res:'Natija', ul1:'Ishlab chiqarish tezligi 12 barobar oshdi', ul2:'Uchtasi o‘rniga kuniga o‘nlab kreativlar', ul3:'Kontent ishlab chiqarish xarajatlari −60%',
+  want:'Xuddi shunisini xohlayman', m1:'ishlab chiqarish tezligi', m2:'kuniga kreativlar', m3:'kontent xarajatlari', m4:'auditdan ishga tushirishgacha',
+  foot:'© 2026 WIBE — AI digital agency', made:'Tayyorlandi:',
+  reg_title:'Tilni tanlang', reg_sub:'Sahifa tanlangan tilda ko‘rsatiladi.', reg_skip:"O'tkazib yuborish"
+},
+'ka-GE':{
+  cta:'პროექტის განხილვა', kicker:'ქეისი · მედია', h1a:'კონტენტ-კონვეიერი:', h1b:'წარმოების სისწრაფემდე',
+  hero_p:'მედია-გუნდი იხრჩობოდა რუტინაში: თითოეული პლატფორმისთვის ბრენდირებულ კრეატივებზე მეტი დრო იხარჯებოდა, ვიდრე თავად კონტენტზე.',
+  t_task:'ამოცანა', task_p:'ერთი სცენარიდან ათობით ადაპტაციის გამოშვება სხვადასხვა პლატფორმის, ფორმატისა და აუდიტორიისთვის — გუნდის გაზრდის გარეშე.',
+  t_sol:'გადაწყვეტა', sol_p:'ავაწყეთ კონვეიერი: შესასვლელში სცენარი და ბრენდ-ბუკი, გამოსავალზე — ტექსტები, სურათები და ვიდეო-ადაპტაციები. დიზაინერი მხოლოდ საბოლოოდ ამტკიცებს მასალას.',
+  t_res:'შედეგი', ul1:'წარმოების სისწრაფე 12-ჯერ გაიზარდა', ul2:'ათობით კრეატივი დღეში სამის ნაცვლად', ul3:'კონტენტის წარმოების ხარჯები −60%',
+  want:'იგივე მინდა', m1:'წარმოების სისწრაფე', m2:'კრეატივი დღეში', m3:'კონტენტის ხარჯები', m4:'აუდიტიდან გაშვებამდე',
+  foot:'© 2026 WIBE — AI digital agency', made:'შექმნილია',
+  reg_title:'აირჩიეთ ენა', reg_sub:'გვერდი გამოჩნდება არჩეულ ენაზე.', reg_skip:'გამოტოვება'
+},
+'he-IL':{
+  cta:'לדון בפרויקט', kicker:'מקרה · מדיה', h1a:'צינור תוכן:', h1b:'למהירות ייצור',
+  hero_p:'צוות מדיה טבע בשגרה: קריאייטיבים ממותגים לכל פלטפורמה ארכו יותר זמן מהתוכן עצמו.',
+  t_task:'משימה', task_p:'להפיק מתוך סקריפט אחד עשרות גרסאות לפלטפורמות, פורמטים ופלחי קהל שונים — בלי להגדיל את הצוות.',
+  t_sol:'פתרון', sol_p:'בנינו צינור: סקריפט וספר מותג בכניסה, טקסטים, תמונות וגרסאות וידאו ביציאה. המעצב רק מאשר גרסה סופית.',
+  t_res:'תוצאות', ul1:'מהירות הייצור עלתה פי 12', ul2:'עשרות קריאייטיבים ביום במקום שלושה', ul3:'עלויות ייצור תוכן −60%',
+  want:'אני רוצה את אותו דבר', m1:'מהירות ייצור', m2:'קריאייטיבים ביום', m3:'עלויות תוכן', m4:'מאודיט להשקה',
+  foot:'© 2026 WIBE — AI digital agency', made:'נוצר עם',
+  reg_title:'בחרו שפה', reg_sub:'הדף יוצג בשפה שנבחרה.', reg_skip:'דלג'
+},
+'hy-AM':{
+  cta:'Քննարկել նախագիծը', kicker:'Դեպք · Մեդիա', h1a:'Կոնտենտ-կոնվեյեր.', h1b:'արտադրության արագությանը',
+  hero_p:'Մեդիա-թիմը խեղդվում էր առօրյայում. յուրաքանչյուր հարթակի համար բրենդավորված կրեատիվներին ավելի շատ ժամանակ էր ծախսվում, քան բուն կոնտենտին։',
+  t_task:'Խնդիր', task_p:'Մեկ սցենարից տասնյակ ադապտացիաների թողարկում տարբեր հարթակների, ձևաչափերի և լսարանի համար — առանց թիմը մեծացնելու։',
+  t_sol:'Լուծում', sol_p:'Կառուցեցինք կոնվեյեր. մուտքում՝ սցենար և բրենդ-բուք, ելքում՝ տեքստեր, պատկերներ և վիդեո-ադապտացիաներ։ Դիզայները միայն վերջնական հաստատում է նյութը։',
+  t_res:'Արդյունք', ul1:'Արտադրության արագությունն աճել է 12 անգամ', ul2:'Օրական տասնյակ կրեատիվ՝ երեքի փոխարեն', ul3:'Կոնտենտի արտադրության ծախսերը −60%',
+  want:'Ես ուզում եմ նույնը', m1:'արտադրության արագություն', m2:'կրեատիվ օրական', m3:'կոնտենտի ծախսեր', m4:'աուդիտից գործարկում',
+  foot:'© 2026 WIBE — AI digital agency', made:'Ստեղծված է',
+  reg_title:'Ընտրեք լեզու', reg_sub:'Էջը կցուցադրվի ընտրված լեզվով։', reg_skip:'Բաց թողնել'
+},
+'az-AZ':{
+  cta:'Layihəni müzakirə edin', kicker:'Keys · Media', h1a:'Kontent konveyeri:', h1b:'istehsal sürətinə',
+  hero_p:'Media-komanda rutində batmışdı: hər platforma üçün brendləşdirilmiş kreativlərə kontentin özündən də çox vaxt gedirdi.',
+  t_task:'Vəzifə', task_p:'Bir ssenaridən müxtəlif platformalar, formatlar və auditoriya seqmentləri üçün onlarla adaptasiya buraxmaq — komandanı böyütmədən.',
+  t_sol:'Həll', sol_p:'Konveyer qurduq: girişdə ssenari və brend-buk, çıxışda — mətnlər, şəkillər və video-adaptasiyalar. Dizayner yalnız son təsdiqi verir.',
+  t_res:'Nəticə', ul1:'İstehsal sürəti 12 dəfə artdı', ul2:'Üçünün əvəzinə gündə onlarla kreativ', ul3:'Kontent istehsalı xərcləri −60%',
+  want:'Eynisini istəyirəm', m1:'istehsal sürəti', m2:'gündə kreativlər', m3:'kontent xərcləri', m4:'auditdən işə salınana qədər',
+  foot:'© 2026 WIBE — AI digital agency', made:'Hazırlandı:',
+  reg_title:'Dil seçin', reg_sub:'Səhifə seçilmiş dildə göstəriləcək.', reg_skip:'Keç'
+},
+'ky-KG':{
+  cta:'Долбоорду талкуулоо', kicker:'Кейс · Медиа', h1a:'Контент конвейери:', h1b:'өндүрүш ылдамдыгына',
+  hero_p:'Медиа-топ күнүмдүк иштерге чөмүлгөн: ар бир платформага бренддик креативдерге контенттин өзүнөн да көп убакыт кетчү.',
+  t_task:'Милдет', task_p:'Бир сценарийден ар кандай платформалар, форматтар жана аудитория сегменттери үчүн ондогон адаптация чыгаруу — топту көбөйтпөстөн.',
+  t_sol:'Чечим', sol_p:'Конвейер курдук: кириште сценарий жана бренд-бук, чыгышта — тексттер, сүрөттөр жана видео-адаптациялар. Дизайнер финалдык бекитүүнү гана берет.',
+  t_res:'Жыйынтык', ul1:'Өндүрүш ылдамдыгы 12 эсе өстү', ul2:'Күнүнө ондогон креатив, үчөөнүн ордуна', ul3:'Контент өндүрүү чыгымдары −60%',
+  want:'Дал ушуну каалайм', m1:'өндүрүш ылдамдыгы', m2:'күнүнө креативдер', m3:'контент чыгымдары', m4:'аудиттен ишке киргизүүгө чейин',
+  foot:'© 2026 WIBE — AI digital agency', made:'Жасалды:',
+  reg_title:'Тилди тандаңыз', reg_sub:'Баракча тандалган тилде көрсөтүлөт.', reg_skip:'Өткөрүп жиберүү'
+},
+'tg-TJ':{
+  cta:'Муҳокимаи лоиҳа', kicker:'Мисол · Медиа', h1a:'Конвейери мундариҷа:', h1b:'ба суръати истеҳсолот',
+  hero_p:'Дастаи медиа дар кори муқаррарӣ ғарқ шуда буд: барои ҳар платформа креативҳои брендии бештар аз худи мундариҷа вақт рафт.',
+  t_task:'Вазифа', task_p:'Аз як сенария даҳҳо мутобиқсозӣ барои платформаҳо, форматҳо ва сегментҳои гуногуни аудитория баровардан — бидуни афзоиши даста.',
+  t_sol:'Ҳал', sol_p:'Конвейер сохтем: дар вуруд сенария ва бренд-бук, дар хуруҷ — матнҳо, расмҳо ва мутобиқсозиҳои видео. Дизайнер танҳо ниҳоят масолеҳро тасдиқ мекунад.',
+  t_res:'Натиҷа', ul1:'Суръати истеҳсолот 12 маротиба афзуд', ul2:'Даҳҳо креатив дар як рӯз ба ҷои се', ul3:'Хароҷоти истеҳсоли мундариҷа −60%',
+  want:'Ҳаминро мехоҳам', m1:'суръати истеҳсолот', m2:'креатив дар рӯз', m3:'хароҷоти мундариҷа', m4:'аз аудит то ба кор даровардан',
+  foot:'© 2026 WIBE — AI digital agency', made:'Сохта шуд бо',
+  reg_title:'Забонро интихоб кунед', reg_sub:'Саҳифа бо забони интихобшуда намоиш дода мешавад.', reg_skip:'Гузарондан'
+},
+'tk-TM':{
+  cta:'Taslamany ara alyşmak', kicker:'Keýs · Media', h1a:'Kontent konweýeri:', h1b:'öndürijilik tizligine',
+  hero_p:'Media topary gündelik işe gark bolupdyr: her platforma üçin brend kreatewlerine kontentiň özünden hem köp wagt gidipdir.',
+  t_task:'Wezipe', task_p:'Bir ssenariden dürli platformalar, formatlar we diňleýji segmentleri üçin onlarça uýgunlaşma çykarmak — topary ulaltmazdan.',
+  t_sol:'Çözgüt', sol_p:'Konweýer gurduk: girişde ssenari we brend-buk, çykyşda — tekstler, suratlar we wideo-uýgunlaşmalar. Dizaýner diňe jemleýji tassyklamany berýär.',
+  t_res:'Netije', ul1:'Öndürijilik tizligi 12 esse ýokarlandy', ul2:'Üçüsiniň ýerine günde onlarça kreatew', ul3:'Kontent öndürmek çykdajylary −60%',
+  want:'Edil şonusyny isleýärin', m1:'öndürijilik tizligi', m2:'günde kreatewler', m3:'kontent çykdajylary', m4:'auditden işe girizilýänçä',
+  foot:'© 2026 WIBE — AI digital agency', made:'Şu bilen ýasalandy:',
+  reg_title:'Dili saýlaň', reg_sub:'Sahypa saýlanan dilde görkeziler.', reg_skip:'Geçmek'
+},
+'ro-MD':{
+  cta:'Discută proiectul', kicker:'Caz · Media', h1a:'Conductă de conținut:', h1b:'la viteza de producție',
+  hero_p:'O echipă media se îneca în rutină: creativii de brand pentru fiecare platformă durau mai mult decât conținutul în sine.',
+  t_task:'Provocare', task_p:'Dintr-un singur scenariu să produci zeci de adaptări pentru diverse platforme, formate și segmente de public — fără a mări echipa.',
+  t_sol:'Soluție', sol_p:'Am construit o conductă: scenariu și book de brand la intrare, texte, imagini și adaptări video la ieșire. Designerul doar aprobă materialul final.',
+  t_res:'Rezultate', ul1:'Viteza de producție a crescut de 12 ori', ul2:'Zeci de creativi pe zi în loc de trei', ul3:'Costurile de producție a conținutului −60%',
+  want:'Vreau același lucru', m1:'viteza de producție', m2:'creativi pe zi', m3:'costuri de conținut', m4:'de la audit la lansare',
+  foot:'© 2026 WIBE — AI digital agency', made:'Creat cu',
+  reg_title:'Alege limba', reg_sub:'Pagina va fi afișată în limba selectată.', reg_skip:'Sari peste'
+},
+'ru-BY':{
+  cta:'Абмеркаваць праект', kicker:'Кейс · Медія', h1a:'Кантэнт-канвеер:', h1b:'да хуткасці вытворчасці',
+  hero_p:'Медія-каманда танула ў руціне: на брэндавыя крэатывы пад кожную пляцоўку ішло больш часу, чым на сам кантэнт.',
+  t_task:'Задача', task_p:'З аднаго сцэнара выпускаць дзясяткі адаптацый пад розныя пляцоўкі, фарматы і сегменты аўдыторыі — без разрастання каманды.',
+  t_sol:'Рашэнне', sol_p:'Пабудавалі канвеер: сцэнар і брэнд-бук на ўваходзе, на выхадзе — тэксты, выявы і відэа-адаптацыі. Дызайнер толькі канчаткова зацвярджае матэрыял.',
+  t_res:'Вынік', ul1:'Хуткасць вытворчасці вырасла ў 12 разоў', ul2:'Дзясяткі крэатываў у дзень замест трох', ul3:'Затраты на вытворчасць кантэнту −60%',
+  want:'Хачу так жа', m1:'хуткасць вытворчасці', m2:'крэатываў у дзень', m3:'затраты на кантэнт', m4:'ад аўдыту да запуску',
+  foot:'© 2026 WIBE — AI digital agency', made:'Зроблена з',
+  reg_title:'Выберыце мову', reg_sub:'Старонка адлюструецца на выбранай мове.', reg_skip:'Прапусціць'
+}
+};
+
+let lang = localStorage.getItem('wibe-region') || 'ru-RU';
+
+function applyLang(){
+  const L = STR[lang] || STR['en-US'] || STR['ru-RU'];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'he-IL') ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = L[el.dataset.i18n];
+    if(v != null) el.textContent = v;
+  });
+  const b = document.getElementById('langBtn');
+  const loc = LOCALES.find(l => l.code === lang);
+  if(loc) b.textContent = loc.flag;
+}
+
+function choose(code){ lang = code; localStorage.setItem('wibe-region', code); applyLang(); }
+
+const modal = document.getElementById('regionModal');
+const grid = document.getElementById('regionGrid');
+LOCALES.forEach(l => {
+  const b = document.createElement('button');
+  b.className = 'region-btn';
+  b.innerHTML = '<span class="fl">' + l.flag + '</span><span>' + l.label + '</span>';
+  b.addEventListener('click', () => { modal.classList.remove('show'); choose(l.code); });
+  grid.appendChild(b);
+});
+document.getElementById('regSkip').addEventListener('click', e => { e.preventDefault(); modal.classList.remove('show'); });
+document.getElementById('langBtn').addEventListener('click', () => modal.classList.add('show'));
+modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('show'); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('show')) modal.classList.remove('show'); });
+
+applyLang();
+</script>
 </body>
 </html>

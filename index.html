@@ -165,7 +165,7 @@
   .case h3{font-size:clamp(18px,2.4vw,24px);font-weight:600}
   .case p{color:var(--muted);font-size:14px;margin-top:5px}
   .case .metric{font-family:'Unbounded','Inter';color:var(--accent);font-size:clamp(22px,3vw,30px);font-weight:800;text-align:right;white-space:nowrap}
-  @media(max-width:560px){.case{grid-template-columns:1fr}.case .metric{text-align:left}}
+  @media(max-width:560px){.case{grid-template-columns:1fr;gap:10px}.case .metric{text-align:left;white-space:normal;font-size:20px}}
 
   .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
   .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;transition:transform .25s}
@@ -341,10 +341,11 @@
   .opt:has(input:focus-visible){box-shadow:0 0 0 2px var(--accent)}
   .opt:active::before{transform:scale(.85)}
   .opt .opt-p{
-    margin-left:auto;font-size:12px;font-weight:700;color:var(--accent);
+    margin-left:auto;flex:none;font-size:12px;font-weight:700;color:var(--accent);
     background:rgba(255,107,44,.1);border:1px solid rgba(255,107,44,.25);
     padding:3px 10px;border-radius:100px;white-space:nowrap;
   }
+  .opt > span{min-width:0;flex:1 1 auto}
   .opt:has(input:checked){border-color:rgba(255,107,44,.55);background:rgba(255,107,44,.07)}
   .calc-total{
     margin-top:14px;border-top:1px solid var(--line);padding-top:14px;
@@ -494,6 +495,12 @@
     .header-right .btn{padding:9px 13px;font-size:12.5px}
     .tiles{grid-template-columns:1fr 1fr}
     .tile .tile-d{display:none}
+  }
+  @media(max-width:420px){
+    .tiles{grid-template-columns:1fr}
+    .tile{min-width:0}
+    .calc-total b{font-size:22px}
+    .calc-total small{font-size:12px}
   }
 
   /* ---------- RTL (иврит) ---------- */

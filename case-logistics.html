@@ -9,40 +9,291 @@
 <body>
 <header>
   <a class="wordmark" href="index.html">WIBE<span>.</span></a>
-  <a class="cta" href="index.html#contact">Обсудить проект</a>
+  <div class="header-right">
+    <button class="lang-btn" id="langBtn" aria-label="Language">🌐</button>
+    <a class="cta" href="index.html#contact" data-i18n="cta">Обсудить проект</a>
+  </div>
 </header>
 
 <section class="case-hero">
-  <div class="kicker">Кейс · Логистика</div>
-  <h1>Документооборот: <em>−85%</em> ручной обработки</h1>
-  <p>Логистическая компания: операторы вручную переносили данные из накладных в ERP — сотни документов в день, ошибки и задержки закрытия.</p>
+  <div class="kicker" data-i18n="kicker">Кейс · Логистика</div>
+  <h1><span data-i18n="h1a">Документооборот:</span> <em>−85%</em> <span data-i18n="h1b">ручной обработки</span></h1>
+  <p data-i18n="hero_p">Логистическая компания: операторы вручную переносили данные из накладных в ERP — сотни документов в день, ошибки и задержки закрытия.</p>
 </section>
 
 <section class="case-body">
   <div class="col">
-    <h2>Задача</h2>
-    <p>Убрать ручной ввод данных из первичной документации, ускорить закрытие документов и снизить количество ошибок.</p>
-    <h2>Решение</h2>
-    <p>LLM читает накладные в любом формате (сканы, PDF, фото), извлекает и сверяет данные, находит расхождения и заводит записи в ERP. Спорные случаи подсвечиваются оператору.</p>
-    <h2>Результат</h2>
+    <h2 data-i18n="t_task">Задача</h2>
+    <p data-i18n="task_p">Убрать ручной ввод данных из первичной документации, ускорить закрытие документов и снизить количество ошибок.</p>
+    <h2 data-i18n="t_sol">Решение</h2>
+    <p data-i18n="sol_p">LLM читает накладные в любом формате (сканы, PDF, фото), извлекает и сверяет данные, находит расхождения и заводит записи в ERP. Спорные случаи подсвечиваются оператору.</p>
+    <h2 data-i18n="t_res">Результат</h2>
     <ul>
-      <li>Ручная обработка сократилась на 85%</li>
-      <li>Закрытие документов: с 3 дней до нескольких часов</li>
-      <li>Ошибки ввода снизились в 9 раз</li>
+      <li data-i18n="ul1">Ручная обработка сократилась на 85%</li>
+      <li data-i18n="ul2">Закрытие документов: с 3 дней до нескольких часов</li>
+      <li data-i18n="ul3">Ошибки ввода снизились в 9 раз</li>
     </ul>
-    <a class="cta" href="index.html#contact">Хочу так же</a>
+    <a class="cta" href="index.html#contact" data-i18n="want">Хочу так же</a>
   </div>
   <aside class="metric-card">
-    <div class="big">−85%</div><div class="label">ручной обработки</div>
-    <div class="big">×3ч</div><div class="label">закрытие вместо 3 дней</div>
-    <div class="big">×9</div><div class="label">меньше ошибок ввода</div>
-    <div class="big">6 нед.</div><div class="label">от аудита до запуска</div>
+    <div class="big">−85%</div><div class="label" data-i18n="m1">ручной обработки</div>
+    <div class="big">×3ч</div><div class="label" data-i18n="m2">закрытие вместо 3 дней</div>
+    <div class="big">×9</div><div class="label" data-i18n="m3">меньше ошибок ввода</div>
+    <div class="big">6 нед.</div><div class="label" data-i18n="m4">от аудита до запуска</div>
   </aside>
 </section>
 
 <footer>
-  <div>© 2026 WIBE — AI digital agency</div>
-  <div>Сделано с <a href="index.html">WIBE AI</a> ⚡</div>
+  <div data-i18n="foot">© 2026 WIBE — AI digital agency</div>
+  <div><span data-i18n="made">Сделано с</span> <a href="index.html">WIBE AI</a> ⚡</div>
 </footer>
+
+<div class="region-modal" id="regionModal">
+  <div class="region-card">
+    <h3 data-i18n="reg_title">Выберите язык</h3>
+    <p data-i18n="reg_sub">Страница отобразится на выбранном языке.</p>
+    <div class="region-grid" id="regionGrid"></div>
+    <a class="region-skip" href="#" id="regSkip" data-i18n="reg_skip">Пропустить</a>
+  </div>
+</div>
+
+<script>
+const LOCALES = [
+  {code:'ru-RU', flag:'🇷🇺', label:'Русский · Россия'},
+  {code:'ru-BY', flag:'🇧🇾', label:'Русский · Беларусь'},
+  {code:'en-US', flag:'🇺🇸', label:'English · USA'},
+  {code:'en-GB', flag:'🇪🇺', label:'English · Europe'},
+  {code:'pl-PL', flag:'🇵🇱', label:'Polski'},
+  {code:'de-DE', flag:'🇩🇪', label:'Deutsch'},
+  {code:'zh-CN', flag:'🇨🇳', label:'中文 · 中国'},
+  {code:'ja-JP', flag:'🇯🇵', label:'日本語'},
+  {code:'kk-KZ', flag:'🇰🇿', label:'Қазақша · Қазақстан'},
+  {code:'uz-UZ', flag:'🇺🇿', label:'Oʻzbekcha · Oʻzbekiston'},
+  {code:'ka-GE', flag:'🇬🇪', label:'ქართული · საქართველო'},
+  {code:'he-IL', flag:'🇮🇱', label:'עברית · ישראל'},
+  {code:'hy-AM', flag:'🇦🇲', label:'Հայերեն · Հայաստան'},
+  {code:'az-AZ', flag:'🇦🇿', label:'Azərbaycanca · Azərbaycan'},
+  {code:'ky-KG', flag:'🇰🇬', label:'Кыргызча · Кыргызстан'},
+  {code:'tg-TJ', flag:'🇹🇯', label:'Тоҷикӣ · Тоҷикистон'},
+  {code:'tk-TM', flag:'🇹🇲', label:'Türkmençe · Türkmenistan'},
+  {code:'ro-MD', flag:'🇲🇩', label:'Română · Moldova'}
+];
+
+const STR = {
+'ru-RU':{
+  cta:'Обсудить проект', kicker:'Кейс · Логистика', h1a:'Документооборот:', h1b:'ручной обработки',
+  hero_p:'Логистическая компания: операторы вручную переносили данные из накладных в ERP — сотни документов в день, ошибки и задержки закрытия.',
+  t_task:'Задача', task_p:'Убрать ручной ввод данных из первичной документации, ускорить закрытие документов и снизить количество ошибок.',
+  t_sol:'Решение', sol_p:'LLM читает накладные в любом формате (сканы, PDF, фото), извлекает и сверяет данные, находит расхождения и заводит записи в ERP. Спорные случаи подсвечиваются оператору.',
+  t_res:'Результат', ul1:'Ручная обработка сократилась на 85%', ul2:'Закрытие документов: с 3 дней до нескольких часов', ul3:'Ошибки ввода снизились в 9 раз',
+  want:'Хочу так же', m1:'ручной обработки', m2:'закрытие вместо 3 дней', m3:'меньше ошибок ввода', m4:'от аудита до запуска',
+  foot:'© 2026 WIBE — AI digital agency', made:'Сделано с',
+  reg_title:'Выберите язык', reg_sub:'Страница отобразится на выбранном языке.', reg_skip:'Пропустить'
+},
+'en-US':{
+  cta:'Discuss a project', kicker:'Case · Logistics', h1a:'Document flow:', h1b:'manual processing',
+  hero_p:'A logistics company: operators manually transferred data from waybills into the ERP — hundreds of documents a day, errors and delays in closing.',
+  t_task:'Challenge', task_p:'Eliminate manual data entry from source documents, speed up closing and reduce errors.',
+  t_sol:'Solution', sol_p:'An LLM reads waybills in any format (scans, PDF, photos), extracts and validates data, finds mismatches and enters records into the ERP. Disputed cases are flagged for the operator.',
+  t_res:'Results', ul1:'Manual processing cut by 85%', ul2:'Document closing: from 3 days to a few hours', ul3:'Data entry errors reduced 9 times',
+  want:'I want the same', m1:'manual processing', m2:'closing instead of 3 days', m3:'fewer data entry errors', m4:'from audit to launch',
+  foot:'© 2026 WIBE — AI digital agency', made:'Made with',
+  reg_title:'Choose language', reg_sub:'The page will be shown in the selected language.', reg_skip:'Skip'
+},
+'en-GB':{
+  cta:'Discuss a project', kicker:'Case study · Logistics', h1a:'Document flow:', h1b:'manual processing',
+  hero_p:'A logistics company: operators manually transferred data from consignment notes into the ERP — hundreds of documents a day, with errors and delays in closing.',
+  t_task:'Challenge', task_p:'Remove manual data entry from primary documentation, speed up document closing and lower the number of errors.',
+  t_sol:'Solution', sol_p:'An LLM reads consignment notes in any format (scans, PDF, photos), extracts and cross-checks data, finds discrepancies and enters records into the ERP. Disputed cases are highlighted to the operator.',
+  t_res:'Results', ul1:'Manual processing reduced by 85%', ul2:'Document closing: from 3 days to a few hours', ul3:'Data entry errors reduced 9-fold',
+  want:'I want the same', m1:'manual processing', m2:'closing instead of 3 days', m3:'fewer data entry errors', m4:'from audit to launch',
+  foot:'© 2026 WIBE — AI digital agency', made:'Made with',
+  reg_title:'Choose language', reg_sub:'The page will be shown in the selected language.', reg_skip:'Skip'
+},
+'pl-PL':{
+  cta:'Omów projekt', kicker:'Przypadek · Logistyka', h1a:'Obieg dokumentów:', h1b:'ręcznej obróbki',
+  hero_p:'Firma logistyczna: operatorzy ręcznie przenosili dane z listów przewozowych do ERP — setki dokumentów dziennie, błędy i opóźnienia w zamknięciu.',
+  t_task:'Zadanie', task_p:'Wyeliminować ręczne wprowadzanie danych z dokumentów pierwotnych, przyspieszyć zamykanie dokumentów i zmniejszyć liczbę błędów.',
+  t_sol:'Rozwiązanie', sol_p:'LLM czyta listy przewozowe w dowolnym formacie (skany, PDF, zdjęcia), wyodrębnia i weryfikuje dane, znajduje rozbieżności i wprowadza zapisy do ERP. Sporne przypadki są podświetlane operatorowi.',
+  t_res:'Wyniki', ul1:'Ręczna obróbka zmniejszona o 85%', ul2:'Zamykanie dokumentów: z 3 dni do kilku godzin', ul3:'Błędy wprowadzania zmniejszone 9-krotnie',
+  want:'Chcę tak samo', m1:'ręcznej obróbki', m2:'zamknięcie zamiast 3 dni', m3:'mniej błędów wprowadzania', m4:'od audytu do startu',
+  foot:'© 2026 WIBE — AI digital agency', made:'Wykonano z',
+  reg_title:'Wybierz język', reg_sub:'Strona wyświetli się w wybranym języku.', reg_skip:'Pomiń'
+},
+'de-DE':{
+  cta:'Projekt besprechen', kicker:'Case · Logistik', h1a:'Dokumentenfluss:', h1b:'manuelle Verarbeitung',
+  hero_p:'Ein Logistikunternehmen: Operatoren übertrugen Daten manuell aus Frachtbriefen in das ERP — Hunderte Dokumente täglich, Fehler und Verzögerungen beim Abschluss.',
+  t_task:'Aufgabe', task_p:'Die manuelle Dateneingabe aus der Primärdokumentation beseitigen, den Abschluss beschleunigen und Fehler reduzieren.',
+  t_sol:'Lösung', sol_p:'Ein LLM liest Frachtbriefe in jedem Format (Scans, PDF, Fotos), extrahiert und prüft Daten, findet Abweichungen und legt Einträge im ERP an. Strittige Fälle werden dem Operator angezeigt.',
+  t_res:'Ergebnis', ul1:'Manuelle Verarbeitung um 85% reduziert', ul2:'Dokumentenabschluss: von 3 Tagen auf wenige Stunden', ul3:'Eingabefehler 9-fach reduziert',
+  want:'Das will ich auch', m1:'manuelle Verarbeitung', m2:'Abschluss statt 3 Tagen', m3:'weniger Eingabefehler', m4:'vom Audit bis zum Start',
+  foot:'© 2026 WIBE — AI digital agency', made:'Erstellt mit',
+  reg_title:'Sprache wählen', reg_sub:'Die Seite wird in der gewählten Sprache angezeigt.', reg_skip:'Überspringen'
+},
+'zh-CN':{
+  cta:'讨论项目', kicker:'案例 · 物流', h1a:'单据流转：', h1b:'人工处理',
+  hero_p:'一家物流公司：操作员手动将运单数据录入 ERP——每天数百份单据，存在错误和结账延迟。',
+  t_task:'挑战', task_p:'消除原始单据的手动录入，加快单据结算并减少错误。',
+  t_sol:'方案', sol_p:'LLM 可读取任何格式的运单（扫描件、PDF、照片），提取并校验数据、发现差异并将记录录入 ERP。有争议的情况会标记提醒操作员。',
+  t_res:'成果', ul1:'人工处理减少 85%', ul2:'单据结算：从 3 天缩短至几小时', ul3:'录入错误减少 9 倍',
+  want:'我也想要', m1:'人工处理', m2:'几日结账缩短至几小时', m3:'更少的录入错误', m4:'从审计到上线',
+  foot:'© 2026 WIBE — AI digital agency', made:'由 WIBE 打造',
+  reg_title:'选择语言', reg_sub:'页面将以所选语言显示。', reg_skip:'跳过'
+},
+'ja-JP':{
+  cta:'プロジェクトを相談', kicker:'事例 · 物流', h1a:'文書フロー：', h1b:'手動処理',
+  hero_p:'物流会社では、オペレーターが荷送状から ERP へデータを手動で転記していました。1 日数百件の書類、エラーや締めの遅延が発生していました。',
+  t_task:'課題', task_p:'一次書類からの手動入力の排除、書類締めの迅速化、エラー数の削減。',
+  t_sol:'解決策', sol_p:'LLM があらゆる形式（スキャン、PDF、写真）の荷送状を読み取り、データを抽出・照合し、差異を検出して ERP に記録を登録します。紛争ケースはオペレーターにハイライト表示されます。',
+  t_res:'結果', ul1:'手動処理が 85% 削減', ul2:'書類締め：3 日から数時間へ', ul3:'入力エラーが 9 分の 1 に削減',
+  want:'同じものを希望', m1:'手動処理', m2:'3 日を数時間に短縮', m3:'入力エラーの削減', m4:'監査からローンチまで',
+  foot:'© 2026 WIBE — AI digital agency', made:'WIBE で制作',
+  reg_title:'言語を選択', reg_sub:'ページは選択した言語で表示されます。', reg_skip:'スキップ'
+},
+'kk-KZ':{
+  cta:'Жобаны талқылау', kicker:'Кейс · Логистика', h1a:'Құжат айналымы:', h1b:'қолмен өңдеу',
+  hero_p:'Логистикалық компания: операторлар жүкқұжаттардағы деректерді ERP-ге қолмен көшірді — күніне жүздеген құжат, қателер мен жабудағы кідірістер.',
+  t_task:'Міндет', task_p:'Бастапқы құжаттамадан қолмен деректер енгізуді алып тастау, құжаттарды жабуды жылдамдату және қателер санын азайту.',
+  t_sol:'Шешім', sol_p:'LLM кез келген форматтағы жүкқұжаттарды (сканер, PDF, фото) оқиды, деректерді алып, салыстырады, сәйкессіздіктерді табады және ERP-ге жазба енгізеді. Даулы жағдайлар операторға көрсетіледі.',
+  t_res:'Нәтиже', ul1:'Қолмен өңдеу 85%-ға қысқарды', ul2:'Құжаттарды жабу: 3 күннен бірнеше сағатқа дейін', ul3:'Деректерді енгізу қателері 9 есе азайды',
+  want:'Дәл осыны қалаймын', m1:'қолмен өңдеу', m2:'3 күннің орнына сағаттап жабу', m3:'енгізу қателері аз', m4:'аудиттен іске қосуға дейін',
+  foot:'© 2026 WIBE — AI digital agency', made:'Жасалды:',
+  reg_title:'Тілді таңдаңыз', reg_sub:'Бет таңдалған тілде көрсетіледі.', reg_skip:'Өткізіп жіберу'
+},
+'uz-UZ':{
+  cta:'Loyihani muhokama qilish', kicker:'Keys · Logistika', h1a:'Hujjatlar aylanishi:', h1b:'qo‘lda ishlov berish',
+  hero_p:'Logistika kompaniyasi: operatorlar yuk hujjatlaridagi ma’lumotlarni ERPga qo‘lda ko‘chirardi — kuniga yuzlab hujjat, xatolar va yopilishdagi kechikishlar.',
+  t_task:'Vazifa', task_p:'Birlamchi hujjatlardan qo‘lda ma’lumot kiritishni olib tashlash, hujjatlarni yopishni tezlashtirish va xatolar sonini kamaytirish.',
+  t_sol:'Yechim', sol_p:'LLM istalgan formatdagi yuk hujjatlarini (skaner, PDF, foto) o‘qiydi, ma’lumotlarni ajratib, solishtiradi, tafovutlarni topadi va ERPga yozuv kiritadi. Bahsli holatlar operatorga ko‘rsatiladi.',
+  t_res:'Natija', ul1:'Qo‘lda ishlov berish 85% ga qisqardi', ul2:'Hujjatlarni yopish: 3 kundan bir necha soatgacha', ul3:'Ma’lumot kiritish xatolari 9 barobar kamaydi',
+  want:'Xuddi shunisini xohlayman', m1:'qo‘lda ishlov berish', m2:'3 kun o‘rniga soatlarda yopish', m3:'kamroq kiritish xatolari', m4:'auditdan ishga tushirishgacha',
+  foot:'© 2026 WIBE — AI digital agency', made:'Tayyorlandi:',
+  reg_title:'Tilni tanlang', reg_sub:'Sahifa tanlangan tilda ko‘rsatiladi.', reg_skip:"O'tkazib yuborish"
+},
+'ka-GE':{
+  cta:'პროექტის განხილვა', kicker:'ქეისი · ლოგისტიკა', h1a:'დოკუმენტების ბრუნვა:', h1b:'ხელით დამუშავება',
+  hero_p:'ლოგისტიკური კომპანია: ოპერატორები ხელით გადაჰქონდათ მონაცემები საბუთებიდან ERP-ში — დღეში ასობით დოკუმენტი, შეცდომები და დახურვის შეფერხებები.',
+  t_task:'ამოცანა', task_p:'პირველადი დოკუმენტაციიდან ხელით შეყვანის ამოღება, დოკუმენტების დახურვის დაჩქარება და შეცდომების შემცირება.',
+  t_sol:'გადაწყვეტა', sol_p:'LLM კითხულობს ზედნადებს ნებისმიერ ფორმატში (სკანი, PDF, ფოტო), ამოიღებს და ამოწმებს მონაცემებს, პოულობს შეუსაბამობებს და შეაქვს ჩანაწერებს ERP-ში. სადავო შემთხვევები ოპერატორს უჩნდება.',
+  t_res:'შედეგი', ul1:'ხელით დამუშავება 85%-ით შემცირდა', ul2:'დოკუმენტების დახურვა: 3 დღიდან რამდენიმე საათამდე', ul3:'შეყვანის შეცდომები 9-ჯერ შემცირდა',
+  want:'იგივე მინდა', m1:'ხელით დამუშავება', m2:'დახურვა 3 დღის ნაცვლად', m3:'ნაკლები შეყვანის შეცდომა', m4:'აუდიტიდან გაშვებამდე',
+  foot:'© 2026 WIBE — AI digital agency', made:'შექმნილია',
+  reg_title:'აირჩიეთ ენა', reg_sub:'გვერდი გამოჩნდება არჩეულ ენაზე.', reg_skip:'გამოტოვება'
+},
+'he-IL':{
+  cta:'לדון בפרויקט', kicker:'מקרה · לוגיסטיקה', h1a:'זרימת מסמכים:', h1b:'עיבוד ידני',
+  hero_p:'חברת לוגיסטיקה: מפעילים העבירו ידנית נתונים מתעודות משלוח ל-ERP — מאות מסמכים ביום, שגיאות ועיכובים בסגירה.',
+  t_task:'משימה', task_p:'לבטל הזנה ידנית של נתונים מתיעוד ראשוני, לזרז סגירת מסמכים ולהפחית שגיאות.',
+  t_sol:'פתרון', sol_p:'LLM קורא תעודות משלוח בכל פורמט (סריקות, PDF, תמונות), מחלץ ומאמת נתונים, מוצא פערים ומזין רשומות ל-ERP. מקרים שנויים במחלוקת מסומנים למפעיל.',
+  t_res:'תוצאות', ul1:'עיבוד ידני ירד ב-85%', ul2:'סגירת מסמכים: מ-3 ימים לכמה שעות', ul3:'שגיאות הזנה ירדו פי 9',
+  want:'אני רוצה את אותו דבר', m1:'עיבוד ידני', m2:'סגירה במקום 3 ימים', m3:'פחות שגיאות הזנה', m4:'מאודיט להשקה',
+  foot:'© 2026 WIBE — AI digital agency', made:'נוצר עם',
+  reg_title:'בחרו שפה', reg_sub:'הדף יוצג בשפה שנבחרה.', reg_skip:'דלג'
+},
+'hy-AM':{
+  cta:'Քննարկել նախագիծը', kicker:'Դեպք · Լոգիստիկա', h1a:'Փաստաթղթաշրջանառություն.', h1b:'ձեռքով մշակում',
+  hero_p:'Լոգիստիկ ընկերություն. օպերատորները ձեռքով փոխանցում էին բեռնատարներից տվյալներ ERP՝ օրական հարյուրավոր փաստաթղթեր, սխալներ և փակման ուշացումներ։',
+  t_task:'Խնդիր', task_p:'Վերացնել տվյալների ձեռքով մուտքագրումը առաջնային փաստաթղթերից, արագացնել փաստաթղթերի փակումը և նվազեցնել սխալների քանակը։',
+  t_sol:'Լուծում', sol_p:'LLM-ը կարդում է ցանկացած ձևաչափի բեռնագիր (սկան, PDF, լուսանկար), կորզում և ստուգում է տվյալները, գտնում անհամապատասխանություններ և մուտքագրում գրառումներ ERP: Վիճելի դեպքերը նշվում են օպերատորին։',
+  t_res:'Արդյունք', ul1:'Ձեռքով մշակումը կրճատվել է 85%-ով', ul2:'Փաստաթղթերի փակում. 3 օրից մինչև մի քանի ժամ', ul3:'Մուտքագրման սխալները կրճատվել են 9 անգամ',
+  want:'Ես ուզում եմ նույնը', m1:'ձեռքով մշակում', m2:'փակում 3 օրվա փոխարեն', m3:'ավելի քիչ մուտքագրման սխալ', m4:'աուդիտից գործարկում',
+  foot:'© 2026 WIBE — AI digital agency', made:'Ստեղծված է',
+  reg_title:'Ընտրեք լեզու', reg_sub:'Էջը կցուցադրվի ընտրված լեզվով։', reg_skip:'Բաց թողնել'
+},
+'az-AZ':{
+  cta:'Layihəni müzakirə edin', kicker:'Keys · Logistika', h1a:'Sənəd dövriyyəsi:', h1b:'əl ilə işlənmə',
+  hero_p:'Logistika şirkəti: operatorlar yük sənədlərindəki məlumatları əl ilə ERP-yə köçürürdü — gündə yüzlərlə sənəd, xətalar və bağlanmada gecikmələr.',
+  t_task:'Vəzifə', task_p:'Birincil sənədlərdən əl ilə məlumat daxil etməni aradan qaldırmaq, sənədlərin bağlanmasını sürətləndirmək və xətaları azaltmaq.',
+  t_sol:'Həll', sol_p:'LLM istənilən formatda yük sənədlərini (skan, PDF, foto) oxuyur, məlumatları çıxarıb yoxlayır, uyğunsuzluqları tapır və ERP-yə qeyd daxil edir. Mübahisəli hallar operatora göstərilir.',
+  t_res:'Nəticə', ul1:'Əl ilə işlənmə 85% azaldı', ul2:'Sənədlərin bağlanması: 3 gündən bir neçə saata', ul3:'Məlumat daxiletmə xətaları 9 dəfə azaldı',
+  want:'Eynisini istəyirəm', m1:'əl ilə işlənmə', m2:'3 gün əvəzinə saatlarla bağlanma', m3:'az daxiletmə xətası', m4:'auditdən işə salınana qədər',
+  foot:'© 2026 WIBE — AI digital agency', made:'Hazırlandı:',
+  reg_title:'Dil seçin', reg_sub:'Səhifə seçilmiş dildə göstəriləcək.', reg_skip:'Keç'
+},
+'ky-KG':{
+  cta:'Долбоорду талкуулоо', kicker:'Кейс · Логистика', h1a:'Документ жүгүртүү:', h1b:'кол менен иштетүү',
+  hero_p:'Логистикалык компания: операторлор жүк документтериндеги маалыматтарды кол менен ERPге көчүрдү — күнүнө жүздөгөн документ, каталар жана жабуудагы кечигүүлөр.',
+  t_task:'Милдет', task_p:'Баштапкы документтерден кол менен маалымат киргизүүнү алып салуу, документтерди жабууну тездетүү жана каталарды азайтуу.',
+  t_sol:'Чечим', sol_p:'LLM каалаган форматтагы жүк документтерин (сканер, PDF, фото) окуйт, маалыматтарды алып салыштырат, дал келбестиктерди табат жана ERPге жазуу киргизет. Талаштуу учурлар операторго көрсөтүлөт.',
+  t_res:'Жыйынтык', ul1:'Кол менен иштетүү 85%га кыскарды', ul2:'Документтерди жабуу: 3 күндөн бир нече саатка чейин', ul3:'Маалымат киргизүү каталары 9 эсе азайды',
+  want:'Дал ушуну каалайм', m1:'кол менен иштетүү', m2:'3 күндүн ордуна сааттап жабуу', m3:'киргизүү каталары аз', m4:'аудиттен ишке киргизүүгө чейин',
+  foot:'© 2026 WIBE — AI digital agency', made:'Жасалды:',
+  reg_title:'Тилди тандаңыз', reg_sub:'Баракча тандалган тилде көрсөтүлөт.', reg_skip:'Өткөрүп жиберүү'
+},
+'tg-TJ':{
+  cta:'Муҳокимаи лоиҳа', kicker:'Мисол · Логистика', h1a:'Ҳаракати ҳуҷҷатҳо:', h1b:'коркарди дастӣ',
+  hero_p:'Ширкати логистикӣ: операторон маълумотҳоро аз ҳуҷҷатҳои бор дастӣ ба ERP интиқол медоданд — рӯзе садҳо ҳуҷҷат, хатогиҳо ва таъхир дар бастани ҳисоб.',
+  t_task:'Вазифа', task_p:'Аз ҳуҷҷатҳои ибтидоӣ воридкунии дастии маълумотро бартараф кардан, бастани ҳуҷҷатҳоро тезондан ва хатогиҳоро кам кардан.',
+  t_sol:'Ҳал', sol_p:'LLM ҳуҷҷатҳои борро дар ҳама гуна формат (скан, PDF, сурат) мехонад, маълумотро ҷудо ва санҷида, номувофиқиҳоро ёфта ба ERP сабт ворид мекунад. Ҳолатҳои баҳснок ба оператор нишон дода мешаванд.',
+  t_res:'Натиҷа', ul1:'Коркарди дастӣ 85% кам шуд', ul2:'Бастани ҳуҷҷатҳо: аз 3 рӯз то чанд соат', ul3:'Хатогиҳои воридкунӣ 9 маротиба кам шуд',
+  want:'Ҳаминро мехоҳам', m1:'коркарди дастӣ', m2:'бастан ба ҷои 3 рӯз', m3:'хатогиҳои воридкунӣ кам', m4:'аз аудит то ба кор даровардан',
+  foot:'© 2026 WIBE — AI digital agency', made:'Сохта шуд бо',
+  reg_title:'Забонро интихоб кунед', reg_sub:'Саҳифа бо забони интихобшуда намоиш дода мешавад.', reg_skip:'Гузарондан'
+},
+'tk-TM':{
+  cta:'Taslamany ara alyşmak', kicker:'Keýs · Logistika', h1a:'Resminama dolanşygy:', h1b:'el bilen işlenmegi',
+  hero_p:'Logistika kompaniýasy: operatorlar ýük resminamalaryndaky maglumatlary el bilen ERP-e geçirýärdiler — günde ýüzlerçe resminama, ýalňyşlyklar we ýapylyşda gijä galmalar.',
+  t_task:'Wezipe', task_p:'Başlangyç resminamalardan el bilen maglumat girizmegi aýyrmak, resminamalaryň ýapylmagyny çaltlaşdyrmak we ýalňyşlyklary azaltmak.',
+  t_sol:'Çözgüt', sol_p:'LLM islendik formatdaky ýük resminamalaryny (skanirleme, PDF, surat) okaýar, maglumatlary aýryp barlaýar, gapma-garşylyklary tapýar we ERP-e ýazgy girizýär. Jedelli ýagdaýlar operatora görkezilýär.',
+  t_res:'Netije', ul1:'El bilen işlenilmegi 85% azaldy', ul2:'Resminamalaryň ýapylmagy: 3 günden birnäçe sagada', ul3:'Maglumat girizme ýalňyşlyklary 9 esse azaldy',
+  want:'Edil şonusyny isleýärin', m1:'el bilen işlenmegi', m2:'3 günüň ýerine sagatlaýyn ýapylma', m3:'az girizme ýalňyşlygy', m4:'auditden işe girizilýänçä',
+  foot:'© 2026 WIBE — AI digital agency', made:'Şu bilen ýasalandy:',
+  reg_title:'Dili saýlaň', reg_sub:'Sahypa saýlanan dilde görkeziler.', reg_skip:'Geçmek'
+},
+'ro-MD':{
+  cta:'Discută proiectul', kicker:'Caz · Logistică', h1a:'Circuitul documentelor:', h1b:'prelucrare manuală',
+  hero_p:'O companie de logistică: operatorii transferau manual datele din avizele de transport în ERP — sute de documente pe zi, erori și întârzieri la închidere.',
+  t_task:'Provocare', task_p:'Eliminarea introducerii manuale a datelor din documentația primară, accelerarea închiderii documentelor și reducerea erorilor.',
+  t_sol:'Soluție', sol_p:'Un LLM citește avizele în orice format (scanări, PDF, fotografii), extrage și verifică datele, găsește neconcordanțe și introduce înregistrări în ERP. Cazurile disputate sunt evidențiate operatorului.',
+  t_res:'Rezultate', ul1:'Prelucrarea manuală redusă cu 85%', ul2:'Închiderea documentelor: de la 3 zile la câteva ore', ul3:'Erorile de introducere reduse de 9 ori',
+  want:'Vreau același lucru', m1:'prelucrare manuală', m2:'închidere în loc de 3 zile', m3:'mai puține erori de introducere', m4:'de la audit la lansare',
+  foot:'© 2026 WIBE — AI digital agency', made:'Creat cu',
+  reg_title:'Alege limba', reg_sub:'Pagina va fi afișată în limba selectată.', reg_skip:'Sari peste'
+},
+'ru-BY':{
+  cta:'Абмеркаваць праект', kicker:'Кейс · Лагістыка', h1a:'Дакументазварот:', h1b:'ручной апрацоўкі',
+  hero_p:'Лагістычная кампанія: аператары ўручную пераносілі даныя з накладных у ERP — сотні дакументаў у дзень, памылкі і затрымкі закрыцця.',
+  t_task:'Задача', task_p:'Прыбраць ручное ўвядзенне даных з першаснай дакументацыі, паскорыць закрыццё дакументаў і знізіць колькасць памылак.',
+  t_sol:'Рашэнне', sol_p:'LLM чытае накладныя ў любым фармаце (сканы, PDF, фота), здабывае і звярае даныя, знаходзіць разыходжанні і заводзіць запісы ў ERP. Спрэчныя выпадкі падсвечваюцца аператару.',
+  t_res:'Вынік', ul1:'Ручная апрацоўка скарацілася на 85%', ul2:'Закрыццё дакументаў: з 3 дзён да некалькіх гадзін', ul3:'Памылкі ўводу знізіліся ў 9 разоў',
+  want:'Хачу так жа', m1:'ручной апрацоўкі', m2:'закрыццё замест 3 дзён', m3:'менш памылак уводу', m4:'ад аўдыту да запуску',
+  foot:'© 2026 WIBE — AI digital agency', made:'Зроблена з',
+  reg_title:'Выберыце мову', reg_sub:'Старонка адлюструецца на выбранай мове.', reg_skip:'Прапусціць'
+}
+};
+
+let lang = localStorage.getItem('wibe-region') || 'ru-RU';
+
+function applyLang(){
+  const L = STR[lang] || STR['en-US'] || STR['ru-RU'];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'he-IL') ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = L[el.dataset.i18n];
+    if(v != null) el.textContent = v;
+  });
+  const b = document.getElementById('langBtn');
+  const loc = LOCALES.find(l => l.code === lang);
+  if(loc) b.textContent = loc.flag;
+}
+
+function choose(code){ lang = code; localStorage.setItem('wibe-region', code); applyLang(); }
+
+const modal = document.getElementById('regionModal');
+const grid = document.getElementById('regionGrid');
+LOCALES.forEach(l => {
+  const b = document.createElement('button');
+  b.className = 'region-btn';
+  b.innerHTML = '<span class="fl">' + l.flag + '</span><span>' + l.label + '</span>';
+  b.addEventListener('click', () => { modal.classList.remove('show'); choose(l.code); });
+  grid.appendChild(b);
+});
+document.getElementById('regSkip').addEventListener('click', e => { e.preventDefault(); modal.classList.remove('show'); });
+document.getElementById('langBtn').addEventListener('click', () => modal.classList.add('show'));
+modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('show'); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('show')) modal.classList.remove('show'); });
+
+applyLang();
+</script>
 </body>
 </html>
