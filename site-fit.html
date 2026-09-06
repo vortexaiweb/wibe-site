@@ -8,7 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
   :root{--bg:#0b141f;--bg2:#0f1d2c;--ink:#eef6ff;--muted:#8fa4b8;--acid:#2fd4ff;--accent:#37e0a3;--line:rgba(120,190,255,.14);--card:#11202f}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
   h1,h2,h3,.logo{font-family:'Sora',sans-serif}
   .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   header{position:sticky;top:0;background:rgba(11,20,31,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
@@ -43,6 +43,7 @@
   .stat b{font-family:'Sora';font-size:30px;color:var(--acid)}
   .stat span{color:var(--muted);font-size:13px}
   section{padding:64px 0}
+  section[id]{scroll-margin-top:96px}
   h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
   .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
   .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column}

@@ -8,7 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
   :root{--bg:#0c1412;--bg2:#11201a;--ink:#f0f6f2;--muted:#93a89c;--amber:#ffb648;--accent:#5fe0a2;--line:rgba(130,220,170,.14);--card:#12231b}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
   h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
   .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   header{position:sticky;top:0;background:rgba(12,20,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
@@ -38,6 +38,7 @@
   .hero-img .badge b{color:var(--accent);font-family:'Space Grotesk';font-size:24px}
   .hero-img .badge span{color:var(--muted);font-size:12.5px}
   section{padding:56px 0}
+  section[id]{scroll-margin-top:90px}
   h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
   .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative}
@@ -52,6 +53,8 @@
   .ai-note{display:flex;gap:14px;align-items:flex-start;background:rgba(95,224,162,.08);border:1px dashed var(--accent);border-radius:16px;padding:18px;font-size:14px;margin-bottom:24px}
   .ai-note b{color:var(--accent)}
   .status{display:none;margin-top:14px;border:1px solid var(--line);border-radius:18px;padding:20px 22px;background:var(--bg2)}
+  .calc-form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px;border:0!important;background:none!important;padding:0!important}
+  @media(max-width:760px){.calc-form{grid-template-columns:1fr}}
   .status .line{font-weight:600;color:var(--ink)}
   .status ol{list-style:none;margin-top:12px;display:grid;gap:10px}
   .status li{color:var(--muted);font-size:14px;display:flex;gap:12px;align-items:center}
@@ -137,7 +140,7 @@
     <div class="ai-note"><div>📦</div><p><b>AI-диспетчер</b> обработает заявку быстрее живого диспетчера: назовёт цену и ближайшую свободную машину за минуту.</p></div>
     <div class="kicker">Заказ</div>
     <h2>Рассчитать перевозку</h2>
-    <form class="status" id="calcForm" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px;border:0;background:none;padding:0">
+    <form class="status calc-form" id="calcForm" style="border:0;background:none;padding:0;margin-top:18px">
       <input id="from" placeholder="Откуда" style="background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font-family:'Inter';font-size:14px">
       <input id="to" placeholder="Куда" style="background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font-family:'Inter';font-size:14px">
       <button class="btn" type="submit">Получить цену</button>

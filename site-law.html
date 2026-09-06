@@ -8,7 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
   :root{--bg:#100f16;--bg2:#1b1a25;--ink:#f2f0f8;--muted:#9d99ad;--gold:#d7c277;--line:rgba(215,194,119,.16);--card:#1d1c29}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
   h1,h2,h3,.logo{font-family:'Manrope',sans-serif}
   .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   header{position:sticky;top:0;background:rgba(16,15,22,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
@@ -44,6 +44,7 @@
   .ai b{color:var(--gold)}
   @keyframes blink{50%{opacity:.25}}
   section{padding:64px 0}
+  section[id]{scroll-margin-top:96px}
   h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
   .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
   .sv{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:22px;transition:transform .25s,border-color .25s}
@@ -86,7 +87,7 @@
     <div>
       <div class="kicker">Юридическая фирма · с 2009</div>
       <h1>Юристы, которые <em>не берут за разговор</em></h1>
-      <p>Договоры у нас начинаются с конкретной задачи и сметы: суды, саттам, сопровождение сделок приходят с escalage — без почасовой стенки.</p>
+      <p>Договоры у нас начинаются с конкретной задачи и сметы: суды, переговоры и сопровождение сделок считаются заранее — без почасовой оплаты.</p>
       <p>AI-ассистент фирмы принимает обращение, определяет, какая практика нужна, и передаёт живому юристу уже собранную карточку дела.</p>
       <div class="hero-actions">
         <a class="btn" href="#ai">Получить консультацию</a>
@@ -114,8 +115,8 @@
     <div class="sv"><div class="n">01</div><h3>Споры и суды</h3><p>Представительство в арбитраже и судах общей юрисдикции: от претензии до исполнения решения.</p></div>
     <div class="sv"><div class="n">02</div><h3>Договоры и сделки</h3><p>Согласование контрактов за 48 часов, юридическая архитектура сделки.</p></div>
     <div class="sv"><div class="n">03</div><h3>Банкротство</h3><p>Сопровождение бизнеса и физических лиц, оспаривание задолженности.</p></div>
-    <div class="sv"><div class="n">04</div><h3>HR и корпоративы</h3><p>Трудовые споры, реорганизация, защита руководителей.</p></div>
-    <div class="sv"><div class="n">05</div><h3>Недвижимость</h3><p>Проверка собственности, сопровождение сделок, военные и оборонные нюансы.</p></div>
+    <div class="sv"><div class="n">04</div><h3>HR и корпоративные споры</h3><p>Трудовые споры, реорганизация, защита руководителей.</p></div>
+    <div class="sv"><div class="n">05</div><h3>Недвижимость</h3><p>Проверка собственности, сопровождение сделок, регистрация прав и обременений.</p></div>
     <div class="sv"><div class="n">06</div><h3>Проверка контрагентов</h3><p>Комплексная проверка за 1 день: долги, суды, аффилированность.</p></div>
   </div>
 </section>

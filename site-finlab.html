@@ -8,7 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
   :root{--bg:#f4f7f2;--ink:#15211a;--muted:#67796b;--green:#1d8a4e;--green2:#0e5c33;--line:#dce6da;--card:#ffffff;--yellow:#ffc944}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
   h1,h2,h3,.logo{font-family:'Plus Jakarta Sans',sans-serif}
   .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   header{position:sticky;top:0;background:rgba(244,247,242,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
@@ -39,6 +39,7 @@
   .calc .out{border-radius:16px;background:linear-gradient(135deg,#e8f5ec,#f2fbf4);padding:18px;margin-top:16px;display:flex;justify-content:space-between;align-items:center}
   .calc .out .big{font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;color:var(--green)}
   section{padding:62px 0}
+  section[id]{scroll-margin-top:96px}
   h2{font-size:clamp(26px,3.6vw,38px);margin:10px 0 26px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:transform .25s,border-color .25s}
