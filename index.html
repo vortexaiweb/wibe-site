@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru-RU">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WIBE — сайты и ИИ-решения, которые продают</title>
-<meta name="description" content="WIBE — AI digital agency: лендинги, которые приводят клиентов, и ИИ, который продаёт 24/7. Оплата этапами, NDA, гарантия результата.">
-<meta property="og:title" content="WIBE — сайты и ИИ-решения, которые продают">
-<meta property="og:description" content="Сайты, которые приводят клиентов. ИИ, который продаёт 24/7. Оплата этапами, NDA, гарантия результата.">
+<title>WIBE — сайты и ИИ для бизнеса</title>
+<meta name="description" content="WIBE — делаем сайты и ИИ-решения для бизнеса. Прозрачные цены в любой валюте, честные сроки, поддержка после запуска.">
+<meta property="og:title" content="WIBE — сайты и ИИ для бизнеса">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='22' fill='%23171310'/%3E%3Cpath d='M24 30 L34 66 L48 36 L62 66 L72 30' stroke='%23ff6b2c' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='48' cy='36' r='5' fill='%23ff6b2c'/%3E%3C/svg%3E">
 <style>
@@ -27,10 +26,12 @@
   html{scroll-behavior:smooth}
   body{
     background:var(--bg);color:var(--ink);
-    font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;
-    overflow-x:hidden;
+    font-family:'Inter','PingFang SC','Hiragino Sans','Microsoft YaHei',sans-serif;
+    font-size:16px;line-height:1.6;overflow-x:hidden;
   }
-  h1,h2,h3,.wordmark{font-family:'Unbounded',sans-serif}
+  h1,h2,h3,.wordmark{
+    font-family:'Unbounded','Inter','PingFang SC','Hiragino Sans','Microsoft YaHei',sans-serif;
+  }
   ::selection{background:rgba(255,107,44,.35);color:#fff}
   ::-webkit-scrollbar{width:10px}
   ::-webkit-scrollbar-track{background:var(--bg)}
@@ -38,20 +39,16 @@
   ::-webkit-scrollbar-thumb:hover{background:rgba(255,107,44,.5)}
 
   #flow{position:fixed;inset:0;z-index:0;pointer-events:auto;transition:opacity .1s linear}
-
-  /* плёночная текстура поверх всего — премиальный объём */
   .grain{
     position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.045;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   }
 
-  /* ---------- header ---------- */
   header{
     position:fixed;inset:0 0 auto 0;z-index:50;
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
     padding:18px clamp(20px,5vw,64px);
-    backdrop-filter:blur(14px);
-    background:rgba(14,12,10,.45);
+    backdrop-filter:blur(14px);background:rgba(14,12,10,.45);
     border-bottom:1px solid var(--line);
     transition:background .3s,box-shadow .3s;
   }
@@ -61,72 +58,58 @@
   nav{display:flex;gap:26px}
   nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
   nav a:hover{color:var(--ink)}
-  @media(max-width:760px){nav{display:none}}
-
+  .header-right{display:flex;align-items:center;gap:14px}
+  .lang-select{
+    background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:100px;
+    padding:9px 14px;font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;outline:none;
+    transition:border-color .2s;
+  }
+  .lang-select:hover,.lang-select:focus{border-color:rgba(255,107,44,.55)}
   .btn{
-    display:inline-block;padding:14px 30px;border-radius:100px;font-weight:600;font-size:15px;text-decoration:none;
+    display:inline-block;padding:13px 26px;border-radius:100px;font-weight:600;font-size:15px;text-decoration:none;
     position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;border:0;
   }
   .btn-primary{
     background:var(--gold);color:#1a0d04;
-    box-shadow:0 10px 34px rgba(255,107,44,.4), inset 0 1px 0 rgba(255,255,255,.25);
+    box-shadow:0 10px 34px rgba(255,107,44,.35), inset 0 1px 0 rgba(255,255,255,.25);
   }
   .btn-primary::after{
     content:'';position:absolute;top:0;bottom:0;width:60%;left:-80%;
     background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
     transform:skewX(-20deg);transition:left .6s;
   }
-  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(255,107,44,.55)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(255,107,44,.45)}
   .btn-primary:hover::after{left:130%}
-  .btn-ghost{
-    background:rgba(23,19,16,.5);border:1px solid var(--line);color:var(--ink);backdrop-filter:blur(4px);
-  }
+  .btn-ghost{background:rgba(23,19,16,.5);border:1px solid var(--line);color:var(--ink);backdrop-filter:blur(4px)}
   .btn-ghost:hover{border-color:var(--accent);transform:translateY(-3px)}
+  @media(max-width:900px){nav{display:none}}
+  @media(max-width:760px){.btn{padding:11px 18px;font-size:14px}}
   #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:60}
 
-  /* ---------- hero ---------- */
   .hero{
     min-height:100svh;display:flex;flex-direction:column;justify-content:center;
     padding:140px clamp(20px,5vw,64px) 80px;position:relative;z-index:1;
   }
   .hero-inner{will-change:transform}
-  .badge{
-    display:inline-flex;align-items:center;gap:10px;width:max-content;
-    border:1px solid rgba(255,107,44,.4);border-radius:100px;padding:8px 18px;
-    color:var(--ink);font-size:13px;margin-bottom:28px;
-    background:rgba(255,107,44,.08);backdrop-filter:blur(4px);
-  }
-  .badge i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
-  @keyframes pulse{50%{opacity:.2}}
   .hero h1{
-    font-size:clamp(36px,6.6vw,84px);font-weight:800;line-height:1.05;
+    font-size:clamp(34px,6.2vw,78px);font-weight:800;line-height:1.08;
     letter-spacing:-.01em;max-width:15ch;
   }
   .grad{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p{max-width:50ch;color:var(--muted);margin:24px 0 6px;font-size:clamp(16px,2vw,18px)}
-  .hero .sub2{color:var(--ink);opacity:.9;margin:0;max-width:50ch}
-  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:28px}
-  .trust-row{display:flex;align-items:center;gap:14px;margin-top:26px;flex-wrap:wrap}
-  .avatars{display:flex}
-  .avatars span{
-    width:36px;height:36px;border-radius:50%;border:2px solid var(--bg);
-    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#1a0d04;
-    margin-left:-8px;
-  }
-  .avatars span:first-child{margin-left:0}
-  .trust-row small{color:var(--muted);font-size:13px}
+  .hero p{max-width:52ch;color:var(--muted);margin:22px 0 4px;font-size:clamp(16px,2vw,18px)}
+  .hero .sub2{color:var(--ink);opacity:.9;margin:0;max-width:52ch}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:26px}
+  .hero-sml{color:var(--muted);font-size:13px;margin-top:16px}
   .scroll-hint{
     position:absolute;bottom:26px;left:clamp(20px,5vw,64px);
     color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
     animation:floaty 2.4s ease-in-out infinite;
   }
   @keyframes floaty{50%{transform:translateY(8px)}}
-
   .in-hero{opacity:0}
   .in-hero.on{animation:fadin .9s cubic-bezier(.2,.7,.2,1) forwards}
   @keyframes fadin{from{opacity:0;transform:translateY(28px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
 
-  /* ---------- логотипы клиентов ---------- */
   .strip{position:relative;z-index:1;padding:34px clamp(20px,5vw,64px);border-top:1px solid var(--line);background:rgba(14,12,10,.9)}
   .strip .cap{color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;margin-bottom:18px}
   .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
@@ -137,23 +120,21 @@
   }
   .chip:hover{border-color:rgba(255,107,44,.6);color:var(--ink);transform:translateY(-2px)}
 
-  /* ---------- marquee ---------- */
   .marquee{
-    position:relative;z-index:1;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    position:relative;z-index:1;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     padding:15px 0;overflow:hidden;white-space:nowrap;
-    font-family:'Unbounded';font-size:13px;letter-spacing:.1em;color:var(--muted);
+    font-family:'Unbounded','Inter',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--muted);
     background:rgba(14,12,10,.85);
   }
-  .marquee-track{display:inline-block;animation:slide 26s linear infinite}
+  .marquee-track{display:inline-flex;animation:slide 26s linear infinite}
+  .marquee-track span{white-space:nowrap}
   .marquee-track b{color:var(--accent);margin:0 26px;font-weight:400}
   @keyframes slide{to{transform:translateX(-50%)}}
 
-  /* ---------- sections ---------- */
   .solid{position:relative;z-index:1;background:var(--bg)}
   section{padding:96px clamp(20px,5vw,64px)}
   .kicker{color:var(--accent);font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:600}
-  h2{font-size:clamp(26px,4.2vw,46px);font-weight:600;letter-spacing:-.01em;margin:14px 0 40px;max-width:22ch}
+  h2{font-size:clamp(26px,4.2vw,44px);font-weight:600;letter-spacing:-.01em;margin:14px 0 40px;max-width:24ch}
   .rv{opacity:0;transform:translateY(30px);filter:blur(5px);transition:opacity .7s,transform .7s,filter .7s}
   .rv.in{opacity:1;transform:none;filter:blur(0)}
 
@@ -162,10 +143,7 @@
     background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     padding:32px 28px;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden;
   }
-  .service::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;
-    background:var(--gold);opacity:0;transition:opacity .25s;
-  }
+  .service::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);opacity:0;transition:opacity .25s}
   .service:hover{border-color:rgba(255,107,44,.5);transform:translateY(-6px);box-shadow:0 22px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,107,44,.15)}
   .service:hover::before{opacity:1}
   .service .num{color:var(--accent);font-family:'Unbounded';font-size:12px}
@@ -173,11 +151,8 @@
   .service p{color:var(--muted);font-size:14px}
 
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:56px}
-  .stat{
-    border-left:2px solid var(--accent);padding:22px 24px;
-    background:var(--panel);border-radius:16px;border-left:2px solid var(--accent);
-  }
-  .stat b{display:block;font-family:'Unbounded';font-size:clamp(28px,4vw,44px);font-weight:800;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat{background:var(--panel);border-radius:16px;padding:22px 24px;border-left:2px solid var(--accent)}
+  .stat b{display:block;font-family:'Unbounded','Inter';font-size:clamp(28px,4vw,44px);font-weight:800;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
   .stat span{color:var(--muted);font-size:13px}
 
   .cases{display:grid;gap:16px}
@@ -187,44 +162,14 @@
     text-decoration:none;color:var(--ink);background:var(--panel);
     transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden;
   }
-  .case::before{
-    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-    background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .3s;
-  }
+  .case::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .3s}
   .case:hover{border-color:rgba(255,107,44,.55);transform:translateX(10px);box-shadow:0 18px 44px rgba(0,0,0,.4)}
   .case:hover::before{transform:scaleY(1)}
-  .case::after{
-    content:'Кейс →';position:absolute;top:16px;right:22px;
-    color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.08em;
-    opacity:0;transition:opacity .25s;
-  }
-  .case:hover::after{opacity:1}
   .case h3{font-size:clamp(18px,2.4vw,24px);font-weight:600}
   .case p{color:var(--muted);font-size:14px;margin-top:5px}
-  .case .metric{font-family:'Unbounded';color:var(--accent);font-size:clamp(22px,3vw,32px);font-weight:800;text-align:right;white-space:nowrap}
-  .case .metric small{display:block;font-family:'Inter';color:var(--muted);font-size:12px;font-weight:500}
+  .case .metric{font-family:'Unbounded','Inter';color:var(--accent);font-size:clamp(22px,3vw,30px);font-weight:800;text-align:right;white-space:nowrap}
   @media(max-width:560px){.case{grid-template-columns:1fr}.case .metric{text-align:left}}
 
-  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-  .t-card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;
-    position:relative;overflow:hidden;transition:transform .25s,border-color .25s;
-  }
-  .t-card:hover{transform:translateY(-4px);border-color:rgba(255,107,44,.4)}
-  .t-card::before{
-    content:'“';position:absolute;top:4px;left:20px;
-    font-family:'Unbounded';font-size:60px;line-height:1;color:var(--accent);opacity:.3;
-  }
-  .t-card p{color:var(--ink);font-size:15px;margin-bottom:16px;padding-top:22px}
-  .t-card .who{display:flex;align-items:center;gap:12px}
-  .t-card .who i{
-    width:38px;height:38px;border-radius:50%;background:var(--gold);color:#1a0d04;
-    display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:13px;
-  }
-  .t-card .who b{display:block;font-size:14px;font-weight:600}
-  .t-card .who span{color:var(--muted);font-size:12px}
-
-  /* ---------- процесс ---------- */
   .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
   .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;transition:transform .25s}
   .step:hover{transform:translateY(-4px)}
@@ -233,7 +178,7 @@
   .step p{color:var(--muted);font-size:14px}
   .step .time{font-size:12px;color:var(--ink);opacity:.75;display:inline-block;border:1px solid var(--line);border-radius:100px;padding:3px 12px;margin-top:10px}
 
-  .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:stretch}
+  .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:stretch}
   .plan{
     background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     padding:34px 30px;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s;
@@ -244,34 +189,28 @@
     background:radial-gradient(120% 160% at 80% 0%,rgba(255,107,44,.18),transparent 60%),var(--panel);
     box-shadow:0 0 0 1px rgba(255,107,44,.25),0 24px 60px rgba(255,107,44,.12);
   }
-  .plan .tag{
-    position:absolute;top:-13px;left:30px;background:var(--gold);color:#1a0d04;
-    font-size:12px;font-weight:700;padding:5px 16px;border-radius:100px;
-  }
+  .plan .tag{position:absolute;top:-13px;left:30px;background:var(--gold);color:#1a0d04;font-size:12px;font-weight:700;padding:5px 16px;border-radius:100px}
   .plan h3{font-size:19px;font-weight:600}
-  .plan .price{font-family:'Unbounded';font-size:clamp(26px,3vw,34px);font-weight:800;margin:12px 0 2px}
-  .plan .price small{font-family:'Inter';font-size:13px;color:var(--muted);font-weight:500}
-  .plan p.note{color:var(--muted);font-size:13px;margin-bottom:18px}
+  .price{font-family:'Unbounded','Inter';font-size:clamp(26px,3vw,34px);font-weight:800;margin:12px 0 2px}
+  .price small{font-family:'Inter';font-size:13px;color:var(--muted);font-weight:500}
+  .plan p.note{color:var(--muted);font-size:13px;margin-bottom:12px}
+  .rate{color:var(--muted);font-size:12px;line-height:1.7;margin-bottom:18px;letter-spacing:.01em}
+  .rate b{color:var(--accent);font-weight:600}
   .plan ul{color:var(--muted);padding-left:0;list-style:none;display:grid;gap:9px;font-size:14px;margin-bottom:24px}
   .plan ul li{padding-left:26px;position:relative}
   .plan ul li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
   .plan .btn{margin-top:auto;text-align:center}
   .plan .btn-ghost{display:block}
-  .guarantee-ribbon{
-    margin:26px auto 0;max-width:580px;text-align:center;
-    border:1px solid rgba(255,107,44,.35);border-radius:16px;padding:18px 24px;
-    background:rgba(255,107,44,.06);
-  }
-  .guarantee-ribbon b{display:block;color:var(--ink);font-size:15px;margin-bottom:3px}
-  .guarantee-ribbon span{color:var(--muted);font-size:13px}
+  .cur-note{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:13px;margin-top:22px}
+  .cur-note i{width:7px;height:7px;border-radius:50%;background:#67c23a;box-shadow:0 0 8px rgba(103,194,58,.7)}
+  .cur-note.off i{background:#e6a23c;box-shadow:0 0 8px rgba(230,162,60,.7)}
+  .guarantee{border:1px solid rgba(255,107,44,.35);border-radius:16px;padding:18px 24px;background:rgba(255,107,44,.06);color:var(--muted);text-align:center;font-size:14px;max-width:640px;margin:26px auto 0}
+  .guarantee b{display:block;color:var(--ink);font-size:15px;margin-bottom:3px}
 
   .faq-list{display:grid;gap:10px;max-width:820px}
   .faq{border:1px solid var(--line);border-radius:18px;background:var(--panel);transition:border-color .25s}
   .faq:hover{border-color:rgba(255,107,44,.4)}
-  .faq summary{
-    cursor:pointer;list-style:none;padding:20px 24px;font-weight:600;font-size:15px;
-    display:flex;justify-content:space-between;align-items:center;gap:14px;
-  }
+  .faq summary{cursor:pointer;list-style:none;padding:20px 24px;font-weight:600;font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:14px}
   .faq summary::-webkit-details-marker{display:none}
   .faq summary::after{content:'+';font-family:'Unbounded';color:var(--accent);font-size:18px;transition:transform .25s}
   .faq[open] summary::after{transform:rotate(45deg)}
@@ -279,21 +218,14 @@
 
   .cta-block{
     border:1px solid var(--line);border-radius:var(--radius);
-    background:radial-gradient(120% 200% at 80% 0%,rgba(255,107,44,.18),transparent 60%),var(--panel);
+    background:radial-gradient(120% 200% at 80% 0%,rgba(255,107,44,.16),transparent 60%),var(--panel);
     padding:clamp(48px,7vw,84px);text-align:center;position:relative;overflow:hidden;
   }
-  .cta-block h2{margin:0 auto 14px;max-width:22ch}
-  .cta-block p{color:var(--muted);max-width:46ch;margin:0 auto 26px}
-  .timer{
-    display:inline-flex;align-items:center;gap:12px;margin-bottom:26px;
-    border:1px solid rgba(255,107,44,.4);background:rgba(255,107,44,.08);
-    border-radius:100px;padding:10px 22px;color:var(--ink);font-size:14px;font-weight:600;
-  }
-  .timer b{font-family:'Unbounded';color:var(--accent);font-weight:800}
+  .cta-block h2{margin:0 auto 14px;max-width:24ch}
+  .cta-block p{color:var(--muted);max-width:48ch;margin:0 auto 26px}
   .vchips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
   .vchip{font-size:13px;color:var(--ink);border:1px solid var(--line);border-radius:100px;padding:8px 16px;background:rgba(255,255,255,.02)}
   .vchip b{color:var(--accent)}
-
   .form-card{
     border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
     padding:clamp(30px,5vw,46px);max-width:600px;margin:0 auto;text-align:left;
@@ -302,7 +234,7 @@
   .form-card label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase}
   .form-card input,.form-card textarea{
     width:100%;background:var(--bg);border:1px solid var(--line);border-radius:14px;
-    padding:14px 16px;color:var(--ink);font-family:'Inter';font-size:15px;transition:border-color .2s;
+    padding:14px 16px;color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;transition:border-color .2s;
   }
   .form-card input:focus,.form-card textarea:focus{outline:none;border-color:var(--accent)}
   .form-card textarea{resize:vertical;min-height:80px}
@@ -317,16 +249,15 @@
   footer a{color:var(--muted);text-decoration:none}
   footer a:hover{color:var(--accent)}
 
-  /* ---------- плавающие CTA ---------- */
   .float-tg{
     position:fixed;right:22px;bottom:22px;z-index:70;
     width:56px;height:56px;border-radius:50%;background:var(--gold);color:#1a0d04;
     display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;
-    box-shadow:0 12px 34px rgba(255,107,44,.45);text-decoration:none;transition:transform .2s,box-shadow .2s;
+    box-shadow:0 12px 34px rgba(255,107,44,.4);text-decoration:none;transition:transform .2s;
     animation:bob 3s ease-in-out infinite;
   }
   .float-tg:hover{transform:scale(1.1)}
-  @keyframes bob{50%{box-shadow:0 16px 44px rgba(255,107,44,.6)}}
+  @keyframes bob{50%{box-shadow:0 16px 44px rgba(255,107,44,.55)}}
   .sticky-cta{
     position:fixed;bottom:0;left:0;right:0;z-index:71;
     display:flex;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
@@ -334,8 +265,33 @@
     transform:translateY(110%);transition:transform .3s;
   }
   .sticky-cta.show{transform:none}
-  .sticky-cta .btn{flex:1;text-align:center;padding:14px 10px;font-size:14px}
+  .sticky-cta .btn{flex:1;text-align:center;padding:13px 10px;font-size:14px}
   @media(min-width:761px){.sticky-cta{display:none}}
+
+  .region-modal{
+    position:fixed;inset:0;z-index:200;display:none;
+    align-items:center;justify-content:center;
+    background:rgba(10,9,8,.88);backdrop-filter:blur(12px);padding:20px;
+  }
+  .region-modal.show{display:flex}
+  .region-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(28px,5vw,54px);max-width:640px;width:100%;text-align:center;
+    box-shadow:0 40px 120px rgba(0,0,0,.6);
+  }
+  .region-card h3{font-size:clamp(20px,3vw,28px);font-weight:600;margin-bottom:10px}
+  .region-card > p{color:var(--muted);font-size:14px;margin-bottom:30px}
+  .region-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .region-btn{
+    display:flex;align-items:center;gap:12px;text-align:left;
+    background:var(--bg);border:1px solid var(--line);border-radius:16px;
+    padding:14px 16px;color:var(--ink);font-size:14px;font-family:'Inter',sans-serif;
+    cursor:pointer;transition:border-color .2s,transform .2s,background .2s;
+  }
+  .region-btn:hover{border-color:rgba(255,107,44,.6);transform:translateY(-2px);background:rgba(255,107,44,.06)}
+  .region-btn .fl{font-size:22px}
+  .region-skip{display:inline-block;margin-top:22px;color:var(--muted);font-size:13px;text-decoration:none;border-bottom:1px dotted var(--muted);opacity:.8}
+  .region-skip:hover{color:var(--accent);border-color:var(--accent)}
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -350,222 +306,643 @@
 <canvas id="flow"></canvas>
 <div class="grain"></div>
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"WIBE — AI Digital Agency","description":"Сайты, которые приводят клиентов, и ИИ, который продаёт 24/7.","email":"concept@wibe.site","areaServed":"RU"}
-</script>
-
 <header>
   <a class="wordmark" href="#">WIBE<span>.</span></a>
   <nav>
-    <a href="#services">Услуги</a>
-    <a href="#cases">Кейсы</a>
-    <a href="#pricing">Цены</a>
-    <a href="#reviews">Отзывы</a>
-    <a href="portfolio.html">Портфолио</a>
+    <a href="#services" data-i18n="nav_services"></a>
+    <a href="#cases" data-i18n="nav_cases"></a>
+    <a href="#pricing" data-i18n="nav_pricing"></a>
+    <a href="#faq" data-i18n="nav_faq"></a>
+    <a href="portfolio.html" data-i18n="nav_portfolio"></a>
   </nav>
-  <a class="btn btn-primary" href="#contact">Бесплатный аудит</a>
+  <div class="header-right">
+    <select class="lang-select" id="langSelect" aria-label="Language"></select>
+    <a class="btn btn-primary" href="#contact" data-i18n="header_btn"></a>
+  </div>
 </header>
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="badge in-hero" style="animation-delay:.05s"><i></i>Осталось 3 слота на этот месяц</div>
-    <h1 class="in-hero" style="animation-delay:.15s">Пока вы считаете заявки вручную — <span class="grad">конкуренты продают</span></h1>
-    <p class="in-hero" style="animation-delay:.25s">WIBE делает сайты, которые приводят клиентов, и ИИ, который отвечает и продаёт вместо вас — 24/7.</p>
-    <p class="sub2 in-hero" style="animation-delay:.32s">Результат через 4–6 недель. Первые проекты окупаются в первый месяц.</p>
-    <div class="hero-actions in-hero" style="animation-delay:.4s">
-      <a class="btn btn-primary" href="#contact">Получить аудит за 15 минут</a>
-      <a class="btn btn-ghost" href="#cases">Кейсы</a>
+    <h1 class="in-hero" style="animation-delay:.05s"><span data-i18n="hero_h1a"></span><br><span class="grad" data-i18n="hero_h1b"></span></h1>
+    <p class="in-hero" style="animation-delay:.18s" data-i18n="hero_sub"></p>
+    <p class="sub2 in-hero" style="animation-delay:.26s" data-i18n="hero_sub2"></p>
+    <div class="hero-actions in-hero" style="animation-delay:.34s">
+      <a class="btn btn-primary" href="#contact" data-i18n="hero_btn"></a>
+      <a class="btn btn-ghost" href="#cases" data-i18n="hero_btn2"></a>
     </div>
-    <div class="trust-row in-hero" style="animation-delay:.5s">
-      <div class="avatars">
-        <span style="background:#ff7a1f">АК</span>
-        <span style="background:#ffb454">МС</span>
-        <span style="background:#ff9a3c">ДЛ</span>
-        <span style="background:#ffca8a">+</span>
-      </div>
-      <small>30+ проектов · NDA · оплата этапами · гарантия результата</small>
-    </div>
+    <p class="hero-sml in-hero" style="animation-delay:.44s" data-i18n="hero_helper"></p>
   </div>
-  <div class="scroll-hint">Scroll ↓</div>
+  <div class="scroll-hint">↓</div>
 </section>
 
 <div class="strip">
-  <div class="cap">Нам доверяют</div>
+  <div class="cap" data-i18n="strip_cap"></div>
   <div class="chips">
     <span class="chip">Nordic Coffee</span>
     <span class="chip">Fitline</span>
     <span class="chip">Prav</span>
-    <span class="chip">Логистик+</span>
+    <span class="chip">Logistics+</span>
     <span class="chip">MediaHub</span>
     <span class="chip">FinLab</span>
   </div>
 </div>
 
-<div class="marquee">
-  <div class="marquee-track">
-    Сайты под ключ<b>◆</b>GPT-агенты<b>◆</b>RAG-системы<b>◆</b>Автоматизация<b>◆</b>ML-аналитика<b>◆</b>Голосовые боты<b>◆</b>
-    Сайты под ключ<b>◆</b>GPT-агенты<b>◆</b>RAG-системы<b>◆</b>Автоматизация<b>◆</b>ML-аналитика<b>◆</b>Голосовые боты<b>◆</b>
-  </div>
-</div>
+<div class="marquee"><div class="marquee-track" id="marquee"></div></div>
 
 <div class="solid">
 <section id="services">
-  <div class="kicker">Услуги</div>
-  <h2>Что мы делаем, чтобы вы продавали больше</h2>
+  <div class="kicker" data-i18n="services_k"></div>
+  <h2 data-i18n="services_h"></h2>
   <div class="services">
-    <div class="service rv"><div class="num">01</div><h3>AI-агенты и чат-боты</h3><p>Отвечают и продают 24/7: мгновенные ответы, квалификация лидов, допродажи.</p></div>
-    <div class="service rv"><div class="num">02</div><h3>Сайты под ключ</h3><p>Лендинги и веб-приложения, которые приводят клиентов, а не собирают пыль.</p></div>
-    <div class="service rv"><div class="num">03</div><h3>Автоматизация продаж</h3><p>CRM, почта и таблицы работают сами. Ни одна заявка не теряется.</p></div>
-    <div class="service rv"><div class="num">04</div><h3>RAG и базы знаний</h3><p>ИИ отвечает по вашим документам — точно, со ссылкой на источник.</p></div>
-    <div class="service rv"><div class="num">05</div><h3>Голосовые боты</h3><p>Принимают звонки и записывают клиентов живой речью, без ожиданий.</p></div>
-    <div class="service rv"><div class="num">06</div><h3>ML-аналитика</h3><p>Прогнозы и сегментация прямо в ваших дашбордах — решения на цифрах.</p></div>
+    <div class="service rv"><div class="num">01</div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
+    <div class="service rv"><div class="num">02</div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
+    <div class="service rv"><div class="num">03</div><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></div>
+    <div class="service rv"><div class="num">04</div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
+    <div class="service rv"><div class="num">05</div><h3 data-i18n="s5t"></h3><p data-i18n="s5d"></p></div>
+    <div class="service rv"><div class="num">06</div><h3 data-i18n="s6t"></h3><p data-i18n="s6d"></p></div>
   </div>
   <div class="stats">
-    <div class="stat rv"><b><span data-count="70">0</span>%</b><span>быстрее обрабатываем заявки</span></div>
-    <div class="stat rv"><b>24/7</b><span>ИИ продаёт без выходных</span></div>
-    <div class="stat rv"><b><span data-count="30">0</span>+</b><span>внедрённых проектов</span></div>
-    <div class="stat rv"><b><span data-count="6">0</span> нед.</b><span>от аудита до запуска</span></div>
+    <div class="stat rv"><b>70%</b><span data-i18n="st1"></span></div>
+    <div class="stat rv"><b>24/7</b><span data-i18n="st2"></span></div>
+    <div class="stat rv"><b>30+</b><span data-i18n="st3"></span></div>
+    <div class="stat rv"><b data-i18n="st4v"></b><span data-i18n="st4"></span></div>
   </div>
 </section>
 
 <section id="cases">
-  <div class="kicker">Кейсы</div>
-  <h2>Цифры, которые окупают разговор</h2>
+  <div class="kicker" data-i18n="cases_k"></div>
+  <h2 data-i18n="cases_h"></h2>
   <div class="cases">
     <a class="case rv" href="case-ecom.html">
-      <div><h3>E-commerce: AI-ассистент продаж</h3><p>Консультирует и доводит до корзины в Telegram и на сайте.</p></div>
-      <div class="metric">+34%<small>конверсия в заказ</small></div>
+      <div><h3 data-i18n="c1t"></h3><p data-i18n="c1d"></p></div>
+      <div class="metric" data-i18n="c1m"></div>
     </a>
     <a class="case rv" href="case-logistics.html">
-      <div><h3>Логистика: документооборот на LLM</h3><p>Накладные читаются и заводятся в ERP без операторов.</p></div>
-      <div class="metric">−85%<small>ручной работы</small></div>
+      <div><h3 data-i18n="c2t"></h3><p data-i18n="c2d"></p></div>
+      <div class="metric" data-i18n="c2m"></div>
     </a>
     <a class="case rv" href="case-media.html">
-      <div><h3>Медиа: контент-конвейер</h3><p>Десятки брендированных креативов из одного сценария.</p></div>
-      <div class="metric">×12<small>скорость контента</small></div>
+      <div><h3 data-i18n="c3t"></h3><p data-i18n="c3d"></p></div>
+      <div class="metric" data-i18n="c3m"></div>
     </a>
   </div>
   <div class="hero-actions" style="margin-top:32px">
-    <a class="btn btn-ghost" href="portfolio.html">Смотреть портфолио сайтов →</a>
-  </div>
-</section>
-
-<section id="reviews">
-  <div class="kicker">Отзывы</div>
-  <h2>Что говорят те, кто уже продаёт больше</h2>
-  <div class="testimonials">
-    <div class="t-card rv"><p>Ассистент окупился за 3 недели. Заявки больше не пропадают ночью — бот всё принимает.</p><div class="who"><i>АК</i><div><b>Андрей Кирсанов</b><span>CEO, интернет-магазин</span></div></div></div>
-    <div class="t-card rv"><p>Ручной ввод документов сократили на 85%. Команда наконец занимается делом, а не переписыванием.</p><div class="who"><i>МС</i><div><b>Марина Соколова</b><span>Операционный директор, логистика</span></div></div></div>
-    <div class="t-card rv"><p>WIBE — единственные, кто сначала считает эффект, а потом делает. Ноль воды, всё по цифрам.</p><div class="who"><i>ДЛ</i><div><b>Денис Лебедев</b><span>Маркетинг-директор, медиа</span></div></div></div>
+    <a class="btn btn-ghost" href="portfolio.html" data-i18n="portfolio_btn"></a>
   </div>
 </section>
 
 <section id="process">
-  <div class="kicker">Как мы работаем</div>
-  <h2>4 шага до вашего результата</h2>
+  <div class="kicker" data-i18n="process_k"></div>
+  <h2 data-i18n="process_h"></h2>
   <div class="process">
-    <div class="step rv"><div class="num">01</div><h3>Аудит</h3><p>Находим, где вы теряете заявки и деньги, и считаем эффект. Никаких обязательств.</p><span class="time">Бесплатно · 15 минут</span></div>
-    <div class="step rv"><div class="num">02</div><h3>Прототип</h3><p>Показываем рабочий прототип на ваших реальных данных.</p><span class="time">День 14</span></div>
-    <div class="step rv"><div class="num">03</div><h3>Запуск</h3><p>Внедряем, интегрируем, обучаем команду. Вы продаёте больше.</p><span class="time">Неделя 4–6</span></div>
-    <div class="step rv"><div class="num">04</div><h3>Рост</h3><p>Мониторим, дообучаем и улучшаем — результат растёт дальше.</p><span class="time">Поддержка включена</span></div>
+    <div class="step rv"><div class="num">01</div><h3 data-i18n="p1t"></h3><p data-i18n="p1d"></p><span class="time" data-i18n="p1t2"></span></div>
+    <div class="step rv"><div class="num">02</div><h3 data-i18n="p2t"></h3><p data-i18n="p2d"></p><span class="time" data-i18n="p2t2"></span></div>
+    <div class="step rv"><div class="num">03</div><h3 data-i18n="p3t"></h3><p data-i18n="p3d"></p><span class="time" data-i18n="p3t2"></span></div>
+    <div class="step rv"><div class="num">04</div><h3 data-i18n="p4t"></h3><p data-i18n="p4d"></p><span class="time" data-i18n="p4t2"></span></div>
   </div>
 </section>
 
 <section id="pricing">
-  <div class="kicker">Цены</div>
-  <h2>Пакеты без «вилок от и до»</h2>
+  <div class="kicker" data-i18n="pricing_k"></div>
+  <h2 data-i18n="pricing_h"></h2>
   <div class="pricing">
     <div class="plan rv">
-      <h3>Старт</h3>
-      <div class="price">от 120 000 ₽</div>
-      <p class="note">лендинг + AI-бот</p>
+      <h3 data-i18n="pl1t"></h3>
+      <div class="price"><span data-price="200"></span></div>
+      <p class="note" data-i18n="pl1sub"></p>
+      <div class="rate" data-rate="200"></div>
       <ul>
-        <li>Лендинг под ключ за 2–3 недели</li>
-        <li>AI-ассистент на сайте или в Telegram</li>
-        <li>Заявки автоматически в CRM</li>
+        <li data-i18n="pl1f1"></li>
+        <li data-i18n="pl1f2"></li>
+        <li data-i18n="pl1f3"></li>
       </ul>
-      <a class="btn btn-ghost" href="#contact">Обсудить</a>
+      <a class="btn btn-ghost" href="#contact" data-i18n="header_btn"></a>
     </div>
     <div class="plan hot rv">
-      <div class="tag">Популярный</div>
-      <h3>Бизнес</h3>
-      <div class="price">от 350 000 ₽</div>
-      <p class="note">сайт + автоматизация</p>
+      <div class="tag" data-i18n="pl2tag"></div>
+      <h3 data-i18n="pl2t"></h3>
+      <div class="price"><span data-price="1000"></span></div>
+      <p class="note" data-i18n="pl2sub"></p>
+      <div class="rate" data-rate="1000"></div>
       <ul>
-        <li>Многостраничный сайт или веб-приложение</li>
-        <li>AI-агенты на ваших данных</li>
-        <li>Интеграции: CRM, ERP, мессенджеры</li>
-        <li>Месяц поддержки в подарок</li>
+        <li data-i18n="pl2f1"></li>
+        <li data-i18n="pl2f2"></li>
+        <li data-i18n="pl2f3"></li>
+        <li data-i18n="pl2f4"></li>
       </ul>
-      <a class="btn btn-primary" href="#contact">Обсудить</a>
+      <a class="btn btn-primary" href="#contact" data-i18n="header_btn"></a>
     </div>
     <div class="plan rv">
-      <h3>Индивидуально</h3>
-      <div class="price">по смете</div>
-      <p class="note">ML, RAG, кастом</p>
+      <h3 data-i18n="pl3t"></h3>
+      <div class="price" data-i18n="pl3price"></div>
+      <p class="note" data-i18n="pl3sub"></p>
+      <div class="rate" style="min-height:18px"></div>
       <ul>
-        <li>Аудит и дорожная карта</li>
-        <li>ML-модели, RAG, голосовые боты</li>
-        <li>Развёртывание в вашем контуре</li>
+        <li data-i18n="pl3f1"></li>
+        <li data-i18n="pl3f2"></li>
+        <li data-i18n="pl3f3"></li>
       </ul>
-      <a class="btn btn-ghost" href="#contact">Обсудить</a>
+      <a class="btn btn-ghost" href="#contact" data-i18n="header_btn"></a>
     </div>
   </div>
-  <div class="guarantee-ribbon rv">
-    <b>Гарантия результата</b>
-    <span>Не увидите пользы на этапе прототипа — вернём 100% предоплаты, без мелкого шрифта.</span>
-  </div>
+  <div class="cur-note rv" id="curNote"><i></i><span data-i18n="cur_note"></span></div>
+  <div class="guarantee rv"><b data-i18n="guarantee_h"></b><span data-i18n="guarantee"></span></div>
 </section>
 
-<section class="faq-wrap">
-  <div class="kicker">FAQ</div>
-  <h2>Отвечаем коротко</h2>
+<section id="faq">
+  <div class="kicker" data-i18n="faq_k"></div>
+  <h2 data-i18n="faq_h"></h2>
   <div class="faq-list">
-    <details class="faq rv"><summary>Сколько стоит?</summary><p>Лендинг с ботом — от 120 000 ₽, сайт с автоматизацией — от 350 000 ₽. После аудита цена фиксируется в договоре.</p></details>
-    <details class="faq rv"><summary>Когда будет результат?</summary><p>Прототип работает через 14 дней после аудита. Полный запуск — за 4–6 недель.</p></details>
-    <details class="faq rv"><summary>Данные в безопасности?</summary><p>Да. NDA, развёртывание в вашем контуре — данные не покидают вашу инфраструктуру.</p></details>
-    <details class="faq rv"><summary>Что после запуска?</summary><p>Мониторим, дообучаем, улучшаем. Поддержка входит в пакет, дальше — по договорённости.</p></details>
-    <details class="faq rv"><summary>Что если не подойдём друг другу?</summary><p>Вернём предоплату на этапе прототипа и честно объясним почему. Никаких обид и заложенных в смету «запасных».</p></details>
+    <details class="faq rv"><summary data-i18n="q1"></summary><p data-i18n="q1a"></p></details>
+    <details class="faq rv"><summary data-i18n="q2"></summary><p data-i18n="q2a"></p></details>
+    <details class="faq rv"><summary data-i18n="q3"></summary><p data-i18n="q3a"></p></details>
+    <details class="faq rv"><summary data-i18n="q4"></summary><p data-i18n="q4a"></p></details>
+    <details class="faq rv"><summary data-i18n="q5"></summary><p data-i18n="q5a"></p></details>
   </div>
 </section>
 
 <section id="contact">
   <div class="cta-block">
-    <div class="kicker">Поехали</div>
-    <h2>Посчитаем ваш результат бесплатно</h2>
-    <p>Аудит за 15 минут: найдём, где вы теряете заявки и деньги, и дадим план с цифрами. Это ничего вам не стоит.</p>
-    <div class="timer">Слоты на месяц заканчиваются через <b id="countdown">—</b></div>
+    <div class="kicker" data-i18n="contact_k"></div>
+    <h2 data-i18n="contact_h"></h2>
+    <p data-i18n="contact_p"></p>
     <div class="vchips">
-      <span class="vchip"><b>✓</b> Аудит процессов</span>
-      <span class="vchip"><b>✓</b> Первые цифры эффекта</span>
-      <span class="vchip"><b>✓</b> План и смета в подарок</span>
+      <span class="vchip"><b>✓</b> <span data-i18n="vc1"></span></span>
+      <span class="vchip"><b>✓</b> <span data-i18n="vc2"></span></span>
+      <span class="vchip"><b>✓</b> <span data-i18n="vc3"></span></span>
     </div>
     <form class="form-card" id="lead-form">
-      <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" required placeholder="Как к вам обращаться"></div>
-      <div class="field"><label for="f-contact">Контакт</label><input id="f-contact" name="contact" required placeholder="Telegram, email или телефон"></div>
-      <div class="field"><label for="f-task">Что нужно (кратко)</label><textarea id="f-task" name="task" placeholder="Сайт / ИИ / автоматизация — одна строка"></textarea></div>
-      <button class="btn btn-primary" type="submit">Получить бесплатный аудит</button>
-      <p class="form-note" id="form-note">Откроется Telegram — просто отправьте заготовленное сообщение. Или напишите на <a href="mailto:concept@wibe.site" style="color:var(--accent)">concept@wibe.site</a>.</p>
+      <div class="field"><label for="f-name" data-i18n="fname"></label><input id="f-name" name="name" required data-i18n-ph="fname_p"></div>
+      <div class="field"><label for="f-contact" data-i18n="fcontact"></label><input id="f-contact" name="contact" required data-i18n-ph="fcontact_p"></div>
+      <div class="field"><label for="f-task" data-i18n="ftask"></label><textarea id="f-task" name="task" data-i18n-ph="ftask_p"></textarea></div>
+      <button class="btn btn-primary" type="submit" data-i18n="fbtn"></button>
+      <p class="form-note" data-i18n="fnote"></p>
     </form>
   </div>
 </section>
 </div>
 
 <footer>
-  <div>© 2026 WIBE — AI digital agency</div>
+  <div data-i18n="foot_line"></div>
   <div><a href="mailto:concept@wibe.site">concept@wibe.site</a> · <a href="https://t.me/wibesitebot" target="_blank" rel="noopener">@wibesitebot</a> · <a href="https://t.me/wibesite" target="_blank" rel="noopener">@wibesite</a></div>
-  <div>Сделано с <a href="https://t.me/wibesite" target="_blank" rel="noopener">WIBE AI</a> ⚡</div>
+  <div data-i18n="foot_made"></div>
 </footer>
 
-<a class="float-tg" href="https://t.me/wibesitebot" target="_blank" rel="noopener" aria-label="Написать в Telegram">✈</a>
+<a class="float-tg" href="https://t.me/wibesitebot" target="_blank" rel="noopener" aria-label="Telegram">✈</a>
 
 <div class="sticky-cta">
-  <a class="btn btn-primary" href="#contact">Бесплатный аудит</a>
-  <a class="btn btn-ghost" href="https://t.me/wibesitebot" target="_blank" rel="noopener">TG-бот</a>
+  <a class="btn btn-primary" href="#contact" data-i18n="header_btn"></a>
+  <a class="btn btn-ghost" href="https://t.me/wibesitebot" target="_blank" rel="noopener">Telegram</a>
+</div>
+
+<div class="region-modal" id="regionModal">
+  <div class="region-card">
+    <h3 data-i18n="reg_title"></h3>
+    <p data-i18n="reg_sub"></p>
+    <div class="region-grid" id="regionGrid"></div>
+    <a class="region-skip" href="#" id="regSkip" data-i18n="reg_skip"></a>
+  </div>
 </div>
 
 <script>
-  // Gateway Flow: потоки частиц к центру, тают при скролле
+  /* ---------- переводы ---------- */
+  const LOCALES = [
+    {code:'ru-RU', flag:'🇷🇺', label:'Русский · Россия'},
+    {code:'ru-BY', flag:'🇧🇾', label:'Русский · Беларусь'},
+    {code:'en-US', flag:'🇺🇸', label:'English · USA'},
+    {code:'en-GB', flag:'🇪🇺', label:'English · Europe'},
+    {code:'pl-PL', flag:'🇵🇱', label:'Polski'},
+    {code:'de-DE', flag:'🇩🇪', label:'Deutsch'},
+    {code:'zh-CN', flag:'🇨🇳', label:'中文 · 中国'},
+    {code:'ja-JP', flag:'🇯🇵', label:'日本語'}
+  ];
+  const CURRENCY = {'ru-RU':'RUB','ru-BY':'BYN','en-US':'USD','en-GB':'EUR','pl-PL':'PLN','de-DE':'EUR','zh-CN':'CNY','ja-JP':'JPY'};
+
+  const STR = {
+  'ru-RU':{
+    nav_services:'Услуги', nav_cases:'Кейсы', nav_pricing:'Цены', nav_faq:'Вопросы', nav_portfolio:'Портфолио', header_btn:'Обсудить задачу',
+    hero_h1a:'Помогаем бизнесу', hero_h1b:'продавать больше',
+    hero_sub:'Сайты и ИИ-решения под ключ — понятные цены, честные сроки и поддержка после запуска.',
+    hero_sub2:'Начните с короткого сообщения: разберёмся, что нужно, и предложим план с цифрами.',
+    hero_btn:'Обсудить бесплатно', hero_btn2:'Посмотреть кейсы',
+    price_from:'от',
+    hero_helper:'Отвечаем в течение 15 минут в рабочее время. Без спама и навязчивых звонков.',
+    strip_cap:'С кем мы работаем',
+    m_items:'Сайты под ключ ◆ ИИ для продаж ◆ Автоматизация ◆ Чат-боты ◆ Голосовые боты ◆ ML-аналитика ◆ ',
+    services_k:'Услуги', services_h:'Что пригодится вашему бизнесу',
+    s1t:'Сайты под ключ', s1d:'Лендинги и веб-приложения, которые понятны посетителю и приводят заявки.',
+    s2t:'ИИ для продаж', s2d:'Ассистенты в чатах и на сайте: отвечают быстро, по-человечески, ничего не теряя.',
+    s3t:'Автоматизация', s3d:'Рутину — CRM, документы, почту — отдаём машинам. Вы занимаетесь делом.',
+    s4t:'RAG и базы знаний', s4d:'ИИ отвечает по вашим документам и всегда ссылается на источник.',
+    s5t:'Голосовые боты', s5d:'Принимают звонки и записывают клиентов — даже ночью.',
+    s6t:'ML-аналитика', s6d:'Прогнозы и отчёты на ваших данных — без гаданий.',
+    st1:'быстрее обрабатываем заявки', st2:'ИИ работает, когда команда спит', st3:'запущенных проектов', st4v:'6 недель', st4:'от первого сообщения до результата',
+    cases_k:'Кейсы', cases_h:'Что у нас получается',
+    c1t:'Интернет-магазин', c1d:'AI-консультант отвечает и помогает оформить заказ.', c1m:'+34% к конверсии',
+    c2t:'Логистика', c2d:'ИИ читает накладные и заводит их в систему.', c2m:'−85% ручной работы',
+    c3t:'Медиа', c3d:'Один сценарий — десятки креативов.', c3m:'×12 к скорости',
+    portfolio_btn:'Смотреть портфолио сайтов',
+    process_k:'Как мы работаем', process_h:'Четыре простых шага',
+    p1t:'Аудит', p1d:'Смотрим, где вы теряете заявки и деньги. Бесплатно.', p1t2:'Бесплатно · 15 минут',
+    p2t:'Прототип', p2d:'Показываем рабочий результат на ваших данных.', p2t2:'День 14',
+    p3t:'Запуск', p3d:'Внедряем, интегрируем, обучаем вашу команду.', p3t2:'4–6 недель',
+    p4t:'Поддержка', p4d:'Наблюдаем за результатом и улучшаем вместе с вами.', p4t2:'Включена',
+    pricing_k:'Цены', pricing_h:'Честные пакеты без мелкого шрифта',
+    pl1t:'Старт', pl1sub:'сайт или ИИ-ассистент',
+    pl1f1:'Сайт под ключ или AI-ассистент', pl1f2:'Заявки сразу к вам в чат', pl1f3:'2–3 недели с момента старта',
+    pl2t:'Бизнес', pl2sub:'сайт + автоматизация', pl2tag:'Выбирают чаще всего',
+    pl2f1:'Сайт и автоматизация процессов', pl2f2:'ИИ на ваших данных', pl2f3:'Интеграция с CRM и мессенджерами', pl2f4:'Поддержка после запуска',
+    pl3t:'Индивидуально', pl3sub:'ML, RAG, нестандартные задачи',
+    pl3f1:'Считаем эффект до старта', pl3f2:'Свои модели и системы', pl3f3:'Развёртывание у вас',
+    pl3price:'смета по задаче',
+    guarantee_h:'Гарантия', guarantee:'Вернём предоплату, если на этапе прототипа не увидите пользы.',
+    cur_note:'Курсы валют обновляются автоматически',
+    faq_k:'Вопросы и ответы', faq_h:'Коротко о главном',
+    q1:'Сколько это стоит?', q1a:'Сайт или ИИ-ассистент — от $200 в эквиваленте. Сайт с автоматизацией — от $1000. Точную цену называем после бесплатного аудита и фиксируем в договоре.',
+    q2:'Сколько времени занимает?', q2a:'Прототип — 14 дней, полный запуск — 4–6 недель. Вы видите результат по ходу работы.',
+    q3:'Насколько это безопасно?', q3a:'Заключаем NDA, при необходимости работаем в вашем контуре. Данные никуда не уходят.',
+    q4:'Что будет после запуска?', q4a:'Обучаем команду и остаёмся на связи: поддерживаем, улучшаем, считаем эффект.',
+    q5:'Что если не подойдём?', q5a:'Вернём предоплату на этапе прототипа и честно скажем почему. Без обид.',
+    contact_k:'Поехали', contact_h:'Расскажите, что нужно',
+    contact_p:'Напишите пару строк — разберёмся и предложим план. Бесплатно и без обязательств.',
+    vc1:'Аудит бесплатно', vc2:'Цифры до старта', vc3:'План и смета',
+    fname:'Имя', fname_p:'Как к вам обращаться', fcontact:'Как с вами связаться', fcontact_p:'Telegram, email или телефон', ftask:'Задача', ftask_p:'Пара слов о том, что нужно',
+    fbtn:'Отправить', fnote:'Откроется Telegram — просто отправьте готовое сообщение. Или напишите на concept@wibe.site.',
+    foot_line:'© 2026 WIBE — сайты и ИИ для бизнеса', foot_made:'Сделано в WIBE',
+    reg_title:'Выберите язык и регион', reg_sub:'Тексты, цены и валюта подстроятся автоматически.', reg_skip:'Пропустить'
+  },
+  'ru-BY':{},
+  'en-US':{
+    nav_services:'Services', nav_cases:'Case studies', nav_pricing:'Pricing', nav_faq:'FAQ', nav_portfolio:'Portfolio', header_btn:'Discuss your project',
+    hero_h1a:'We help businesses', hero_h1b:'sell more',
+    hero_sub:'Websites and AI solutions done properly — clear pricing, honest deadlines and support after launch.',
+    hero_sub2:'Start with a quick message: we figure out what you need and propose a plan with numbers.',
+    hero_btn:'Talk to us — free', hero_btn2:'See our work',
+    price_from:'from',
+    hero_helper:'We reply within 15 minutes during business hours. No spam, no pushy calls.',
+    strip_cap:'Who we work with',
+    m_items:'Websites ◆ Sales AI ◆ Automation ◆ Chatbots ◆ Voice bots ◆ ML analytics ◆ ',
+    services_k:'Services', services_h:'What could work for your business',
+    s1t:'Websites', s1d:'Landing pages and web apps that are clear to visitors and bring in requests.',
+    s2t:'AI for sales', s2d:'Assistants in chat and on your website: fast, human answers, nothing lost.',
+    s3t:'Automation', s3d:'Let machines handle CRM, documents and email. You get back to business.',
+    s4t:'RAG & knowledge bases', s4d:'AI answers from your documents — always citing the source.',
+    s5t:'Voice bots', s5d:'They answer calls and book customers, even at night.',
+    s6t:'ML analytics', s6d:'Forecasts and reports from your data — no crystal balls.',
+    st1:'faster lead handling', st2:'AI is on when your team sleeps', st3:'projects launched', st4v:'6 weeks', st4:'from first message to results',
+    cases_k:'Case studies', cases_h:'What we deliver',
+    c1t:'E-commerce', c1d:'An AI advisor answers questions and helps customers order.', c1m:'+34% conversion',
+    c2t:'Logistics', c2d:'AI reads waybills and files them into the system.', c2m:'−85% manual work',
+    c3t:'Media', c3d:'One script becomes dozens of creatives.', c3m:'×12 faster',
+    portfolio_btn:'See website portfolio',
+    process_k:'How we work', process_h:'Four simple steps',
+    p1t:'Audit', p1d:'We find where you lose requests and money. Free.', p1t2:'Free · 15 min',
+    p2t:'Prototype', p2d:'We show working results on your data.', p2t2:'Day 14',
+    p3t:'Launch', p3d:'We build, integrate and train your team.', p3t2:'4–6 weeks',
+    p4t:'Support', p4d:'We track results and improve together.', p4t2:'Included',
+    pricing_k:'Pricing', pricing_h:'Honest packages, no fine print',
+    pl1t:'Start', pl1sub:'website or AI assistant',
+    pl1f1:'Website or AI assistant, done for you', pl1f2:'Leads straight to your chat', pl1f3:'2–3 weeks from kickoff',
+    pl2t:'Business', pl2sub:'website + automation', pl2tag:'Most popular',
+    pl2f1:'Website plus process automation', pl2f2:'AI on your data', pl2f3:'CRM and messenger integrations', pl2f4:'Support after launch',
+    pl3t:'Custom', pl3sub:'ML, RAG, unusual tasks',
+    pl3f1:'We estimate the effect before starting', pl3f2:'Your own models and systems', pl3f3:'Deployed in your environment',
+    pl3price:'quote based on scope',
+    guarantee_h:'Our promise', guarantee:'If the prototype shows you no value, we refund your deposit.',
+    cur_note:'Exchange rates update automatically',
+    faq_k:'FAQ', faq_h:'The short version',
+    q1:'How much does it cost?', q1a:'A website or AI assistant starts at $200 equivalent. Website plus automation from $1000. We confirm the exact price after a free audit and fix it in the contract.',
+    q2:'How long does it take?', q2a:'Prototype in 14 days, full launch in 4–6 weeks. You see results along the way.',
+    q3:'Is our data safe?', q3a:'We sign NDAs and can work inside your environment. Your data never leaves it.',
+    q4:'What happens after launch?', q4a:'We train your team and stay in touch: support, improvements, measuring results.',
+    q5:'What if we are not a fit?', q5a:'We refund the deposit at the prototype stage and honestly explain why. No hard feelings.',
+    contact_k:'Let us talk', contact_h:'Tell us what you need',
+    contact_p:'Write a couple of lines — we will figure it out and suggest a plan. Free and without obligation.',
+    vc1:'Free audit', vc2:'Numbers before you start', vc3:'Plan and quote',
+    fname:'Name', fname_p:'What should we call you', fcontact:'Contact', fcontact_p:'Telegram, email or phone', ftask:'Task', ftask_p:'A few words about what you need',
+    fbtn:'Send', fnote:'Telegram will open — just send the ready message. Or email concept@wibe.site.',
+    foot_line:'© 2026 WIBE — websites and AI for business', foot_made:'Made by WIBE',
+    reg_title:'Choose your language and region', reg_sub:'Texts, pricing and currency adjust automatically.', reg_skip:'Skip'
+  },
+  'pl-PL':{
+    nav_services:'Usługi', nav_cases:'Case studies', nav_pricing:'Cennik', nav_faq:'Pytania', nav_portfolio:'Portfolio', header_btn:'Omów projekt',
+    hero_h1a:'Pomagamy firmom', hero_h1b:'sprzedawać więcej',
+    hero_sub:'Strony i rozwiązania AI robione porządnie — jasne ceny, uczciwe terminy i wsparcie po starcie.',
+    hero_sub2:'Zacznij od krótkiej wiadomości: sprawdzimy, czego potrzebujesz, i zaproponujemy plan z liczbami.',
+    hero_btn:'Pogadajmy — za darmo', hero_btn2:'Zobacz nasze prace',
+    price_from:'od',
+    hero_helper:'Odpowiadamy w 15 minut w godzinach pracy. Bez spamu i nachalnych telefonów.',
+    strip_cap:'Z kim pracujemy',
+    m_items:'Strony ◆ AI w sprzedaży ◆ Automatyzacja ◆ Chatboty ◆ Boty głosowe ◆ Analityka ML ◆ ',
+    services_k:'Usługi', services_h:'Co może pomóc Twojej firmie',
+    s1t:'Strony', s1d:'Landing page i aplikacje, które są jasne dla odwiedzających i przynoszą zapytania.',
+    s2t:'AI w sprzedaży', s2d:'Asystenci w czacie i na stronie: szybkie, ludzkie odpowiedzi, nic nie ginie.',
+    s3t:'Automatyzacja', s3d:'Rutynę — CRM, dokumenty, e-mail — oddajemy maszynom. Ty zajmujesz się firmą.',
+    s4t:'RAG i bazy wiedzy', s4d:'AI odpowiada na podstawie dokumentów i zawsze podaje źródło.',
+    s5t:'Boty głosowe', s5d:'Odbierają telefony i umawiają klientów — nawet w nocy.',
+    s6t:'Analityka ML', s6d:'Prognozy i raporty z Twoich danych — bez wróżenia.',
+    st1:'szybciej obsługujemy zapytania', st2:'AI działa, gdy zespół śpi', st3:'zrealizowanych projektów', st4v:'6 tygodni', st4:'od pierwszej wiadomości do efektu',
+    cases_k:'Case studies', cases_h:'Co wychodzi nam dobrze',
+    c1t:'E-commerce', c1d:'Doradca AI odpowiada i pomaga złożyć zamówienie.', c1m:'+34% konwersji',
+    c2t:'Logistyka', c2d:'AI czyta listy przewozowe i wprowadza je do systemu.', c2m:'−85% pracy ręcznej',
+    c3t:'Media', c3d:'Jeden scenariusz — dziesiątki kreacji.', c3m:'×12 szybciej',
+    portfolio_btn:'Zobacz portfolio stron',
+    process_k:'Jak pracujemy', process_h:'Cztery proste kroki',
+    p1t:'Audyt', p1d:'Sprawdzamy, gdzie tracisz zapytania i pieniądze. Za darmo.', p1t2:'Za darmo · 15 min',
+    p2t:'Prototyp', p2d:'Pokazujemy działający wynik na Twoich danych.', p2t2:'Dzień 14',
+    p3t:'Start', p3d:'Wdrażamy, integrujemy, szkolimy Twój zespół.', p3t2:'4–6 tygodni',
+    p4t:'Wsparcie', p4d:'Obserwujemy wyniki i ulepszamy razem z Tobą.', p4t2:'W pakiecie',
+    pricing_k:'Cennik', pricing_h:'Uczciwe pakiety bez gwiazdek',
+    pl1t:'Start', pl1sub:'strona lub asystent AI',
+    pl1f1:'Strona lub asystent AI', pl1f2:'Zapytania od razu w Twoim czacie', pl1f3:'2–3 tygodnie od startu',
+    pl2t:'Biznes', pl2sub:'strona + automatyzacja', pl2tag:'Najczęściej wybierany',
+    pl2f1:'Strona i automatyzacja procesów', pl2f2:'AI na Twoich danych', pl2f3:'Integracje z CRM i komunikatorami', pl2f4:'Wsparcie po starcie',
+    pl3t:'Na zamówienie', pl3sub:'ML, RAG, nietypowe zadania',
+    pl3f1:'Efekt liczymy przed startem', pl3f2:'Własne modele i systemy', pl3f3:'Wdrożenie u Ciebie',
+    pl3price:'wycena po analizie',
+    guarantee_h:'Gwarancja', guarantee:'Zwracamy zaliczkę, jeśli prototyp nie pokaże wartości.',
+    cur_note:'Kursy walut aktualizowane automatycznie',
+    faq_k:'Pytania', faq_h:'Najważniejsze w skrócie',
+    q1:'Ile to kosztuje?', q1a:'Strona lub asystent AI — od $200 w ekwiwalencie. Strona z automatyzacją — od $1000. Dokładną cenę podajemy po bezpłatnym audycie i zapisujemy w umowie.',
+    q2:'Ile to trwa?', q2a:'Prototyp w 14 dni, pełny start w 4–6 tygodni. Efekt widzisz po drodze.',
+    q3:'Czy dane są bezpieczne?', q3a:'Podpisujemy NDA i w razie potrzeby pracujemy w Twoim środowisku. Dane nigdzie nie wyjeżdżają.',
+    q4:'Co po starcie?', q4a:'Szkolimy zespół i zostajemy w kontakcie: wsparcie, rozwój, pomiar efektów.',
+    q5:'A jeśli to nie wypali?', q5a:'Zwracamy zaliczkę na etapie prototypu i szczerze mówimy dlaczego. Bez urazy.',
+    contact_k:'Do dzieła', contact_h:'Opowiedz nam, czego potrzebujesz',
+    contact_p:'Napisz kilka zdań — zrozumiemy sprawę i zaproponujemy plan. Za darmo i bez zobowiązań.',
+    vc1:'Bezpłatny audyt', vc2:'Liczby przed startem', vc3:'Plan i wycena',
+    fname:'Imię', fname_p:'Jak mamy się zwracać', fcontact:'Kontakt', fcontact_p:'Telegram, e-mail lub telefon', ftask:'Zadanie', ftask_p:'Kilka słów o tym, czego potrzebujesz',
+    fbtn:'Wyślij', fnote:'Otworzy się Telegram — wyślij gotową wiadomość. Albo napisz na concept@wibe.site.',
+    foot_line:'© 2026 WIBE — strony i AI dla biznesu', foot_made:'Zrobione w WIBE',
+    reg_title:'Wybierz język i region', reg_sub:'Teksty, ceny i waluta dostosują się automatycznie.', reg_skip:'Pomiń'
+  },
+  'de-DE':{
+    nav_services:'Leistungen', nav_cases:'Referenzen', nav_pricing:'Preise', nav_faq:'FAQ', nav_portfolio:'Portfolio', header_btn:'Projekt besprechen',
+    hero_h1a:'Wir helfen Unternehmen', hero_h1b:'mehr zu verkaufen',
+    hero_sub:'Websites und KI-Lösungen, ordentlich gemacht — klare Preise, ehrliche Termine, Support nach dem Start.',
+    hero_sub2:'Beginnen Sie mit einer kurzen Nachricht: Wir klären, was Sie brauchen, und schlagen einen Plan mit Zahlen vor.',
+    hero_btn:'Gratis sprechen', hero_btn2:'Arbeiten ansehen',
+    price_from:'ab',
+    hero_helper:'Wir antworten innerhalb von 15 Minuten zu Geschäftszeiten. Kein Spam, keine aufdringlichen Anrufe.',
+    strip_cap:'Mit wem wir arbeiten',
+    m_items:'Websites ◆ Verkaufs-KI ◆ Automatisierung ◆ Chatbots ◆ Sprachbots ◆ ML-Analytics ◆ ',
+    services_k:'Leistungen', services_h:'Was für Ihr Unternehmen infrage kommt',
+    s1t:'Websites', s1d:'Landingpages und Web-Apps, die Besuchern klar sind und Anfragen bringen.',
+    s2t:'KI für den Verkauf', s2d:'Assistenten im Chat und auf der Website: schnelle, menschliche Antworten, nichts geht verloren.',
+    s3t:'Automatisierung', s3d:'Routine wie CRM, Dokumente und E-Mail übernehmen die Maschinen. Sie kümmern sich ums Geschäft.',
+    s4t:'RAG & Wissensbasen', s4d:'KI antwortet aus Ihren Dokumenten und nennt immer die Quelle.',
+    s5t:'Sprachbots', s5d:'Nehmen Anrufe und Kunden an — sogar nachts.',
+    s6t:'ML-Analytics', s6d:'Prognosen und Reports aus Ihren Daten — ohne Kaffeesatz.',
+    st1:'schnellere Bearbeitung der Anfragen', st2:'KI arbeitet, wenn das Team schläft', st3:'umgesetzte Projekte', st4v:'6 Wochen', st4:'von der ersten Nachricht zum Ergebnis',
+    cases_k:'Referenzen', cases_h:'Was dabei herauskommt',
+    c1t:'E-Commerce', c1d:'Ein KI-Berater beantwortet Fragen und begleitet zur Bestellung.', c1m:'+34 % Konversion',
+    c2t:'Logistik', c2d:'KI liest Lieferscheine und erfasst sie im System.', c2m:'−85 % Handarbeit',
+    c3t:'Medien', c3d:'Ein Skript wird zu dutzenden Kreationen.', c3m:'×12 schneller',
+    portfolio_btn:'Website-Portfolio ansehen',
+    process_k:'So arbeiten wir', process_h:'Vier einfache Schritte',
+    p1t:'Audit', p1d:'Wir finden, wo Sie Anfragen und Geld verlieren. Gratis.', p1t2:'Gratis · 15 Min',
+    p2t:'Prototyp', p2d:'Wir zeigen ein funktionierendes Ergebnis mit Ihren Daten.', p2t2:'Tag 14',
+    p3t:'Start', p3d:'Wir implementieren, integrieren und schulen Ihr Team.', p3t2:'4–6 Wochen',
+    p4t:'Support', p4d:'Wir überwachen Ergebnisse und verbessern mit Ihnen.', p4t2:'Inklusive',
+    pricing_k:'Preise', pricing_h:'Ehrliche Pakete ohne Kleingedrucktes',
+    pl1t:'Start', pl1sub:'Website oder KI-Assistent',
+    pl1f1:'Website oder KI-Assistent komplett', pl1f2:'Anfragen direkt in Ihren Chat', pl1f3:'2–3 Wochen ab Start',
+    pl2t:'Business', pl2sub:'Website + Automatisierung', pl2tag:'Am beliebtesten',
+    pl2f1:'Website plus Prozessautomatisierung', pl2f2:'KI auf Ihren Daten', pl2f3:'Integration in CRM und Messenger', pl2f4:'Support nach dem Start',
+    pl3t:'Individuell', pl3sub:'ML, RAG, Sonderaufgaben',
+    pl3f1:'Wirkung vor dem Start berechnet', pl3f2:'Eigene Modelle und Systeme', pl3f3:'Bereitstellung bei Ihnen',
+    pl3price:'Angebot nach Umfang',
+    guarantee_h:'Unser Versprechen', guarantee:'Bringt der Prototyp keinen Nutzen, erstatten wir die Anzahlung.',
+    cur_note:'Wechselkurse werden automatisch aktualisiert',
+    faq_k:'FAQ', faq_h:'Kurz gefasst',
+    q1:'Was kostet das?', q1a:'Website oder KI-Assistent ab $200 im Äquivalent. Website mit Automatisierung ab $1000. Den genauen Preis nennen wir nach dem kostenlosen Audit und fixieren ihn im Vertrag.',
+    q2:'Wie lange dauert das?', q2a:'Prototyp in 14 Tagen, voller Start in 4–6 Wochen. Sie sehen unterwegs funktionierende Ergebnisse.',
+    q3:'Sind unsere Daten sicher?', q3a:'Wir schließen NDAs ab und arbeiten bei Bedarf in Ihrer Umgebung. Ihre Daten bleiben dort.',
+    q4:'Was passiert nach dem Start?', q4a:'Wir schulen Ihr Team und bleiben in Kontakt: Support, Verbesserungen, Ergebnismessung.',
+    q5:'Und wenn es nicht passt?', q5a:'Wir erstatten die Anzahlung in der Prototyp-Phase und sagen ehrlich, warum. Ohne böses Blut.',
+    contact_k:'Los geht es', contact_h:'Erzählen Sie uns, was Sie brauchen',
+    contact_p:'Schreiben Sie ein paar Zeilen — wir prüfen das und schlagen einen Plan vor. Gratis und unverbindlich.',
+    vc1:'Kostenloses Audit', vc2:'Zahlen vor dem Start', vc3:'Plan und Angebot',
+    fname:'Name', fname_p:'Wie dürfen wir Sie nennen', fcontact:'Kontakt', fcontact_p:'Telegram, E-Mail oder Telefon', ftask:'Aufgabe', ftask_p:'Ein paar Worte, was Sie brauchen',
+    fbtn:'Senden', fnote:'Telegram öffnet sich — senden Sie einfach die fertige Nachricht. Oder schreiben Sie an concept@wibe.site.',
+    foot_line:'© 2026 WIBE — Websites und KI für Unternehmen', foot_made:'Gemacht von WIBE',
+    reg_title:'Sprache und Region wählen', reg_sub:'Texte, Preise und Währung passen sich automatisch an.', reg_skip:'Überspringen'
+  },
+  'zh-CN':{
+    nav_services:'服务', nav_cases:'案例', nav_pricing:'价格', nav_faq:'常见问题', nav_portfolio:'作品集', header_btn:'聊聊你的项目',
+    hero_h1a:'我们帮助企业', hero_h1b:'卖出更多',
+    hero_sub:'网站与AI解决方案：价格透明、工期诚实、上线后持续支持。',
+    hero_sub2:'发一条消息开始——我们会理清需求，并给出有数字的方案。',
+    hero_btn:'免费咨询', hero_btn2:'看看我们的作品',
+    price_from:'约从',
+    hero_helper:'工作时间内15分钟内回复。不群发垃圾，不打扰推销。',
+    strip_cap:'我们服务过的客户',
+    m_items:'网站定制 ◆ 销售AI ◆ 流程自动化 ◆ 聊天机器人 ◆ 语音机器人 ◆ 数据AI ◆ ',
+    services_k:'服务', services_h:'也许正适合你的公司',
+    s1t:'网站定制', s1d:'落地页与Web应用，访客一看就懂，持续带来询盘。',
+    s2t:'销售AI', s2d:'聊天与网站智能助手：回答快、有温度，什么都不丢。',
+    s3t:'流程自动化', s3d:'把CRM、文档、邮件交给机器。你专心经营。',
+    s4t:'RAG知识库', s4d:'AI基于你的文档作答，永远附上出处。',
+    s5t:'语音机器人', s5d:'自动接听电话并登记客户，深夜也不休息。',
+    s6t:'数据AI', s6d:'基于你的数据做预测与报告，不靠猜。',
+    st1:'询盘处理更快', st2:'AI不休息，随时接单', st3:'已交付项目', st4v:'6周', st4:'从首次沟通到见结果',
+    cases_k:'客户案例', cases_h:'我们交付什么',
+    c1t:'电商', c1d:'AI顾问回答问题，引导客户下单。', c1m:'转化+34%',
+    c2t:'物流', c2d:'AI自动读取运单并录入系统。', c2m:'手工工作−85%',
+    c3t:'媒体', c3d:'一个脚本变成几十个创意素材。', c3m:'速度×12',
+    portfolio_btn:'查看网站作品集',
+    process_k:'我们的工作方式', process_h:'四步搞定',
+    p1t:'诊断', p1d:'找出你流失询盘与资金的地方。完全免费。', p1t2:'免费 · 15分钟',
+    p2t:'原型', p2d:'用你的数据提前看到可用结果。', p2t2:'第14天',
+    p3t:'上线', p3d:'部署、集成、培训你的团队。', p3t2:'4–6周',
+    p4t:'支持', p4d:'跟进结果，共同优化。', p4t2:'已包含',
+    pricing_k:'价格', pricing_h:'明码标价，没有小字',
+    pl1t:'起步', pl1sub:'网站或AI助手',
+    pl1f1:'网站或AI助手，一站式交付', pl1f2:'询盘直接发到你的聊天', pl1f3:'启动后2–3周',
+    pl2t:'商务', pl2sub:'网站+自动化', pl2tag:'最受欢迎',
+    pl2f1:'网站加流程自动化', pl2f2:'AI接入你的数据', pl2f3:'对接CRM与聊天工具', pl2f4:'上线后持续支持',
+    pl3t:'定制', pl3sub:'数据AI、知识库、特殊需求',
+    pl3f1:'动工前先算清效果', pl3f2:'专属模型与系统', pl3f3:'在你自己的环境部署',
+    pl3price:'按需求报价',
+    guarantee_h:'我们的承诺', guarantee:'原型阶段看不到价值，全额退还定金。',
+    cur_note:'汇率自动更新',
+    faq_k:'常见问题', faq_h:'简要回答',
+    q1:'费用多少？', q1a:'网站或AI助手约$200起；网站加自动化约$1000起。免费诊断后给出准确报价并写入合同。',
+    q2:'需要多久？', q2a:'原型14天，完整上线4–6周。过程随时能看到可用结果。',
+    q3:'我们的数据安全吗？', q3a:'我们签署NDA，必要时在你的环境内实施。数据不离开你的系统。',
+    q4:'上线之后呢？', q4a:'培训你的团队并保持联系：支持、优化、衡量效果。',
+    q5:'不合适怎么办？', q5a:'原型阶段全额退还定金，并如实说明原因。好聚好散。',
+    contact_k:'开始吧', contact_h:'告诉我们你的需求',
+    contact_p:'写几句话——我们理清思路并给出方案。免费，无任何压力。',
+    vc1:'免费诊断', vc2:'动工前先给数字', vc3:'方案与报价',
+    fname:'称呼', fname_p:'怎么称呼你', fcontact:'联系方式', fcontact_p:'微信、邮箱或电话', ftask:'需求', ftask_p:'简单说说你需要什么',
+    fbtn:'发送', fnote:'会打开Telegram——直接发送即可。或写信到 concept@wibe.site。',
+    foot_line:'© 2026 WIBE — 为企业做网站与AI', foot_made:'WIBE出品',
+    reg_title:'选择语言与地区', reg_sub:'文字、价格和货币都会自动调整。', reg_skip:'跳过'
+  },
+  'ja-JP':{
+    nav_services:'サービス', nav_cases:'事例', nav_pricing:'料金', nav_faq:'よくある質問', nav_portfolio:'ポートフォリオ', header_btn:'ご相談はこちら',
+    hero_h1a:'私たちは企業の', hero_h1b:'売上向上を支援します',
+    hero_sub:'価格が明確で、納期を守り、導入後もサポートが続くサイト・AIソリューション。',
+    hero_sub2:'1通のメッセージから始まります。要望を整理し、数字の入ったプランをご提案します。',
+    hero_btn:'無料で相談', hero_btn2:'制作実績を見る',
+    price_from:'〜',
+    hero_helper:'営業時間内は15分以内にご返信。営業メールやしつこい電話はしません。',
+    strip_cap:'お取引先',
+    m_items:'Web制作 ◆ 営業AI ◆ 業務自動化 ◆ チャットボット ◆ 音声ボット ◆ データAI ◆ ',
+    services_k:'サービス', services_h:'御社に役立つかもしれません',
+    s1t:'Webサイト制作', s1d:'訪問者に分かりやすく、問い合わせを生むランディング・アプリ。',
+    s2t:'営業AI', s2d:'チャットやサイト上のアシスタント。迅速で人間らしく、何も取りこぼしません。',
+    s3t:'業務自動化', s3d:'CRM・文書・メールのルーティンを機械に。本業に集中できます。',
+    s4t:'RAG・ナレッジベース', s4d:'AIが御社の文書を基に回答し、必ず出典を示します。',
+    s5t:'音声ボット', s5d:'電話を自動応答し顧客を登録。夜でも働きます。',
+    s6t:'データAI', s6d:'データに基づく予測とレポート。勘に頼りません。',
+    st1:'問い合わせ処理が速くなります', st2:'AIは休まず稼働', st3:'納品実績プロジェクト', st4v:'6週間', st4:'最初の一言から成果まで',
+    cases_k:'導入事例', cases_h:'何ができるか、簡単に',
+    c1t:'EC', c1d:'AIアドバイザーが質問に答え、注文まで案内。', c1m:'コンバージョン+34%',
+    c2t:'物流', c2d:'AIが納品書を読み取り、システムへ自動登録。', c2m:'手作業−85%',
+    c3t:'メディア', c3d:'1つの台本から数十のクリエイティブが生まれます。', c3m:'×12のスピード',
+    portfolio_btn:'Webポートフォリオを見る',
+    process_k:'進め方', process_h:'シンプル4ステップ',
+    p1t:'診断', p1d:'どこで問い合わせとお金を逃しているか見つけます。無料です。', p1t2:'無料 · 15分',
+    p2t:'プロトタイプ', p2d:'御社のデータで動く結果をお見せします。', p2t2:'14日目',
+    p3t:'本番導入', p3d:'実装・連携・チーム研修まで。', p3t2:'4〜6週間',
+    p4t:'サポート', p4d:'結果を追跡し、一緒に改善します。', p4t2:'含まれています',
+    pricing_k:'料金', pricing_h:'細かい字なしの誠実なプラン',
+    pl1t:'スタート', pl1sub:'サイトまたはAIアシスタント',
+    pl1f1:'サイトかAIアシスタント一式', pl1f2:'問い合わせは直接チャットへ', pl1f3:'開始から2〜3週間',
+    pl2t:'ビジネス', pl2sub:'サイト＋自動化', pl2tag:'一番人気',
+    pl2f1:'サイトと業務自動化', pl2f2:'御社のデータで動くAI', pl2f3:'CRM・メッセンジャー連携', pl2f4:'導入後のサポート',
+    pl3t:'カスタム', pl3sub:'ML・RAG・特殊要件',
+    pl3f1:'開始前に効果を算出', pl3f2:'専用モデルとシステム', pl3f3:'御社環境への導入',
+    pl3price:'内容に応じてお見積もり',
+    guarantee_h:'お約束', guarantee:'プロトタイプで効果が見えなければ前金を返金します。',
+    cur_note:'為替レートは自動更新',
+    faq_k:'よくある質問', faq_h:'手短に',
+    q1:'費用はいくらですか？', q1a:'サイトまたはAIアシスタントは$200相当から。自動化込みのサイトは$1000相当から。無料診断後に正確な価格をお伝えし、契約に明記します。',
+    q2:'どのくらいかかりますか？', q2a:'プロトタイプ14日、本番導入4〜6週間。途中で動く成果を確認できます。',
+    q3:'データは安全ですか？', q3a:'NDAを結び、必要に応じて御社環境で実施します。データは外に出ません。',
+    q4:'導入後は？', q4a:'チーム研修の上、サポートと改善、効果測定を続けます。',
+    q5:'合わない場合は？', q5a:'プロトタイプ段階で前金を返金し、正直に理由をお伝えします。恨みっこなし。',
+    contact_k:'始めましょう', contact_h:'ご要望をお聞かせください',
+    contact_p:'数行お書きください。整理してプランを提案します。無料・義務なし。',
+    vc1:'無料診断', vc2:'開始前に数字を', vc3:'プランとお見積もり',
+    fname:'お名前', fname_p:'お呼びしてよいお名前', fcontact:'ご連絡先', fcontact_p:'X、メール、電話など', ftask:'ご要望', ftask_p:'必要なことを一言で',
+    fbtn:'送信', fnote:'Telegramが開きますので、そのまま送信してください。メール: concept@wibe.site',
+    foot_line:'© 2026 WIBE — 企業のWebとAI制作', foot_made:'WIBE制作',
+    reg_title:'言語と地域を選択', reg_sub:'表示言語・料金・通貨が自動で切り替わります。', reg_skip:'スキップ'
+  }
+  };
+  STR['ru-BY'] = Object.assign({}, STR['ru-RU']);
+  STR['en-GB'] = Object.assign({}, STR['en-US']);
+
+  /* ---------- состояние ---------- */
+  let lang = localStorage.getItem('wibe-region') || 'ru-RU';
+  const CURRENCIES = ['USD','EUR','RUB','BYN','PLN','CNY','JPY'];
+  const SYM = {USD:'$',EUR:'€',RUB:'₽',BYN:'Br',PLN:'zł',CNY:'¥',JPY:'¥'};
+  const FALLBACK = {USD:1,EUR:.92,RUB:90,BYN:3.3,PLN:3.9,CNY:7.2,JPY:150};
+  let rates = Object.assign({}, FALLBACK), live = false;
+
+  /* ---------- селектор языка ---------- */
+  const select = document.getElementById('langSelect');
+  LOCALES.forEach(l => {
+    const o = document.createElement('option');
+    o.value = l.code; o.textContent = l.flag + ' ' + l.label;
+    select.appendChild(o);
+  });
+  select.addEventListener('change', () => choose(select.value));
+  function choose(code){ lang = code; localStorage.setItem('wibe-region', code); applyLang(); }
+
+  /* ---------- модал выбора региона ---------- */
+  const modal = document.getElementById('regionModal');
+  const grid = document.getElementById('regionGrid');
+  LOCALES.forEach(l => {
+    const b = document.createElement('button');
+    b.className = 'region-btn';
+    b.innerHTML = '<span class="fl">' + l.flag + '</span><span>' + l.label + '</span>';
+    b.addEventListener('click', () => { modal.classList.remove('show'); choose(l.code); });
+    grid.appendChild(b);
+  });
+  document.getElementById('regSkip').addEventListener('click', e => {
+    e.preventDefault(); modal.classList.remove('show');
+  });
+
+  /* ---------- курсы валют ---------- */
+  async function loadRates(){
+    for(let i=0;i<3;i++){
+      try{
+        const r = await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
+        if(r && r.rates){
+          r.rates.USD = 1;
+          CURRENCIES.forEach(c => { if(r.rates[c] != null) rates[c] = r.rates[c]; });
+          live = true; break;
+        }
+      }catch(e){ /* повтор */ }
+    }
+    renderPrices();
+    const note = document.getElementById('curNote');
+    if(note) note.classList.toggle('off', !live);
+  }
+  function nice(v){
+    let step;
+    if(v >= 100000) step = 5000;
+    else if(v >= 10000) step = 500;
+    else if(v >= 1000) step = 50;
+    else if(v >= 100) step = 5;
+    else step = 1;
+    return Math.ceil(v/step)*step;
+  }
+  function money(baseUsd, cur){
+    return nice(baseUsd*rates[cur]).toLocaleString('ru-RU') + ' ' + SYM[cur];
+  }
+  function renderPrices(){
+    const primary = CURRENCY[lang];
+    const all = CURRENCIES.filter(c => c !== primary);
+    document.querySelectorAll('[data-price]').forEach(el => {
+      const L = STR[lang] || STR['ru-RU'];
+      const base = +el.dataset.price;
+      el.textContent = L.price_from + ' ' + money(base, primary);
+    });
+    document.querySelectorAll('[data-rate]').forEach(el => {
+      const base = +el.dataset.rate;
+      const parts = all.map(c => '<b>' + money(base, c) + '</b>');
+      el.innerHTML = primary + ' · ' + parts.join(' · ');
+    });
+  }
+  /* В цене «Старт/Бизнес» также показываем все валюты:
+     data-price (крупно) — валюта региона, data-rate — все остальные. */
+
+  /* ---------- применение языка ---------- */
+  function applyLang(){
+    const L = STR[lang] || STR['ru-RU'];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = L[el.dataset.i18n];
+      if(v != null) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const v = L[el.dataset.i18nPh];
+      if(v != null) el.placeholder = v;
+    });
+    const track = document.getElementById('marquee');
+    track.innerHTML = '<span>' + L.m_items + '</span><span>' + L.m_items + '</span>';
+    select.value = lang;
+    renderPrices();
+  }
+
+  /* ---------- форма → Telegram ---------- */
+  const form = document.getElementById('lead-form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const contact = document.getElementById('f-contact').value.trim();
+    const task = document.getElementById('f-task').value.trim();
+    const msg = 'Заявка с сайта WIBE%0A%0AИмя: ' + encodeURIComponent(name) +
+      '%0AContact: ' + encodeURIComponent(contact) + '%0AЗадача: ' + encodeURIComponent(task || '—');
+    window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
+  });
+
+  /* ---------- gateway flow ---------- */
   const cv = document.getElementById('flow'), ctx = cv.getContext('2d');
   let width, height, paths = [], explosions = [];
   function resize(){
@@ -583,14 +960,11 @@
   }
   function bezier(t,p0,p1,p2,p3){
     const u=1-t;
-    return {
-      x: u**3*p0.x + 3*u**2*t*p1.x + 3*u*t**2*p2.x + t**3*p3.x,
-      y: u**3*p0.y + 3*u**2*t*p1.y + 3*u*t**2*p2.y + t**3*p3.y
-    };
+    return {x:u**3*p0.x+3*u**2*t*p1.x+3*u*t**2*p2.x+t**3*p3.x, y:u**3*p0.y+3*u**2*t*p1.y+3*u*t**2*p2.y+t**3*p3.y};
   }
   resize(); addEventListener('resize', resize);
   addEventListener('click', e => {
-    if(cv.style.opacity <= 0.05 || e.target.closest('a,button')) return;
+    if(flow.style.opacity <= 0.05 || e.target.closest('a,button')) return;
     explosions.push({x:e.clientX, y:e.clientY, radius:0, life:1});
   });
   (function draw(){
@@ -599,29 +973,26 @@
     explosions.forEach(e=>{e.radius+=15; e.life-=0.015;});
     explosions = explosions.filter(e=>e.life>0);
     for(const path of paths){
-      const p0 = {x: path.isLeft?0:width, y:path.startY};
-      const p1 = {x: path.isLeft?cx*0.5:width-cx*0.5, y:path.startY};
-      const p2 = {x: path.isLeft?cx*0.8:width-cx*0.8, y:cy};
+      const p0 = {x:path.isLeft?0:width, y:path.startY};
+      const p1 = {x:path.isLeft?cx*0.5:width-cx*0.5, y:path.startY};
+      const p2 = {x:path.isLeft?cx*0.8:width-cx*0.8, y:cy};
       const p3 = {x:cx, y:cy};
       ctx.beginPath();
       ctx.moveTo(p0.x,p0.y);
       ctx.bezierCurveTo(p1.x,p1.y,p2.x,p2.y,p3.x,p3.y);
       ctx.strokeStyle = 'rgba(255,107,44,.13)';
       ctx.lineWidth = 1;
-      ctx.setLineDash([1,5]);
-      ctx.stroke();
-      ctx.setLineDash([]);
+      ctx.setLineDash([1,5]); ctx.stroke(); ctx.setLineDash([]);
       for(const p of path.particles){
         p.t += p.speed;
         if(p.t>1){ p.t=0; path.startY += (Math.random()-.5)*10; }
         const pos = bezier(p.t,p0,p1,p2,p3);
         let dxT=0, dyT=0;
-        for(const e of explosions){
-          const dx=pos.x-e.x, dy=pos.y-e.y, dist=Math.hypot(dx,dy)||1;
-          if(dist<e.radius+120 && dist>e.radius-120){
-            const force=(1-Math.abs(dist-e.radius)/120)*e.life;
-            dxT += dx/dist*force*80;
-            dyT += dy/dist*force*80;
+        for(const ex of explosions){
+          const dx=pos.x-ex.x, dy=pos.y-ex.y, dist=Math.hypot(dx,dy)||1;
+          if(dist<ex.radius+120 && dist>ex.radius-120){
+            const force=(1-Math.abs(dist-ex.radius)/120)*ex.life;
+            dxT += dx/dist*force*80; dyT += dy/dist*force*80;
           }
         }
         ctx.fillStyle = 'rgba(255,140,80,.8)';
@@ -633,71 +1004,25 @@
 
   const flow = document.getElementById('flow');
   function updateFlow(){
-    const fade = Math.max(0, 1 - scrollY / (innerHeight * 0.85));
+    const fade = Math.max(0, 1 - scrollY/(innerHeight*0.85));
     flow.style.opacity = fade.toFixed(3);
     flow.style.pointerEvents = fade > 0.05 ? 'auto' : 'none';
   }
   addEventListener('scroll', updateFlow, {passive:true});
   updateFlow();
 
-  // вход hero с задержками
+  /* ---------- анимации и поведение ---------- */
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     document.querySelectorAll('.in-hero').forEach(el=>el.classList.add('on'));
   }));
-
-  // появление блоков при скролле
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   }),{threshold:.15});
   document.querySelectorAll('.rv').forEach((el,i)=>{
     el.style.transitionDelay = (i%4*90)+'ms';
     io.observe(el);
   });
 
-  // счётчики статистики
-  const cio = new IntersectionObserver(es => es.forEach(e => {
-    if(!e.isIntersecting) return;
-    const el = e.target, target = +el.dataset.count, t0 = performance.now();
-    const step = now => {
-      const p = Math.min(1,(now-t0)/1200);
-      el.textContent = Math.round(target * (1-Math.pow(1-p,3)));
-      if(p<1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-    cio.unobserve(el);
-  }),{threshold:.5});
-  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
-
-  // таймер до конца месяца
-  (function tick(){
-    const now = new Date();
-    const end = new Date(now.getFullYear(), now.getMonth()+1, 1);
-    let d = end - now;
-    const days = Math.floor(d/864e5); d-=days*864e5;
-    const h = Math.floor(d/36e5); d-=h*36e5;
-    const m = Math.floor(d/6e4); d-=m*6e4;
-    const s = Math.floor(d/1e3);
-    const el = document.getElementById('countdown');
-    if(el) el.textContent = `${days}д ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-    setTimeout(tick,1000);
-  })();
-
-  // форма → Telegram-бот с заполненным сообщением
-  const form = document.getElementById('lead-form');
-  if(form){
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const name = document.getElementById('f-name').value.trim();
-      const contact = document.getElementById('f-contact').value.trim();
-      const task = document.getElementById('f-task').value.trim();
-      const msg = `Заявка с сайта WIBE%0A%0AИмя: ${encodeURIComponent(name)}%0AContact: ${encodeURIComponent(contact)}%0AЗадача: ${encodeURIComponent(task||'—')}`;
-      window.open('https://t.me/wibesitebot?text=' + msg, '_blank');
-      const note = document.getElementById('form-note');
-      if(note) note.textContent = 'Готово! Отправили вас в Telegram — просто нажмите «Отправить» в боте.';
-    });
-  }
-
-  // прогресс-бар, липкий CTA, состояние хедера, параллакс hero
   const bar = document.getElementById('progress');
   const sticky = document.querySelector('.sticky-cta');
   const headerEl = document.querySelector('header');
@@ -712,6 +1037,11 @@
       heroInner.style.opacity = Math.max(0, 1 - y/(innerHeight*0.75));
     }
   }, {passive:true});
+
+  /* ---------- старт ---------- */
+  applyLang();
+  loadRates();
+  if(!localStorage.getItem('wibe-region')) modal.classList.add('show');
 </script>
 </body>
 </html>
