@@ -207,7 +207,7 @@
   .guarantee{border:1px solid rgba(255,107,44,.35);border-radius:16px;padding:18px 24px;background:rgba(255,107,44,.06);color:var(--muted);text-align:center;font-size:14px;max-width:640px;margin:26px auto 0}
   .guarantee b{display:block;color:var(--ink);font-size:15px;margin-bottom:3px}
 
-  .faq-list{display:grid;gap:10px;max-width:820px}
+  .faq-list{display:grid;gap:10px}
   .faq{border:1px solid var(--line);border-radius:18px;background:var(--panel);transition:border-color .25s}
   .faq:hover{border-color:rgba(255,107,44,.4)}
   .faq summary{cursor:pointer;list-style:none;padding:20px 24px;font-weight:600;font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:14px}
@@ -249,15 +249,6 @@
   footer a{color:var(--muted);text-decoration:none}
   footer a:hover{color:var(--accent)}
 
-  .float-tg{
-    position:fixed;right:22px;bottom:22px;z-index:70;
-    width:56px;height:56px;border-radius:50%;background:var(--gold);color:#1a0d04;
-    display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;
-    box-shadow:0 12px 34px rgba(255,107,44,.4);text-decoration:none;transition:transform .2s;
-    animation:bob 3s ease-in-out infinite;
-  }
-  .float-tg:hover{transform:scale(1.1)}
-  @keyframes bob{50%{box-shadow:0 16px 44px rgba(255,107,44,.55)}}
   .sticky-cta{
     position:fixed;bottom:0;left:0;right:0;z-index:71;
     display:flex;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
@@ -292,6 +283,45 @@
   .region-btn .fl{font-size:22px}
   .region-skip{display:inline-block;margin-top:22px;color:var(--muted);font-size:13px;text-decoration:none;border-bottom:1px dotted var(--muted);opacity:.8}
   .region-skip:hover{color:var(--accent);border-color:var(--accent)}
+
+  @media(min-width:820px){.faq-list{grid-template-columns:1fr 1fr}}
+
+  section[id]{scroll-margin-top:96px}
+
+  @media(max-width:900px){
+    section{padding:64px clamp(18px,4vw,32px)}
+    .hero{padding-top:120px}
+  }
+  @media(max-width:760px){
+    header{padding:14px 16px}
+    .header-right{gap:8px}
+    .lang-select{max-width:122px;padding:8px 10px;font-size:12px;white-space:nowrap;text-overflow:ellipsis}
+    .hero{padding:110px 16px 62px}
+    .hero-sml{font-size:12px}
+    .scroll-hint{display:none}
+    section{padding:56px 16px}
+    .service,.step,.plan{padding:24px 20px}
+    .case{padding:22px 20px}
+    .stats{gap:10px}
+    .stat{padding:18px 16px;border-radius:14px}
+    .process,.pricing{grid-template-columns:1fr}
+    .cta-block{padding:40px 20px}
+    .region-btn{padding:12px 14px;font-size:13px}
+    .form-card{padding:26px 20px}
+    .faq summary{padding:16px 18px;font-size:14px}
+    .faq p{padding:0 18px 16px;font-size:13px}
+    footer{gap:10px;padding:28px 16px}
+  }
+  @media(max-width:480px){
+    .btn{padding:11px 16px;font-size:14px}
+    .hero h1{font-size:33px}
+    .hero-actions .btn{flex:1 1 100%;text-align:center}
+    .plan .tag{font-size:11px;padding:4px 12px}
+  }
+  @media(max-width:380px){
+    .lang-select{max-width:96px}
+    .header-right .btn{padding:10px 12px;font-size:13px}
+  }
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -488,8 +518,6 @@
   <div data-i18n="foot_made"></div>
 </footer>
 
-<a class="float-tg" href="https://t.me/wibesitebot" target="_blank" rel="noopener" aria-label="Telegram">✈</a>
-
 <div class="sticky-cta">
   <a class="btn btn-primary" href="#contact" data-i18n="header_btn"></a>
   <a class="btn btn-ghost" href="https://t.me/wibesitebot" target="_blank" rel="noopener">Telegram</a>
@@ -568,7 +596,7 @@
     vc1:'Аудит бесплатно', vc2:'Цифры до старта', vc3:'План и смета',
     fname:'Имя', fname_p:'Как к вам обращаться', fcontact:'Как с вами связаться', fcontact_p:'Telegram, email или телефон', ftask:'Задача', ftask_p:'Пара слов о том, что нужно',
     fbtn:'Отправить', fnote:'Откроется Telegram — просто отправьте готовое сообщение. Или напишите на concept@wibe.site.',
-    foot_line:'© 2026 WIBE — сайты и ИИ для бизнеса', foot_made:'Сделано в WIBE',
+    foot_line:'© 2026 WIBE — сайты и ИИ для бизнеса', foot_made:'Сделано с помощью WIBE AI ⚡',
     reg_title:'Выберите язык и регион', reg_sub:'Тексты, цены и валюта подстроятся автоматически.', reg_skip:'Пропустить'
   },
   'ru-BY':{},
@@ -621,7 +649,7 @@
     vc1:'Free audit', vc2:'Numbers before you start', vc3:'Plan and quote',
     fname:'Name', fname_p:'What should we call you', fcontact:'Contact', fcontact_p:'Telegram, email or phone', ftask:'Task', ftask_p:'A few words about what you need',
     fbtn:'Send', fnote:'Telegram will open — just send the ready message. Or email concept@wibe.site.',
-    foot_line:'© 2026 WIBE — websites and AI for business', foot_made:'Made by WIBE',
+    foot_line:'© 2026 WIBE — websites and AI for business', foot_made:'Made with WIBE AI ⚡',
     reg_title:'Choose your language and region', reg_sub:'Texts, pricing and currency adjust automatically.', reg_skip:'Skip'
   },
   'pl-PL':{
@@ -673,7 +701,7 @@
     vc1:'Bezpłatny audyt', vc2:'Liczby przed startem', vc3:'Plan i wycena',
     fname:'Imię', fname_p:'Jak mamy się zwracać', fcontact:'Kontakt', fcontact_p:'Telegram, e-mail lub telefon', ftask:'Zadanie', ftask_p:'Kilka słów o tym, czego potrzebujesz',
     fbtn:'Wyślij', fnote:'Otworzy się Telegram — wyślij gotową wiadomość. Albo napisz na concept@wibe.site.',
-    foot_line:'© 2026 WIBE — strony i AI dla biznesu', foot_made:'Zrobione w WIBE',
+    foot_line:'© 2026 WIBE — strony i AI dla biznesu', foot_made:'Zrobione z WIBE AI ⚡',
     reg_title:'Wybierz język i region', reg_sub:'Teksty, ceny i waluta dostosują się automatycznie.', reg_skip:'Pomiń'
   },
   'de-DE':{
@@ -725,7 +753,7 @@
     vc1:'Kostenloses Audit', vc2:'Zahlen vor dem Start', vc3:'Plan und Angebot',
     fname:'Name', fname_p:'Wie dürfen wir Sie nennen', fcontact:'Kontakt', fcontact_p:'Telegram, E-Mail oder Telefon', ftask:'Aufgabe', ftask_p:'Ein paar Worte, was Sie brauchen',
     fbtn:'Senden', fnote:'Telegram öffnet sich — senden Sie einfach die fertige Nachricht. Oder schreiben Sie an concept@wibe.site.',
-    foot_line:'© 2026 WIBE — Websites und KI für Unternehmen', foot_made:'Gemacht von WIBE',
+    foot_line:'© 2026 WIBE — Websites und KI für Unternehmen', foot_made:'Gemacht mit WIBE AI ⚡',
     reg_title:'Sprache und Region wählen', reg_sub:'Texte, Preise und Währung passen sich automatisch an.', reg_skip:'Überspringen'
   },
   'zh-CN':{
@@ -777,7 +805,7 @@
     vc1:'免费诊断', vc2:'动工前先给数字', vc3:'方案与报价',
     fname:'称呼', fname_p:'怎么称呼你', fcontact:'联系方式', fcontact_p:'微信、邮箱或电话', ftask:'需求', ftask_p:'简单说说你需要什么',
     fbtn:'发送', fnote:'会打开Telegram——直接发送即可。或写信到 concept@wibe.site。',
-    foot_line:'© 2026 WIBE — 为企业做网站与AI', foot_made:'WIBE出品',
+    foot_line:'© 2026 WIBE — 为企业做网站与AI', foot_made:'由 WIBE AI 制作 ⚡',
     reg_title:'选择语言与地区', reg_sub:'文字、价格和货币都会自动调整。', reg_skip:'跳过'
   },
   'ja-JP':{
@@ -829,7 +857,7 @@
     vc1:'無料診断', vc2:'開始前に数字を', vc3:'プランとお見積もり',
     fname:'お名前', fname_p:'お呼びしてよいお名前', fcontact:'ご連絡先', fcontact_p:'X、メール、電話など', ftask:'ご要望', ftask_p:'必要なことを一言で',
     fbtn:'送信', fnote:'Telegramが開きますので、そのまま送信してください。メール: concept@wibe.site',
-    foot_line:'© 2026 WIBE — 企業のWebとAI制作', foot_made:'WIBE制作',
+    foot_line:'© 2026 WIBE — 企業のWebとAI制作', foot_made:'WIBE AI 制作 ⚡',
     reg_title:'言語と地域を選択', reg_sub:'表示言語・料金・通貨が自動で切り替わります。', reg_skip:'スキップ'
   }
   };
@@ -897,20 +925,16 @@
   }
   function renderPrices(){
     const primary = CURRENCY[lang];
-    const all = CURRENCIES.filter(c => c !== primary);
+    const L = STR[lang] || STR['ru-RU'];
     document.querySelectorAll('[data-price]').forEach(el => {
-      const L = STR[lang] || STR['ru-RU'];
       const base = +el.dataset.price;
       el.textContent = L.price_from + ' ' + money(base, primary);
     });
     document.querySelectorAll('[data-rate]').forEach(el => {
       const base = +el.dataset.rate;
-      const parts = all.map(c => '<b>' + money(base, c) + '</b>');
-      el.innerHTML = primary + ' · ' + parts.join(' · ');
+      el.textContent = '≈ ' + money(base, 'USD');
     });
   }
-  /* В цене «Старт/Бизнес» также показываем все валюты:
-     data-price (крупно) — валюта региона, data-rate — все остальные. */
 
   /* ---------- применение языка ---------- */
   function applyLang(){
