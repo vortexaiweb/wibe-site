@@ -34,7 +34,18 @@
   .calc h3{font-size:18px;margin-bottom:16px}
   .calc .rows{display:grid;gap:14px}
   .calc label{font-size:12.5px;color:var(--muted);display:block;margin-bottom:6px}
-  .calc input[type=range]{width:100%;accent-color:var(--green)}
+  .calc input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:100px;
+    background:linear-gradient(90deg,var(--green),var(--green)) no-repeat #e2eae4;
+    background-size:0 100%;outline:none;cursor:pointer;
+  }
+  .calc input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+    background:#fff;border:3px solid var(--green);box-shadow:0 2px 10px rgba(21,33,26,.25);cursor:pointer;
+  }
+  .calc input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--green);box-shadow:0 2px 10px rgba(21,33,26,.25);cursor:pointer}
+  .calc input[type=range]::-moz-range-track{height:5px;border-radius:100px;background:transparent}
+  .calc input[type=range]:focus-visible{box-shadow:0 0 0 3px rgba(29,138,78,.3)}
   .calc .vals{display:flex;justify-content:space-between;font-size:15px;font-weight:600}
   .calc .out{border-radius:16px;background:linear-gradient(135deg,#e8f5ec,#f2fbf4);padding:18px;margin-top:16px;display:flex;justify-content:space-between;align-items:center}
   .calc .out .big{font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;color:var(--green)}
@@ -149,6 +160,7 @@
   const sum = document.getElementById('sum'), term = document.getElementById('term');
   const sumV = document.getElementById('sumV'), termV = document.getElementById('termV'), pay = document.getElementById('pay');
   const fmt = n => n.toLocaleString('ru-RU').replace(/,/g, ' ') + ' ₽';
+  const paint = r => { const lo = +r.min, hi = +r.max; r.style.backgroundSize = ((+r.value - lo) / (hi - lo) * 100).toFixed(2) + '% 100%'; };
   function calc(){
     const s = +sum.value, m = +term.value;
     const rate = s < 300000 ? 17 : 15;
@@ -157,6 +169,7 @@
     sumV.textContent = fmt(s); termV.textContent = m + ' мес';
     pay.textContent = Math.round(p).toLocaleString('ru-RU').replace(/,/g, ' ') + ' ₽';
     document.getElementById('rateLabel').textContent = 'от ' + rate + '%';
+    paint(sum); paint(term);
   }
   sum.addEventListener('input', calc); term.addEventListener('input', calc); calc();
   document.getElementById('loanGo').addEventListener('click', () =>

@@ -387,7 +387,7 @@
 
   .region-modal{
     position:fixed;inset:0;z-index:200;display:none;
-    align-items:center;justify-content:center;
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
     background:rgba(10,9,8,.88);backdrop-filter:blur(12px);padding:20px;
   }
   .region-modal.show{display:flex}
@@ -396,6 +396,8 @@
     padding:clamp(28px,5vw,54px);max-width:640px;width:100%;text-align:center;
     box-shadow:0 40px 120px rgba(0,0,0,.6);
   }
+  .region-modal.show{align-items:flex-start}
+  .region-card{margin:auto}
   .region-card h3{font-size:clamp(20px,3vw,28px);font-weight:600;margin-bottom:10px}
   .region-card > p{color:var(--muted);font-size:14px;margin-bottom:30px}
   .region-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
@@ -503,6 +505,15 @@
   [dir="rtl"] .form-card,[dir="rtl"] .chat-card,[dir="rtl"] .region-btn{text-align:right}
   [dir="rtl"] input,[dir="rtl"] textarea{text-align:right}
   @media(max-width:560px){[dir="rtl"] .case .metric{text-align:right}}
+
+  /* ---------- мобильная полировка и нативные элементы ---------- */
+  *{-webkit-tap-highlight-color:transparent}
+  input[type=radio],input[type=checkbox],input[type=range]{-webkit-appearance:none;appearance:none}
+  @media(max-width:760px){
+    input,textarea,select{font-size:16px}
+    .hero-sml{max-width:34ch}
+    .chat-row input{font-size:16px}
+  }
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -617,9 +628,9 @@
   <div class="pricing">
     <div class="plan rv">
       <h3 data-i18n="pl1t"></h3>
-      <div class="price"><span data-price="200"></span></div>
+      <div class="price"><span data-price="start"></span></div>
       <p class="note" data-i18n="pl1sub"></p>
-      <div class="rate" data-rate="200"></div>
+      <div class="rate" data-rate="start"></div>
       <ul>
         <li data-i18n="pl1f1"></li>
         <li data-i18n="pl1f2"></li>
@@ -630,9 +641,9 @@
     <div class="plan hot rv">
       <div class="tag" data-i18n="pl2tag"></div>
       <h3 data-i18n="pl2t"></h3>
-      <div class="price"><span data-price="1000"></span></div>
+      <div class="price"><span data-price="business"></span></div>
       <p class="note" data-i18n="pl2sub"></p>
-      <div class="rate" data-rate="1000"></div>
+      <div class="rate" data-rate="business"></div>
       <ul>
         <li data-i18n="pl2f1"></li>
         <li data-i18n="pl2f2"></li>
@@ -655,9 +666,9 @@
     </div>
     <div class="plan rv">
       <h3 data-i18n="pl4t"></h3>
-      <div class="price"><span data-price="100"></span></div>
+      <div class="price"><span data-price="bot"></span></div>
       <p class="note" data-i18n="pl4sub"></p>
-      <div class="rate" data-rate="100"></div>
+      <div class="rate" data-rate="bot"></div>
       <ul>
         <li data-i18n="pl4f1"></li>
         <li data-i18n="pl4f2"></li>
@@ -700,59 +711,59 @@
         <div class="calc-title" data-i18n="calc_t"></div>
         <div class="tiles" id="calc-type" role="radiogroup">
           <label class="tile">
-            <input type="radio" name="calc-type" value="200" checked>
+            <input type="radio" name="calc-type" value="start" checked>
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.8-.8L3 20l1.1-5.4a8 8 0 0 1-.6-3.1A8.5 8.5 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg></span>
             <span class="tile-name" data-i18n="calc_t1"></span>
             <span class="tile-d" data-i18n="calc_d1"></span>
-            <span class="tile-p" data-usd-base="200"></span>
+            <span class="tile-p" data-usd-base="start"></span>
           </label>
           <label class="tile">
-            <input type="radio" name="calc-type" value="1000">
+            <input type="radio" name="calc-type" value="business">
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
             <span class="tile-name" data-i18n="calc_t2"></span>
             <span class="tile-d" data-i18n="calc_d2"></span>
-            <span class="tile-p" data-usd-base="1000"></span>
+            <span class="tile-p" data-usd-base="business"></span>
           </label>
           <label class="tile">
-            <input type="radio" name="calc-type" value="450">
+            <input type="radio" name="calc-type" value="rag">
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
             <span class="tile-name" data-i18n="calc_t3"></span>
             <span class="tile-d" data-i18n="calc_d3"></span>
-            <span class="tile-p" data-usd-base="450"></span>
+            <span class="tile-p" data-usd-base="rag"></span>
           </label>
           <label class="tile">
-            <input type="radio" name="calc-type" value="350">
+            <input type="radio" name="calc-type" value="voice">
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg></span>
             <span class="tile-name" data-i18n="calc_t4"></span>
             <span class="tile-d" data-i18n="calc_d4"></span>
-            <span class="tile-p" data-usd-base="350"></span>
+            <span class="tile-p" data-usd-base="voice"></span>
           </label>
           <label class="tile">
-            <input type="radio" name="calc-type" value="0">
+            <input type="radio" name="calc-type" value="custom">
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M9 3l3 6 3-6"/></svg></span>
             <span class="tile-name" data-i18n="calc_t5"></span>
             <span class="tile-d" data-i18n="calc_d5"></span>
             <span class="tile-p" data-i18n="calc_custom_short"></span>
           </label>
           <label class="tile">
-            <input type="radio" name="calc-type" value="100">
+            <input type="radio" name="calc-type" value="bot">
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="4"/><path d="M12 7V3"/><path d="M8 3h8"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg></span>
             <span class="tile-name" data-i18n="calc_t6"></span>
             <span class="tile-d" data-i18n="calc_d6"></span>
-            <span class="tile-p" data-usd-base="100"></span>
+            <span class="tile-p" data-usd-base="bot"></span>
           </label>
           <label class="tile">
-            <input type="radio" name="calc-type" value="800">
+            <input type="radio" name="calc-type" value="app">
             <span class="tile-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span>
             <span class="tile-name" data-i18n="calc_t7"></span>
             <span class="tile-d" data-i18n="calc_d7"></span>
-            <span class="tile-p" data-usd-base="800"></span>
+            <span class="tile-p" data-usd-base="app"></span>
           </label>
         </div>
         <div class="calc-opts" id="calc-opts">
-          <label class="opt"><input type="checkbox" data-add="150"><span data-i18n="calc_o1"></span><b class="opt-p" data-usd="150"></b></label>
-          <label class="opt"><input type="checkbox" data-add="300"><span data-i18n="calc_o2"></span><b class="opt-p" data-usd="300"></b></label>
-          <label class="opt"><input type="checkbox" data-add-percent="20"><span data-i18n="calc_o3"></span><b class="opt-p" data-usd-percent="20"></b></label>
+          <label class="opt"><input type="checkbox" data-add="crm"><span data-i18n="calc_o1"></span><b class="opt-p" data-usd="crm"></b></label>
+          <label class="opt"><input type="checkbox" data-add="support"><span data-i18n="calc_o2"></span><b class="opt-p" data-usd="support"></b></label>
+          <label class="opt"><input type="checkbox" data-add-percent="urgent"><span data-i18n="calc_o3"></span><b class="opt-p" data-usd-percent="urgent"></b></label>
         </div>
         <div class="calc-total" id="calcBox">
           <div class="est-col">
@@ -1866,6 +1877,7 @@
   const CURRENCIES = ['USD','EUR','RUB','BYN','PLN','CNY','JPY','KZT','UZS','GEL','ILS','AMD','AZN','KGS','TJS','TMT','MDL'];
   const SYM = {USD:'$',EUR:'€',RUB:'₽',BYN:'Br',PLN:'zł',CNY:'¥',JPY:'¥',KZT:'₸',UZS:"soʻm",GEL:'₾',ILS:'₪',AMD:'֏',AZN:'₼',KGS:'som',TJS:'смн',TMT:'m',MDL:'L'};
   const FALLBACK = {USD:1,EUR:.92,RUB:90,BYN:3.3,PLN:3.9,CNY:7.2,JPY:150,KZT:460,UZS:12600,GEL:2.65,ILS:3.6,AMD:388,AZN:1.7,KGS:86,TJS:10.9,TMT:3.5,MDL:17.6};
+  const PRICE = {start:200, business:1000, rag:450, voice:350, bot:100, app:800, crm:150, support:300, urgent:20};
   let rates = Object.assign({}, FALLBACK), live = false;
 
   /* ---------- выбор языка и региона ---------- */
@@ -1885,6 +1897,8 @@
     e.preventDefault(); modal.classList.remove('show');
   });
   document.getElementById('langBtn').addEventListener('click', () => modal.classList.add('show'));
+  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('show'); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('show')) modal.classList.remove('show'); });
 
   /* ---------- курсы валют ---------- */
   async function loadRates(){
@@ -1919,11 +1933,11 @@
     const primary = CURRENCY[lang];
     const L = STR[lang] || STR['en-US'];
     document.querySelectorAll('[data-price]').forEach(el => {
-      const base = +el.dataset.price;
+      const base = PRICE[el.dataset.price] || 0;
       el.textContent = L.price_from + ' ' + money(base, primary);
     });
     document.querySelectorAll('[data-rate]').forEach(el => {
-      const base = +el.dataset.rate;
+      const base = PRICE[el.dataset.rate] || 0;
       el.textContent = '≈ ' + money(base, 'USD');
     });
   }
@@ -1952,16 +1966,16 @@
   let lastCalc = 0, calcAnim = null;
   function renderCalc(){
     const L = STR[lang] || STR['en-US'];
-    const base = +document.querySelector('#calc-type input:checked').value;
+    const base = PRICE[document.querySelector('#calc-type input:checked').value] || 0;
     const totalEl = document.getElementById('calc-total');
     const usdEl = document.getElementById('calc-usd');
     const box = document.getElementById('calcBox');
     document.querySelectorAll('[data-usd]').forEach(el =>
-      el.textContent = '+' + money(+el.dataset.usd, CURRENCY[lang]));
+      el.textContent = '+' + money(PRICE[el.dataset.usd] || 0, CURRENCY[lang]));
     document.querySelectorAll('[data-usd-percent]').forEach(el =>
-      el.textContent = '+' + el.dataset.usdPercent + '%');
+      el.textContent = '+' + (PRICE[el.dataset.usdPercent] || 0) + '%');
     document.querySelectorAll('[data-usd-base]').forEach(el =>
-      el.textContent = L.price_from + ' ' + money(+el.dataset.usdBase, CURRENCY[lang]));
+      el.textContent = L.price_from + ' ' + money(PRICE[el.dataset.usdBase] || 0, CURRENCY[lang]));
     cancelAnimationFrame(calcAnim);
     if(base === 0){
       totalEl.textContent = L.calc_custom;
@@ -1972,8 +1986,8 @@
     }
     let total = base;
     document.querySelectorAll('#calc-opts input:checked').forEach(cb => {
-      if(cb.dataset.add) total += +cb.dataset.add;
-      if(cb.dataset.addPercent) total = Math.round(total*(1 + (+cb.dataset.addPercent)/100));
+      if(cb.dataset.add) total += PRICE[cb.dataset.add] || 0;
+      if(cb.dataset.addPercent) total = Math.round(total*(1 + (+(PRICE[cb.dataset.addPercent]||0))/100));
     });
     if(box) box.classList.remove('pulse');
     usdEl.textContent = '≈ ' + money(total, 'USD');
