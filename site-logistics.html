@@ -64,6 +64,12 @@
   footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   footer a{color:var(--amber)}
   @media(max-width:860px){.hero{grid-template-columns:1fr}nav{display:none}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}.track-bar form{max-width:100%;justify-content:flex-start}}
+  html{scroll-behavior:smooth}
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s);will-change:opacity,transform}
+  .rv.in{opacity:1;transform:none}
+  header.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -151,16 +157,19 @@
     if(!n) return;
     const box = document.getElementById('trackResult');
     const valid = /^L-\d{4,6}$/.test(n);
-    if(!valid){ box.style.display='block'; box.innerHTML='<div class="line">Накладная не найдена</div><p style="color:var(--muted)">Проверьте номер: он должен выглядеть как L-20481.</p>'; return; }
-    box.style.display='block';
-    const eta = n.slice(2) % 4 === 0;
-    box.innerHTML='<div class="line">Груз по накладной ' + n + '</div>' +
-      '<ol>' +
-      '<li class="done"><span class="dot">✓</span>Забор в Москве — 8:12, 15 марта</li>' +
-      '<li class="done"><span class="dot">✓</span>Склад-сортировка — 21:40</li>' +
-      '<li class="now"><span class="dot">◉</span>В пути. Текущая точка: М-4 «Дон», 612 км</li>' +
-      '<li class=""><span class="dot"></span>Доставка в Ростов-на-Дону</li>' +
-      '</ol><div class="eta">Ожидаемая выдача: ' + (eta ? 'завтра до 14:00' : '16 марта до 18:00') + '</div>';
+    if(!valid){ box.style.display='block'; box.innerHTML='<div class="line">Накладная не найдена</div><p style="color:var(--muted)">Проверьте номер: он должен выглядеть как L-20481.</p>'; }
+    else {
+      box.style.display='block';
+      const eta = n.slice(2) % 4 === 0;
+      box.innerHTML='<div class="line">Груз по накладной ' + n + '</div>' +
+        '<ol>' +
+        '<li class="done"><span class="dot">✓</span>Забор в Москве — 8:12, 15 марта</li>' +
+        '<li class="done"><span class="dot">✓</span>Склад-сортировка — 21:40</li>' +
+        '<li class="now"><span class="dot">◉</span>В пути. Текущая точка: М-4 «Дон», 612 км</li>' +
+        '<li class=""><span class="dot"></span>Доставка в Ростов-на-Дону</li>' +
+        '</ol><div class="eta">Ожидаемая выдача: ' + (eta ? 'завтра до 14:00' : '16 марта до 18:00') + '</div>';
+    }
+    box.scrollIntoView({behavior:'smooth', block:'nearest'});
   });
   document.getElementById('calcForm').addEventListener('submit', e => {
     e.preventDefault();
@@ -168,6 +177,19 @@
     if(!f || !t) return alert('Укажите маршрут');
     window.open('https://t.me/wibesitebot?text=' + encodeURIComponent('Logistics+: расчёт перевозки ' + f + ' → ' + t), '_blank');
   });
+
+  /* ---------- полировка: reveal, шапка ---------- */
+  (() => {
+    const targets = document.querySelectorAll('.track-bar, .hero, .steps, .features, #contact');
+    targets.forEach((t,i) => t.classList.add('rv'));
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    let n = 0;
+    targets.forEach(t => { t.style.setProperty('--d', ((n++ % 3) * 110) + 'ms'); io.observe(t); });
+    const h = document.querySelector('header');
+    addEventListener('scroll', () => h.classList.toggle('scrolled', scrollY > 8), {passive:true});
+  })();
 </script>
 </body>
 </html>
