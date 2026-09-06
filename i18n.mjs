@@ -2,8 +2,10 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 export const SITE = 'https://wibe.site';
 
-/* дата: язык → папка. en-US живёт на корне, ru-BY обслуживается папкой ru */
+/* дата: язык → папка. en-US живёт в /en-us/, корень / редиректит на /en-us/.
+   ru-BY обслуживается папкой ru. */
 export const DIRS = [
+  { dir: 'en-us', code: 'en-US' },
   { dir: 'ru',    code: 'ru-RU' },
   { dir: 'en-gb', code: 'en-GB' },
   { dir: 'pl',    code: 'pl-PL' },
@@ -22,19 +24,25 @@ export const DIRS = [
   { dir: 'ro',    code: 'ro-MD' }
 ];
 
-/* все коды для hreflang: сначала корневой en-US, затем папки */
-export const CODES = ['en-US'].concat(DIRS.map(d => d.code));
+/* все коды для hreflang: сначала en-US, затем остальные папки */
+export const CODES = DIRS.map(d => d.code);
 
 export function dirOf(code) {
-  if (code === 'en-US') return null;
   if (code === 'ru-BY') return 'ru';
-  return (DIRS.find(d => d.code === code) || {}).dir || null;
+  return (DIRS.find(d => d.code === code) || {}).dir || 'en-us';
+}
+
+/* файл страницы → «красивый» слаг URL (без .html) */
+export function slugOf(pageFile /* 'portfolio.html' | 'case-ecom.html' | '' */) {
+  if (pageFile === '') return '';
+  return pageFile.replace(/\.html$/, '');
 }
 
 export function urlFor(code, page, overrideDir) {
   const dir = overrideDir !== undefined ? overrideDir : dirOf(code);
-  if (page === '') return dir ? `${SITE}/${dir}/` : `${SITE}/`;
-  return dir ? `${SITE}/${dir}/${page}` : `${SITE}/${page}`;
+  const slug = slugOf(page);
+  if (slug === '') return `${SITE}/${dir}/`;
+  return `${SITE}/${dir}/${slug}`;
 }
 
 export function hreflang(page) {
@@ -229,45 +237,46 @@ export function buildVariant(source, page, filename, code, dir) {
     html = html.replace('"name": "Портфолио"', '"name": "' + m[5] + '"');
   }
 
-  /* ссылки переводятся на абсолютные/локальные версии */
-  html = html.replaceAll('href="case-ecom.html"', `href="/${dir}/case-ecom.html"`);
-  html = html.replaceAll('href="case-logistics.html"', `href="/${dir}/case-logistics.html"`);
-  html = html.replaceAll('href="case-media.html"', `href="/${dir}/case-media.html"`);
-  html = html.replaceAll('href="portfolio.html"', `href="/${dir}/portfolio.html"`);
+  /* локализация JSON-LD урлов */
+  const home = `${SITE}/${dir}/`;
+  html = html.replaceAll('"url": "https://wibe.site"', `"url": "${home}"`);
+  html = html.replaceAll('"item": "https://wibe.site/"', `"item": "${home}"`);
+  html = html.replaceAll('"item": "https://wibe.site/portfolio.html"', `"item": "${SITE}/${dir}/portfolio"`);
+  html = html.replaceAll(`"item": "https://wibe.site/${filename}"`, `"item": "${canonical}"`);
+  html = html.replaceAll(`"url": "https://wibe.site/${filename}"`, `"url": "${canonical}"`);
+
+  /* ссылки переводятся на абсолютные/красивые (без .html) */
+  html = html.replaceAll('href="case-ecom.html"', `href="/${dir}/case-ecom"`);
+  html = html.replaceAll('href="case-logistics.html"', `href="/${dir}/case-logistics"`);
+  html = html.replaceAll('href="case-media.html"', `href="/${dir}/case-media"`);
+  html = html.replaceAll('href="portfolio.html"', `href="/${dir}/portfolio"`);
   html = html.replaceAll('href="index.html#contact"', `href="/${dir}/#contact"`);
   html = html.replaceAll('href="index.html"', `href="/${dir}/"`);
   html = html.replaceAll('href="case.css"', 'href="/case.css"');
   html = html.replaceAll('href="portfolio.css"', 'href="/portfolio.css"');
   for (const site of ['coffee', 'fit', 'law', 'logistics', 'media', 'finlab']) {
-    html = html.replaceAll(`href="site-${site}.html"`, `href="/site-${site}.html"`);
+    html = html.replaceAll(`href="site-${site}.html"`, `href="/site-${site}"`);
   }
   return html;
 }
 
 export function buildSitemap() {
-  const root = [
-    { loc: `${SITE}/`, priority: '1.0' },
-    { loc: `${SITE}/case-ecom.html`, priority: '0.8' },
-    { loc: `${SITE}/case-logistics.html`, priority: '0.8' },
-    { loc: `${SITE}/case-media.html`, priority: '0.8' },
-    { loc: `${SITE}/portfolio.html`, priority: '0.7' },
-    { loc: `${SITE}/concept.html`, priority: '0.3' },
-    { loc: `${SITE}/site-law.html`, priority: '0.5' },
-    { loc: `${SITE}/site-logistics.html`, priority: '0.5' },
-    { loc: `${SITE}/site-media.html`, priority: '0.5' },
-    { loc: `${SITE}/site-coffee.html`, priority: '0.5' },
-    { loc: `${SITE}/site-fit.html`, priority: '0.5' },
-    { loc: `${SITE}/site-finlab.html`, priority: '0.5' }
+  const subs = [
+    { file: 'case-ecom.html',      p: '0.8' },
+    { file: 'case-logistics.html', p: '0.8' },
+    { file: 'case-media.html',     p: '0.8' },
+    { file: 'portfolio.html',      p: '0.8' }
   ];
+  const demos = ['concept', 'site-coffee', 'site-fit', 'site-law', 'site-logistics', 'site-media', 'site-finlab'];
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-  for (const p of root) xml += `  <url><loc>${p.loc}</loc><priority>${p.priority}</priority></url>\n`;
   for (const d of DIRS) {
-    for (const pg of PAGES) {
-      const url = urlFor(d.code, pg.page, d.dir);
-      const priority = pg.page === '' ? '0.9' : '0.7';
-      xml += `  <url><loc>${url}</loc><priority>${priority}</priority></url>\n`;
+    const isDefault = d.code === 'en-US';
+    xml += `  <url><loc>${SITE}/${d.dir}/</loc><priority>${isDefault ? '1.0' : '0.9'}</priority></url>\n`;
+    for (const s of subs) {
+      xml += `  <url><loc>${SITE}/${d.dir}/${slugOf(s.file)}</loc><priority>${s.p}</priority></url>\n`;
     }
   }
+  for (const s of demos) xml += `  <url><loc>${SITE}/${s}</loc><priority>0.5</priority></url>\n`;
   xml += '</urlset>\n';
   return xml;
 }
@@ -284,7 +293,8 @@ export function generate(outDir) {
       written++;
     }
   }
-  writeFileSync(outDir + '/sitemap.xml', buildSitemap(), 'utf8');
-  console.log('i18n: generated ' + written + ' variant pages in ' + DIRS.length + ' locale dirs + sitemap (' + (20 + written) + ' urls)');
+  const sitemap = buildSitemap();
+  writeFileSync(outDir + '/sitemap.xml', sitemap, 'utf8');
+  console.log('i18n: generated ' + written + ' variant pages in ' + DIRS.length + ' locale dirs + sitemap (' + (sitemap.match(/<loc>/g) || []).length + ' urls)');
   return written;
 }
